@@ -28,7 +28,8 @@ router.register('impression', api.api.ImpressionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/doc', get_swagger_view(title="REST API DOCUMENT")),
-    path('api/res/', include((router.urls, 'impression'), namespace='api'))
-
+    path('api/doc', get_swagger_view(title="REST API DOCUMENT")), # API 문서를 나타내는 파트. 실효는 없음
+    path('api/res/', include((router.urls, 'impression'), namespace='api'))  # 초기 플젝 임시 API URL을 라우팅하는 파트
+    # /api/res/impression 주소에서 ImpressionViewSet 데이터를 뿌려주는 역할을 한다.
+    # 상세한 내용은 django REST API 관련 Google 문서들을 참고할 것!
 ]
