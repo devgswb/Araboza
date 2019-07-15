@@ -9,10 +9,7 @@
 # 가령
 # $ crawl 2019 01 01 0 하는 식으로 실행됩니다.
 import sys
-
 PARAM = sys.argv[1:]
-
-
 # SITE_CODE는 각 사이트별 코드를 정의해놓은 상수입니다.
 # Python에서 상수는 대문자와 언더바(_)로 표시합니다.
 SITE_CODE = {
