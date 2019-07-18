@@ -9,6 +9,7 @@ class DogDrip:
         self.page = 1
         self.month = int(self.dt.month)
         self.year = self.dt.year
+        self.count = 0
         self.crawl_end = False
         self.day_count = timedelta(days=0)
 
@@ -44,9 +45,9 @@ class DogDrip:
             # 작성일이 ~초 분 시간 전 일 때
             if (day.find('분') != (-1)) or (day.find('시간') != (-1)) or (day.find('초') != (-1)):
                 if self.month < 10:
-                    day = f"{self.dt.year}.0{self.dt.month}.{self.dt.day}"
+                    day = f"{self.year}.0{self.month}.{self.dt.day}"
                 else:
-                    day = f"{self.dt.year}.{self.dt.month}.{self.dt.day}"
+                    day = f"{self.year}.{self.month}.{self.dt.day}"
             # 작성일이 ~일 전 일때
             elif day.find('일') != (-1):
                 # ~ 일 전 문자열에서 '일 전' 을 잘라 숫자만 남김
@@ -58,14 +59,18 @@ class DogDrip:
                 time1 = date(years, months, days)
                 time2 = date(int(self.year), int(self.month), int(self.dt.day))
                 time3 = time2 - self.day_count
-
+              #  time3 = time2 - timedelta(days=int(day.rstrip('일 전')))
                 day = str(time3).replace('-', '.')
-                # 긁기원하는 날짜보다 이전에 작성된 목록일 시 break
+
                 if int((time1 - time3).days) > 0:
                     self.crawl_end = True
                     print('완료')
                     break
 
+            if day == f'{years}.{months}.{days}':
+                self.crawl_end = True
+                print('완료')
+                break
             dates.append(day)
 
         f = open(f'[{years}-{months}-{days}]DogDrip.csv', mode='a', encoding='utf-8')
