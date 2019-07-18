@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import main from './components/main';
+import result from './components/result';
 class App extends Component {
     state = {
         data: {
@@ -33,6 +35,11 @@ class App extends Component {
                 <span>
                     긍정:{this.state.data.positive} 부정:{this.state.data.negative}
                 </span>
+                <Router>
+                    <Route exact path="/" component = {main}/>
+                    <Route path="/result" component = {result}/>
+                </Router>
+                /* /result/:resultId *변경 */
             </div>
         )
     };
