@@ -11,6 +11,7 @@ class Gasaenge:
         self.year = self.dt.year
         self.month = self.dt.month
         self.day = self.dt.day
+        self.count = 0
 
     def __run__(self, years, months, days):
         try:
@@ -43,13 +44,18 @@ class Gasaenge:
             if count > 7:
                 titles.append(row.getText().strip().replace(',', ''))
 
-        print(titles)
         count = 0
 
         for row in soup.select('table.board_list > tr > td.datetime'):
             count += 1
             if count > 7:
                 day = row.getText().strip()
+
+                if (day == "12/31") and (self.count == 0):
+                    self.year = str(int(self.year) - 1)
+                    self.count = 1
+                if day == '12/30':
+                    self.count = 0
 
                 if day.find(':') != (-1):
                     if self.month < 10:
@@ -70,13 +76,8 @@ class Gasaenge:
                     break
 
                 dates.append(day)
-        print(dates)
 
         f = open(f'[{years}-{months}-{days}]Gasaengi.csv', mode='a', encoding='utf-8')
         for j in range(len(dates)):
             f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()
-
-
-g = Gasaenge()
-g.__run__(2019, 6, 29)
