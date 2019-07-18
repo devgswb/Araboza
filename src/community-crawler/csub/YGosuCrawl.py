@@ -61,6 +61,3 @@ class Ygosu:
         for j in range(len(date)):
             f.write(f' {date[j]}, {title[j]},\n')
         f.close()
-
-s = Ygosu()
-s.__run__(2019,7,14)
