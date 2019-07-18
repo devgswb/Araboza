@@ -8,20 +8,18 @@ class Cook82:
         self.dt = datetime.today()
         self.crawl_end = False
         self.page = 1
+        self.year = self.dt.year
+        self.month = self.dt.month
+        self.count = 0
 
     def __run__(self, years, months, days):
-        try:
-            while self.crawl_end == False:
-                self.crawl(years, months, days)
-                print(f"{years}-{months}-{days}까지 페이지 긁는중\n")
-                self.page += 1
-            print('82쿡 Crawling 완료')
-        except RuntimeError:
-            print('RuntimeError')
-        except ValueError:
-            print('ValueError')
-        except IndexError:
-            print('IndexError')
+
+        while self.crawl_end == False:
+            self.crawl(years, months, days)
+            print(f"{years}-{months}-{days}까지 페이지 긁는중\n")
+            self.page += 1
+        print('82쿡 Crawling 완료')
+
 
     def crawl(self, years, months, days):
         url = f'https://www.82cook.com/entiz/enti.php?bn=15&page={self.page}'
@@ -37,13 +35,22 @@ class Cook82:
 
         for row in soup.select('tbody > tr:not(.noticeList) > td.regdate.numbers'):
             day = row.getText().strip()
+
             if day.find(':') != (-1):
                 if self.dt.month < 10:
-                    day = f"{self.dt.year}.0{self.dt.month}.{self.dt.day}"
+                    day = f"0{self.month}.{self.dt.day}"
                 else:
-                    day = f"{self.dt.year}.{self.dt.month}.{self.dt.day}"
+                    day = f"{self.month}.{self.dt.day}"
 
-            day = day.replace('/', '.')
+                if (day == "12/31") and (self.count == 0):
+                    self.year = str(int(self.year) - 1)
+                    self.count = 1
+                if day == '12/30':
+                    self.count = 0
+
+                day = str(self.year) + '.' + day.replace("/", ".")
+
+            day = day.replace("/", ".")
 
             time1 = date(years, months, days)
             time2 = date(int(day[0:4]), int(day[5:7]), int(day[8:10]))
