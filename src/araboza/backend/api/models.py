@@ -1,7 +1,14 @@
-from django.db import models
+from mongoengine import Document, EmbeddedDocument, fields
 
 
-class Impression(models.Model):
-    positive = models.FloatField(default=0.0)
-    negative = models.FloatField(default=0.0)
+class ToolInput(EmbeddedDocument):
+    name = fields.StringField(required=True)
+    value = fields.DynamicField(required=True)
+
+
+class Tool(Document):
+    label = fields.StringField(required=True)
+    description = fields.StringField(required=True, null=True)
+    inputs = fields.ListField(fields.EmbeddedDocumentField(ToolInput))
+
 # Create your models here.
