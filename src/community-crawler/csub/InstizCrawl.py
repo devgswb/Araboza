@@ -11,6 +11,7 @@ class Instiz :
         self.crawl_end = False  # 종료
         self.page = 1
         self.count = 0
+        self.change = 0
 
     def run(self,title, years, months, days):
         while self.crawl_end == False :
@@ -55,17 +56,19 @@ class Instiz :
             d = d.get_text()
             d = d.replace('\n', '')
             d = d[0:5]
-            c = d[3:5]
+            if y != years and d == "12.31" and self.change == 0:
+                self.count = self.count + 1
+                self.change = self.change + 1
+            if y != years and d == "12.30":
+                self.change = 0
             y = int(y) - self.count
-            if y != years :
-                if int(c) == 31 :
-                    self.count += 1
             if ':' in d:
                 d = date.today()
                 d = str(d)
                 d = d.replace('-', '.')
             else :
                 d = str(y) + '.' + d
+            print(y)
             d = d.replace(' ', '')
             d = d.split(' ')[0]
             if month < 10:
@@ -85,8 +88,8 @@ class Instiz :
             f.write(f'{day[t]},{write[t]}\n')
             f.close()
 
-# inti = Instiz()
-# tiz = inti.run(1,2019,7,15)
+inti = Instiz()
+tiz = inti.run(1,2018,12,30)
 # title파라미터 추가 1~3 까지
 # 1 = 잡담
 # 2 = 게임
