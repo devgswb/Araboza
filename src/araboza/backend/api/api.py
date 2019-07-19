@@ -1,5 +1,5 @@
 from .models import Impression
-from rest_framework import serializers, viewsets
+from rest_framework_mongoengine import serializers, viewsets
 
 
 class ImpressionSerializer(serializers.ModelSerializer):
@@ -9,5 +9,6 @@ class ImpressionSerializer(serializers.ModelSerializer):
 
 
 class ImpressionViewSet(viewsets.ModelViewSet):
+    lookup_field = 'id'
     queryset = Impression.objects.all()
     serializer_class = ImpressionSerializer

@@ -5,7 +5,7 @@ channels:
 dependencies:
   - asn1crypto=0.24.0=py37_1003
   - ca-certificates=2019.6.16=hecc5488_0
-  - certifi=2019.6.16=py37_0
+  - certifi=2019.6.16=py37_1
   - cffi=1.12.3=py37hb32ad35_0
   - chardet=3.0.4=py37_1003
   - cryptography=2.7=py37hb32ad35_0
@@ -40,4 +40,8 @@ dependencies:
   - wheel=0.33.4=py37_0
   - win_inet_pton=1.1.0=py37_0
   - wincertstore=0.2=py37_1002
-
+  - pip:
+    - django-rest-framework-mongoengine==3.3.1
+    - mongoengine==0.11.0
+    - pymongo==3.8.0
+prefix: C:\Users\singl\Anaconda3\envs\Araboza
