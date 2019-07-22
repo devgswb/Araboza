@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from rest_framework_mongoengine import routers as merouters
-from .views import ToolViewSet
+from . import views
 
 merouter = merouters.DefaultRouter()
-merouter.register(r'mongo', ToolViewSet)
+merouter.register(r'mongo', views.ToolViewSet)
+merouter.register(r'res/impression', views.ImpressionViewSet)
 
 urlpatterns = [
 

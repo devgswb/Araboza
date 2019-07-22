@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import mongoengine
+import urllib.parse
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -29,9 +30,11 @@ ALLOWED_HOSTS = []
 
 # Databases
 
+username = urllib.parse.quote_plus('devgswb')
+password = urllib.parse.quote_plus('1q@W3e4r')
 mongoengine.connect(
-    db="tools",
-    host="localhost"
+    'araboza',
+    host=f'mongodb://{username}:{password}@61.84.24.251:57017/araboza'
 )
 
 
@@ -45,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_mongoengine',
+    'corsheaders',
     'api',
 ]
 
@@ -52,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -60,6 +66,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'server.urls'
 
+# CROS 설정
+# 개발을 위한 보안 Free 설정
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+# 배포할 땐 특정 ip나 URL만 접근 가능하게
+# CORS_ORIGIN_WHITELIST = (
+#
+# )
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

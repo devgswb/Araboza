@@ -11,4 +11,7 @@ class Tool(Document):
     description = fields.StringField(required=True, null=True)
     inputs = fields.ListField(fields.EmbeddedDocumentField(ToolInput))
 
+class Impression(Document):
+    positive = fields.FloatField(required=True, default=0.0)
+    negative = fields.FloatField(required=True, default=0.0)
 # Create your models here.
