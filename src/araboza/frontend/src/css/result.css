@@ -1,0 +1,123 @@
+.wrapper{
+    display: grid;
+    /* 컬럼 수 */
+    grid-template-columns: repeat(1, 1fr);
+    /* 높이 지정
+    minmax(최소 높이, )*/
+    /*grid-auto-rows: minmax(100px, auto);*/
+    /* 그리드 셀 사이의 여백
+    grid-colum-gap
+    grid-row-gap
+
+    프로퍼티 두개를 지정하면 처음 것은 row-gap, 두번째는 colum-gap
+    grid-gap: 5px 10px;
+    */
+    grid-gap: 5px;
+    grid-template-areas:
+            "header-"
+            "site-chart"
+            "site-wrapper";
+}
+*{ box-sizing: border-box; }
+.wrapper{
+    border: 2px solid #f76707;
+    border-radius: 5px;
+    background-color: rgba(151,241,255,0.69);
+    width:1200px;
+    margin: 0 auto;
+}
+
+/* 결과창 */
+.header{
+    /*셀의 컬럼 시작, 종료 위치
+    행의 시작 종료 위치 지정*/
+    /*grid-column-start: 1;*/
+    /*grid-column-end: 4;*/
+    /*grid-row-start: 1;*/
+    /*grid-row-end: 4;*/
+
+    /* 더 나아가 grid-area 로 정의 가능
+    순서는 row-start / colum-start / row-end / colum-end
+    grid-area 로 셀에 이름을 줄 수 있다
+    grid-area: hd
+    */
+    /*grid-area: 1 / 1 / 4 / 4;*/
+    grid-area: header-;
+
+    /* 그리드 셀은 또하나의 그리드가 될 수 있음
+    즉 셀 안에 다른 셀을 가둘 수 있음
+    원래는 subgrid 이지만 아직 모든 브라우저에서 구현되지 않음*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+            "title"
+            "res-intro"
+            "pn-chart";
+
+}
+.header{
+    border: 2px solid #000000;
+    border-radius: 5px;
+}
+/* ARABOZA 타이틀*/
+.title{
+    grid-area: title;
+}
+/*검색 결과 설명*/
+.res-intro{
+    grid-area: res-intro;
+}
+/* 긍 부정 차트 */
+.pn-chart{
+    grid-area: pn-chart;
+}
+.pn-chart{
+    border: 2px solid dodgerblue;
+    border-radius: 5px;
+    background-color: rgba(239,255,140,0.75);
+
+}
+/*사이트 통계 파이 차트*/
+.site-chart{
+    grid-area: site-chart;
+    height:220px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 7px 0 0 0;
+
+}
+
+.site-wrapper{
+    display : grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    background-color: #93ffad;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    grid-area: site-wrapper;
+    padding: 0 2px 2px 2px;
+}
+
+#site-title{
+    grid-area: 1/ 1/ 1/ 5;
+}
+.site{
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 5px 0 5px 0;
+    background: #a4bcff;
+}
+
+
+@media(max-width: 1000px){
+    .wrapper{
+        width:800px;
+    }
+}
+
+
+@media(max-width: 505px) {
+    .wrapper{
+        width:500px;
+    }
+}
