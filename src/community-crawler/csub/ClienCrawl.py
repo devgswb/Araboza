@@ -1,11 +1,11 @@
 import requests as req
 from datetime import date
 import re
-
+import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
 
-class Clien :
+class Crawler:
 
     def __init__(self):
         self.crawl_end = False  # 종료
@@ -13,9 +13,10 @@ class Clien :
 
     def run(self, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(years, months, days)
             self.page += 1
-            print(self.page)
 
     def crawlPage(self, years, months, days):
         url = f'https://www.clien.net/service/board/park?&od=T31&po={self.page}'
@@ -28,7 +29,7 @@ class Clien :
         end = days-1
         month = months
         year = years
-        if end == 0 :
+        if end == 0:
             if  month == 3 or month == 5 or  month == 7 or months == 10 or months == 12:
                 end = 30
                 month = month-1
@@ -60,16 +61,16 @@ class Clien :
             if month < 10:
                 if d == f"{year}.0{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}.{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}.{1}.{2}]Clien.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'Clien'
+            fpath = f'data/2/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             f.close()

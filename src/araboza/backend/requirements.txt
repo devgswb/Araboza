@@ -1,4 +1,6 @@
+beautifulsoup4==4.8.0
 blinker==1.0
+bs4==0.0.1
 certifi==2019.6.16
 chardet==3.0.4
 coreapi==2.3.3
@@ -18,6 +20,7 @@ pytz==2019.1
 requests==2.22.0
 simplejson==3.16.0
 six==1.12.0
+soupsieve==1.9.2
 uritemplate==3.0.0
 urllib3==1.25.3
 wincertstore==0.2

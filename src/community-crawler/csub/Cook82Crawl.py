@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date
+import sys
 
-
-class Cook82:
+class Crawler:
     def __init__(self):
         self.dt = datetime.today()
         self.crawl_end = False
@@ -12,14 +12,12 @@ class Cook82:
         self.month = self.dt.month
         self.count = 0
 
-    def __run__(self, years, months, days):
-
+    def run(self, years, months, days):
         while self.crawl_end == False:
             self.crawl(years, months, days)
-            print(f"{years}-{months}-{days}까지 페이지 긁는중\n")
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.page += 1
-        print('82쿡 Crawling 완료')
-
 
     def crawl(self, years, months, days):
         url = f'https://www.82cook.com/entiz/enti.php?bn=15&page={self.page}'
@@ -62,7 +60,9 @@ class Cook82:
 
             dates.append(day)
 
-        f = open(f'[{years}-{months}-{days}]82Cook.csv', mode='a', encoding='utf-8')
+        name = '82Cook'
+        fpath = f'data/3/[{years}-{months}-{days}]{name}.csv'
+        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
             f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

@@ -312,3 +312,5 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/django,pycharm
+# Crawling Data
+*.csv

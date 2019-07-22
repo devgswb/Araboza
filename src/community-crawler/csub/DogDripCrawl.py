@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date, timedelta
+import sys
 
-
-class DogDrip:
+class Crawler:
     def __init__(self):
         self.dt = datetime.today()
         self.page = 1
@@ -13,13 +13,13 @@ class DogDrip:
         self.crawl_end = False
         self.day_count = timedelta(days=0)
 
-    def __run__(self, years, months, days):
+    def run(self, years, months, days):
         try:
             while self.crawl_end == False:
+                sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+                sys.stdout.flush()
                 self.crawl(years, months, days)
-                print(f"{years}-{months}-{days} 페이지 긁는중\n")
                 self.page += 1
-                print(self.page)
         except RuntimeError:
             print('RuntimeError')
         except ValueError:
@@ -64,16 +64,16 @@ class DogDrip:
 
                 if int((time1 - time3).days) > 0:
                     self.crawl_end = True
-                    print('완료')
                     break
 
             if day == f'{years}.{months}.{days}':
                 self.crawl_end = True
-                print('완료')
                 break
             dates.append(day)
 
-        f = open(f'[{years}-{months}-{days}]DogDrip.csv', mode='a', encoding='utf-8')
+        name = 'DogDrip'
+        fpath = f'data/4/[{years}-{months}-{days}]{name}.csv'
+        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
             f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

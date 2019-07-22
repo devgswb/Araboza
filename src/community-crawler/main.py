@@ -9,30 +9,37 @@
 # 가령
 # $ crawl 2019 01 01 0 하는 식으로 실행됩니다.
 import sys
+import os
+from csub import BoBaeCrawl, ClienCrawl, Cook82Crawl
+from csub import DogDripCrawl, EtolandCrawl, GasaengeCrawl
+from csub import HumorunivCrawl, HygallCrawl, InstizCrawl
+from csub import MlbParkCrawl, NatePannCrawl, RuLiWebCrawl
+from csub import TheqooCrawl, TodayHumorCrawl, YGosuCrawl
 PARAM = sys.argv[1:]
 # SITE_CODE는 각 사이트별 코드를 정의해놓은 상수입니다.
 # Python에서 상수는 대문자와 언더바(_)로 표시합니다.
 SITE_CODE = {
-    0: "디씨인사이드",
-    1: "FM코리아",
-    2: "루리웹",
-    3: "뽐뿌",
-    4: "클리앙",
-    5: "네이트판",
-    6: "MLB파크",
-    7: "더쿠넷",
-    8: "SLR클럽",
-    9: "이토렌트",
-    10: "오늘의 유머",
-    11: "웃긴대학",
-    12: "보배드림",
-    13: "와이고수",
-    14: "개드립",
-    15: "가생이",
-    16: "딴지일보",
-    17: "82쿡"
+    1: "보배드림",
+    2: "클리앙",
+    3: "82쿡",
+    4: "개드립",
+    5: "이토랜드",
+    6: "가생이",
+    7: "웃긴대학",
+    8: "해연갤",
+    9: "인스티즈",
+    10: "MLB파크",
+    11: "네이트판",
+    12: "루리웹",
+    13: "더쿠넷",
+    14: "오늘의 유머",
+    15: "와이고수",
 }
 
+
+def data_directory_create(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
 
 # crawler는 크롤러 클래스입니다.
 class Crawler:
@@ -43,44 +50,74 @@ class Crawler:
     def run(site_code: int, year: int, month: int, day: int):
         # import 해온 서브 크롤러를 실행하는 부분입니다.
         print(f"{SITE_CODE[site_code]}를(을) 크롤링합니다.")
-        Crawler.__run_crawler__(site_code)
+        Crawler.__run_crawler__(site_code, year, month, day)
 
     @staticmethod
-    def __run_crawler__(site_code):
+    def __run_crawler__(site_code, year, month, day):
+        if not os.path.exists('data'):
+            os.mkdir('data')
         if site_code == 1:
-            pass
+            data_directory_create('data/1')
+            crawler = BoBaeCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 2:
-            pass
+            data_directory_create('data/2')
+            crawler = ClienCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 3:
-            pass
+            data_directory_create('data/3')
+            crawler = Cook82Crawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 4:
-            pass
+            data_directory_create('data/4')
+            crawler = DogDripCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 5:
-            pass
+            data_directory_create('data/5')
+            crawler = EtolandCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 6:
-            pass
+            data_directory_create('data/6')
+            crawler = GasaengeCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 7:
-            pass
+            data_directory_create('data/7')
+            crawler = HumorunivCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 8:
-            pass
+            data_directory_create('data/8')
+            crawler = HygallCrawl.Crawler()
+            crawler.run('hy', year, month, day)
         elif site_code == 9:
-            pass
+            data_directory_create('data/9')
+            crawler = InstizCrawl.Crawler()
+            crawler.run('name', year, month, day)
         elif site_code == 10:
-            pass
+            data_directory_create('data/10')
+            crawler = MlbParkCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 11:
-            pass
+            data_directory_create('data/11')
+            crawler = NatePannCrawl.Crawler()
+            crawler.run('c20001', year, month, day)  # 세상 사는 이야기
+            crawler = NatePannCrawl.Crawler()
+            crawler.run('c20028', year, month, day)  # 엔터톡
         elif site_code == 12:
-            pass
+            data_directory_create('data/12')
+            crawler = RuLiWebCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 13:
-            pass
+            data_directory_create('data/13')
+            crawler = TheqooCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 14:
-            pass
+            data_directory_create('data/14')
+            crawler = TodayHumorCrawl.Crawler()
+            crawler.run(year, month, day)
         elif site_code == 15:
-            pass
-        elif site_code == 16:
-            pass
-        elif site_code == 17:
-            pass
+            data_directory_create('data/15')
+            crawler = YGosuCrawl.Crawler()
+            crawler.run(year, month, day)
 
 
 # 리눅스 상에서 실행시 동작이 어떻게 될지 나타냅니다.

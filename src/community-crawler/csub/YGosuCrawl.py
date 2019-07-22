@@ -1,20 +1,22 @@
 from bs4 import BeautifulSoup
 import requests
 import datetime
+import sys
 # request 를 통해 html 소스를 가져옴
 
 
-class Ygosu:
+class Crawler:
     def __init__(self):
         self.page = 1
         self.crawl_end = False
         self.dt = datetime.datetime.today()
 
-    def __run__(self, years, months, days):
+    def run(self, years, months, days):
         try:
             while self.crawl_end == False:
+                sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+                sys.stdout.flush()
                 self.crawl(years, months, days)
-                print(f"{years}-{months}-{days} 페이지 긁는중\n")
                 self.page += 1
         except RuntimeError:
             print('RuntimeError')
@@ -57,7 +59,9 @@ class Ygosu:
                     break
             date.append(day)
 
-        f = open(f'[{years}-{months}-{days}]YGosu.csv', mode='a', encoding='utf-8')
+        name = 'YGosu'
+        fpath = f'data/15/[{years}-{months}-{days}]{name}.csv'
+        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(date)):
             f.write(f' {date[j]}, {title[j]},\n')
         f.close()

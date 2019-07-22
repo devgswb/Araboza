@@ -1,11 +1,12 @@
 import requests as req
 from datetime import date
+import sys
 import re
 
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
 
-class RuLiWeb :
+class Crawler:
 
     def __init__(self):
         self.crawl_end = False  # 종료
@@ -13,9 +14,10 @@ class RuLiWeb :
 
     def run(self, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(years, months, days)
             self.page += 1
-            print(self.page)
 
     def crawlPage(self, years, months, days):
         url = f'http://bbs.ruliweb.com/community/board/300143?page={self.page}'
@@ -60,19 +62,16 @@ class RuLiWeb :
             if month < 10:
                 if d == f"{year}.0{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}.{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}.{1}.{2}]RuLiWeb.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'Ruliweb'
+            fpath = f'data/12/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             f.close()
-
-ruli = RuLiWeb()
-ru = ruli.run(2019,7,1)
