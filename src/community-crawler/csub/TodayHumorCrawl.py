@@ -1,9 +1,9 @@
 import requests as req
 from datetime import date
-
+import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
-class TodayHumor:
+class Crawler:
 
     def __init__(self):
         self.crawl_end = False
@@ -11,9 +11,10 @@ class TodayHumor:
 
     def run(self, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(years, months, days)
             self.page += 1
-            print(self.page)
 
     def crawlPage(self, years, months, days):
         url = f'http://www.todayhumor.co.kr/board/list.php?table=total&page={self.page}&kind=total'
@@ -62,20 +63,17 @@ class TodayHumor:
             if month < 10:
                 if d == f"{year}-0{month}-{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}-{month}-{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}-{1}-{2}]TodayHumor.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'TodayHumor'
+            fpath = f'data/14/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             # print(f'{day[t]},{write[t]}\n')
             f.close()
-
-crawlrun = TodayHumor()
-runing = crawlrun.run(2019, 7, 22)

@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup as bs
 import requests
 from datetime import datetime, date
+import os
+import sys
 # request 를 통해 html 소스를 가져옴
 
 
-class BoBaeDream:
-
+class Crawler:
     def __init__(self):
         self.year = '2019'  # 년도
         self.count = 0  # 년도 카운팅을 위한 변수
@@ -13,11 +14,12 @@ class BoBaeDream:
         self.page = 1
         self.dt = datetime.today()
 
-    def __run__(self, years, months, days):
+    def run(self, years, months, days):
         try:
             while self.crawl_end == False:
+                sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+                sys.stdout.flush()
                 self.crawl(years, months, days)
-                print(f"{years}-{months}-{days} 페이지 긁는중\n")
                 self.page += 1
         except RuntimeError:
             print('RuntimeError')
@@ -65,11 +67,12 @@ class BoBaeDream:
 
             if int((time1-time2).days) > 0:
                 self.crawl_end = True
-                print('완료')
                 break
 
             dates.append(temp)
-        f = open(f'[{years}-{months}-{days}]BoBaeDream.csv', mode='a', encoding='utf-8')
+        name = 'BoBaeDream'
+        fpath = f'data/1/[{years}-{months}-{days}]{name}.csv'
+        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
             f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

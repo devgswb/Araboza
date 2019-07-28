@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime, date
+import sys
 
-
-class Gasaenge:
+class Crawler:
     def __init__(self):
         self.dt = datetime.today()
         self.crawl_end = False
@@ -13,15 +13,13 @@ class Gasaenge:
         self.day = self.dt.day
         self.count = 0
 
-    def __run__(self, years, months, days):
+    def run(self, years, months, days):
         try:
             while self.crawl_end == False:
+                sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+                sys.stdout.flush()
                 self.crawl(years, months, days)
-                print(f"{years}-{months}-{days}까지 페이지 긁는중\n")
-                print(self.page)
                 self.page += 1
-
-            print('Gasange Crawling 완료')
         except RuntimeError:
             print('RuntimeError')
         except ValueError:
@@ -72,12 +70,13 @@ class Gasaenge:
 
                 if int((time1 - time2).days) > 0:
                     self.crawl_end = True
-                    print('완료')
                     break
 
                 dates.append(day)
 
-        f = open(f'[{years}-{months}-{days}]Gasaengi.csv', mode='a', encoding='utf-8')
+        name = 'GaSengI'
+        fpath = f'data/6/[{years}-{months}-{days}]{name}.csv'
+        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
             f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

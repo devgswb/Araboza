@@ -1,26 +1,26 @@
 import requests as req
 from datetime import date
 import re
-
+import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
 
-class Instiz :
-
+class Crawler:
     def __init__(self):
         self.crawl_end = False  # 종료
         self.page = 1
         self.count = 0
         self.change = 0
 
-    def run(self,title, years, months, days):
+    def run(self, title, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(title, years, months, days)
             self.page += 1
-            print(self.page)
 
-    def crawlPage(self,title, years, months, days):
-        url = f'https://www.instiz.net/free?page={self.page}&category={title}'
+    def crawlPage(self, title, years, months, days):
+        url = f'https://www.instiz.net/{title}?page={self.page}&category=1'
         res = req.get(url)
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
@@ -52,7 +52,6 @@ class Instiz :
         for d in soup.select('tr:not(.list_header.minitext3) > td.listno.regdate'):
             y = date.today()
             y = str(y)[0:4]
-            print(y)
             d = d.get_text()
             d = d.replace('\n', '')
             d = d[0:5]
@@ -68,29 +67,25 @@ class Instiz :
                 d = d.replace('-', '.')
             else :
                 d = str(y) + '.' + d
-            print(y)
             d = d.replace(' ', '')
             d = d.split(' ')[0]
             if month < 10:
                 if d == f"{year}.0{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}.{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}.{1}.{2}]Instiz.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'Instiz'
+            fpath = f'data/9/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             f.close()
 
-inti = Instiz()
-tiz = inti.run(1,2018,12,30)
-# title파라미터 추가 1~3 까지
 # 1 = 잡담
 # 2 = 게임
 # 3 = 투표

@@ -1,11 +1,11 @@
 import requests as req
 from datetime import date
 import re
-
+import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
 
-class HyGall :
+class Crawler:
 
     def __init__(self):
         self.crawl_end = False  # 종료
@@ -15,11 +15,12 @@ class HyGall :
 
     def run(self,title, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(title, years, months, days)
             self.page += 1
-            print(self.page)
 
-    def crawlPage(self,title, years, months, days):
+    def crawlPage(self, title, years, months, days):
         url = f'https://hygall.com/index.php?mid={title}&page={self.page}'
         res = req.get(url)
         html = res.text
@@ -73,25 +74,20 @@ class HyGall :
             if month < 10:
                 if d == f"{year}.0{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}.{month}.{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
-            print(self.count)
-            print(self.change)
-            print(d)
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}.{1}.{2}]HyGall.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'HyGall'
+            fpath = f'data/8/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             f.close()
 
-hyg = HyGall()
-gall = hyg.run('game',2019,7,18)
 # title파라미터 추가 1~3 까지
 # hy = 잡담
 # game = 게임

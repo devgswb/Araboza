@@ -1,19 +1,19 @@
 import requests as req
 from datetime import date
-
+import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
-class Etoland:
-
+class Crawler:
     def __init__(self):
         self.crawl_end = False
         self.page = 1
 
     def run(self, years, months, days):
         while self.crawl_end == False :
+            sys.stdout.write(f"{years}-{months}-{days} {self.page}페이지 긁는중\r")
+            sys.stdout.flush()
             self.crawlPage(years, months, days)
             self.page += 1
-            print(self.page)
 
     def crawlPage(self, years, months, days):
         url = f'http://www.etoland.co.kr/bbs/new1.php?gr_id=bbs&view=&mb_id=&subject=&ext_search=&page={self.page}'
@@ -64,19 +64,16 @@ class Etoland:
             if month < 10:
                 if d == f"{year}-0{month}-{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             else:
                 if d == f"{year}-{month}-{end}":
                     self.crawl_end = True
-                    print('완료')
                     break
             day.append(d)
 
         for t in range(len(day)):
-            f = open('[{0}-{1}-{2}]Etoland.csv'.format(years, months, days), mode='a', encoding='utf-8')
+            name = 'Etoland'
+            fpath = f'data/5/[{years}-{months}-{days}]{name}.csv'
+            f = open(fpath, mode='a', encoding='utf-8')
             f.write(f'{day[t]},{write[t]}\n')
             f.close()
-
-crawlrun = Etoland()
-runing = crawlrun.run(2019, 7, 22)
