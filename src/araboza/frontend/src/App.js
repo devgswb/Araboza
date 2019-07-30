@@ -37,7 +37,7 @@ class App extends Component {
                 </span>
                 <Router>
                     <Route exact path="/" component = {main}/>
-                    <Route path="/result" component = {result}/>
+                    <Route path="/result" component = {result} />
                 </Router>
                 /* /result/:resultId *변경 */
             </div>

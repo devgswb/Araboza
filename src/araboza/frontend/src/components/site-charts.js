@@ -36,7 +36,7 @@ class SiteChart extends Component {
         ];
 
 // Add label
-        chart.innerRadius = 100;
+        chart.innerRadius = 70;
         let label = chart.seriesContainer.createChild(am4core.Label);
         label.text = "Faker";
         label.horizontalCenter = "middle";
@@ -49,15 +49,15 @@ class SiteChart extends Component {
         pieSeries.dataFields.category = "sector";
 
 // Animate chart data
-        let currentYear = "Faker";
-        function getCurrentData() {
-            label.text = currentYear;
-            let data = chartData[currentYear];
-            // currentYear++;
-            // if (currentYear > 2014)
-            //     currentYear = 1995;
-            return data;
-        }
+//         let currentYear = "Faker";
+//         function getCurrentData() {
+//             label.text = currentYear;
+//             let data = chartData[currentYear];
+//             // currentYear++;
+//             // if (currentYear > 2014)
+//             //     currentYear = 1995;
+//             return data;
+//         }
 // 차트 데이터 애니메이션 이었던 것
 //         function loop() {
 //             //chart.allLabels[0].text = currentYear;
@@ -77,7 +77,7 @@ class SiteChart extends Component {
     render() {
         return (
             <div>
-                <div id="charts" style={{ width: "100%", height: "200px"}}>
+                <div id="charts" style={{ width: "100%", height: "230px"}}>
                 </div>
             </div>
         );

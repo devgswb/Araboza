@@ -6,29 +6,32 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 class PnCharts extends Component {
+    constructor(props) {
+        super(props);
 
-    componentDidMount(){
+    }
+
+    componentDidMount() {
         let chart = am4core.create("chartdiv", am4charts.XYChart);
+
 
 // Add data
         chart.data = [{
             "word": "",
             "positive": 70,
             "negative": 30,
-        }
-        ];
+        }];
 
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
         chart.legend.position = "bottom";
         //반응형?
-      //  chart.responsive.enabled = true;
+        //  chart.responsive.enabled = true;
         //차트 색상
         chart.colors.list = [
             am4core.color("#1f7aff"),
             am4core.color("#ff0e0b")
         ];
-
 
 
 // Create axes
@@ -57,23 +60,32 @@ class PnCharts extends Component {
         valueAxis.cursorTooltipEnabled = true;
 
 
-
 // Create series
-        function createSeries(field, name) {
+//         function createSeries(field, name) {
+        const createSeries = (field, name) => {
             let series = chart.series.push(new am4charts.ColumnSeries());
             series.dataFields.valueX = field;
             series.dataFields.categoryY = "word";
             series.stacked = true;
             series.name = name;
 
-            //그라데이션
+           // 그라데이션
             let fillModifier = new am4core.LinearGradientModifier();
             fillModifier.gradient.rotation = 30; //그라데이션 회전
-            fillModifier.brightnesses = [0,5,3,0]; //색상 밝기
-         //   fillModifier.opacities = [1,0]; //투명도
-         //   fillModifier.offsets = [0,1]; //속성 길이
+            fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
+            //   fillModifier.opacities = [1,0]; //투명도
+            //   fillModifier.offsets = [0,1]; //속성 길이
             chart.fillModifier = fillModifier;
             series.columns.template.fillModifier = fillModifier;
+
+            // 패턴
+            // let pattern = new am4core.LinePattern();
+            // pattern.width = 10;
+            // pattern.height = 10;
+            // pattern.stroke = am4core.color('blue').lighten(0.5);
+            // pattern.strokeWidth = 2;
+            // pattern.rotation = 45;
+            // series.columns.template.fill = pattern;
 
 
             // tooltip
@@ -98,7 +110,6 @@ class PnCharts extends Component {
             series.defaultState.transitionDuration = 2000;
 
 
-
             let labelBullet = series.bullets.push(new am4charts.LabelBullet());
             labelBullet.locationX = 0.5;
             // 바에 나타나는 숫자
@@ -107,18 +118,23 @@ class PnCharts extends Component {
             labelBullet.label.scale = 3;
             // 숫자 색상
             labelBullet.label.fill = am4core.color("#fff");
-        }
+        };
 
         createSeries("positive", "positive");
         createSeries("negative", "negative");
 
-    }
+
+    };
+
+
     render() {
+
         return (
-            <div id="chartdiv" style={{ width: "100%", height: "170px" }}>
+            <div id="chartdiv" style={{width: "100%", height: "170px"}}>
             </div>
         );
     }
 }
+
 //tab 누르면 바뀜
 export default PnCharts;

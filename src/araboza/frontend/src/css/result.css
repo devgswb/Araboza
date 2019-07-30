@@ -20,9 +20,9 @@
 }
 *{ box-sizing: border-box; }
 .wrapper{
-    border: 2px solid #f76707;
-    border-radius: 5px;
-    background-color: rgba(151,241,255,0.69);
+    border: 1px solid #000000;
+    /*border-radius: 30px;*/
+    background-color: #ffff;
     width:1200px;
     margin: 0 auto;
 }
@@ -56,7 +56,7 @@
 
 }
 .header{
-    border: 2px solid #000000;
+    /*border: 2px solid #000000;*/
     border-radius: 5px;
 }
 /* ARABOZA 타이틀*/
@@ -66,49 +66,102 @@
 /*검색 결과 설명*/
 .res-intro{
     grid-area: res-intro;
+    border-top: 1px solid dodgerblue;
+    border-radius: 10px;
+    padding-top: 10px;
 }
 /* 긍 부정 차트 */
 .pn-chart{
     grid-area: pn-chart;
 }
 .pn-chart{
-    border: 2px solid dodgerblue;
-    border-radius: 5px;
-    background-color: rgba(239,255,140,0.75);
-
-}
-/*사이트 통계 파이 차트*/
-.site-chart{
-    grid-area: site-chart;
-    height:220px;
-    border: 2px solid black;
+    border-bottom: 1px solid dodgerblue;
     border-radius: 10px;
-    padding: 7px 0 0 0;
-
+    background-color: white;
+    padding-right: 25px;
 }
 
 .site-wrapper{
     display : grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 5px;
-    background-color: #93ffad;
-    border: 2px solid #000000;
-    border-radius: 10px;
+    grid-gap: 3px;
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-radius: 15px;
     grid-area: site-wrapper;
-    padding: 0 2px 2px 2px;
+    padding: 1px 2px 1px 2px;
 }
-
 #site-title{
     grid-area: 1/ 1/ 1/ 5;
 }
-.site{
-    border: 2px solid #000000;
-    border-radius: 10px;
-    padding: 5px 0 5px 0;
-    background: #a4bcff;
+#site-chart-button{
+    margin: 0 0 0 363px;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    border: none;
+    font-size: 1.5rem;
+}
+
+/*사이트 통계 파이 차트*/
+.site-chart{
+    grid-area: site-chart;
+    height:250px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 15px;
+    padding: 7px 0 0 0;
+    z-index: 0;
 }
 
 
+
+.site{
+    border: 2px solid #2d84ff;
+    border-radius: 20px;
+    padding: 5px 0 5px 0;
+    color: #2d84ff;
+    /*background-color: #adf6ff;*/
+    /*background: linear-gradient(to right,*/
+    /*        rgba(255,255,255,0) 0%,*/
+    /*        rgba(255,255,255,0) 51%,*/
+    /*        rgba(255,255,255,.7) 100%);*/
+
+    background: linear-gradient(-45deg,
+    #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,
+    #d3f8ff,
+    #fafff8,
+    #d3f8ff,
+    #61dafb,#61dafb,#61dafb,#61dafb,#61dafb);
+
+}
+
+.site{
+    animation-name: flow;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    background-size: 300%;
+}
+/*animation: name | duration | timing-function | delay | iteration-count | direction | fill-mode | play-state> [,...];*/
+
+.site:hover {
+    background: #ffffff;
+}
+
+@keyframes flow{
+   from {
+		background-position:0 0;
+	}
+	to {
+		background-position:100% 50%;
+	}
+
+
+}
+/*화면 크기*/
 @media(max-width: 1000px){
     .wrapper{
         width:800px;
