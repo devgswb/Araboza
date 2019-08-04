@@ -83,7 +83,7 @@
 
 .site-wrapper{
     display : grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 3px;
     background-color: #ffffff;
     border-top: 1px solid #000000;
@@ -115,8 +115,20 @@
     z-index: 0;
 }
 
+p{
+    padding-top: 10px;
+    color: #2835ff;
+    font-weight: bold;
+    font-family: SansSerif;
+}
 
+.category{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(40px, 45px);
+    grid-row-gap: 2px;
 
+}
 .site{
     border: 2px solid #2d84ff;
     border-radius: 20px;
@@ -128,15 +140,32 @@
     /*        rgba(255,255,255,0) 51%,*/
     /*        rgba(255,255,255,.7) 100%);*/
 
-    background: linear-gradient(-45deg,
-    #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,
-    #d3f8ff,
-    #fafff8,
-    #d3f8ff,
-    #61dafb,#61dafb,#61dafb,#61dafb,#61dafb);
 
 }
-
+.ncho{
+    background: linear-gradient(-45deg,
+        #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,#61dafb,
+        #d3f8ff,
+        #fafff8,
+        #d3f8ff,
+        #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,#61dafb);
+}
+.ycho{
+     background: linear-gradient(-45deg,
+        #9eff96,#9eff96,#9eff96,#9eff96,#9eff96,#9eff96,
+        #c9ffcf,
+        #fafff8,
+        #c9ffcf,
+        #9eff96,#9eff96,#9eff96,#9eff96,#9eff96,#9eff96);
+}
+.other{
+     background: linear-gradient(-45deg,
+        #e098ff,#e098ff,#e098ff,#e098ff,#e098ff,#e098ff,
+        #e3c7ff,
+        #fafff8,
+        #e3c7ff,
+        #e098ff,#e098ff,#e098ff,#e098ff,#e098ff,#e098ff);
+}
 .site{
     animation-name: flow;
     animation-duration: 5s;
@@ -151,6 +180,11 @@
     background: #ffffff;
 }
 
+.nav{
+    border: 1px solid #2d84ff;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
 @keyframes flow{
    from {
 		background-position:0 0;

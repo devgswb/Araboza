@@ -1,7 +1,7 @@
 import {actionType} from "../action";
 
 const initialState={
-    dataset: []
+    data: []
 };
 
 // 긍부적 결과값
@@ -11,7 +11,7 @@ function resultReducer(state=initialState, action){
             console.log('LOAD_DATA_SUCCESS');
             return {
                 ...state,
-                dataset:action.dataset
+                data:action.data
             };
         case actionType.LOAD_DATA_FAILED:
             console.log('LOAD_DATA_FAILED');

@@ -4,6 +4,11 @@ import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import main from './components/main';
 import result from './components/result';
+
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+
+
 class App extends Component {
     state = {
         data: {
@@ -11,7 +16,6 @@ class App extends Component {
             negative: 0.0
         }
     };
-
     async dataGetFromAPIServer() {
         try {
             // Backend (django 서버)의 api/res/impression의 json 데이터를 비동기 방식(await)로 받아오는 부분이다.
@@ -23,6 +27,7 @@ class App extends Component {
             console.log(e);
         }
     }
+
 
     render() {
         return (
@@ -45,4 +50,21 @@ class App extends Component {
     };
 }
 
-export default App;
+// function mapStateToProps(state){
+//     return{
+//         data:state.resultReducer.dataset
+//     }
+// }
+// function mapDispatchToProps(dispatch){
+//     return{
+//         dataGetFromAPIServer:bindActionCreators(dataGetFromAPIServer ,dispatch)
+//     }
+// }
+
+// App = connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+    state =>({data:state.data})
+)(App);
+
+
+// export default App;

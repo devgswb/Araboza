@@ -8,12 +8,14 @@ am4core.useTheme(am4themes_animated);
 class PnCharts extends Component {
     constructor(props) {
         super(props);
-
+    }
+    loadData(){
+        this.props.loadData();
     }
 
     componentDidMount() {
-        let chart = am4core.create("chartdiv", am4charts.XYChart);
-
+        let chart = am4core.create("pn-chart", am4charts.XYChart);
+        const {data} = this.props;
 
 // Add data
         chart.data = [{
@@ -112,10 +114,11 @@ class PnCharts extends Component {
 
             let labelBullet = series.bullets.push(new am4charts.LabelBullet());
             labelBullet.locationX = 0.5;
+            labelBullet.locationY = 0.55;
             // 바에 나타나는 숫자
             labelBullet.label.text = "{valueX}";
             // 숫자 크기
-            labelBullet.label.scale = 3;
+            labelBullet.label.scale = 2;
             // 숫자 색상
             labelBullet.label.fill = am4core.color("#fff");
         };
@@ -130,7 +133,7 @@ class PnCharts extends Component {
     render() {
 
         return (
-            <div id="chartdiv" style={{width: "100%", height: "170px"}}>
+            <div id="pn-chart" style={{width: "100%", height: "170px"}}>
             </div>
         );
     }
