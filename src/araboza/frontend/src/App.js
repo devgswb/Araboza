@@ -3,10 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import main from './components/main';
-import result from './components/result';
+import result_main from './components/result_main';
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import { loadData } from "./saga/resultSaga";
 
 
 class App extends Component {
@@ -16,7 +17,6 @@ class App extends Component {
             negative: 0.0
         }
     };
-
     async dataGetFromAPIServer() {
         try {
             // Backend (django 서버)의 api/res/impression의 json 데이터를 비동기 방식(await)로 받아오는 부분이다.
@@ -29,6 +29,12 @@ class App extends Component {
         }
     }
 
+    // loadData(){
+    //     this.props.lodaData();
+    //     this.setState({
+    //         data:this.data
+    //     })
+    // }
 
     render() {
         return (
@@ -43,7 +49,7 @@ class App extends Component {
                 </span>
                 <Router>
                     <Route exact path="/" component = {main}/>
-                    <Route path="/result" component = {result} />
+                    <Route path="/result" component = {result_main} />
                 </Router>
             </div>
         )
@@ -52,20 +58,19 @@ class App extends Component {
 
 // function mapStateToProps(state){
 //     return{
-//         data:state.resultReducer.dataset
+//         data:state.resultReducer.data
 //     }
 // }
 // function mapDispatchToProps(dispatch){
 //     return{
-//         dataGetFromAPIServer:bindActionCreators(dataGetFromAPIServer ,dispatch)
+//         loadData:bindActionCreators(loadData, dispatch)
 //     }
 // }
-
+//
 // App = connect(mapStateToProps, mapDispatchToProps)(App);
 
-export default connect(
-    state =>({data:state.data})
-)(App);
+export default App;
 
-
-// export default App;
+// export default connect(
+//     state =>({data: state.data})
+// )(App);

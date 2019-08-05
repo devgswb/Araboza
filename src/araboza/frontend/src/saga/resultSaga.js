@@ -1,13 +1,13 @@
 import {put, call, take} from 'redux-saga/effects';
 import {actionType} from "../action";
-// import {dataGetFromAPIServer} from '../App'
+// import {loadData} from '../App'
 
 export function* loadData(){
     try{
-        // let {data} = yield call(dataGetFromAPIServer);
+        let {data} = yield call(loadData);
         yield put({
             type:actionType.LOAD_DATA_SUCCESS,
-            // data: data.val(),
+            data: data.val(),
         });
         return true;
     }catch (e) {
@@ -24,3 +24,4 @@ export function* loadDataFlow(){
         yield call(loadData);
     }
 }
+

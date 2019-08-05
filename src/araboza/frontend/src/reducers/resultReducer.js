@@ -18,6 +18,17 @@ function resultReducer(state=initialState, action){
             return {
               ...state,
             };
+        case actionType.SAVE_DATA_SUCCESS:
+            console.log('SAVE_DATA_SUCCESS');
+            return {
+                ...state,
+                data:action.data
+            };
+        case actionType.SAVE_DATA_FAILED:
+            console.log('SAVE_DATA_FAILED');
+            return {
+              ...state,
+            };
         default:
             return state
     }

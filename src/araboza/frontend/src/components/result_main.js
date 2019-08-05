@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import '../css/result.css';
-import PnCharts from "./pn-charts";
-import SiteChart from "./site-charts";
+import '../css/result_main.css';
+import Result_pnCharts from "./result_pn-charts";
+import SiteChart from "./result_site-charts";
 import SiteChart2 from "./site-chart2";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-
+import axios from 'axios';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loadData} from "../action";
@@ -17,24 +17,23 @@ import {loadData} from "../action";
    -긍 부정 데이터
    -사이트별 연관 단어
    -날짜
-
-
 */
 
 
-class result extends Component {
+class result_main extends Component {
     constructor(props) {
         super(props);
         this.state = {
             //사이트 차트 보임 여부
             visible: "none",
-
+            data:this.props.data,
         };
     }
 
-    loadData() {
-        this.props.loadData();
-    }
+    // loadData() {
+    //     this.props.loadData();
+    //     console.log(this.props.data);
+    // }
 
     //사이트 클릭 시 연관 검색어 차트를 보여주기 위한 메서드
     sc_visible = () => {
@@ -47,26 +46,22 @@ class result extends Component {
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
+        // this.loadData();
         return (
             <div className="wrapper">
-                <header className="header">
+                <header className="result-header">
                     <div className="title">
                         ARABOZA
                     </div>
                     <div className="res-intro">
-                        <h3>{this.state.data}의 결과는</h3>
+                        <h3>{this.props.data}의 결과는</h3>
                     </div>
                     <div className="pn-chart">
-                        <PnCharts/>
+                        <Result_pnCharts data={this.state.data}/>
                     </div>
                 </header>
 
-                <div className="site-chart" style={{display: `${this.state.visible}`}} onChange={
-                    (e) => {
-                        e.stopPropagation();
-                        this.loadData();
-                    }
-                }>
+                <div className="site-chart" style={{display: `${this.state.visible}`}}>
                     <button id="site-chart-button" onClick={(e) => {
                         this.setState({
                             visible: 'none'
@@ -171,7 +166,7 @@ class result extends Component {
 // Store 가 가진 state 를 어떻게 props 에 엮을지 정하는 함수
 // function mapStateToProps(state) {
 //     return{
-//         dataset: state.resultReducer.dataset
+//         data: state.resultReducer.data
 //     }
 // }
 // // Reducer 에 action 을 알리는 함수 dispatch 를 어떻게 props 에 엮을 지 정하는 함수
@@ -181,7 +176,7 @@ class result extends Component {
 //     }
 // }
 // //위에 두가지가 적용된 props 를 받을 Component 지정
-// // Store 에 Reducer 를 연결 시킬 수 있도록 만들어진 Component 가 반환값 (PnCharts)
-// PnCharts = connect(mapStateToProps, mapDispatchToProps)(PnCharts);
+// // Store 에 Reducer 를 연결 시킬 수 있도록 만들어진 Component 가 반환값 (Result_pnCharts)
+// result_main = connect(mapStateToProps, mapDispatchToProps)(result_main);
 
-export default result;
+export default result_main;
