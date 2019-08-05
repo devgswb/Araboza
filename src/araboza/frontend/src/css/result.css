@@ -1,0 +1,237 @@
+@font-face {
+    font-family: 'Potra';
+    src: url(../img/Potra.ttf) format('truetype');
+}
+.wrapper{
+    display: grid;
+    /* 컬럼 수 */
+    grid-template-columns: repeat(1, 1fr);
+    /* 높이 지정
+    minmax(최소 높이, )*/
+    /*grid-auto-rows: minmax(100px, auto);*/
+    /* 그리드 셀 사이의 여백
+    grid-colum-gap
+    grid-row-gap
+
+    프로퍼티 두개를 지정하면 처음 것은 row-gap, 두번째는 colum-gap
+    grid-gap: 5px 10px;
+    */
+    grid-gap: 5px;
+    grid-template-areas:
+            "header-"
+            "site-chart"
+            "site-wrapper";
+
+
+}
+*{ box-sizing: border-box; }
+.wrapper{
+    border: 1px solid #000000;
+    /*border-radius: 30px;*/
+    background-color: #ffff;
+    width:1200px;
+    margin: 0 auto;
+    background-image: url(../img/result7.jpg);
+    background-position: center top;
+    background-size: 80%;
+
+    /*overflow: hidden;*/
+    transform: rotate(0deg);
+}
+/*.wrapper:before{*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    width: 200%;*/
+/*    height: 200%;*/
+/*    left: -60%;*/
+/*    z-index: -1;*/
+/*    background: url(../img/result7.jpg) center center repeat;*/
+/*    transform: rotate(90deg);*/
+/*}*/
+
+/* 결과창 */
+.header{
+    /*셀의 컬럼 시작, 종료 위치
+    행의 시작 종료 위치 지정*/
+    /*grid-column-start: 1;*/
+    /*grid-column-end: 4;*/
+    /*grid-row-start: 1;*/
+    /*grid-row-end: 4;*/
+
+    /* 더 나아가 grid-area 로 정의 가능
+    순서는 row-start / colum-start / row-end / colum-end
+    grid-area 로 셀에 이름을 줄 수 있다
+    grid-area: hd
+    */
+    /*grid-area: 1 / 1 / 4 / 4;*/
+    grid-area: header-;
+
+    /* 그리드 셀은 또하나의 그리드가 될 수 있음
+    즉 셀 안에 다른 셀을 가둘 수 있음
+    원래는 subgrid 이지만 아직 모든 브라우저에서 구현되지 않음*/
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+            "title"
+            "res-intro"
+            "pn-chart";
+}
+.header{
+    /*border: 2px solid #000000;*/
+    border-radius: 5px;
+    /*border-top: 1px solid dodgerblue;*/
+    /*border-bottom: 1px solid dodgerblue;*/
+}
+/* ARABOZA 타이틀*/
+.title{
+    grid-area: title;
+    font-family: Potra, serif;
+    font-size: 60px;
+    color:white;
+}
+
+/*검색 결과 설명*/
+.res-intro{
+    grid-area: res-intro;
+
+    border-radius: 10px;
+    padding-top: 10px;
+    color:#c9ffcf;
+}
+/* 긍 부정 차트 */
+.pn-chart{
+    grid-area: pn-chart;
+    padding-right: 25px;
+       position: relative;
+
+}
+
+
+.site-wrapper{
+    display : grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+    /*background-color: #ffffff;*/
+    /*border-top: 1px solid #000000;*/
+    /*border-bottom: 1px solid #000000;*/
+    border-radius: 15px;
+    grid-area: site-wrapper;
+    padding: 1px 2px 1px 2px;
+}
+#site-title{
+    grid-area: 1/ 1/ 1/ 5;
+}
+#site-chart-button{
+    margin: 0 0 0 363px;
+    position: absolute;
+    z-index: 1;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color:white;
+}
+
+/*사이트 통계 파이 차트*/
+.site-chart{
+    grid-area: site-chart;
+    height:250px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 15px;
+    padding: 7px 0 0 0;
+    z-index: 0;
+}
+
+p{
+    padding-top: 10px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.category{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(40px, 45px);
+    grid-row-gap: 2px;
+
+}
+.site{
+    border: 2px solid #2d84ff;
+    border-radius: 20px;
+    padding: 5px 0 5px 0;
+    color: #2d84ff;
+    /*background-color: #adf6ff;*/
+    /*background: linear-gradient(to right,*/
+    /*        rgba(255,255,255,0) 0%,*/
+    /*        rgba(255,255,255,0) 51%,*/
+    /*        rgba(255,255,255,.7) 100%);*/
+
+
+}
+.ncho{
+    background: linear-gradient(-45deg,
+        #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,#61dafb,
+        #d3f8ff,
+        #fafff8,
+        #d3f8ff,
+        #61dafb,#61dafb,#61dafb,#61dafb,#61dafb,#61dafb);
+}
+.ycho{
+     background: linear-gradient(-45deg,
+        #9eff96,#9eff96,#9eff96,#9eff96,#9eff96,#9eff96,
+        #c9ffcf,
+        #fafff8,
+        #c9ffcf,
+        #9eff96,#9eff96,#9eff96,#9eff96,#9eff96,#9eff96);
+}
+.other{
+     background: linear-gradient(-45deg,
+        #e098ff,#e098ff,#e098ff,#e098ff,#e098ff,#e098ff,
+        #e3c7ff,
+        #fafff8,
+        #e3c7ff,
+        #e098ff,#e098ff,#e098ff,#e098ff,#e098ff,#e098ff);
+}
+.site{
+    animation-name: flow;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    background-size: 300%;
+}
+/*animation: name | duration | timing-function | delay | iteration-count | direction | fill-mode | play-state> [,...];*/
+
+.site:hover {
+    background: #ffffff;
+}
+
+.nav{
+    border: 1px solid #2d84ff;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+@keyframes flow{
+   from {
+		background-position:0 0;
+	}
+	to {
+		background-position:100% 50%;
+	}
+
+
+}
+/*화면 크기*/
+@media(max-width: 1000px){
+    .wrapper{
+        width:800px;
+    }
+}
+
+
+@media(max-width: 505px) {
+    .wrapper{
+        width:500px;
+    }
+}

@@ -4,6 +4,11 @@ import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import main from './components/main';
 import result from './components/result';
+
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+
+
 class App extends Component {
     state = {
         data: {
@@ -24,6 +29,7 @@ class App extends Component {
         }
     }
 
+
     render() {
         return (
             <div className="App">
@@ -37,12 +43,29 @@ class App extends Component {
                 </span>
                 <Router>
                     <Route exact path="/" component = {main}/>
-                    <Route path="/result" component = {result}/>
+                    <Route path="/result" component = {result} />
                 </Router>
-                /* /result/:resultId *변경 */
             </div>
         )
     };
 }
 
-export default App;
+// function mapStateToProps(state){
+//     return{
+//         data:state.resultReducer.dataset
+//     }
+// }
+// function mapDispatchToProps(dispatch){
+//     return{
+//         dataGetFromAPIServer:bindActionCreators(dataGetFromAPIServer ,dispatch)
+//     }
+// }
+
+// App = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default connect(
+    state =>({data:state.data})
+)(App);
+
+
+// export default App;
