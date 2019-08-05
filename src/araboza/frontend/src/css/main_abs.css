@@ -1,0 +1,13 @@
+.abs {
+    background-image: url("../img/ArabozaBackIcon640.png");
+    background-position:  top left;
+    background-repeat: no-repeat;
+    width : 100%;
+}
+
+.absCar {
+    border : 4px solid white;
+}
+
+
+

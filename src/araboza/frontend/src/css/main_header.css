@@ -1,0 +1,40 @@
+.header {
+    background-image : url("../img/ArabozaIcon.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin : 0 auto;
+}
+
+@font-face {
+    font-family: 'Potra';
+    src: url(../img/Potra.ttf) format('truetype');
+}
+
+
+.header h1 {
+    color : white;
+    font-size: 10.25rem;
+    text-align : center;
+    line-height: 450px;
+    font-family: Potra, serif;
+    text-shadow: 3px 3px 3px gray;
+}
+
+@media(max-width: 505px) {
+    .header {
+        background-image : url("../img/ArabozaIcon.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size : cover ;
+        height: 300px;
+        margin : 0 auto;
+        background-color:rgba(0, 0, 0, 0.5);
+    }
+
+    .header h1 {
+        font-size: 4rem;
+        text-align : center;
+        line-height: 300px;
+    }
+}

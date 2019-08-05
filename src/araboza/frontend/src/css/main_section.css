@@ -1,0 +1,10 @@
+.section {
+    width : 100%;
+}
+
+@media(max-width: 505px) {
+    .section {
+        height: 80px;
+        background-color:rgba(0, 0, 0, 0.5);
+    }
+}

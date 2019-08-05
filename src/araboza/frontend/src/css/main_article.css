@@ -1,0 +1,65 @@
+.article {
+    width : 100%;
+    background-image: url("../img/ArabozaBackIcon640.png");
+    background-position:  top right;
+    background-repeat: no-repeat;
+}
+
+.articleBody {
+    display: grid;
+    width : 70%;
+    margin : 0 auto;
+    grid-template-rows: 10% 1fr 1fr;
+    grid-template-columns: 50% 1fr;
+    text-align: center;
+    grid-template-areas:
+            "articleTitle articleTitle"
+            "article01 article02"
+            "article03 article04";
+}
+
+.articleTitle {
+    grid-area : articleTitle;
+    margin-top : 40px;
+    margin-bottom: 20px;
+    color : white;
+}
+
+.articleTitle h2{
+    text-decoration : underline white;
+}
+
+.article01 {
+    grid-area : article01;
+    margin : 10px auto;
+    width : 90%;
+    height : 500px;
+}
+
+.article02 {
+    grid-area : article02;
+    margin : 10px auto;
+    width : 90%;
+    height : 500px;
+}
+
+.article03 {
+    grid-area : article03;
+    margin : 10px auto;
+    width : 90%;
+    height : 500px;
+}
+
+.article04 {
+    grid-area : article04;
+    margin : 10px auto;
+    width : 90%;
+    height : 500px;
+}
+
+.article img {
+    filter: brightness(90%);
+    width : 100%;
+    height : 300px;
+    border : 4px solid white;
+}
