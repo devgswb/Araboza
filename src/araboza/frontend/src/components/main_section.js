@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter,MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import {
+    MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBTable,
+    MDBTableBody, MDBTableHead} from 'mdbreact';
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import '../css/main_section.css';
-import axios from 'axios'
+import axios from 'axios';
 
 class MainSection extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            list : []
+            list : [],
         };
     }
 

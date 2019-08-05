@@ -49,7 +49,7 @@ class App extends Component {
                 </span>
                 <Router>
                     <Route exact path="/" component = {main}/>
-                    <Route path="/result" component = {result_main} />
+                    <Route path="/result/:title" component = {result_main} />
                 </Router>
             </div>
         )

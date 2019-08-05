@@ -54,7 +54,7 @@ class result_main extends Component {
                         ARABOZA
                     </div>
                     <div className="res-intro">
-                        <h3>{this.props.data}의 결과는</h3>
+                        <h3>{this.props.match.params.title}의 결과는??????</h3>
                     </div>
                     <div className="pn-chart">
                         <Result_pnCharts data={this.state.data}/>
