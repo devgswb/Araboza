@@ -26,9 +26,10 @@ class PnCharts extends Component {
 
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
-        chart.legend.position = "bottom";
+        chart.legend.position = "top";
+
         //반응형?
-        //  chart.responsive.enabled = true;
+  //      chart.responsive.enabled = true;
         //차트 색상
         chart.colors.list = [
             am4core.color("#1f7aff"),
@@ -71,6 +72,14 @@ class PnCharts extends Component {
             series.stacked = true;
             series.name = name;
 
+            if(field === 'positive'){
+                 series.legendSettings.labelText = "[bold {color}]긍정적";
+            }else if(field ==='negative'){
+                 series.legendSettings.labelText = "[bold {color}]부정적";
+            }else{
+                series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
+            }
+            // series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
            // 그라데이션
             let fillModifier = new am4core.LinearGradientModifier();
             fillModifier.gradient.rotation = 30; //그라데이션 회전
@@ -93,7 +102,14 @@ class PnCharts extends Component {
             // tooltip
             // 자동 관련 색상 채우기
             series.tooltip.getFillFromObject = false;
-            series.columns.template.tooltipText = "{valueX}";
+            if(field === 'positive'){
+                series.columns.template.tooltipText = "긍정";
+            }else if(field ==='negative'){
+                series.columns.template.tooltipText = "부정";
+            }else{
+                series.columns.template.tooltipText = "{valueX}";
+            }
+
             series.tooltip._background.fill = "#ffff";
             series.tooltip.pointerOrientation = "down";
             //툴팁이 마우스를 따라다니게

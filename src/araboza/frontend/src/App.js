@@ -16,6 +16,7 @@ class App extends Component {
             negative: 0.0
         }
     };
+
     async dataGetFromAPIServer() {
         try {
             // Backend (django 서버)의 api/res/impression의 json 데이터를 비동기 방식(await)로 받아오는 부분이다.
@@ -44,7 +45,6 @@ class App extends Component {
                     <Route exact path="/" component = {main}/>
                     <Route path="/result" component = {result} />
                 </Router>
-                /* /result/:resultId *변경 */
             </div>
         )
     };
@@ -62,6 +62,7 @@ class App extends Component {
 // }
 
 // App = connect(mapStateToProps, mapDispatchToProps)(App);
+
 export default connect(
     state =>({data:state.data})
 )(App);

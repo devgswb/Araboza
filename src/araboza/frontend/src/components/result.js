@@ -51,10 +51,10 @@ class result extends Component {
             <div className="wrapper">
                 <header className="header">
                     <div className="title">
-                        <h1> ARABOZA </h1>
+                        ARABOZA
                     </div>
                     <div className="res-intro">
-                        <h3>검색 결과는</h3>
+                        <h3>{this.state.data}의 결과는</h3>
                     </div>
                     <div className="pn-chart">
                         <PnCharts/>

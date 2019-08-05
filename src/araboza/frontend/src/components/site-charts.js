@@ -42,11 +42,13 @@ class SiteChart extends Component {
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
         label.fontSize = 50;
+        label.text.fontcolor("#ffffff");
 
 // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
         pieSeries.dataFields.value = "size";
         pieSeries.dataFields.category = "sector";
+        pieSeries.labels.template.text = "[bold {#ffffff}]{name}[{cateogry}]";
 
 // Animate chart data
 //         let currentYear = "Faker";
