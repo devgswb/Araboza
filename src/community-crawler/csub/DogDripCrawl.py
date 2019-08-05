@@ -12,6 +12,7 @@ class Crawler:
         self.count = 0
         self.crawl_end = False
         self.day_count = timedelta(days=0)
+        self.name = 'DogDrip'
 
     def run(self, years, months, days):
         try:
@@ -44,10 +45,16 @@ class Crawler:
 
             # 작성일이 ~초 분 시간 전 일 때
             if (day.find('분') != (-1)) or (day.find('시간') != (-1)) or (day.find('초') != (-1)):
-                if self.month < 10:
-                    day = f"{self.year}.0{self.month}.{self.dt.day}"
+                if self.dt.month < 10:
+                    if self.dt.day < 10:
+                        day = f"{self.dt.year}.0{self.dt.month}.0{self.dt.day}"
+                    else:
+                        day = f"{self.dt.year}.0{self.dt.month}.{self.dt.day}"
                 else:
-                    day = f"{self.year}.{self.month}.{self.dt.day}"
+                    if self.dt.day < 10:
+                        day = f"{self.dt.year}.{self.dt.month}.0{self.dt.day}"
+                    else:
+                        day = f"{self.dt.year}.{self.dt.month}.{self.dt.day}"
             # 작성일이 ~일 전 일때
             elif day.find('일') != (-1):
                 # ~ 일 전 문자열에서 '일 전' 을 잘라 숫자만 남김
@@ -71,9 +78,22 @@ class Crawler:
                 break
             dates.append(day)
 
-        name = 'DogDrip'
-        fpath = f'data/4/[{years}-{months}-{days}]{name}.csv'
-        f = open(fpath, mode='a', encoding='utf-8')
+
         for j in range(len(dates)):
-            f.write(f'{dates[j]}, {titles[j]},\n')
+            global dis
+            global f
+            global fpath
+
+            if j == 0:
+                fpath = f'data/4/[{dates[0].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                dis = dates[0]
+
+            if dis != dates[j]:
+                f.close()
+                fpath = f'data/4/[{dates[j].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                f.write(f'{dates[j]}, {titles[j]},\n')
+            else:
+                f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

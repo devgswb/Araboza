@@ -5,23 +5,24 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
 
-class PnCharts extends Component {
+class Result_pnCharts extends Component {
     constructor(props) {
         super(props);
     }
-    loadData(){
-        this.props.loadData();
-    }
+
+    // loadData(){
+    //     this.props.loadData();
+    // }
 
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
-        const {data} = this.props;
-
+        const {positive, negative} = this.props;
+        console.log(positive, negative);
 // Add data
         chart.data = [{
             "word": "",
-            "positive": 70,
-            "negative": 30,
+            "positive": positive,
+            "negative": negative,
         }];
 
         chart.legend = new am4charts.Legend();
@@ -156,4 +157,4 @@ class PnCharts extends Component {
 }
 
 //tab 누르면 바뀜
-export default PnCharts;
+export default Result_pnCharts;

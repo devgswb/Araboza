@@ -76,7 +76,7 @@
             "res-intro"
             "pn-chart";
 }
-.header{
+.result-header{
     /*border: 2px solid #000000;*/
     border-radius: 5px;
     /*border-top: 1px solid dodgerblue;*/
@@ -225,13 +225,13 @@ p{
 /*화면 크기*/
 @media(max-width: 1000px){
     .wrapper{
-        width:800px;
+        width:100%;
     }
 }
 
 
 @media(max-width: 505px) {
     .wrapper{
-        width:500px;
+        width:100%;
     }
 }

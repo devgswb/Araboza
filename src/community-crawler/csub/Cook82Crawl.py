@@ -11,6 +11,7 @@ class Crawler:
         self.year = self.dt.year
         self.month = self.dt.month
         self.count = 0
+        self.name = '82Cook'
 
     def run(self, years, months, days):
         while self.crawl_end == False:
@@ -35,10 +36,17 @@ class Crawler:
             day = row.getText().strip()
 
             if day.find(':') != (-1):
-                if self.dt.month < 10:
-                    day = f"0{self.month}.{self.dt.day}"
-                else:
-                    day = f"{self.month}.{self.dt.day}"
+                if day.find(':') != (-1):
+                    if self.dt.month < 10:
+                        if self.dt.day < 10:
+                            day = f"0{self.dt.month}.0{self.dt.day}"
+                        else:
+                            day = f"0{self.dt.month}.{self.dt.day}"
+                    else:
+                        if self.dt.day < 10:
+                            day = f"{self.dt.month}.0{self.dt.day}"
+                        else:
+                            day = f"{self.dt.month}.{self.dt.day}"
 
                 if (day == "12/31") and (self.count == 0):
                     self.year = str(int(self.year) - 1)
@@ -57,12 +65,23 @@ class Crawler:
                 self.crawl_end = True
                 print('완료')
                 break
-
             dates.append(day)
 
-        name = '82Cook'
-        fpath = f'data/3/[{years}-{months}-{days}]{name}.csv'
-        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
-            f.write(f'{dates[j]}, {titles[j]},\n')
+            global dis
+            global f
+            global fpath
+
+            if j == 0:
+                fpath = f'data/3/[{dates[0].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                dis = dates[0]
+
+            if dis != dates[j]:
+                f.close()
+                fpath = f'data/3/[{dates[j].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                f.write(f'{dates[j]}, {titles[j]},\n')
+            else:
+                f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()

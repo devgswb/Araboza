@@ -21,7 +21,7 @@ class SiteChart extends Component {
         };
 
 // Create chart instance
-        let chart = am4core.create("charts", am4charts.PieChart);
+        let chart = am4core.create("site-charts", am4charts.PieChart);
 
 // Add data. 원 데이터
         chart.data = [
@@ -79,7 +79,7 @@ class SiteChart extends Component {
     render() {
         return (
             <div>
-                <div id="charts" style={{ width: "100%", height: "230px"}}>
+                <div id="site-charts" style={{ width: "100%", height: "230px"}}>
                 </div>
             </div>
         );

@@ -13,6 +13,7 @@ class Crawler:
         self.crawl_end = False  # 종료
         self.page = 1
         self.dt = datetime.today()
+        self.name = 'BoBaeDream'
 
     def run(self, years, months, days):
         try:
@@ -54,9 +55,15 @@ class Crawler:
 
             if day.find(':') != (-1):
                 if self.dt.month < 10:
-                    day = f"0{self.dt.month}.{self.dt.day}"
+                    if self.dt.day < 10:
+                        day = f"0{self.dt.month}.0{self.dt.day}"
+                    else:
+                        day = f"0{self.dt.month}.{self.dt.day}"
                 else:
-                    day = f"{self.dt.month}.{self.dt.day}"
+                    if self.dt.day < 10:
+                        day = f"{self.dt.month}.0{self.dt.day}"
+                    else:
+                        day = f"{self.dt.month}.{self.dt.day}"
 
             # 지정 날짜
             time1 = date(years, months, days)
@@ -70,9 +77,22 @@ class Crawler:
                 break
 
             dates.append(temp)
-        name = 'BoBaeDream'
-        fpath = f'data/1/[{years}-{months}-{days}]{name}.csv'
-        f = open(fpath, mode='a', encoding='utf-8')
+
         for j in range(len(dates)):
-            f.write(f'{dates[j]}, {titles[j]},\n')
+            global dis
+            global f
+            global fpath
+
+            if j == 0:
+                fpath = f'data/1/[{dates[0].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                dis = dates[0]
+
+            if dis != dates[j]:
+                f.close()
+                fpath = f'data/1/[{dates[j].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                f.write(f'{dates[j]}, {titles[j]},\n')
+            else:
+                f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()
