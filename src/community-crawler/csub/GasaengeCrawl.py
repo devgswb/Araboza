@@ -12,6 +12,7 @@ class Crawler:
         self.month = self.dt.month
         self.day = self.dt.day
         self.count = 0
+        self.name = 'GaSengI'
 
     def run(self, years, months, days):
         try:
@@ -57,9 +58,15 @@ class Crawler:
 
                 if day.find(':') != (-1):
                     if self.month < 10:
-                        day = f"{self.year}.0{self.month}.{self.day}"
+                        if self.dt.day < 10:
+                            day = f"{self.dt.year}.0{self.dt.month}.0{self.dt.day}"
+                        else:
+                            day = f"{self.dt.year}.0{self.dt.month}.{self.dt.day}"
                     else:
-                        day = f"{self.year}.{self.month}.{self.day}"
+                        if self.dt.day < 10:
+                            day = f"{self.dt.year}.{self.dt.month}.0{self.dt.day}"
+                        else:
+                            day = f"{self.dt.year}.{self.dt.month}.{self.dt.day}"
                 else:
                     day = f"{self.year}.{day[0:2]}.{day[3:5]}"
 
@@ -74,9 +81,21 @@ class Crawler:
 
                 dates.append(day)
 
-        name = 'GaSengI'
-        fpath = f'data/6/[{years}-{months}-{days}]{name}.csv'
-        f = open(fpath, mode='a', encoding='utf-8')
         for j in range(len(dates)):
-            f.write(f'{dates[j]}, {titles[j]},\n')
+            global dis
+            global f
+            global fpath
+
+            if j == 0:
+                fpath = f'data/6/[{dates[0].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                dis = dates[0]
+
+            if dis != dates[j]:
+                f.close()
+                fpath = f'data/6/[{dates[j].replace(".", "-")}]{self.name}.csv'
+                f = open(fpath, mode='a', encoding='utf-8')
+                f.write(f'{dates[j]}, {titles[j]},\n')
+            else:
+                f.write(f'{dates[j]}, {titles[j]},\n')
         f.close()
