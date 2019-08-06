@@ -15,3 +15,7 @@ class Impression(Document):
     positive = fields.FloatField(required=True, default=0.0)
     negative = fields.FloatField(required=True, default=0.0)
 # Create your models here.
+class Index(Document):
+    rang = fields.DynamicField(required=True, default=0)
+    word = fields.StringField(required=True, null=True)
+    plus = fields.StringField(required=True, null=True)

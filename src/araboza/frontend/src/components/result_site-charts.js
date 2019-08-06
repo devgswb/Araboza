@@ -35,6 +35,17 @@ class SiteChart extends Component {
             { "sector": "페이커 데프트", "size": 22.5 }
         ];
 
+        let colorSet = new am4core.ColorSet();
+        colorSet.list=[
+            am4core.color('#1DDB16'),
+            am4core.color('#FAED7D'),
+            am4core.color('#00D8FF'),
+            am4core.color('#FF007F'),
+            am4core.color('#FF5E00'),
+            am4core.color('#5F00FF'),
+            am4core.color('#FF0000'),
+            am4core.color('#FF0000')
+        ];
 // Add label
         chart.innerRadius = 70;
         let label = chart.seriesContainer.createChild(am4core.Label);
@@ -42,15 +53,15 @@ class SiteChart extends Component {
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
         label.fontSize = 50;
-        label.text.fontcolor("#ffffff");
+        label.fill = am4core.color("#ffffff");
 
 // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
         pieSeries.dataFields.value = "size";
         pieSeries.dataFields.category = "sector";
-        pieSeries.labels.template.text = "[bold {#ffffff}]{name}[{cateogry}]";
-
-// Animate chart data
+        pieSeries.labels.template.fill = am4core.color("#ffffff");;
+        pieSeries.colors = colorSet;
+        // Animate chart data
 //         let currentYear = "Faker";
 //         function getCurrentData() {
 //             label.text = currentYear;

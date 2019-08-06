@@ -17,6 +17,7 @@ class App extends Component {
             negative: 0.0
         }
     };
+
     async dataGetFromAPIServer() {
         try {
             // Backend (django 서버)의 api/res/impression의 json 데이터를 비동기 방식(await)로 받아오는 부분이다.
