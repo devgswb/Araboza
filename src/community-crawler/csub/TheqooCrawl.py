@@ -4,6 +4,7 @@ import datetime
 import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
+
 class Crawler:
 
     def __init__(self):
@@ -54,12 +55,20 @@ class Crawler:
                 d = d.split(' ')[0]
                 day.append(d)
 
-        for t in range(len(day)):
+        for t in range(len(write)):
             self.day = day[t]
             if datetime.datetime.strptime(self.day, "%Y.%m.%d") < self.endTime:
                 return
             name = 'TheQoo'
             fpath = f'data/13/[{day[t].replace(".", "-")}]{name}.csv'
             with open(fpath, mode='a', encoding='utf-8') as f:
-                f.write(f'{day[t]},{write[t]}\n')
+                try:
+                    f.write(f'{day[t]},{write[t]}\n')
+                except:
+                    print("\nindex: " + str(t) + "\n")
+                    print(day)
+                    print(write)
+                    print(day[t])
+                    print(write[t])
+                    raise
                 f.close()
