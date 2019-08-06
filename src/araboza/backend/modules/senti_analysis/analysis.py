@@ -1,4 +1,3 @@
-from konlpy.tag import Komoran
 import pandas as pd
 import json
 
@@ -15,18 +14,16 @@ class SentiAnalysis:
         # KNU를 이용한 감성어 사전 생성
 
     def __init__(self):
-        self.parser = Komoran()
         # self.polarity = pd.read_csv('dict/polarity.csv')
         # self.intensity = pd.read_csv('dict/intensity.csv')
         # KOSAC 감성어 사전용 코드
         self.polarity = self.__make_polarity_dict__()
         # KNU를 이용한 감성어 사전 만들기
 
-    def analysis(self, sentence):
+    def analysis(self, word_list):
         pos = 0.0  # positive
         neg = 0.0  # negative
-        sent_to_list = self.parser.morphs(sentence)
-        for word in sent_to_list:
+        for word in word_list:
             if word in self.polarity:
                 score = float(self.polarity[word])
                 if score > 0:
