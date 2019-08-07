@@ -32,7 +32,7 @@ class MainSide extends Component {
             title : this.state.title
         };
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/search/',{payload : payloads})
+        axios.post(`http://127.0.0.1:8000/api/search?word=${this.state.title}`,{payload : payloads})
             .then(() => {
                 console.log('hello index');
             });
