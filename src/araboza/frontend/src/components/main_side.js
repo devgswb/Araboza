@@ -13,7 +13,10 @@ class MainSide extends Component {
          super(props);
 
          this.state = {
-                 title : '',
+             data : {
+                 title : "",
+             }
+
         };
 
          this.handleChange = this.handleChange.bind(this);
@@ -27,15 +30,16 @@ class MainSide extends Component {
 
     handleSubmit = (e) => {
         console.log('this.title ->', this.state.title);
-
-        let payloads = {
-            title : this.state.title
-        };
+        var search = this.state.title;
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/search/',{payload : payloads})
-            .then(() => {
+        axios.post(`http://127.0.0.1:8000/api/search/`,{title : search})
+            .then((res) => {
+                localStorage.setItem('title', res.data['title']);
                 console.log('hello index');
-            });
+            }).catch(function (error) {
+                console.log(error);
+            })
+
     };
 
     render() {
@@ -46,7 +50,7 @@ class MainSide extends Component {
                         <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
                     </MDBCol>
                     <MDBBtn outline color="primary" type="submit">
-                         <MDBIcon icon="search"/> Search
+                  <MDBIcon icon="search"/> Search
                     </MDBBtn>
                 </div>
             </form>
