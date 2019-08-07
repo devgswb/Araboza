@@ -6,6 +6,11 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 class SiteChart extends Component {
+    constructor(props) {
+        super(props);
+        console.log('site-chart=' + this.props.data);
+    }
+
     componentDidMount() {
         // Data
         let chartData = {
@@ -37,19 +42,20 @@ class SiteChart extends Component {
 
         let colorSet = new am4core.ColorSet();
         colorSet.list=[
-            am4core.color('#1DDB16'),
-            am4core.color('#FAED7D'),
-            am4core.color('#00D8FF'),
-            am4core.color('#FF007F'),
-            am4core.color('#FF5E00'),
-            am4core.color('#5F00FF'),
-            am4core.color('#FF0000'),
-            am4core.color('#FF0000')
+            am4core.color('#E91263'),
+            am4core.color('#FF5722'),
+            am4core.color('#FF9800'),
+            am4core.color('#FFEB3B'),
+            am4core.color('#4CAF50'),
+            am4core.color('#9C27B0'),
+            am4core.color('#2196F3'),
+            am4core.color('#3F51B5')
         ];
 // Add label
         chart.innerRadius = 70;
         let label = chart.seriesContainer.createChild(am4core.Label);
         label.text = "Faker";
+        // label.text = this.props.site_name;
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
         label.fontSize = 50;
@@ -58,34 +64,20 @@ class SiteChart extends Component {
 // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
         pieSeries.dataFields.value = "size";
+        // pieSeries.dataFields.value = "word";
         pieSeries.dataFields.category = "sector";
+        // pieSeries.dataFields.category = "count";
         pieSeries.labels.template.fill = am4core.color("#ffffff");;
         pieSeries.colors = colorSet;
-        // Animate chart data
-//         let currentYear = "Faker";
-//         function getCurrentData() {
-//             label.text = currentYear;
-//             let data = chartData[currentYear];
-//             // currentYear++;
-//             // if (currentYear > 2014)
-//             //     currentYear = 1995;
-//             return data;
-//         }
-// 차트 데이터 애니메이션 이었던 것
-//         function loop() {
-//             //chart.allLabels[0].text = currentYear;
-//             let data = getCurrentData();
-//             for(var i = 0; i < data.length; i++) {
-//                 chart.data[i].size = data[i].size;
-//             }
-//             chart.invalidateRawData();
-//             chart.setTimeout( loop, 4000 );
-//         }
-//
-//         loop();
 
+        this.chart = chart;
     }
 
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     if (this.props.data !== prevProps.data) {
+    //         this.chart.data = [this.props.data];
+    //     }
+    // }
 
     render() {
         return (

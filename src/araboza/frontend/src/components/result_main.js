@@ -29,14 +29,16 @@ class result_main extends Component {
         this.state = {
             //사이트 차트 보임 여부
             visible: "none",
-            data: {
-                positive: 0.0,
-                negative: 0.0
-            }
+            data: []
         };
         this.s = true;
+        this.data=0;
+        this.site_name='';
     }
-
+    change_site_data(site_code, site_name){
+        // this.data = this.props.data.related_word[i-1];
+        // this.site_name = site_name;
+    }
     //사이트 클릭 시 연관 검색어 차트를 보여주기 위한 메서드
     sc_visible = () => {
         if (this.state.visible === "none") {
@@ -45,23 +47,18 @@ class result_main extends Component {
             })
         }
     };
-     async dataGetFromAPIServer() {
-        try {
-            // Backend (django 서버)의 api/res/impression의 json 데이터를 비동기 방식(await)로 받아오는 부분이다.
-            // 이번 프로젝트의 데이터 전달 방식으로 핵심적인 로직이 될 것!
-            const res = await fetch('http://127.0.0.1:8000/api/res/impression/', { mode: "cors" });
-            const data = await res.json();
-            this.setState({data: data[0]});
-        } catch (e) {
-            console.log(e);
-        }
-    }
     componentDidMount() {
-         if(this.s){
-             this.dataGetFromAPIServer();
-             this.s=false;
-             console.log(this.state.data);
-         }
+         // if(this.s){
+         //     this.dataGetFromAPIServer();
+         //     this.s=false;
+         //     console.log(this.state.data);
+         // }
+         axios.get('http://127.0.0.1:8000/api/res/impression/')
+             .then(response=>{
+                 this.setState({data:response.data[0]});
+                 console.log(response.data);
+                 console.log("Data: " + this.state.data);
+             })
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -72,7 +69,6 @@ class result_main extends Component {
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
-        console.log('state = '+this.state.data.positive);
         // this.loadData();
         return (
             <div className="wrapper">
@@ -84,7 +80,8 @@ class result_main extends Component {
                         <h3>{this.props.match.params.title}의 결과는??????</h3>
                     </div>
                     <div className="pn-chart">
-                        <Result_pnCharts positive={this.state.data.positive} negative={this.state.data.negative} data={this.state.data}/>
+                        <Result_pnCharts data={this.state.data}/>
+                        {/*<Result_pnCharts data={this.props.data}/>*/}
                     </div>
                 </header>
 
@@ -94,9 +91,8 @@ class result_main extends Component {
                             visible: 'none'
                         })
                     }}>×</Button>
-                    <SiteChart/>
+                    <SiteChart data={this.data} site_name={this.site_name}/>
                     {/*<SiteChart2/>*/}
-
                 </div>
 
 
@@ -112,46 +108,46 @@ class result_main extends Component {
 
                         <div className="site-div"> 남초 사이트</div>
 
-                        <Button outline color="primary" id="mlb-park" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="Mlb-park" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>MLBPark</Button>
+                            this.change_site_data(10, 'MLBPARK');}}>MLBPark</button>
 
-                        <Button outline color="primary" id="ruliweb" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="Ruliweb" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>루리웹</Button>
+                            this.change_site_data(12,'루리웹');}}>루리웹</button>
 
-                        <Button outline color="primary" id="ygosu" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="YGosu" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>와이고수</Button>
+                            this.change_site_data(15, '와이고수');}}>와이고수</button>
 
-                        <Button outline color="primary" id="dogdrip" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="DogDrip" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>개드립</Button>
+                            this.change_site_data(4, '개드립');}}>개드립</button>
 
-                        <Button outline color="primary" id="cleang" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="Cleang" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>클리앙</Button>
+                            this.change_site_data(2, '클리앙');}}>클리앙</button>
 
-                        <Button outline color="primary" id="bobae-dream" className="site ncho nav-item" onClick={() => {
+                        <button color="primary" id="BoBae-Dream" className="site ncho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>보배드림</Button>
+                            this.change_site_data(1, '보배드림');}}>보배드림</button>
 
                     </div>
 
                     <div className="y-cho category">
                         <div className="site-div">여초 사이트</div>
 
-                        <Button outline color="secondary" id="instiz" className="site ycho nav-item" onClick={() => {
+                        <button color="secondary" id="Instiz" className="site ycho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>인스티즈</Button>
+                            this.change_site_data(9,'인스티즈');}}>인스티즈</button>
 
-                        <Button outline color="secondary" id="82cook" className="site ycho nav-item" onClick={() => {
+                        <button color="secondary" id="82Cook" className="site ycho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>82쿡</Button>
+                            this.change_site_data(3,'82쿡');}}>82쿡</button>
 
-                        <Button outline color="secondary" id="hygall" className="site ycho nav-item" onClick={() => {
+                        <button color="secondary" id="HyGall" className="site ycho nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>해연갤</Button>
+                            this.change_site_data(8,'해연갤');}}>해연갤</button>
 
 
                     </div>
@@ -159,30 +155,30 @@ class result_main extends Component {
 
                     <div className="another category">
                         <div className="site-div">그 외</div>
-                        <button outline color="info" id="natepan" className="site other nav-item" onClick={() => {
+                        <button color="inherit" id="Nate-pan" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>네이트판</button>
+                            this.change_site_data(11,'네이트판');}}>네이트판</button>
 
 
-                        <button outline color="info" id="duku-net" className="site other nav-item" onClick={() => {
+                        <button bgcolor="inherit" id="TheQoo" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>더쿠넷</button>
+                            this.change_site_data(13,'더쿠넷');}}>더쿠넷</button>
 
-                        <button outline color="info" id="etorrent" className="site other nav-item" onClick={() => {
+                        <button color="inherit" id="eToLAND" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>이토렌트</button>
+                            this.change_site_data(5, 'eToLAND');}}>이토랜드</button>
 
-                        <button outline color="info" id="ou" className="site other nav-item" onClick={() => {
+                        <button color="inherit" id="OU" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>오늘의유머</button>
+                            this.change_site_data(14);}}>오늘의유머</button>
 
-                        <button outline color="info" id="funny-colleage" className="site other nav-item" onClick={() => {
+                        <button color="inherit" id="Funny-colleage" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>웃긴대학</button>
+                            this.change_site_data(7,'웃긴대학');}}>웃긴대학</button>
 
-                        <button outline color="info" id="gasangei" className="site other nav-item" onClick={() => {
+                        <button color="inherit" id="GasaengI" className="site other nav-item" onClick={() => {
                             this.sc_visible();
-                        }}>가생이</button>
+                            this.change_site_data(6,'가생이');}}>가생이</button>
                     </div>
                 </div>
             </div>

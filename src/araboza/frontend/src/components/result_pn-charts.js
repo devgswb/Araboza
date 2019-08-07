@@ -8,12 +8,10 @@ am4core.useTheme(am4themes_animated);
 class Result_pnCharts extends Component {
     constructor(props) {
         super(props);
-    }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps);
-        if (this.props.positive !== nextProps.positive) return true;
-    }
+    };
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     if (this.props.data.positive !== nextProps.positive) return true;
+    // }
 
     // loadData(){
     //     this.props.loadData();
@@ -22,7 +20,7 @@ class Result_pnCharts extends Component {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
 // Add data
 //         this.data = {
-//             "word": '',
+//             "id": '',
 //             'positive': this.props.positive,
 //             'negative': this.props.negative
 //         };
@@ -53,7 +51,7 @@ class Result_pnCharts extends Component {
         valueAxis.opacity = 0;
         // x축 숫자 최소 최대
         valueAxis.min = 0;
-        valueAxis.max = 200;
+        valueAxis.max = 100;
         // 숫자의 y축 선 투명도
         valueAxis.renderer.grid.template.opacity = 0;
         valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
@@ -114,7 +112,7 @@ class Result_pnCharts extends Component {
                 series.columns.template.tooltipText = "{valueX}";
             }
 
-            series.tooltip._background.fill = "#ffff";
+            series.tooltip._background.fill = "#000000";
             series.tooltip.pointerOrientation = "down";
             //툴팁이 마우스를 따라다니게
             series.columns.template.tooltipPosition = "pointer";
@@ -153,7 +151,6 @@ class Result_pnCharts extends Component {
         if (this.props.data !== prevProps.data) {
             this.chart.data = [this.props.data];
         }
-        console.log(this.data);
     }
 
     // componentWillUnmount() {
