@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 class MainSide extends Component {
 
@@ -12,8 +13,14 @@ class MainSide extends Component {
          super(props);
 
          this.state = {
-             title : '',
-        }
+             data : {
+                 title : "",
+             }
+
+        };
+
+         this.handleChange = this.handleChange.bind(this);
+         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (e)=>{
@@ -21,16 +28,32 @@ class MainSide extends Component {
         this.setState({ title : searchStr });
     };
 
+    handleSubmit = (e) => {
+        console.log('this.title ->', this.state.title);
+        var search = this.state.title;
+        e.preventDefault();
+        axios.post(`http://127.0.0.1:8000/api/search/`,{title : search})
+            .then((res) => {
+                localStorage.setItem('title', res.data['title']);
+                console.log('hello index');
+            }).catch(function (error) {
+                console.log(error);
+            })
+
+    };
+
     render() {
         return (
-            <div className='side'>
-                <MDBCol md="6">
-                    <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
-                </MDBCol>
-                <MDBBtn outline color="primary" >
-                    <Link to= {`/result/${this.state.title}`}> <MDBIcon icon="search" /> Search </Link>
-                </MDBBtn>
-            </div>
+            <form onSubmit={this.handleSubmit}>
+                <div className='side'>
+                    <MDBCol md="6">
+                        <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
+                    </MDBCol>
+                    <MDBBtn outline color="primary" type="submit">
+                  <MDBIcon icon="search"/> Search
+                    </MDBBtn>
+                </div>
+            </form>
         );
     }
 }

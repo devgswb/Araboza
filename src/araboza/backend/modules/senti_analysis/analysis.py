@@ -4,12 +4,6 @@ import pymongo
 import urllib
 import datetime
 
-def dbConnToCollection():
-    username = urllib.parse.quote_plus('devgswb')
-    password = urllib.parse.quote_plus('1q@W3e4r')
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
-    db = conn.get_database('araboza')
-    return db.wordsByDate
 
 class SentiAnalysis:
 
@@ -38,7 +32,11 @@ class SentiAnalysis:
         start_date = datetime.datetime(int(start_date[0]), int(start_date[1]), int(start_date[2]))
         end_date = end_date.split('-')
         end_date = datetime.datetime(int(end_date[0]), int(end_date[1]), int(end_date[2]))
-        collection = dbConnToCollection()
+        username = urllib.parse.quote_plus('devgswb')
+        password = urllib.parse.quote_plus('1q@W3e4r')
+        conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
+        db = conn.get_database('araboza')
+        collection = db.wordsByDate
         rs = collection.find({
             'code': site_code,
             'time': {'$lte': end_date, '$gte': start_date}
@@ -52,6 +50,7 @@ class SentiAnalysis:
                 analysis_result = self.__analysis__(word_list)
                 pos += analysis_result['positive']
                 neg += analysis_result['negative']
+        conn.close()
         return {'positive': pos, 'negative': neg}
 
     def __analysis__(self, word_list):
