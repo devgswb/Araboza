@@ -10,27 +10,31 @@ class Result_pnCharts extends Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log(nextProps);
+        if (this.props.positive !== nextProps.positive) return true;
+    }
+
     // loadData(){
     //     this.props.loadData();
     // }
-
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
-        const {positive, negative} = this.props;
-        console.log(positive, negative);
 // Add data
-        chart.data = [{
-            "word": "",
-            "positive": positive,
-            "negative": negative,
-        }];
+//         this.data = {
+//             "word": '',
+//             'positive': this.props.positive,
+//             'negative': this.props.negative
+//         };
+        chart.data =[];
+        chart.data.push(this.props.data);
 
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
         chart.legend.position = "top";
 
         //반응형?
-  //      chart.responsive.enabled = true;
+        //      chart.responsive.enabled = true;
         //차트 색상
         chart.colors.list = [
             am4core.color("#1f7aff"),
@@ -40,16 +44,16 @@ class Result_pnCharts extends Component {
 
 // Create axes
         let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "word";
-
+        categoryAxis.dataFields.category = "id";
         categoryAxis.renderer.grid.template.opacity = 0;
+        categoryAxis.renderer.labels.template.disabled = true;
 
         let valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
         // x축의 투명도
         valueAxis.opacity = 0;
         // x축 숫자 최소 최대
         valueAxis.min = 0;
-        valueAxis.max = 100;
+        valueAxis.max = 200;
         // 숫자의 y축 선 투명도
         valueAxis.renderer.grid.template.opacity = 0;
         valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
@@ -65,23 +69,22 @@ class Result_pnCharts extends Component {
 
 
 // Create series
-//         function createSeries(field, name) {
         const createSeries = (field, name) => {
             let series = chart.series.push(new am4charts.ColumnSeries());
             series.dataFields.valueX = field;
-            series.dataFields.categoryY = "word";
+            series.dataFields.categoryY = "id";
             series.stacked = true;
             series.name = name;
 
-            if(field === 'positive'){
-                 series.legendSettings.labelText = "[bold {color}]긍정적";
-            }else if(field ==='negative'){
-                 series.legendSettings.labelText = "[bold {color}]부정적";
-            }else{
+            if (field === 'positive') {
+                series.legendSettings.labelText = "[bold {color}]긍정적";
+            } else if (field === 'negative') {
+                series.legendSettings.labelText = "[bold {color}]부정적";
+            } else {
                 series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
             }
             // series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
-           // 그라데이션
+            // 그라데이션
             let fillModifier = new am4core.LinearGradientModifier();
             fillModifier.gradient.rotation = 30; //그라데이션 회전
             fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
@@ -103,11 +106,11 @@ class Result_pnCharts extends Component {
             // tooltip
             // 자동 관련 색상 채우기
             series.tooltip.getFillFromObject = false;
-            if(field === 'positive'){
+            if (field === 'positive') {
                 series.columns.template.tooltipText = "긍정";
-            }else if(field ==='negative'){
+            } else if (field === 'negative') {
                 series.columns.template.tooltipText = "부정";
-            }else{
+            } else {
                 series.columns.template.tooltipText = "{valueX}";
             }
 
@@ -133,7 +136,7 @@ class Result_pnCharts extends Component {
             labelBullet.locationX = 0.5;
             labelBullet.locationY = 0.55;
             // 바에 나타나는 숫자
-            labelBullet.label.text = "{valueX}";
+            labelBullet.label.text = "{valueX}%";
             // 숫자 크기
             labelBullet.label.scale = 2;
             // 숫자 색상
@@ -143,14 +146,24 @@ class Result_pnCharts extends Component {
         createSeries("positive", "positive");
         createSeries("negative", "negative");
 
-
+        this.chart = chart;
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.data !== prevProps.data) {
+            this.chart.data = [this.props.data];
+        }
+        console.log(this.data);
+    }
+
+    // componentWillUnmount() {
+    //     if (this.chart) this.chart.dispose();
+    // }
 
 
     render() {
-
         return (
-            <div id="pn-chart" style={{width: "100%", height: "170px"}}>
+            <div id="pn-chart" style={{width: "100%", height: "200px"}}>
             </div>
         );
     }
