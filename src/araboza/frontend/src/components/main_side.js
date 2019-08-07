@@ -32,8 +32,9 @@ class MainSide extends Component {
         console.log('this.title ->', this.state.title);
         var search = this.state.title;
         e.preventDefault();
-        axios.post(`http://127.0.0.1:8000/api/search/`,{title : search})
+        axios.get(`http://127.0.0.1:8000/api/search/?word=${this.state.title}`)
             .then((res) => {
+                console.log(res);
                 localStorage.setItem('title', res.data['title']);
                 console.log('hello index');
             }).catch(function (error) {
