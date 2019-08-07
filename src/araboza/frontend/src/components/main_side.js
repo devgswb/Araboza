@@ -4,6 +4,8 @@ import {MDBBtn, MDBCol, MDBInput, MDBIcon} from "mdbreact";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import { withRouter } from 'react-router-dom';
+
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
@@ -34,9 +36,14 @@ class MainSide extends Component {
         e.preventDefault();
         axios.get(`http://127.0.0.1:8000/api/search/?word=${this.state.title}`)
             .then((res) => {
+                console.log("검색페이지");
                 console.log(res);
                 localStorage.setItem('title', res.data['title']);
                 console.log('hello index');
+                this.props.history.push({
+                    pathname: '/result',
+                    data: res.data
+                })
             }).catch(function (error) {
                 console.log(error);
             })
@@ -60,4 +67,4 @@ class MainSide extends Component {
 }
 
 
-export default MainSide;
+export default withRouter(MainSide)

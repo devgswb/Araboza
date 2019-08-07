@@ -69,6 +69,9 @@ class result_main extends Component {
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
+        const { data } = this.props.location;
+        console.log("결과페이지");
+        console.log(data);
         // this.loadData();
         return (
             <div className="wrapper">
