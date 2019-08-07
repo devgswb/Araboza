@@ -33,7 +33,7 @@ class MainSide extends Component {
     handleSubmit = (e) => {
         console.log('this.title ->', this.state.title);
         e.preventDefault();
-        axios.get(`http://127.0.0.1:8000/api/search/?word=${this.state.title}`)
+        axios.get(`/api/search/?word=${this.state.title}`)
             .then((res) => {
                 console.log("검색페이지");
                 console.log(res);
