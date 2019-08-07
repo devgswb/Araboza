@@ -40,9 +40,8 @@ class MainSide extends Component {
                 localStorage.setItem('title', res.data['title']);
                 console.log('hello index');
                 this.props.history.push({
-                    pathname: `/result/${this.state.title}`,
-                    data: res.data,
-                    title : this.state.title
+                    pathname: `/result`,
+                    data: res.data
                 })
             }).catch(function (error) {
                 console.log(error);

@@ -8,6 +8,7 @@ am4core.useTheme(am4themes_animated);
 class Result_pnCharts extends Component {
     constructor(props) {
         super(props);
+
     };
     // shouldComponentUpdate(nextProps, nextState, nextContext) {
     //     if (this.props.data.positive !== nextProps.positive) return true;
@@ -19,13 +20,15 @@ class Result_pnCharts extends Component {
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
 // Add data
-//         this.data = {
-//             "id": '',
-//             'positive': this.props.positive,
-//             'negative': this.props.negative
-//         };
+        const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
+        const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
+        this.data = {
+            "search_word": this.props.data.search_word,
+            'positive': positive,
+            'negative': negative
+        };
         chart.data =[];
-        chart.data.push(this.props.data);
+        chart.data.push(this.data);
 
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
@@ -42,7 +45,7 @@ class Result_pnCharts extends Component {
 
 // Create axes
         let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "id";
+        categoryAxis.dataFields.category = "search_word";
         categoryAxis.renderer.grid.template.opacity = 0;
         categoryAxis.renderer.labels.template.disabled = true;
 
@@ -70,7 +73,7 @@ class Result_pnCharts extends Component {
         const createSeries = (field, name) => {
             let series = chart.series.push(new am4charts.ColumnSeries());
             series.dataFields.valueX = field;
-            series.dataFields.categoryY = "id";
+            series.dataFields.categoryY = "search_word";
             series.stacked = true;
             series.name = name;
 
@@ -144,14 +147,21 @@ class Result_pnCharts extends Component {
         createSeries("positive", "positive");
         createSeries("negative", "negative");
 
-        this.chart = chart;
+        // this.chart = chart;
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.data !== prevProps.data) {
-            this.chart.data = [this.props.data];
-        }
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log('pp'+prevProps.data.positive);
+    //     if (this.props.data === prevProps.data) {
+    //         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
+    //         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
+    //         this.chart.data = [{
+    //             'search_word':this.props.data.search_word,
+    //             'positive':positive,
+    //             'negative':negative
+    //          }];
+    //     }
+    // }
 
     // componentWillUnmount() {
     //     if (this.chart) this.chart.dispose();
