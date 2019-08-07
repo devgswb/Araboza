@@ -1,0 +1,44 @@
+{
+	"result": [
+		{
+			"word": "일본",
+			"count": 108
+		},
+		{
+			"word": "오늘",
+			"count": 47
+		},
+		{
+			"word": "한국",
+			"count": 42
+		},
+		{
+			"word": "이유",
+			"count": 28
+		},
+		{
+			"word": "근황",
+			"count": 28
+		},
+		{
+			"word": "영상",
+			"count": 26
+		},
+		{
+			"word": "사람",
+			"count": 24
+		},
+		{
+			"word": "안",
+			"count": 23
+		},
+		{
+			"word": "때",
+			"count": 21
+		},
+		{
+			"word": "무대",
+			"count": 20
+		}
+	]
+}

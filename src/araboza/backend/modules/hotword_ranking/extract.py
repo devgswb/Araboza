@@ -1,4 +1,3 @@
-import pandas as pd
 import json
 import pymongo
 import urllib
@@ -13,14 +12,14 @@ def get_hotword_ranking(date):
     # nnp,nng 형태만
     date = date.split('-')
     date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
-    date = [date, date + timedelta(days=-1), date + timedelta(days=-2)]
+    date = [date, date + timedelta(days=-1), date + timedelta(days=-2), date + timedelta(days=-3)]
     username = urllib.parse.quote_plus('devgswb')
     password = urllib.parse.quote_plus('1q@W3e4r')
     conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
     db = conn.get_database('araboza')
     collection = db.wordsByDate
 
-    for a, i_date in enumerate(date):
+    for index, i_date in enumerate(date):
         rs = collection.find({
             'time': i_date
         })
@@ -39,15 +38,26 @@ def get_hotword_ranking(date):
                 sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
                 conn.close()
         result = OrderedDict()
-        for i in sorted_words[0:10]:
-            result[i[0]] = i[1]
+        list = []
+        for word_data in sorted_words[0:10]:
+            word = word_data[0]
+            count = word_data[1]
+            #result[i[0]] = i[1]
+            list.append({
+                "word" : word,
+                "count" : count
+            })
 
-        if a == 0:
+        result['result'] = list
+
+        if index == 0:
             name = 'yesterday'
-        elif a == 1:
+        elif index == 1:
             name = '2_days_ago'
-        else:
+        elif index == 2:
             name = '3_days_ago'
+        else:
+            name = '4_days_ago'
 
 
         print(json.dumps(result, ensure_ascii=False, indent="\t"))
@@ -57,7 +67,23 @@ def get_hotword_ranking(date):
         with open(f'{dirname}/{name}.json', 'w', encoding="utf-8") as make_file:
             json.dump(result, make_file, ensure_ascii=False, indent="\t")
 
+# 변동사항 계산 def (수정)
+#def ranking_Changes():
+#    dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
+#
+#    for i in range(0, 4):
+#        if i == 0:
+#            name = 'yesterday'
+#        elif i == 1:
+#            name = '2_days_ago'
+#        elif i == 2:
+#            name = '3_days_ago'
+#        else:
+#            name = '4_days_ago'
+#
+#        with open(f'{dirname}/{name}.json')as json_file:
+#            json_data = json.load(json_file)
 
-#   yesterday > 2 days ago > 3 days ago
+#   yesterday > 2 days ago > 3 days ago >> 4 days ago
 # get_hotword_ranking("2019-08-06")
 # print(get_hotword_ranking("2019-08-06"))
