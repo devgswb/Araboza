@@ -3,13 +3,14 @@ import json
 import pymongo
 import urllib
 import datetime
-
+import os
 
 class SentiAnalysis:
 
     def __make_polarity_dict__(self):
         res_data = {}
-        with open('dict/KNU_SentiWord_info.json', encoding='utf-8') as data_file:
+        dirname = os.path.dirname(__file__)
+        with open(f'{dirname}/dict/KNU_SentiWord_info.json', encoding='utf-8') as data_file:
             data = json.load(data_file)
         for row in data:
             res_data[row['word_root']] = row['polarity']
