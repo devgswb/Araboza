@@ -69,7 +69,7 @@ class result_main extends Component {
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
-        const { data } = this.props.location;
+        const { data, title } = this.props.location;
         console.log("결과페이지");
         console.log(data);
         // this.loadData();
@@ -80,7 +80,7 @@ class result_main extends Component {
                         ARABOZA
                     </div>
                     <div className="res-intro">
-                        <h3>{this.props.match.params.title}의 결과는??????</h3>
+                        <h3>{title}의 결과는??????</h3>
                     </div>
                     <div className="pn-chart">
                         <Result_pnCharts data={this.state.data}/>

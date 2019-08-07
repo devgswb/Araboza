@@ -32,7 +32,6 @@ class MainSide extends Component {
 
     handleSubmit = (e) => {
         console.log('this.title ->', this.state.title);
-        var search = this.state.title;
         e.preventDefault();
         axios.get(`http://127.0.0.1:8000/api/search/?word=${this.state.title}`)
             .then((res) => {
@@ -41,13 +40,13 @@ class MainSide extends Component {
                 localStorage.setItem('title', res.data['title']);
                 console.log('hello index');
                 this.props.history.push({
-                    pathname: '/result',
-                    data: res.data
+                    pathname: `/result/${this.state.title}`,
+                    data: res.data,
+                    title : this.state.title
                 })
             }).catch(function (error) {
                 console.log(error);
             })
-
     };
 
     render() {
