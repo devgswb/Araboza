@@ -14,3 +14,13 @@ class ImpressionViewSet(meviewsets.ModelViewSet):
     lookup_field = 'id'
     queryset = models.Impression.objects.all()
     serializer_class = serializers.ImpressionSerializer
+
+class IndexViewSet(meviewsets.ModelViewSet):
+    lookup_field = 'id'
+    queryset = models.Index.objects.all()
+    serializer_class = serializers.IndexSerializer
+
+class SearchViewSet(meviewsets.ModelViewSet):
+    lookup_field = 'id'
+    queryset = models.Search.objects.all()
+    serializer_class = serializers.SearchSerializer

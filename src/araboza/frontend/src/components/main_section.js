@@ -8,34 +8,24 @@ import '../css/main_section.css';
 import axios from 'axios';
 
 class MainSection extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            list : [],
-        };
-    }
-
-    componentDidMount() {
-        this._getList();
-    }
-
-    _getList() {
-        const apiUrl = '/main/main_topic.json';
-
-        axios.get(apiUrl).then(data => {
-            this.setState ({
-                list : data.data.list
-            });
-        }).catch (error => {
-            console.log(error);
-        })
-    }
 
     state = {
+        posts : [],
         modal6: false,
         modal7: false
     };
+
+    async componentDidMount() {
+        try {
+            const res = await fetch('http://127.0.0.1:8000/api/index/');
+            const posts = await res.json();
+            this.setState({
+                posts
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     toggle = nr => () => {
         let modalNumber = 'modal' + nr;
@@ -65,11 +55,11 @@ class MainSection extends Component {
                                     </TableRow>
                                 </MDBTableHead>
                                 <MDBTableBody >
-                                    {this.state.list.map ((list,index) => (
+                                    {this.state.posts.map ((list,index) => (
                                         <TableRow key={index}>
-                                            <TableCell>{list.mainNum}</TableCell>
-                                            <TableCell align='right'>{list.mainTitle}</TableCell>
-                                            <TableCell align='right'>{list.mainUpDown}</TableCell>
+                                            <TableCell>{list.rang}</TableCell>
+                                            <TableCell align='right'>{list.word}</TableCell>
+                                            <TableCell align='right'>{list.plus}</TableCell>
                                         </TableRow>
                                     ))}
                                 </MDBTableBody>
