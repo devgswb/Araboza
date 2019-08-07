@@ -29,15 +29,20 @@ class result_main extends Component {
         this.state = {
             //사이트 차트 보임 여부
             visible: "none",
-            data: []
+            // data: this.props.location
+            site_name:'',
         };
         this.s = true;
-        this.data=0;
+        // this.data=this.props.location;
         this.site_name='';
     }
+
     change_site_data(site_code, site_name){
         // this.data = this.props.data.related_word[i-1];
         // this.site_name = site_name;
+        this.setState({
+            site_name: site_name
+        })
     }
     //사이트 클릭 시 연관 검색어 차트를 보여주기 위한 메서드
     sc_visible = () => {
@@ -53,25 +58,28 @@ class result_main extends Component {
          //     this.s=false;
          //     console.log(this.state.data);
          // }
-         axios.get('http://127.0.0.1:8000/api/res/impression/')
-             .then(response=>{
-                 this.setState({data:response.data[0]});
-                 console.log(response.data);
-                 console.log("Data: " + this.state.data);
-             })
+         // axios.get('http://127.0.0.1:8000/api/res/impression/')
+         //     .then(response=>{
+         //         this.setState({data:response.data[0]});
+         //         console.log(response.data);
+         //         console.log("Data: " + this.state.data);
+         //     })
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log(nextState);
         if(this.state !== nextState) return true;
     }
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        return true;
+    }
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
-        const { data, title } = this.props.location;
+        const { data } = this.props.location;
+
+
         console.log("결과페이지");
-        console.log(data);
         // this.loadData();
         return (
             <div className="wrapper">
@@ -80,21 +88,21 @@ class result_main extends Component {
                         ARABOZA
                     </div>
                     <div className="res-intro">
-                        <h3>{title}의 결과는??????</h3>
+                        <h3>{data.search_word}의 결과는??????</h3>
                     </div>
                     <div className="pn-chart">
-                        <Result_pnCharts data={this.state.data}/>
+                        <Result_pnCharts data={data}/>
                         {/*<Result_pnCharts data={this.props.data}/>*/}
                     </div>
                 </header>
 
-                <div className="site-chart" style={{display: `${this.state.visible}`}}>
-                    <Button id="site-chart-Button" onClick={(e) => {
-                        this.setState({
-                            visible: 'none'
-                        })
-                    }}>×</Button>
-                    <SiteChart data={this.data} site_name={this.site_name}/>
+                <div className="site-chart">
+                    {/*<Button id="site-chart-Button" onClick={(e) => {*/}
+                    {/*    this.setState({*/}
+                    {/*        visible: 'none'*/}
+                    {/*    })*/}
+                    {/*}}>×</Button>*/}
+                    <SiteChart data={data} site_name={this.state.site_name}/>
                     {/*<SiteChart2/>*/}
                 </div>
 

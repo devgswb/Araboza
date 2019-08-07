@@ -72,7 +72,10 @@ class SentiAnalysis:
             'related_words': sorted_words[1:6],
             'total_sentence_count': total_sentence_count,
             'positive': pos,
-            'negative': neg
+            'positive_percentage': round((pos)/(pos+neg) * 100, 1),
+            'negative': neg,
+            'negative_percentage': round((neg)/(pos+neg) * 100, 1)
+
         }
 
     def __analysis__(self, word_list):
