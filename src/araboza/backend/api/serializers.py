@@ -16,3 +16,8 @@ class IndexSerializer(serializers.DocumentSerializer):
     class Meta:
         model = models.Index
         fields = '__all__'
+
+class SearchSerializer(serializers.DocumentSerializer):
+    class Meta:
+        model = models.Search
+        fields = '__all__'

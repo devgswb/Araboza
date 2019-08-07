@@ -22,8 +22,3 @@ class Index(Document):
 
 class Search(Document):
     title = fields.StringField(required=True, null=True)
-# Create your models here.
-class Index(Document):
-    rang = fields.DynamicField(required=True, default=0)
-    word = fields.StringField(required=True, null=True)
-    plus = fields.StringField(required=True, null=True)
