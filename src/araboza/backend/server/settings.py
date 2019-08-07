@@ -27,7 +27,7 @@ SECRET_KEY = ')cgzo0u-$!i=^uh&2ivh-kz2db$%yw_9#xetv@fxnag7qf3-+y'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+2
 # Databases
 
 username = urllib.parse.quote_plus('devgswb')

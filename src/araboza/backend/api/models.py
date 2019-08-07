@@ -21,4 +21,9 @@ class Index(Document):
     plus = fields.StringField(required=True, null=True)
 
 class Search(Document):
-    title = fields.StringField(required=True, null=True)
+    site_code = fields.IntField(required=True)
+    search_word = fields.StringField(required=True)
+    related_word = fields.ListField(fields=fields.ListField())
+    total_sentence_count = fields.IntField(required=True)
+    positive = fields.FloatField(required=True, default=0.0)
+    negative = fields.FloatField(required=True, default=0.0)

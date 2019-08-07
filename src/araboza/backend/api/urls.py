@@ -6,9 +6,8 @@ merouter = merouters.DefaultRouter()
 merouter.register(r'mongo', views.ToolViewSet)
 merouter.register(r'res/impression', views.ImpressionViewSet)
 merouter.register(r'index', views.IndexViewSet)
-merouter.register(r'search', views.SearchViewSet)
 urlpatterns = [
-
+    url(r'search/', views.SearchAPIView.as_view())
 ]
 
 urlpatterns += merouter.urls

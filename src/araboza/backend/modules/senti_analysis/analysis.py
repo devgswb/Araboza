@@ -3,13 +3,14 @@ import json
 import pymongo
 import urllib
 import datetime
-
+import os
 
 class SentiAnalysis:
 
     def __make_polarity_dict__(self):
         res_data = {}
-        with open('dict/KNU_SentiWord_info.json', encoding='utf-8') as data_file:
+        dirname = os.path.dirname(__file__)
+        with open(f'{dirname}/dict/KNU_SentiWord_info.json', encoding='utf-8') as data_file:
             data = json.load(data_file)
         for row in data:
             res_data[row['word_root']] = row['polarity']
@@ -41,17 +42,38 @@ class SentiAnalysis:
             'code': site_code,
             'time': {'$lte': end_date, '$gte': start_date}
         })
+        total_sentence_count = 0
+        related_words = {}
         for record in rs:
             for sentence in record['data']:
                 word_list = [ word[0] for word in sentence ] # 한 문장의 단어들을 묶은 것
                 if not (search_word in word_list):
                     continue
-                # 연관단어는 품사 파트가 명사인 부분을 따서 키 : 밸류로 더해주고 상위 랭킹을 뽑으면 될 것임
                 analysis_result = self.__analysis__(word_list)
                 pos += analysis_result['positive']
                 neg += analysis_result['negative']
+                # 긍부정 판단
+                total_sentence_count += 1
+                noun = ['NNP', 'NNG']
+                for sub_word in sentence:
+                    noun_word = sub_word[0] # 명사 단어
+                    part_of_word = sub_word[1] # 품사
+                    if part_of_word in noun:
+                        if not (noun_word in related_words):
+                            related_words[noun_word] = 0
+                        else:
+                            related_words[noun_word] += 1
+        sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
+        # 정렬된 결과 가장 많이 나온 단어는 무조건 검색된 단어니까 첫번째 인덱스는 제외한 [1:6]
         conn.close()
-        return {'positive': pos, 'negative': neg}
+        return {
+            'site_code': site_code,
+            'search_word': search_word,
+            'related_words': sorted_words[1:6],
+            'total_sentence_count': total_sentence_count,
+            'positive': pos,
+            'negative': neg
+        }
 
     def __analysis__(self, word_list):
         pos = 0.0  # positive
