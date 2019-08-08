@@ -2,43 +2,53 @@
 	"result": [
 		{
 			"word": "일본",
-			"count": 108
+			"count": 108,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 47
+			"count": 47,
+			"changes": 0
 		},
 		{
 			"word": "한국",
-			"count": 42
+			"count": 42,
+			"changes": 0
 		},
 		{
 			"word": "이유",
-			"count": 28
+			"count": 28,
+			"changes": 0
 		},
 		{
 			"word": "근황",
-			"count": 28
+			"count": 28,
+			"changes": 0
 		},
 		{
 			"word": "영상",
-			"count": 26
+			"count": 26,
+			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 24
+			"count": 24,
+			"changes": 0
 		},
 		{
 			"word": "안",
-			"count": 23
+			"count": 23,
+			"changes": 0
 		},
 		{
 			"word": "때",
-			"count": 21
+			"count": 21,
+			"changes": 0
 		},
 		{
 			"word": "무대",
-			"count": 20
+			"count": 20,
+			"changes": 0
 		}
 	]
 }

@@ -2,43 +2,53 @@
 	"result": [
 		{
 			"word": "일본",
-			"count": 85
+			"count": 85,
+			"changes": -23
 		},
 		{
 			"word": "한국",
-			"count": 37
+			"count": 37,
+			"changes": -5
 		},
 		{
 			"word": "이유",
-			"count": 35
+			"count": 35,
+			"changes": 7
 		},
 		{
 			"word": "오늘",
-			"count": 31
+			"count": 31,
+			"changes": -16
 		},
 		{
 			"word": "사람",
-			"count": 29
+			"count": 29,
+			"changes": 5
 		},
 		{
 			"word": "아이돌",
-			"count": 28
+			"count": 28,
+			"changes": 0
 		},
 		{
 			"word": "근황",
-			"count": 28
+			"count": 28,
+			"changes": 0
 		},
 		{
 			"word": "때",
-			"count": 27
+			"count": 27,
+			"changes": 6
 		},
 		{
 			"word": "매",
-			"count": 20
+			"count": 20,
+			"changes": 0
 		},
 		{
 			"word": "주의",
-			"count": 19
+			"count": 19,
+			"changes": 0
 		}
 	]
 }

@@ -2,43 +2,53 @@
 	"result": [
 		{
 			"word": "일본",
-			"count": 39
+			"count": 39,
+			"changes": -44
 		},
 		{
 			"word": "열애",
-			"count": 27
+			"count": 27,
+			"changes": 0
 		},
 		{
 			"word": "김희철",
-			"count": 21
+			"count": 21,
+			"changes": 0
 		},
 		{
 			"word": "모모",
-			"count": 21
+			"count": 21,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 20
+			"count": 20,
+			"changes": -24
 		},
 		{
 			"word": "단독",
-			"count": 18
+			"count": 18,
+			"changes": 0
 		},
 		{
 			"word": "이유",
-			"count": 17
+			"count": 17,
+			"changes": -25
 		},
 		{
 			"word": "중구청",
-			"count": 16
+			"count": 16,
+			"changes": 0
 		},
 		{
 			"word": "장",
-			"count": 16
+			"count": 16,
+			"changes": 0
 		},
 		{
 			"word": "서울",
-			"count": 15
+			"count": 15,
+			"changes": 0
 		}
 	]
 }

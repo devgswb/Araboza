@@ -45,7 +45,8 @@ def get_hotword_ranking(date):
             #result[i[0]] = i[1]
             list.append({
                 "word" : word,
-                "count" : count
+                "count" : count,
+                "changes" : 0
             })
 
         result['result'] = list
@@ -68,22 +69,54 @@ def get_hotword_ranking(date):
             json.dump(result, make_file, ensure_ascii=False, indent="\t")
 
 # 변동사항 계산 def (수정)
-#def ranking_Changes():
-#    dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
-#
-#    for i in range(0, 4):
-#        if i == 0:
-#            name = 'yesterday'
-#        elif i == 1:
-#            name = '2_days_ago'
-#        elif i == 2:
-#            name = '3_days_ago'
-#        else:
-#            name = '4_days_ago'
-#
-#        with open(f'{dirname}/{name}.json')as json_file:
-#            json_data = json.load(json_file)
+def ranking_Changes():
+    dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
+
+    for i in range(0, 3):
+        if i == 0:
+            name = 'yesterday'
+        elif i == 1:
+            name = '2_days_ago'
+        elif i == 2:
+            name = '3_days_ago'
+
+        with open(f'{dirname}/{name}.json', 'r', encoding='UTF8') as json_file:
+            now_data  = json.load(json_file)
+            now_data = now_data['result']
+
+        if i == 0:
+            name = '2_days_ago'
+        elif i == 1:
+            name = '3_days_ago'
+        elif i == 2:
+            name = '4_days_ago'
+
+        with open(f'{dirname}/{name}.json', 'r', encoding='UTF8') as json_file:
+            eve_data = json.load(json_file)
+            eve_data = eve_data['result']
+
+        for data in now_data:
+            for  c_value in eve_data:
+                if data['word'] == c_value['word']:
+                    r_changes =  data['count'] - c_value['count']
+                    data['changes'] = r_changes
+
+        save_data = OrderedDict()
+        save_data['result'] = now_data
+
+        if i == 0:
+            name = 'yesterday'
+        elif i == 1:
+            name = '2_days_ago'
+        elif i == 2:
+            name = '3_days_ago'
+
+        with open(f'{dirname}/{name}.json', 'w', encoding="utf-8") as make_file:
+            json.dump(save_data, make_file, ensure_ascii=False, indent="\t")
 
 #   yesterday > 2 days ago > 3 days ago >> 4 days ago
+# 반드시 get_hotword_ranking("2019-08-06") >> ranking_Changes() 순으로 실행해주세요
 # get_hotword_ranking("2019-08-06")
+ranking_Changes()
+
 # print(get_hotword_ranking("2019-08-06"))
