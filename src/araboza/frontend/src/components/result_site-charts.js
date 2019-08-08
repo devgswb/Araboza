@@ -43,9 +43,23 @@ class SiteChart extends Component {
         // label.text = this.props.site_name;
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
-        label.fontSize = 50;
+        label.fontSize = 30;
         label.fill = am4core.color("#ffffff");
 
+        chart.responsive.rules.push({
+            revelant:(target)=>{
+                if(target.pixelWidth <= 505){
+                    return true;
+                }
+            },
+            state: (target, stateId)=> {
+                if(target instanceof  am4charts.Chart) {
+                    let state = target.states.create(stateId);
+                    state.properties.fontSize = 10;
+                    return state;
+                }
+            }
+        });
 // Add and configure Series
         let pieSeries = chart.series.push(new am4charts.PieSeries());
         // pieSeries.dataFields.value = "size";

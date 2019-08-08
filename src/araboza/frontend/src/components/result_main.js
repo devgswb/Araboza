@@ -82,114 +82,118 @@ class result_main extends Component {
         console.log("결과페이지");
         // this.loadData();
         return (
-            <div className="wrapper">
-                <header className="result-header">
-                    <div className="title">
-                        ARABOZA
-                    </div>
-                    <div className="res-intro">
-                        <h3>{data.search_word}의 결과는??????</h3>
-                    </div>
-                    <div className="pn-chart">
-                        <Result_pnCharts data={data}/>
-                        {/*<Result_pnCharts data={this.props.data}/>*/}
-                    </div>
-                </header>
+            <div className="back-wrapper">
+                <div className="wrapper">
+                    <div className="container">
+                        <header className="result-header">
+                            <div className="title">
+                                ARABOZA
+                            </div>
+                            <div className="res-intro">
+                                <h3>{data.search_word}의 결과는??????</h3>
+                            </div>
+                            <div className="pn-chart">
+                                <Result_pnCharts data={data}/>
+                                {/*<Result_pnCharts data={this.props.data}/>*/}
+                            </div>
+                        </header>
 
-                <div className="site-chart">
-                    {/*<Button id="site-chart-Button" onClick={(e) => {*/}
-                    {/*    this.setState({*/}
-                    {/*        visible: 'none'*/}
-                    {/*    })*/}
-                    {/*}}>×</Button>*/}
-                    <SiteChart data={data} site_name={this.state.site_name}/>
-                    {/*<SiteChart2/>*/}
-                </div>
-
-
-                {/*사이트 버튼들 아이템 리스트 형식으로 숨기기
-                아니면 슬라이드나 카드 형식으로
-                남초 사이트 - 클릭 - ~~~ 사이트 등장
-                여초사이트 ~~~ 등으로*/}
-
-                <div className="site-wrapper">
-                    {/*<div id="site-title"><h2>사이트들 통계</h2></div>*/}
-
-                    <div className="n-cho category">
-
-                        <div className="site-div"> 남초 사이트</div>
-
-                        <button color="primary" id="Mlb-park" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(10, 'MLBPARK');}}>MLBPark</button>
-
-                        <button color="primary" id="Ruliweb" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(12,'루리웹');}}>루리웹</button>
-
-                        <button color="primary" id="YGosu" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(15, '와이고수');}}>와이고수</button>
-
-                        <button color="primary" id="DogDrip" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(4, '개드립');}}>개드립</button>
-
-                        <button color="primary" id="Cleang" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(2, '클리앙');}}>클리앙</button>
-
-                        <button color="primary" id="BoBae-Dream" className="site ncho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(1, '보배드림');}}>보배드림</button>
-
-                    </div>
-
-                    <div className="y-cho category">
-                        <div className="site-div">여초 사이트</div>
-
-                        <button color="secondary" id="Instiz" className="site ycho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(9,'인스티즈');}}>인스티즈</button>
-
-                        <button color="secondary" id="82Cook" className="site ycho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(3,'82쿡');}}>82쿡</button>
-
-                        <button color="secondary" id="HyGall" className="site ycho nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(8,'해연갤');}}>해연갤</button>
+                        <div className="site-chart">
+                            {/*<Button id="site-chart-Button" onClick={(e) => {*/}
+                            {/*    this.setState({*/}
+                            {/*        visible: 'none'*/}
+                            {/*    })*/}
+                            {/*}}>×</Button>*/}
+                            <SiteChart data={data} site_name={this.state.site_name}/>
+                            {/*<SiteChart2/>*/}
+                        </div>
 
 
-                    </div>
+                        {/*사이트 버튼들 아이템 리스트 형식으로 숨기기
+                        아니면 슬라이드나 카드 형식으로
+                        남초 사이트 - 클릭 - ~~~ 사이트 등장
+                        여초사이트 ~~~ 등으로*/}
+
+                        <div className="site-wrapper">
+                            {/*<div id="site-title"><h2>사이트들 통계</h2></div>*/}
+
+                            <div className="n-cho category">
 
 
-                    <div className="another category">
-                        <div className="site-div">그 외</div>
-                        <button color="inherit" id="Nate-pan" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(11,'네이트판');}}>네이트판</button>
+
+                                <button color="primary" id="Mlb-park" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(10, 'MLBPARK');}}>MLBPark</button>
+
+                                <button color="primary" id="Ruliweb" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(12,'루리웹');}}>루리웹</button>
+
+                                <button color="primary" id="YGosu" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(15, '와이고수');}}>와이고수</button>
+
+                                <button color="primary" id="DogDrip" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(4, '개드립');}}>개드립</button>
+
+                                <button color="primary" id="Cleang" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(2, '클리앙');}}>클리앙</button>
+
+                                <button color="primary" id="BoBae-Dream" className="site ncho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(1, '보배드림');}}>보배드림</button>
+
+                            </div>
+
+                            <div className="y-cho category">
 
 
-                        <button bgcolor="inherit" id="TheQoo" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(13,'더쿠넷');}}>더쿠넷</button>
+                                <button color="secondary" id="Instiz" className="site ycho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(9,'인스티즈');}}>인스티즈</button>
 
-                        <button color="inherit" id="eToLAND" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(5, 'eToLAND');}}>이토랜드</button>
+                                <button color="secondary" id="82Cook" className="site ycho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(3,'82쿡');}}>82쿡</button>
 
-                        <button color="inherit" id="OU" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(14);}}>오늘의유머</button>
+                                <button color="secondary" id="HyGall" className="site ycho nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(8,'해연갤');}}>해연갤</button>
 
-                        <button color="inherit" id="Funny-colleage" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(7,'웃긴대학');}}>웃긴대학</button>
 
-                        <button color="inherit" id="GasaengI" className="site other nav-item" onClick={() => {
-                            this.sc_visible();
-                            this.change_site_data(6,'가생이');}}>가생이</button>
+                            </div>
+
+
+                            <div className="another category">
+
+                                <button color="inherit" id="Nate-pan" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(11,'네이트판');}}>네이트판</button>
+
+
+                                <button bgcolor="inherit" id="TheQoo" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(13,'더쿠넷');}}>더쿠넷</button>
+
+                                <button color="inherit" id="eToLAND" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(5, 'eToLAND');}}>이토랜드</button>
+
+                                <button color="inherit" id="OU" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(14);}}>오늘의유머</button>
+
+                                <button color="inherit" id="Funny-colleage" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(7,'웃긴대학');}}>웃긴대학</button>
+
+                                <button color="inherit" id="GasaengI" className="site other nav-item" onClick={() => {
+                                    this.sc_visible();
+                                    this.change_site_data(6,'가생이');}}>가생이</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
