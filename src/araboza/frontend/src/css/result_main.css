@@ -2,7 +2,10 @@
     font-family: 'Potra';
     src: url(../img/Potra.ttf) format('truetype');
 }
-
+.back-wrapper{
+    background:rgb(0,1,19);
+    width:100%;
+}
 .wrapper{
     display: grid;
     /* 컬럼 수 */
@@ -29,7 +32,7 @@
 .wrapper{
     border: 1px solid #000000;
     /*border-radius: 30px;*/
-    background-color: #ffff;
+    /*background-color: #000000;*/
     width:1200px;
     margin: 0 auto;
     background-image: url(../img/result5.jpg);
@@ -50,6 +53,9 @@
 /*    transform: rotate(90deg);*/
 /*}*/
 
+.container{
+        background-color: rgba(0,0,0,0.65);
+}
 /* 결과창 */
 .header{
     /*셀의 컬럼 시작, 종료 위치
