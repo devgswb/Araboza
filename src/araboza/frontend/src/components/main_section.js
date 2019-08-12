@@ -9,40 +9,133 @@ import axios from 'axios';
 
 class MainSection extends Component {
 
-    state = {
+        constructor(props) {
+         super(props);
+
+         this.state = {
+             data : {
+                 day : '',
+                 resultData : [],
+                 now : ''
+             }
+
+        };
+         axios.get(`http://127.0.0.1:8000/api/hotword/?day=0`)
+            .then((res) => {
+                console.log("검색페이지");
+                localStorage.setItem('result', res.data['result']);
+                this.setState({
+                    resultData : res.data.result
+                });
+                console.log(this.state.resultData)
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+         this.handleSubmit = this.handleSubmit.bind(this);
+         this.handleClick1 = this.handleClick1.bind(this);
+         this.handleClick2 = this.handleClick2.bind(this);
+         this.handleClick3 = this.handleClick3.bind(this);
+
+    }
+
+    handleClick1() {
+    this.setState(state => ({
+      day : '0',
+        now : '1'
+    }));
+        }
+
+    handleClick2() {
+    this.setState(state => ({
+      day : '1',
+        now : '2'
+    }));
+        }
+
+    handleClick3() {
+    this.setState(state => ({
+      day : '2',
+        now : '3'
+    }));
+        }
+
+
+    handleSubmit = (e) => {
+        console.log('this.title ->', this.state.day);
+        e.preventDefault();
+        axios.get(`http://127.0.0.1:8000/api/hotword/?day=${this.state.day}`)
+            .then((res) => {
+                console.log("검색페이지");
+                localStorage.setItem('result', res.data['result']);
+                this.setState({
+                    resultData : res.data.result
+                });
+                console.log(this.state.resultData)
+            }).catch(function (error) {
+                console.log(error);
+            })
+    };
+
+        state = {
+        day : '0',
         posts : [],
         modal6: false,
         modal7: false
     };
 
-    async componentDidMount() {
-        try {
-            const res = await fetch('/api/index/');
-            const posts = await res.json();
-            this.setState({
-                posts
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
     toggle = nr => () => {
         let modalNumber = 'modal' + nr;
         this.setState({
-            [modalNumber]: !this.state[modalNumber]
+            [modalNumber]: !this.state[modalNumber],
+            day : '0',
+             now : '1'
         });
     };
 
     render() {
+        const Day = this.state.day;
+        let tbody;
+        if(Day === '0') {
+            tbody = this.state.resultData.map ((list,index) => (
+                <TableRow key={index+1}>
+                    <TableCell>{index+1}</TableCell>
+                    <TableCell align='right'>{list.word}</TableCell>
+                    <TableCell align='right'>{list.changes}</TableCell>
+                </TableRow>
+            ))
+        }
+        else if(Day === '1') {
+            tbody = this.state.resultData.map ((list,index) => (
+                <TableRow key={index+1}>
+                    <TableCell>{index+1}</TableCell>
+                    <TableCell align='right'>{list.word}</TableCell>
+                    <TableCell align='right'>{list.changes}</TableCell>
+                </TableRow>
+            ))
+        }
+        else if(Day === '2') {
+            tbody = this.state.resultData.map ((list,index) => (
+                <TableRow key={index+1}>
+                    <TableCell>{index+1}</TableCell>
+                    <TableCell align='right'>{list.word}</TableCell>
+                    <TableCell align='right'>{list.changes}</TableCell>
+                </TableRow>
+            ))
+        }
+        else {
+            tbody = <div>일자를 클릭하세요</div>
+        }
         return (
             <div  className ="section">
                 <MDBContainer className="sectionbtn">
-                    <MDBBtn outline color="info" onClick={this.toggle(8)}>Today Ranking</MDBBtn>
+                    <form onSubmit={this.handleSubmit}>
+                    <MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'>Ranking</MDBBtn>
+                    </form>
                     <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right">
                         <MDBModalHeader toggle={this.toggle(8)}>
                             <div className='section_title'>
-                                <h2>Today Ranking</h2>
+                                <h2>{this.state.now}일전 Ranking</h2>
                             </div>
                         </MDBModalHeader>
                         <MDBModalBody className='sectionModel'>
@@ -54,16 +147,15 @@ class MainSection extends Component {
                                         <TableCell className='articleCell' align='right'>변동사항</TableCell>
                                     </TableRow>
                                 </MDBTableHead>
-                                <MDBTableBody >
-                                    {this.state.posts.map ((list,index) => (
-                                        <TableRow key={index}>
-                                            <TableCell>{list.rang}</TableCell>
-                                            <TableCell align='right'>{list.word}</TableCell>
-                                            <TableCell align='right'>{list.plus}</TableCell>
-                                        </TableRow>
-                                    ))}
+                                 <MDBTableBody >
+                                     {tbody}
                                 </MDBTableBody>
                             </MDBTable>
+                            <form onSubmit={this.handleSubmit}>
+                            <MDBBtn outline color="primary" onClick={this.handleClick1} type='submit'>1일 전</MDBBtn>
+                            <MDBBtn outline color="primary" onClick={this.handleClick2} type='submit'>2일 전</MDBBtn>
+                            <MDBBtn outline color="primary" onClick={this.handleClick3} type='submit'>3일 전</MDBBtn>
+                            </form>
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn outline color="secondary" onClick={this.toggle(8)}>Close</MDBBtn>
