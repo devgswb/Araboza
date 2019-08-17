@@ -2,6 +2,11 @@
     margin : 0 auto;
     width : 100%;
 }
+
+.sideAlert {
+    margin : 0 auto;
+    width : 40%;
+}
 .mt-0 input {
 
 }

@@ -6,7 +6,7 @@
     display: grid;
     width : 100%;
     grid-template-columns: 100%;
-    grid-template-rows: 910px 1920px;
+    grid-template-rows: 960px 1920px;
     grid-template-areas:
             "mainDiv1"
             "mainDiv2";
@@ -15,14 +15,14 @@
     background-color:rgba(0, 0, 0, 0.5);
     grid-area : mainDiv1;
     width : 100%;
-    height : 910px;
+    height : 960px;
     margin : 0 auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50px 410px 150px 200px 100px;
+    grid-template-rows: 50px 410px 150px 250px 100px;
     grid-template-areas:
             "tag"
             "header"

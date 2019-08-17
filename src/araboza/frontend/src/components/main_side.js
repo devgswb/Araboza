@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import '../css/main_side.css'
-import {MDBBtn, MDBCol, MDBInput, MDBIcon} from "mdbreact";
+import {MDBBtn, MDBCol, MDBInput, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBAlert} from "mdbreact";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { withRouter } from 'react-router-dom';
-
-import {Link} from 'react-router-dom';
 import axios from 'axios';
+
 
 class MainSide extends Component {
 
@@ -17,12 +16,16 @@ class MainSide extends Component {
          this.state = {
              data : {
                  title : "",
+                 modal2: false,
+                 alert : false,
+                 st : false,
+                 color : false
              }
-
         };
 
          this.handleChange = this.handleChange.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
+         this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleChange = (e)=>{
@@ -31,33 +34,118 @@ class MainSide extends Component {
     };
 
     handleSubmit = (e) => {
+        this.axiosCancelSource = axios.CancelToken.source();
         console.log('this.title ->', this.state.title);
         e.preventDefault();
-        axios.get(`/api/search/?word=${this.state.title}`)
+        const check = this.handleCheck();
+        if (!check) {
+            console.log("fuck", this.state);
+        }
+        else {
+            axios.get(`/api/search/?word=${this.state.title}`,{cancelToken: this.axiosCancelSource.token})
             .then((res) => {
                 console.log("검색페이지");
                 console.log(res);
                 localStorage.setItem('title', res.data['title']);
-                console.log('hello index');
                 this.props.history.push({
                     pathname: `/result`,
                     data: res.data
                 })
             }).catch(function (error) {
                 console.log(error);
-            })
+                console.log(this.state.st);
+                let modalNumber = 'modal' + 2;
+                if (this.state.st === true ) {
+                    this.setState({
+                        st : false,
+                        alert : true,
+                        color : true
+                    });
+                }
+                else {
+                    this.setState({
+                        alert : true,
+                        [modalNumber]: !this.state[modalNumber],
+                        color : false
+                    });
+                }
+            }.bind(this))
+        }
+    };
+
+    handleCheck = (e)=>{
+        const typeCheck = /^[가-힣]+$/;
+        let searchStr = this.state.title;
+        if(!typeCheck.test(searchStr)) {
+             this.setState({ textError : '형식 오류입니다.' });
+             return false
+        }
+        else {
+            console.log('success');
+            return true
+        }
+    };
+
+    handleCancel  = nr => () => {
+        console.log('요청 취소');
+        this.axiosCancelSource.cancel('Axios unmounted.');
+        let modalNumber = 'modal' + nr;
+        this.setState({
+            st : true,
+            [modalNumber]: !this.state[modalNumber]
+        });
+    };
+
+    toggle = nr => () => {
+        const check = this.handleCheck(); {
+            if(check) {
+                let modalNumber = 'modal' + nr;
+                this.setState({
+                    [modalNumber]: !this.state[modalNumber]
+                });
+            }
+        }
     };
 
     render() {
+         const message = this.state.alert;
+         const stop = this.state.color;
+         let Alert;
+         console.log(stop);
+         if(message === true) {
+             if (stop === true) {
+                 Alert = <MDBAlert color="dark" className='sideAlert'>
+                     입력이 중지되었습니다. (값을 입력해 주세요)
+                 </MDBAlert>
+             }
+             else {
+                 Alert = <MDBAlert color="danger" className='sideAlert'>
+                     요청 자료가 부족합니다. (다른 값을 입력해 주세요)
+                 </MDBAlert>
+             }
+         }
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='side'>
                     <MDBCol md="6">
                         <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
                     </MDBCol>
-                    <MDBBtn outline color="primary" type="submit">
-                  <MDBIcon icon="search"/> Search
+                     <div style={{ color: "red"}}>{this.state.textError}</div>
+                    <MDBBtn outline color="primary" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/> Search
                     </MDBBtn>
+                    {Alert}
+                        <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)}>
+                            <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}을(를) 불러옵니다</MDBModalHeader>
+                            <MDBModalBody>
+                                <div>관련된 결과를 긁어오는 중입니다. 잠시만 기달려 주세요</div>
+                                <div className="spinner-border text-primary" role="status">
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                            </MDBModalBody>
+                            <MDBModalFooter>
+                                <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기</MDBBtn>
+                            </MDBModalFooter>
+                        </MDBModal>
                 </div>
             </form>
         );
