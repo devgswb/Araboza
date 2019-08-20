@@ -20,19 +20,21 @@ class Result_pnCharts extends Component {
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
 // Add data
-        const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
-        const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
+//         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
+//         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
         this.data = {
             "search_word": this.props.data.search_word,
-            'positive': positive,
-            'negative': negative
+            'positive': this.props.data.positive_percentage,
+            'negative': this.props.data.negative_percentage
         };
+
         chart.data =[];
         chart.data.push(this.data);
 
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
         chart.legend.position = "top";
+
 
         //반응형?
         //      chart.responsive.enabled = true;
@@ -86,13 +88,13 @@ class Result_pnCharts extends Component {
             }
             // series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
             // 그라데이션
-            let fillModifier = new am4core.LinearGradientModifier();
-            fillModifier.gradient.rotation = 30; //그라데이션 회전
-            fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
-            //   fillModifier.opacities = [1,0]; //투명도
-            //   fillModifier.offsets = [0,1]; //속성 길이
-            chart.fillModifier = fillModifier;
-            series.columns.template.fillModifier = fillModifier;
+            // let fillModifier = new am4core.LinearGradientModifier();
+            // fillModifier.gradient.rotation = 30; //그라데이션 회전
+            // fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
+            // //   fillModifier.opacities = [1,0]; //투명도
+            // //   fillModifier.offsets = [0,1]; //속성 길이
+            // chart.fillModifier = fillModifier;
+            // series.columns.template.fillModifier = fillModifier;
 
             // 패턴
             // let pattern = new am4core.LinePattern();
@@ -152,7 +154,7 @@ class Result_pnCharts extends Component {
 
     // componentDidUpdate(prevProps, prevState, snapshot) {
     //     console.log('pp'+prevProps.data.positive);
-    //     if (this.props.data === prevProps.data) {
+    //     if (this.props.data !== prevProps.data) {
     //         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
     //         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
     //         this.chart.data = [{

@@ -3,13 +3,17 @@
     src: url(../img/Potra.ttf) format('truetype');
 }
 .back-wrapper{
-    background:rgb(0,1,19);
+    background: #F6F6F6;
     width:100%;
+    height:100vh;
+    border:none;
 }
 .wrapper{
     display: grid;
     /* 컬럼 수 */
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 16% 1fr;
+    grid-template-rows: 10% 1fr;
+    /*grid-column-gap: 10px;*/
     /* 높이 지정
     minmax(최소 높이, )*/
     /*grid-auto-rows: minmax(100px, auto);*/
@@ -20,196 +24,325 @@
     프로퍼티 두개를 지정하면 처음 것은 row-gap, 두번째는 colum-gap
     grid-gap: 5px 10px;
     */
-    grid-gap: 5px;
     grid-template-areas:
-            "header-"
-            "site-chart"
-            "site-wrapper";
+           "menu-wrapper result-header"
+           "menu-wrapper  container"
+            ;
 
 
 }
 *{ box-sizing: border-box; }
 .wrapper{
-    border: 1px solid #000000;
-    /*border-radius: 30px;*/
-    /*background-color: #000000;*/
-    width:1200px;
+    width:80%;
     margin: 0 auto;
-    background-image: url(../img/result5.jpg);
-    background-position: center top;
-    background-size: 80%;
-
-    /*overflow: hidden;*/
-    transform: rotate(0deg);
+    border:none;
 }
-/*.wrapper:before{*/
-/*    content: "";*/
-/*    position: absolute;*/
-/*    width: 200%;*/
-/*    height: 200%;*/
-/*    left: -60%;*/
-/*    z-index: -1;*/
-/*    background: url(../img/result7.jpg) center center repeat;*/
-/*    transform: rotate(90deg);*/
-/*}*/
 
-.container{
-        background-color: rgba(0,0,0,0.65);
-}
 /* 결과창 */
-.header{
-    /*셀의 컬럼 시작, 종료 위치
-    행의 시작 종료 위치 지정*/
-    /*grid-column-start: 1;*/
-    /*grid-column-end: 4;*/
-    /*grid-row-start: 1;*/
-    /*grid-row-end: 4;*/
-
-    /* 더 나아가 grid-area 로 정의 가능
-    순서는 row-start / colum-start / row-end / colum-end
-    grid-area 로 셀에 이름을 줄 수 있다
-    grid-area: hd
-    */
-    /*grid-area: 1 / 1 / 4 / 4;*/
-    grid-area: header-;
-
-    /* 그리드 셀은 또하나의 그리드가 될 수 있음
-    즉 셀 안에 다른 셀을 가둘 수 있음
-    원래는 subgrid 이지만 아직 모든 브라우저에서 구현되지 않음*/
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-            "title"
-            "res-intro"
-            "pn-chart";
-}
 .result-header{
-    /*border: 2px solid #000000;*/
-    border-radius: 5px;
-    /*border-top: 1px solid dodgerblue;*/
-    /*border-bottom: 1px solid dodgerblue;*/
+    grid-area: result-header;
+    background: white;
+    box-shadow: 1px 1px #E4E3E3;
+    padding-top: 10px;
+}
+.mobile-title{
+    display:none;
+    float:left;
+    margin-left: 15px;
+    font-size: 2rem;
+    font-family: Potra, serif;
+
+}
+#return-main{
+    width:10rem;
+    margin-right: 5px;
+    color: gray;
+    cursor:pointer;
+    float:right;
+}
+#return-main:hover #return-icon{
+    -webkit-animation: rotating 1.5s linear infinite;
+     -moz-animation: rotating 1.5s linear infinite;
+     -o-animation: rotating 1.5s linear infinite;
+     animation: rotating 1.5s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
 }
 /* ARABOZA 타이틀*/
-.title{
-    grid-area: title;
+.result-title{
     font-family: Potra, serif;
-    font-size: 70px;
+    /*font-size: 70px;*/
+    font-size: 2rem;
+    width:inherit;
     color:white;
 }
 
-/*검색 결과 설명*/
-.res-intro{
-    grid-area: res-intro;
-
-    border-radius: 10px;
-    padding-top: 10px;
-    color:#c9ffcf;
+.menu-wrapper{
+    display : grid;
+    /*grid-template-columns: 1fr;*/
+    grid-template-rows: repeat(5, 3rem);
+    grid-row-gap: 10px;
+    grid-area: menu-wrapper;
+    padding: 20px 0 0 0;
+    background: #122F3B;
+    color:white;
 }
-/* 긍 부정 차트 */
+
+.menu-btn{
+    font-size: 1rem;
+    color: white;
+    height: 3rem;
+    border:none;
+    background: none;
+    /*text-align: left;*/
+
+    margin-top: 1rem;
+}
+.menu-btn:hover{
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+    overflow:hidden;
+}
+.result-container{
+    display:grid;
+    grid-area: container;
+    grid-template-areas:
+            "pn-chart pn-chart"
+            "site-chart nav"
+     ;
+    grid-template-columns: 60% 40%;
+    margin: 10px 0 0 20px;
+}
+.res-intro{
+    font-size: 1.7rem;
+}
+/* 긍 부정 차트 , 결과 내용*/
 .pn-chart{
     grid-area: pn-chart;
-    padding-right: 25px;
-       position: relative;
-
+    /*border: 1px solid #e0e0e0;*/
+    border:none;
+    border-radius: 0.7rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+    position: relative;
+    background: #ffffff;
+    padding: 0.8rem 0 0 0;
+    margin-bottom: 10px;
+}
+.pn-chart:hover{
+    box-shadow: 5px 5px 5px 4px #e0e0e0;
 }
 
-
-.site-wrapper{
-    display : grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 3px;
-    /*background-color: #ffffff;*/
-    /*border-top: 1px solid #000000;*/
-    /*border-bottom: 1px solid #000000;*/
-    /*border-radius: 15px;*/
-    grid-area: site-wrapper;
-    padding: 1px 2px 1px 2px;
-}
-#site-title{
-    grid-area: 1/ 1/ 1/ 5;
-}
-#site-chart-button{
-    margin: 0 0 0 363px;
-    position: absolute;
-    z-index: 1;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color:white;
-}
 
 /*사이트 통계 파이 차트*/
 .site-chart{
     grid-area: site-chart;
-    height:250px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-radius: 15px;
-    padding: 7px 0 0 0;
-    z-index: 0;
+    /*height:250px;*/
+    /*border: 1px solid #e0e0e0;*/
+    border:none;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+    padding: 0.8rem 0 0 0;
+    background: #ffffff;
 }
-
-.site-div{
-    padding-top: 10px;
-    color: white;
-    font-weight: bold;
-}
-
-.category{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: minmax(40px, 45px);
-    grid-row-gap: 2px;
-}
-.site{
-    border-radius: 50px;
-    font-size: 17px;
-    background: none;
-}
-.ncho{
-    color: #4285F4;
-    border: 2px solid #4285F4;
-}
-.ycho{
-    color: #00C851;
-    border: 2px solid #00C851;
-}
-
-.other{
-    color: #33B5E5;
-    border: 2px solid #33B5E5;
-}
-.ncho:hover {
-    background: #4285F4;
-    color:white;
-    font-weight: bold;
-}
-.ycho:hover {
-    background: #00C851;
-    color:white;
-    font-weight: bold;
-}
-.other:hover {
-    background: #33B5E5;
-    color:white;
-    font-weight: bold;
+.site-chart:hover{
+    box-shadow: 4px 4px 4px 4px #e0e0e0;
 }
 .nav{
-    border: 1px solid #2d84ff;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-area: nav;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 3px;
+
+}
+.site{
+    color: #61dafb;
+    /*width: 8rem;*/
+    /*height:8rem;*/
+    text-align: center;
+    font-weight: bold;
+    padding-top: 0.6rem;
+    box-shadow: 3px 3px 3px #e0e0e0;
+    font-size: 1rem;
+    background: #ffffff;
+    margin: 0 0 0 10px;
+    cursor:pointer;
+}
+.site:hover{
+    /*background-color: #61dafb;*/
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);;
+    color:white;
+}
+.site:focus{
+    background-color: #61dafb;
+    color:white;
 }
 
-/*화면 크기*/
-@media(max-width: 1000px){
+
+@media(max-width: 1000px) {
     .wrapper{
         width:100%;
     }
+    .result-title{
+        font-size: 1.7rem;
+    }
+    .result-container{
+        margin-right: 20px;
+    }
+    .nav{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .site-chart{
+        margin-bottom: 5px;
+    }
+    .site{
+        width:inherit;
+        height:inherit;
+        border-radius: 0;
+    }
+    .site:hover{
+        font-size: 1rem;
+        box-shadow: 3px 3px 3px 3px #e0e0e0;
+    }
+    .site-chart{
+        font-size:0.8rem;
+    }
 }
-
-
+@media(max-width: 900px) {
+    .wrapper{
+        width:100%;
+        grid-template-rows: 10% 1fr;
+    }
+    .result-title{
+        font-size: 1.6rem;
+    }
+    .result-container{
+        margin-right: 20px;
+    }
+    .nav{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .site-chart{
+        margin-bottom: 5px;
+    }
+    .site{
+        width:inherit;
+        border-radius: 0;
+        padding-top: 0.75rem;
+        font-size: 0.8rem;
+    }
+    .site:hover{
+        font-size: 0.8rem;
+        box-shadow: 3px 3px 3px 3px #e0e0e0;
+    }
+    .site-chart{
+        font-size:0.8rem;
+    }
+}
 @media(max-width: 505px) {
     .wrapper{
         width:100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 10% 6% 84%;
+        grid-template-areas:
+           "result-header"
+           "menu-wrapper"
+           "container";
+    }
+
+    .menu-wrapper{
+        grid-template-columns: repeat(5, 1fr);
+        height:3rem;
+        grid-gap: 0;
+        padding: 0 0 0 0;
+    }
+    .menu-btn{
+        font-size: 0.7rem;
+        height:2rem;
+        padding-bottom: 1rem;
+
+    }
+    .menu-btn:hover{
+        background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color: transparent;
+    }
+    .result-container{
+        width:100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 40% 50% 10%;
+        grid-template-areas:
+            "pn-chart"
+            "site-chart"
+            "nav";
+    }
+    .result-title{
+        display:none;
+    }
+    .mobile-title{
+        display:block;
+        margin-top:3px;
+    }
+    #return-main{
+        width: 8rem;
+        font-size: 0.7rem;
+        padding: 0.3rem 0 0 3.5rem;
+        margin:0.1rem 0.5rem 0 0;
+        float: right;
+    }
+    #return-main:hover{
+        font-size: 0.7rem;
+    }
+    .result-container{
+        width:97%;
+        margin: 20px 0 0 0;
+    }
+    .pn-chart{
+        margin-left: 10px;
+    }
+    .site-chart{
+        margin-left: 10px;
+    }
+    .res-intro{
+        font-size: 1rem;
+    }
+    .nav{
+        display:grid;
+        grid-template-columns: repeat(15, 1fr);
+
+        bottom:0;
+        width:100%;
+        height: 2.5rem;
+        position: fixed;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+
+    }
+    .nav::-webkit-scrollbar {
+         display: none !important;
+    }
+
+    .site{
+        font-size: 0.7rem;
+        width:5rem;
+        height: 2.5rem;
+        grid-gap: 0;
+        margin: 0 0 0 0;
+        background: #122F3B;
+        text-align: center;
+
     }
 }

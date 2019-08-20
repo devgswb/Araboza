@@ -22,6 +22,11 @@ class SiteChart extends Component {
         // this.site_name = this.props.site_name;
 // Create chart instance
         let chart = am4core.create("site-charts", am4charts.PieChart);
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = "left";
+        // chart.legend.scale = 1;
+        chart.legend.labels.template.fontSize = 15;
+        // chart.legend.labels.template.fill = am4core.color('#ffffff');
 
 // Add data. 원 데이터
         chart.data = this.data;
@@ -34,8 +39,16 @@ class SiteChart extends Component {
             am4core.color('#FFEB3B'),
             am4core.color('#4CAF50'),
             am4core.color('#2196F3'),
-
         ];
+
+        let pieSeries = chart.series.push(new am4charts.PieSeries());
+        // pieSeries.dataFields.value = "size";
+        pieSeries.dataFields.value = "count";
+        pieSeries.dataFields.category = "word";
+        // pieSeries.labels.template.fill = am4core.color("#ffffff");
+        pieSeries.colors = colorSet;
+        pieSeries.labels.template.disabled = true;
+
 // Add label
         chart.innerRadius = 70;
         let label = chart.seriesContainer.createChild(am4core.Label);
@@ -43,11 +56,31 @@ class SiteChart extends Component {
         // label.text = this.props.site_name;
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
-        label.fontSize = 30;
-        label.fill = am4core.color("#ffffff");
+        label.fontSize = 25;
+        // label.fill = am4core.color("#ffffff");
 
         chart.responsive.rules.push({
-            revelant:(target)=>{
+            relevant:(target)=>{
+                if(target.pixelWidth <= 1000){
+                    return true;
+                }
+            },
+            state: (target, stateId)=> {
+                if(target instanceof am4core.Label){
+                     let state = target.states.create(stateId);
+                     state.properties.fontSize=20;
+                     return state;
+                }
+                if(target instanceof am4charts.Legend){
+                     let state = target.states.create(stateId);
+                     // state.properties.position = "bottom";
+                     state.properties.scale = 1 ;
+                     return state;
+                }
+            }
+        });
+        chart.responsive.rules.push({
+            relevant:(target)=>{
                 if(target.pixelWidth <= 505){
                     return true;
                 }
@@ -56,17 +89,43 @@ class SiteChart extends Component {
                 if(target instanceof  am4charts.Chart) {
                     let state = target.states.create(stateId);
                     state.properties.fontSize = 10;
+                    state.properties.innerRadius = 50;
                     return state;
                 }
+                if(target instanceof am4charts.Legend){
+                     let state = target.states.create(stateId);
+                     state.properties.position = "absolute";
+                     state.properties.scale = 0.5 ;
+                     // state.properties.disabled = true;
+                     return state;
+                }
+                if(target instanceof am4core.Label){
+                     let state = target.states.create(stateId);
+                     state.properties.fontSize=20;
+                     return state;
+                }
+
             }
         });
-// Add and configure Series
-        let pieSeries = chart.series.push(new am4charts.PieSeries());
-        // pieSeries.dataFields.value = "size";
-        pieSeries.dataFields.value = "count";
-        pieSeries.dataFields.category = "word";
-        pieSeries.labels.template.fill = am4core.color("#ffffff");
-        pieSeries.colors = colorSet;
+        chart.responsive.rules.push({
+            relevant:(target)=>{
+                if(target.pixelWidth <= 320){
+                    return true;
+                }
+            },
+            state: (target, stateId)=> {
+
+                if(target instanceof am4charts.Legend){
+                     let state = target.states.create(stateId);
+                     state.properties.position = "absolute";
+                     state.properties.scale = 0.4 ;
+                     // state.properties.disabled = true;
+                     return state;
+                }
+
+            }
+        });
+
 
         this.chart = chart;
     }
@@ -81,7 +140,7 @@ class SiteChart extends Component {
     render() {
         return (
             <div>
-                <div id="site-charts" style={{ width: "100%", height: "230px"}}>
+                <div id="site-charts" style={{ width: "100%", height: "300px"}}>
                 </div>
             </div>
         );
