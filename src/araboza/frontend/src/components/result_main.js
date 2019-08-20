@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import {MDBNavbar} from 'mdbreact';
 
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -25,6 +26,7 @@ import SiteChart2 from "./site-chart2";
    -탭 형식으로 사이트 리스트를 만들어 탭 선택시
     긍부정 차트, 파이 차트 동시에 바뀌게
 */
+
 
 class result_main extends Component {
     constructor(props) {
@@ -83,6 +85,15 @@ class result_main extends Component {
                         <div id="return-main"><Link to="/">검색 페이지로 <h4 id="return-icon">↺</h4></Link></div>
                     </header>
 
+                    <div className="menu-wrapper">
+                        <div className="result-title">ARABOZA</div>
+                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                    </div>
+
                     <div className="result-container">
                         <div className="pn-chart">
                             <div className="res-intro">
@@ -91,81 +102,60 @@ class result_main extends Component {
                             <Result_pnCharts data={data}/>
                         </div>
 
-                        <div className="site-chart nav-tabs">
+                        <div className="site-chart">
                             <div className="res-intro">{this.state.site_name}의 연관검색어</div>
-                            <SiteChart data={data} site_name={this.state.site_name}/>
+                            <SiteChart data={data} site_name={this.state.site_name} />
                         </div>
-                        <ul className="nav nav-tabs">
-                            <li className="nav-item">
-                                <div color="primary" id="BoBae-Dream" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(1, '보배드림');}}>보배드림</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="primary" id="Cleang" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(2, '클리앙');}}>클리앙</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="secondary" id="82Cook" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(3,'82쿡');}}>82쿡</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="primary" id="DogDrip" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(4, '개드립');}}>개드립</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="inherit" id="eToLAND" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(5, 'eToLAND');}}>이토랜드</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="inherit" id="GasaengI" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(6,'가생이');}}>가생이</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="inherit" id="Funny-colleage" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(7,'웃긴대학');}}>웃긴대학</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="secondary" id="HyGall" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(8,'해연갤');}}>해연갤</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="secondary" id="Instiz" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(9,'인스티즈');}}>인스티즈</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="primary" id="Mlb-park" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(10, 'MLBPARK');}}>MLBPark</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="inherit" id="Nate-pan" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(11,'네이트판');}}>네이트판</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="primary" id="Ruliweb" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(12,'루리웹');}}>루리웹</div>
-                            </li>
-                            <li className="nav-item">
-                                <div bgcolor="inherit" id="TheQoo" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(13,'더쿠넷');}}>더쿠넷</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="inherit" id="OU" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(14,'오늘의유머');}}>오늘의유머</div>
-                            </li>
-                            <li className="nav-item">
-                                <div color="primary" id="YGosu" className="site nav-link" href=".site-chart" onClick={() => {
-                                    this.change_site_data(15, '와이고수');}}>와이고수</div>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div className="menu-wrapper">
-                        <div className="result-title">ARABOZA</div>
-                        <button color="primary" id="" className="menu-btn">기능버튼</button>
-                        <button color="primary" id="" className="menu-btn">기능버튼</button>
-                        <button color="primary" id="" className="menu-btn">기능버튼</button>
-                        <button color="primary" id="" className="menu-btn">기능버튼</button>
-                        <button color="primary" id="" className="menu-btn">기능버튼</button>
+                        <div className="nav">
+
+                            <div color="primary" id="BoBae-Dream" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(1, '보배드림');}}>보배드림</div>
+
+                            <div color="primary" id="Cleang" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(2, '클리앙');}}>클리앙</div>
+
+                            <div color="secondary" id="82Cook" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(3,'82쿡');}}>82쿡</div>
+
+                            <div color="primary" id="DogDrip" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(4, '개드립');}}>개드립</div>
+
+                            <div color="inherit" id="eToLAND" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(5, 'eToLAND');}}>이토랜드</div>
+
+                            <div color="inherit" id="GasaengI" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(6,'가생이');}}>가생이</div>
+
+                            <div color="inherit" id="Funny-colleage" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(7,'웃긴대학');}}>웃긴대학</div>
+
+                            <div color="secondary" id="HyGall" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(8,'해연갤');}}>해연갤</div>
+
+                            <div color="secondary" id="Instiz" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(9,'인스티즈');}}>인스티즈</div>
+
+                            <div color="primary" id="Mlb-park" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(10, 'MLBPARK');}}>MLBPark</div>
+
+                            <div color="inherit" id="Nate-pan" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(11,'네이트판');}}>네이트판</div>
+
+                            <div color="primary" id="Ruliweb" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(12,'루리웹');}}>루리웹</div>
+
+                            <div bgcolor="inherit" id="TheQoo" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(13,'더쿠넷');}}>더쿠넷</div>
+
+                            <div color="inherit" id="OU" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(14,'오늘의유머');}}>오늘의유머</div>
+
+                            <div color="primary" id="YGosu" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(15, '와이고수');}}>와이고수</div>
+
+                        </div>
+
                     </div>
 
                 </div>
