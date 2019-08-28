@@ -4,27 +4,32 @@ import datetime
 import sys
 from bs4 import BeautifulSoup  # BeautifulSoup import
 
+# 2019-08-22 Multiprocessing 추가
+from multiprocessing import Pool
+from datetime import timedelta
+import time
 
 class Crawler:
 
     def __init__(self):
-        self.crawl_end = False
-        self.page = 1
         self.day = ''
         self.endTime = datetime.datetime(2000, 1, 1)
 
     def run(self, years, months, days):
         self.endTime = datetime.datetime(years, months, days)
-        while True:
-            if self.day != '' and (datetime.datetime.strptime(self.day, "%Y.%m.%d") < self.endTime):
-                break
-            self.crawlPage()
-            sys.stdout.write(f"{self.day} {self.page}페이지 긁는중\r")
-            sys.stdout.flush()
-            self.page += 1
+        #while True:
+         #   if self.day != '' and (datetime.datetime.strptime(self.day, "%Y.%m.%d") < self.endTime):
+         #       break
+            # self.crawlPage()
+        pool = Pool(processes=4)
+        pool.map(self.crawlPage, self.pageCalculation(f'{years}-{months}-{days}'))
+        pool.close()
+        sys.stdout.write(f"더쿠넷 크롤링 완료\r")
+        sys.stdout.flush()
 
-    def crawlPage(self):
-        url = f'https://theqoo.net/index.php?mid=square&filter_mode=normal&page={self.page}'
+    def crawlPage(self, page):
+        url = f'https://theqoo.net/index.php?mid=square&filter_mode=normal&page={page}'
+        time.sleep(0.02)
         res = req.get(url)
         res.encoding = None
         html = res.text
@@ -40,24 +45,30 @@ class Crawler:
             write.append(w)
 
         for i, d in enumerate(soup.select('td.time')):
-            if i > 3:
+            if i > 4:
                 d = d.get_text()
                 d = d.replace('\n', '')
+                d = d.replace('.', '-')
+                d_count = len(d.split('-'))
                 if ':' in d:
                     d = date.today()
                     d = str(d)
-                    d = d.replace('-', '.')
-                else:
+                    d = d.replace('-', '-')
+                elif d_count == 2:
                     d = d.replace('\t', '')
                     d = f"2019-{d}"
-                    d = d.replace('-', '.')
+                    d = d.replace('-', '-')
+                elif d_count == 3:
+                    d = d.replace('\t', '')
+                    d = f"20{d}"
+                    d = d.replace('-', '-')
                 d = d.replace(' ', '')
                 d = d.split(' ')[0]
                 day.append(d)
 
         for t in range(len(write)):
             self.day = day[t]
-            if datetime.datetime.strptime(self.day, "%Y.%m.%d") < self.endTime:
+            if datetime.datetime.strptime(self.day, "%Y-%m-%d") < self.endTime:
                 return
             name = 'TheQoo'
             fpath = f'data/13/[{day[t].replace(".", "-")}]{name}.csv'
@@ -72,3 +83,103 @@ class Crawler:
                     print(write[t])
                     raise
                 f.close()
+
+    def pageCalculation(self, date_Specified):  # 입력한 날짜의 글이 있는 페이지 까지 검색
+        # 들어와야하는 date_Specified의 형태는 '2019-08-22'
+        regen = 1000  # 하루에 글이 평균적으로 작성되는 양(페이지 기준). 사이트마다 적당한 고정값을 줘야 검색이 빨라짐
+        stop = True
+        page_Target = True
+        result = []
+        Fixed_date = datetime.datetime(int(date_Specified.split('-')[0]), int(date_Specified.split('-')[1]),
+                                       int(date_Specified.split('-')[2])) + timedelta(days=-1)
+        # print(date_Specified, Fixed_date)
+
+        while stop == True:
+            url = f'https://theqoo.net/index.php?mid=square&filter_mode=normal&page={regen}'
+            res = req.get(url)
+            res.encoding = None
+            html = res.text
+            soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+
+            for i, d in enumerate(soup.select('td.time')):
+                if i > 4:
+                    d = d.get_text()
+                    d = d.replace('\n', '')
+                    d = d.replace('.', '-')
+                    d_count = len(d.split('-'))
+                    if ':' in d:
+                        d = date.today()
+                        d = str(d)
+                        d = d.replace('-', '-')
+                    elif d_count == 2:
+                        d = d.replace('\t', '')
+                        d = f"2019-{d}"
+                        d = d.replace('-', '-')
+                    elif d_count == 3:
+                        d = d.replace('\t', '')
+                        d = f"20{d}"
+                        d = d.replace('-', '-')
+                    d = d.replace(' ', '')
+                    d = d.split(' ')[0]
+                    day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
+                    # print(d)
+                    if day == Fixed_date:
+                        stop = False
+                        page_Target = 'low'
+                        # print(stop)
+                        # print(page_Target)
+                        break
+                    elif day < Fixed_date:
+                        page_Target = True
+                    elif day > Fixed_date:
+                        page_Target = False
+
+            if stop == True:
+                if page_Target == False:
+                    regen = regen + int(regen / 2)
+                elif page_Target == True:
+                    regen = regen - int(regen / 4)
+                # print(f'**********{regen}***********')
+        if stop == False:
+            Fixed_date = Fixed_date + timedelta(days=+1)
+            # print(Fixed_date)
+            while stop == False:
+                # print(f'----------{regen}----------')
+                url = f'https://theqoo.net/index.php?mid=square&filter_mode=normal&page={regen}'
+                res = req.get(url)
+                res.encoding = None
+                html = res.text
+                soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+
+                for i, d in enumerate(soup.select('td.time')):
+                    if i > 4:
+                        d = d.get_text()
+                        d = d.replace('\n', '')
+                        d = d.replace('.', '-')
+                        d_count = len(d.split('-'))
+                        if ':' in d:
+                            d = date.today()
+                            d = str(d)
+                            d = d.replace('-', '-')
+                        elif d_count == 2:
+                            d = d.replace('\t', '')
+                            d = f"2019-{d}"
+                            d = d.replace('-', '-')
+                        elif d_count == 3:
+                            d = d.replace('\t', '')
+                            d = f"20{d}"
+                            d = d.replace('-', '-')
+                        d = d.replace(' ', '')
+                        d = d.split(' ')[0]
+                        day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
+                        # print(d)
+                        if day == Fixed_date:
+                            stop = True
+                            break
+                if stop == True:
+                    break
+                else:
+                    regen = regen - 1
+        for i in range(1, regen + 1):
+            result.append(i)
+        return result
