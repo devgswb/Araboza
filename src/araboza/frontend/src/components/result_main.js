@@ -81,12 +81,12 @@ class result_main extends Component {
                 <div className="wrapper">
 
                     <header className="result-header">
-                        <div className="mobile-title">ARABOZA</div>
+                        <div className="mobile-title">아라보자</div>
                         <div id="return-main"><Link to="/">검색 페이지로 <h4 id="return-icon">↺</h4></Link></div>
                     </header>
 
                     <div className="menu-wrapper">
-                        <div className="result-title">ARABOZA</div>
+                        <div className="result-title">아라보자</div>
                         <button color="primary" id="" className="menu-btn">기능버튼</button>
                         <button color="primary" id="" className="menu-btn">기능버튼</button>
                         <button color="primary" id="" className="menu-btn">기능버튼</button>
@@ -95,16 +95,20 @@ class result_main extends Component {
                     </div>
 
                     <div className="result-container">
-                        <div className="pn-chart">
+                        <div className="pn-chart-wrap">
                             <div className="res-intro">
                                 {data.search_word}을(를) {data.total_sentence_count}개의 문장에서 검색한 결과
                             </div>
-                            <Result_pnCharts data={data}/>
+                            <div id="pn-chart">
+                                <Result_pnCharts  data={data}/>
+                            </div>
                         </div>
 
-                        <div className="site-chart">
-                            <div className="res-intro">{this.state.site_name}의 연관검색어</div>
-                            <SiteChart data={data} site_name={this.state.site_name} />
+                        <div className="site-chart-wrap">
+                            <div className="site-intro">{this.state.site_name}의 연관검색어</div>
+                            <div id="site-chart">
+                                <SiteChart data={data} site_name={this.state.site_name} />
+                            </div>
                         </div>
 
                         <div className="nav">
@@ -145,7 +149,7 @@ class result_main extends Component {
                             <div color="primary" id="Ruliweb" className="site" href=".site-chart" onClick={() => {
                                 this.change_site_data(12,'루리웹');}}>루리웹</div>
 
-                            <div bgcolor="inherit" id="TheQoo" className="site" href=".site-chart" onClick={() => {
+                            <div color="inherit" id="TheQoo" className="site" href=".site-chart" onClick={() => {
                                 this.change_site_data(13,'더쿠넷');}}>더쿠넷</div>
 
                             <div color="inherit" id="OU" className="site" href=".site-chart" onClick={() => {
@@ -153,6 +157,9 @@ class result_main extends Component {
 
                             <div color="primary" id="YGosu" className="site" href=".site-chart" onClick={() => {
                                 this.change_site_data(15, '와이고수');}}>와이고수</div>
+
+                            <div color="primary" id="YGosu" className="site" href=".site-chart" onClick={() => {
+                                this.change_site_data(16, '전체');}}>사이트종합</div>
 
                         </div>
 

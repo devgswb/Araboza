@@ -26,8 +26,9 @@ class SiteChart extends Component {
         chart.legend.position = "left";
         // chart.legend.scale = 1;
         chart.legend.labels.template.fontSize = 15;
+        chart.legend.labels.template.fontFamily = "Jua";
         // chart.legend.labels.template.fill = am4core.color('#ffffff');
-
+        // chart.height = 300;
 // Add data. 원 데이터
         chart.data = this.data;
         // chart.data.push(this.data);
@@ -56,29 +57,11 @@ class SiteChart extends Component {
         // label.text = this.props.site_name;
         label.horizontalCenter = "middle";
         label.verticalCenter = "middle";
+        label.fontFamily = "YS";
         label.fontSize = 25;
         // label.fill = am4core.color("#ffffff");
 
-        chart.responsive.rules.push({
-            relevant:(target)=>{
-                if(target.pixelWidth <= 1000){
-                    return true;
-                }
-            },
-            state: (target, stateId)=> {
-                if(target instanceof am4core.Label){
-                     let state = target.states.create(stateId);
-                     state.properties.fontSize=20;
-                     return state;
-                }
-                if(target instanceof am4charts.Legend){
-                     let state = target.states.create(stateId);
-                     // state.properties.position = "bottom";
-                     state.properties.scale = 1 ;
-                     return state;
-                }
-            }
-        });
+
         chart.responsive.rules.push({
             relevant:(target)=>{
                 if(target.pixelWidth <= 505){
