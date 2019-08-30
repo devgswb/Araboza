@@ -1,65 +1,175 @@
 .article {
     width : 100%;
-    background-image: url("../img/ArabozaBackIcon640.png");
-    background-position:  top right;
-    background-repeat: no-repeat;
-}
-
-.articleBody {
+    height : 1870px;
     display: grid;
-    width : 70%;
-    margin : 0 auto;
-    grid-template-rows: 10% 1fr 1fr;
-    grid-template-columns: 50% 1fr;
-    text-align: center;
+    text-align: left;
+    font-size : 1.3rem;
+    grid-template-rows: 70px 450px 450px 450px 450px;
     grid-template-areas:
-            "articleTitle articleTitle"
-            "article01 article02"
-            "article03 article04";
+            "articleText"
+            "article01"
+            "article02"
+            "article03"
+            "article04";
 }
 
-.articleTitle {
-    grid-area : articleTitle;
-    margin-top : 40px;
-    margin-bottom: 20px;
-    color : white;
-}
-
-.articleTitle h2{
+.article h2{
     text-decoration : underline white;
+    font-size : 2.5rem;
+    margin-bottom: 3.5%;
+}
+
+.article button {
+    margin-top : 5%;
+    font-size : 1.3rem;
+}
+
+.articleText {
+    grid-area: articleText;
+    text-align: center;
+    color : #ffffff;
+    margin-top : 10px;
 }
 
 .article01 {
+    background-color: #263238;
     grid-area : article01;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+    height : 450px;
+    width : 100%;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-areas:
+            "articleImg01 articleText01"
+}
+
+.articleImg01 {
+    grid-area : articleImg01;
+}
+
+.articleText01 {
+    grid-area : articleText01;
+    color : #ffffff;
+    margin-top : 5%;
+    margin-left : 5%;
 }
 
 .article02 {
+    background-color: #37474F;
     grid-area : article02;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+    height : 450px;
+    width : 100%;
+    display: grid;
+    grid-template-columns: 1fr 30%;
+    grid-template-areas:
+            "articleText02 articleImg02"
+}
+
+.articleImg02 {
+    grid-area : articleImg02;
+}
+
+.articleText02 {
+    grid-area : articleText02;
+    color : #ffffff;
+    margin-top : 5%;
+    margin-left : 5%;
 }
 
 .article03 {
+    background-color: #263238;
     grid-area : article03;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+    height : 450px;
+    width : 100%;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-areas:
+            "articleImg03 articleText03"
+}
+
+.articleImg03 {
+    grid-area : articleImg03;
+}
+
+.articleText03 {
+    grid-area : articleText03;
+    color : #ffffff;
+    margin-top : 5%;
+    margin-left : 5%;
 }
 
 .article04 {
+    background-color:#37474F;
     grid-area : article04;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+    height : 450px;
+    width : 100%;
+    display: grid;
+    grid-template-columns: 1fr 30%;
+    grid-template-areas:
+            "articleText04 articleImg04"
+}
+
+.articleImg04 {
+    grid-area : articleImg04;
+}
+
+.articleText04 {
+    grid-area : articleText04;
+    color : #ffffff;
+    margin-top : 5%;
+    margin-left : 5%;
 }
 
 .article img {
+    filter: brightness(80%);
+    width : 100%;
+    height : 450px;
+}
+
+@media(max-width: 505px) {
+    .article {
+        width : 100%
+    }
+    .articleBody  {
+        width : 100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px 300px 300px 300px 300px;
+        grid-template-areas:
+                "articleTitle"
+                "article01"
+                "article02"
+                "article03"
+                "article04";
+    }
+
+    .article01 {
+    grid-area : article01;
+    margin : 0 auto;
+    width : 95%;
+    height : 280px;
+    }
+    .article02 {
+    grid-area : article02;
+    margin : 0 auto;
+    width : 95%;
+    height : 280px;
+    }
+    .article03 {
+    grid-area : article03;
+    margin : 0 auto;
+    width : 95%;
+    height : 280px;
+    }
+    .article04 {
+    grid-area : article04;
+    margin : 0 auto;
+    width : 95%;
+    height : 280px;
+    }
+
+    .article img {
     filter: brightness(90%);
     width : 100%;
-    height : 300px;
+    height : 130px;
     border : 4px solid white;
+}
 }

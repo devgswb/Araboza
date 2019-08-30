@@ -1,35 +1,60 @@
 ._main {
-    background-image: url("../img/ArabozaCy1920.jpg");
+    background-color: #e0e0e0;
     width : 100%;
 }
-._container {
+
+.__mainContainer {
     display: grid;
     width : 100%;
     grid-template-columns: 100%;
-    grid-template-rows: 960px 1920px;
+    grid-template-rows: 1200px 2740px;
     grid-template-areas:
             "mainDiv1"
             "mainDiv2";
 }
+
 ._mainDiv1 {
-    background-color:rgba(0, 0, 0, 0.5);
     grid-area : mainDiv1;
     width : 100%;
-    height : 960px;
+    height : 1200px;
     margin : 0 auto;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 710px 490px;
+    grid-template-areas:
+            "mainTitle"
+            "mainSearch";
+}
+
+._mainTitle {
+    background-image: url("../img/result3.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height : 710px;
+    width : 100%;
+    grid-area : mainTitle;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50px 410px 150px 250px 100px;
+    grid-template-rows: 60px 410px 240px ;
     grid-template-areas:
             "tag"
             "header"
-            "nav"
+            "nav";
+}
+
+._mainSearch {
+    width : 70%;
+    height : 390px;
+    display: grid;
+    grid-area : mainSearch;
+    margin : 50px auto;
+    background-color: #ffffff;
+        grid-template-rows: 320px 70px;
+        grid-template-areas:
             "side"
             "section";
-}
+    }
 
 ._mainDiv2 {
     width : 100%;
@@ -37,7 +62,7 @@
     background-color: #040B11;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 1220px 600px 100px;
+    grid-template-rows: 1870px 870px 100px;
     grid-template-areas:
             "article"
             "abs"
@@ -61,6 +86,10 @@
     color : white;
 }
 
+._next {
+    grid-area: next;
+}
+
 ._side {
     grid-area : side;
 }
@@ -79,10 +108,11 @@
 }
 
 @media(max-width: 505px) {
-    ._container {
+
+    .__mainContainer{
         background-repeat: no-repeat;
         grid-template-columns: 100%;
-        grid-template-rows: 930px 1fr;
+        grid-template-rows: 730px 1fr;
         grid-template-areas:
                 "mainDiv1"
                 "mainDiv2";
@@ -94,21 +124,53 @@
         background-position: center;
         background-size: cover;
         width : 100%;
+        height : 730px;
         margin : 0 auto;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 50px 300px 300px 200px 80px;
+        grid-template-rows: 50px 400px 280px;
         grid-template-areas:
                 "tag"
-                "header"
-                "nav"
-                "side"
-                "section";
+                "mainTitle"
+                "mainSearch";
+    }
+
+    ._mainTitle {
+        width : 90%;
+        display: grid;
+        grid-template-rows: 300px 100px ;
+        grid-template-areas:
+            "header"
+            "nav";
+    }
+
+    ._mainDiv2 {
+        grid-area : mainDiv2;
+        background-color: #040B11;
+        background-position: center;
+        background-size: cover;
+        width : 100%;
+        margin : 0 auto;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 1300px 300px 50px;
+        grid-template-areas:
+                "article"
+                "abs"
+                "footer";
     }
 
     ._nav {
         background-color:rgba(0, 0, 0, 0.5);
-        height: 300px;
+        height: 100px;
+    }
+
+    ._nav h2 {
+        font-size : 1.5rem;
+    }
+
+    .navBtn {
+        color : black;
     }
 
 }

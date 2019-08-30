@@ -6,7 +6,8 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 class MainSide extends Component {
 
@@ -22,7 +23,6 @@ class MainSide extends Component {
                  color : false
              }
         };
-
          this.handleChange = this.handleChange.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleCancel = this.handleCancel.bind(this);
@@ -127,7 +127,8 @@ class MainSide extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='side'>
-                    <MDBCol md="6">
+                    <h2>Topic Search</h2>
+                    <MDBCol>
                         <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
                     </MDBCol>
                      <div style={{ color: "red"}}>{this.state.textError}</div>

@@ -1,5 +1,6 @@
 .tag {
     color : white;
+    height : 60px;
     text-align: left;
     display: grid;
     grid-template-columns: 70% 15% 15%;
@@ -29,10 +30,12 @@
 
 ._tagName01 {
     grid-area : tagName01;
+    margin-top : 5%;
 }
 
 ._tagName02 {
     grid-area : tagName02;
+    margin-top : 5%;
 }
 
 @media(max-width: 505px) {
@@ -56,9 +59,11 @@
 
     ._tagTitle {
         text-align: left;
+        margin-left : 0;
+        height : 50px
     }
 
     ._tagTitle h2 {
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
 }

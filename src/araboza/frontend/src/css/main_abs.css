@@ -1,13 +1,79 @@
 .abs {
-    background-image: url("../img/ArabozaBackIcon640.png");
-    background-position:  top left;
-    background-repeat: no-repeat;
     width : 100%;
+    color : #ffffff;
+    height : 870px;
+    text-decoration : underline white;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 60% 1fr;
+    grid-template-rows: 70px 200px 200px 200px 200px;
+    grid-template-areas:
+            "absTitle absTitle"
+            "absView absText01"
+            "absView absText02"
+            "absView absText03"
+            "absView absText04"
 }
 
-.absCar {
-    border : 4px solid white;
+.absView {
+    grid-area : absView;
 }
 
+.absView img {
+    width : 100%;
+    height : 800px;
+}
+
+.absTitle {
+    padding-top : 0.5%;
+    grid-area : absTitle;
+    text-align: center;
+}
+
+.absTitle h2 {
+    font-size : 2.5rem;
+}
+
+.absText01 {
+    width : 100%;
+    height : 100%;
+    grid-area : absText01;
+    border-bottom: 1px solid #bcbcbc;
+    padding-top : 2%;
+    padding-left : 3%;
+}
+
+.absText02 {
+    width : 100%;
+    height : 100%;
+    grid-area : absText02;
+    border-bottom: 1px solid #bcbcbc;
+    padding-top : 2%;
+    padding-left : 3%;
+}
+
+.absText03 {
+    width : 100%;
+    height : 100%;
+    grid-area : absText03;
+    border-bottom: 1px solid #bcbcbc;
+    padding-top : 2%;
+    padding-left : 3%;
+}
+
+.absText04 {
+    width : 100%;
+    height : 100%;
+    grid-area : absText04;
+    border-bottom: 1px solid #bcbcbc;
+    padding-top : 2%;
+    padding-left : 3%;
+}
+
+@media(max-width: 505px) {
+    .abs {
+        height : 300px;
+    }
+}
 
 
