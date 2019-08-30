@@ -20,19 +20,21 @@ class Result_pnCharts extends Component {
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
 // Add data
-        const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
-        const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
+//         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
+//         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
         this.data = {
             "search_word": this.props.data.search_word,
-            'positive': positive,
-            'negative': negative
+            'positive': this.props.data.positive_percentage,
+            'negative': this.props.data.negative_percentage
         };
+
         chart.data =[];
         chart.data.push(this.data);
-
+        chart.align = "center";
         chart.legend = new am4charts.Legend();
         // 레전드의 위치
         chart.legend.position = "top";
+
 
         //반응형?
         //      chart.responsive.enabled = true;
@@ -68,7 +70,38 @@ class Result_pnCharts extends Component {
         //툴팁 사용 여부
         valueAxis.cursorTooltipEnabled = true;
 
-
+        // chart.responsive.rules.push({
+        //     relevant:(target)=>{
+        //         if(target.pixelWidth <= 505){
+        //             return true;
+        //         }
+        //     },
+        //     state: (target, stateId)=> {
+        //         if(target instanceof am4charts.Chart){
+        //             let state = target.states.create(stateId);
+        //             state.properties.height = 100;
+        //             return state;
+        //         }
+        //         if(target instanceof am4charts.ValueAxis){
+        //             let state = target.states.create(stateId);
+        //             state.properties.minGridDistance = 50;
+        //             state.properties.opacity = 0;
+        //             return state;
+        //         }
+        //         if (target instanceof am4charts.LabelBullet) {
+        //             let state = target.states.create(stateId);
+        //             state.properties.fontSize= 10;
+        //
+        //             return state;
+        //         }
+        //         if(target instanceof am4charts.Legend){
+        //              let state = target.states.create(stateId);
+        //              state.properties.scale = "top";
+        //              state.properties.scale = 0.5 ;
+        //              return state;
+        //         }
+        //     }
+        // });
 // Create series
         const createSeries = (field, name) => {
             let series = chart.series.push(new am4charts.ColumnSeries());
@@ -86,13 +119,13 @@ class Result_pnCharts extends Component {
             }
             // series.legendSettings.labelText = "[bold {color}]{name}[{valueX}]";
             // 그라데이션
-            let fillModifier = new am4core.LinearGradientModifier();
-            fillModifier.gradient.rotation = 30; //그라데이션 회전
-            fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
-            //   fillModifier.opacities = [1,0]; //투명도
-            //   fillModifier.offsets = [0,1]; //속성 길이
-            chart.fillModifier = fillModifier;
-            series.columns.template.fillModifier = fillModifier;
+            // let fillModifier = new am4core.LinearGradientModifier();
+            // fillModifier.gradient.rotation = 30; //그라데이션 회전
+            // fillModifier.brightnesses = [5, 3, 1, 0, 0]; //색상 밝기
+            // //   fillModifier.opacities = [1,0]; //투명도
+            // //   fillModifier.offsets = [0,1]; //속성 길이
+            // chart.fillModifier = fillModifier;
+            // series.columns.template.fillModifier = fillModifier;
 
             // 패턴
             // let pattern = new am4core.LinePattern();
@@ -139,9 +172,11 @@ class Result_pnCharts extends Component {
             // 바에 나타나는 숫자
             labelBullet.label.text = "{valueX}%";
             // 숫자 크기
-            labelBullet.label.scale = 2;
+            labelBullet.label.scale = 1.5;
             // 숫자 색상
             labelBullet.label.fill = am4core.color("#fff");
+
+
         };
 
         createSeries("positive", "positive");
@@ -152,7 +187,7 @@ class Result_pnCharts extends Component {
 
     // componentDidUpdate(prevProps, prevState, snapshot) {
     //     console.log('pp'+prevProps.data.positive);
-    //     if (this.props.data === prevProps.data) {
+    //     if (this.props.data !== prevProps.data) {
     //         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
     //         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
     //         this.chart.data = [{
@@ -170,7 +205,7 @@ class Result_pnCharts extends Component {
 
     render() {
         return (
-            <div id="pn-chart" style={{width: "100%", height: "200px"}}>
+            <div id="pn-chart" style={{width: "100%", height: "230px"}}>
             </div>
         );
     }

@@ -16,6 +16,7 @@ class SiteChart2 extends Component {
     componentDidMount() {
         let chart = am4core.create("bubble-chart", am4plugins_forceDirected.ForceDirectedTree);
         chart.legend = new am4charts.Legend();
+        chart.legend.labels.template.fill = am4core.color('#ffffff');
 
         let networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries());
 
