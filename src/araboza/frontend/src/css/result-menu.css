@@ -1,0 +1,75 @@
+/* ARABOZA 타이틀*/
+.result-title{
+    font-family: YDJ ,YS, serif;
+    /*font-size: 70px;*/
+    font-size: 3rem;
+    width:inherit;
+    color:white;
+    padding-bottom:50px;
+    cursor:pointer;
+}
+/*.result-search-bar{*/
+/*    width:25rem;*/
+/*}*/
+
+.menu-wrapper{
+    display : grid;
+    /*grid-template-columns: 1fr;*/
+    grid-template-rows: repeat(5, 5rem);
+    /*grid-row-gap: 10px;*/
+    grid-area: menu-wrapper;
+    padding: 20px 0 0 0;
+    background: #122F3B;
+    color:white;
+}
+
+.menu-btn{
+    font-size: 1rem;
+    font-family: Jua, serif;
+    color: white;
+    height: 3rem;
+    border:none;
+    background: none;
+    /*text-align: left;*/
+
+    margin-top: 1rem;
+}
+.menu-btn:hover{
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+    overflow:hidden;
+}
+
+@media(max-width: 1000px) {
+    .result-title{
+        font-size: 2.5rem;
+    }
+}
+@media(max-width: 900px) {
+     .result-title{
+        font-size: 2.2rem;
+    }
+}
+@media(max-width: 505px) {
+     .menu-wrapper{
+        grid-template-columns: repeat(5, 1fr);
+        height:3rem;
+        grid-gap: 0;
+        padding: 0 0 0 0;
+    }
+    .menu-btn{
+        font-size: 0.7rem;
+        height:2rem;
+        padding-bottom: 1rem;
+    }
+    .menu-btn:hover{
+        background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color: transparent;
+    }
+    .menu-btn:focus{
+        outline: none;
+    }
+    .result-title{
+        display:none;
+    }
+}

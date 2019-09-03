@@ -70,38 +70,6 @@ class Result_pnCharts extends Component {
         //툴팁 사용 여부
         valueAxis.cursorTooltipEnabled = true;
 
-        // chart.responsive.rules.push({
-        //     relevant:(target)=>{
-        //         if(target.pixelWidth <= 505){
-        //             return true;
-        //         }
-        //     },
-        //     state: (target, stateId)=> {
-        //         if(target instanceof am4charts.Chart){
-        //             let state = target.states.create(stateId);
-        //             state.properties.height = 100;
-        //             return state;
-        //         }
-        //         if(target instanceof am4charts.ValueAxis){
-        //             let state = target.states.create(stateId);
-        //             state.properties.minGridDistance = 50;
-        //             state.properties.opacity = 0;
-        //             return state;
-        //         }
-        //         if (target instanceof am4charts.LabelBullet) {
-        //             let state = target.states.create(stateId);
-        //             state.properties.fontSize= 10;
-        //
-        //             return state;
-        //         }
-        //         if(target instanceof am4charts.Legend){
-        //              let state = target.states.create(stateId);
-        //              state.properties.scale = "top";
-        //              state.properties.scale = 0.5 ;
-        //              return state;
-        //         }
-        //     }
-        // });
 // Create series
         const createSeries = (field, name) => {
             let series = chart.series.push(new am4charts.ColumnSeries());
@@ -205,8 +173,10 @@ class Result_pnCharts extends Component {
 
     render() {
         return (
-            <div id="pn-chart" style={{width: "100%", height: "230px"}}>
+
+            <div id="pn-chart">
             </div>
+
         );
     }
 }

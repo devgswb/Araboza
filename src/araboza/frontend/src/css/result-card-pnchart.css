@@ -1,0 +1,45 @@
+.pn-chart-wrap{
+    grid-area: pn-chart-wrap;
+    /*border: 1px solid #e0e0e0;*/
+    border:none;
+    border-radius: 0.7rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+    position: relative;
+    background: #ffffff;
+    height:255px;
+    padding: 0.8rem 0 0 0;
+    margin-bottom: 10px;
+}
+.pn-chart-wrap:hover{
+    box-shadow: 5px 5px 5px 4px #e0e0e0;
+}
+.res-intro{
+    font-size: 1.7rem;
+    font-family: Jua, serif;
+}
+#pn-chart{
+    height:200px;
+}
+@media (max-height: 900px){
+    #pn-chart{
+        height:200px;
+    }
+}
+@media(max-width: 900px) {
+    .res-intro{
+        margin-top: 150px;
+    }
+}
+@media(max-width: 505px) {
+    .pn-chart-wrap{
+        margin-left: 10px;
+        height: 220px;
+    }
+    #pn-chart{
+        height:180px;
+    }
+    .res-intro{
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+}
