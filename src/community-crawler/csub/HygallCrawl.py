@@ -116,8 +116,8 @@ class Crawler:
                         d = d.replace('/', '-')
                     d = d.replace(' ', '')
                     d = d.split(' ')[0]
+                    # print(d, regen)
                     day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                    # print(d)
                     if day == Fixed_date:
                         stop = False
                         page_Target = 'low'
@@ -131,9 +131,13 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 313383:
+                        regen = 313383
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
@@ -162,8 +166,8 @@ class Crawler:
                             d = d.replace('/', '-')
                         d = d.replace(' ', '')
                         d = d.split(' ')[0]
+                        # print(d, regen)
                         day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                        # print(d)
                         if day == Fixed_date:
                             stop = True
                             break

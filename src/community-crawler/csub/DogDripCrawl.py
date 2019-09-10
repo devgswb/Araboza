@@ -48,7 +48,11 @@ class Crawler:
             d = d.get_text()
             d = d.replace('\n', '')
             d = d.replace('.', '-') # 날짜 중간 형식
-            if '분 전' in d:
+            if '초 전' in d:
+                d = date.today()
+                d = str(d)
+                d = d.replace('-', '-')
+            elif '분 전' in d:
                 d = date.today()
                 d = str(d)
                 d = d.replace('-', '-')
@@ -140,9 +144,13 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 11159:
+                        regen = 11159
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
@@ -159,7 +167,11 @@ class Crawler:
                     d = d.get_text()
                     d = d.replace('\n', '')
                     d = d.replace('.', '-')
-                    if '분 전' in d:
+                    if '초 전' in d:
+                        d = date.today()
+                        d = str(d)
+                        d = d.replace('-', '-')
+                    elif '분 전' in d:
                         d = date.today()
                         d = str(d)
                         d = d.replace('-', '-')

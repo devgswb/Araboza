@@ -38,14 +38,15 @@ class Crawler:
         day = []
 
         for i, w in enumerate(soup.select('td.title span[style=""]')):
-            w = w.get_text()
-            w = w.split('\n')[0]
-            # w = w.replace('\n', '')
-            w = w.replace(',', ' ')
-            write.append(w)
+            if i > 3:
+                w = w.get_text()
+                w = w.split('\n')[0]
+                # w = w.replace('\n', '')
+                w = w.replace(',', ' ')
+                write.append(w)
 
         for i, d in enumerate(soup.select('td.time')):
-            if i > 4:
+            if i > 3:
                 d = d.get_text()
                 d = d.replace('\n', '')
                 d = d.replace('.', '-')
@@ -102,7 +103,7 @@ class Crawler:
             soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
             for i, d in enumerate(soup.select('td.time')):
-                if i > 4:
+                if i > 3:
                     d = d.get_text()
                     d = d.replace('\n', '')
                     d = d.replace('.', '-')
@@ -121,8 +122,8 @@ class Crawler:
                         d = d.replace('-', '-')
                     d = d.replace(' ', '')
                     d = d.split(' ')[0]
+                    # print(d, regen)
                     day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                    # print(d)
                     if day == Fixed_date:
                         stop = False
                         page_Target = 'low'
@@ -136,9 +137,13 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 30000:
+                        regen = 30000
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
@@ -152,7 +157,7 @@ class Crawler:
                 soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
                 for i, d in enumerate(soup.select('td.time')):
-                    if i > 4:
+                    if i > 3:
                         d = d.get_text()
                         d = d.replace('\n', '')
                         d = d.replace('.', '-')
@@ -171,8 +176,8 @@ class Crawler:
                             d = d.replace('-', '-')
                         d = d.replace(' ', '')
                         d = d.split(' ')[0]
+                        # print(d, regen)
                         day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                        # print(d)
                         if day == Fixed_date:
                             stop = True
                             break

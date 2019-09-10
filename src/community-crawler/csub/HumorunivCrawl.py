@@ -29,7 +29,7 @@ class Crawler:
 
     def crawlPage(self, page):
         url = f'http://web.humoruniv.com/board/humor/list.html?table=pick&pg={page}'
-        time.sleep(0.02)
+        time.sleep(11)
         res = req.get(url)
         res.encoding = None
         html = res.text
@@ -82,19 +82,19 @@ class Crawler:
 
         while stop == True:
             url = f'http://web.humoruniv.com/board/humor/list.html?table=pick&pg={regen}'
+            time.sleep(11)
             res = req.get(url)
             res.encoding = None
             html = res.text
-            soup = BeautifulSoup(html, 'html.parser')
+            print(html)
+            soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
             for i, d in enumerate(soup.select('span.w_date')):
                 d = d.get_text()
-                print(d)
                 d = d.replace('\n', '')
                 d = d.replace('-', '-') # 중간 날짜 형식
                 d = d.replace(' ', '')
                 d = d.split(' ')[0]
-                print(d)
                 day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
                 # print(d)
                 if day == Fixed_date:
@@ -110,9 +110,13 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 493:
+                        regen = 493
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
@@ -120,10 +124,11 @@ class Crawler:
             while stop == False:
                 # print(f'----------{regen}----------')
                 url = f'http://web.humoruniv.com/board/humor/list.html?table=pick&pg={regen}'
+                time.sleep(11)
                 res = req.get(url)
                 res.encoding = None
                 html = res.text
-                soup = BeautifulSoup(html, 'html.parser')
+                soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
                 for i, d in enumerate(soup.select('span.w_date')):
                     d = d.get_text()

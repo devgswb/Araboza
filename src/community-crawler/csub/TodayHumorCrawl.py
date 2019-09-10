@@ -75,6 +75,7 @@ class Crawler:
         # 들어와야하는 date_Specified의 형태는 '2019-08-22'
         regen = 20  # 하루에 글이 평균적으로 작성되는 양(페이지 기준). 사이트마다 적당한 고정값을 줘야 검색이 빨라짐
         stop = True
+        page_Max = 0
         page_Target = True
         result = []
         Fixed_date = datetime.datetime(int(date_Specified.split('-')[0]), int(date_Specified.split('-')[1]),
@@ -95,8 +96,8 @@ class Crawler:
                 d = d.replace('/', '-') # 중간 날짜 형식
                 d = f"20{d}"
                 d = d.replace(' ', '')
+                # print(d, regen)
                 day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                # print(d)
                 if day == Fixed_date:
                     stop = False
                     page_Target = 'low'
@@ -110,14 +111,28 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 1000:
+                        regen = 1000
+                        page_Max = page_Max + 1
+                        if page_Max > 15:
+                            stop = False
+                            page_Target = 'low'
+                            break
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
             # print(Fixed_date)
             while stop == False:
+                if page_Max > 15 :
+                    for i in range(1, regen + 1):
+                        result.append(i)
+                    return result
+                    break
                 # print(f'----------{regen}----------')
                 url = f'http://www.todayhumor.co.kr/board/list.php?table=total&page={regen}&kind=total'
                 res = req.get(url)
@@ -132,8 +147,8 @@ class Crawler:
                     d = d.replace('/', '-')
                     d = f"20{d}"
                     d = d.replace(' ', '')
+                    # print(d, regen)
                     day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                    # print(d)
                     if day == Fixed_date:
                         stop = True
                         break

@@ -137,12 +137,17 @@ class Crawler:
 
             if stop == True:
                 if page_Target == False:
-                    regen = regen + int(regen / 2)
+                    regen = regen + int(regen / 3)
+                    if regen >= 2245:
+                        regen = 2245
                 elif page_Target == True:
-                    regen = regen - int(regen / 4)
+                    regen = regen - int(regen / 5)
+                    if regen < 1:
+                        regen = 1
                 # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
+            print(Fixed_date)
             # print(Fixed_date)
             while stop == False:
                 # print(f'----------{regen}----------')
@@ -172,6 +177,7 @@ class Crawler:
                             d = d.replace('-', '-')
                         d = d.replace(' ', '')
                         d = d.split(' ')[0]
+                        #print(d, regen) 이 자식 바오밥나무로 맞아볼래?
                         day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
                         # print(d)
                         if day == Fixed_date:
@@ -179,8 +185,7 @@ class Crawler:
                             break
                 if stop == True:
                     break
-                else:
-                    regen = regen - 1
+                regen = regen - 1
         for i in range(1, regen + 1):
             result.append(i)
         return result
