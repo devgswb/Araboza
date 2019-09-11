@@ -34,9 +34,14 @@ class SearchAPIView(views.APIView):
     def get(self, request):
         search_word = request.query_params['word']
         sa = analysis.SentiAnalysis()
-        data = sa.result_from_db('2019-07-06', '2019-08-06', 13, search_word=search_word)
+        data_list = []
+        for site_code in range(1, 16):
+            # site_code 7번 정지
+            if site_code != 7:
+                data = sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
+                data_list.append(data)
 
-        return Response(data)
+        return Response(data_list)
 
 class HotWordAPIView(views.APIView):
     @method_decorator(cache_page(60 * 60 * 2))

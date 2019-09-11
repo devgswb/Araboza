@@ -66,17 +66,30 @@ class SentiAnalysis:
         sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
         # 정렬된 결과 가장 많이 나온 단어는 무조건 검색된 단어니까 첫번째 인덱스는 제외한 [1:6]
         conn.close()
-        return {
-            'site_code': site_code,
-            'search_word': search_word,
-            'related_words': sorted_words[1:6],
-            'total_sentence_count': total_sentence_count,
-            'positive': pos,
-            'positive_percentage': round((pos)/(pos+neg) * 100, 1),
-            'negative': neg,
-            'negative_percentage': round((neg)/(pos+neg) * 100, 1)
-
-        }
+        try:
+            return {
+                'site_code': site_code,
+                'search_word': search_word,
+                'related_words': sorted_words[1:6],
+                'total_sentence_count': total_sentence_count,
+                'positive': pos,
+                'positive_percentage': round((pos) / (pos + neg) * 100, 1),
+                'negative': neg,
+                'negative_percentage': round((neg) / (pos + neg) * 100, 1),
+                'Success': 0
+            }
+        except:
+            return {
+                'site_code': site_code,
+                'search_word': search_word,
+                'related_words': sorted_words[1:6],
+                'total_sentence_count': total_sentence_count,
+                'positive': pos,
+                'positive_percentage': 0.0,
+                'negative': neg,
+                'negative_percentage': 0.0,
+                'Success': 1
+            }
 
     def __analysis__(self, word_list):
         pos = 0.0  # positive
