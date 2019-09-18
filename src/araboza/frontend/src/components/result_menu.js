@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/result-menu.css'
-import Result_totalPnchart from "./result_total-pnchart";
 
-class ResultMenu extends Component {
+class Result_menu extends Component {
     constructor(props) {
         super(props);
     }
@@ -11,13 +10,13 @@ class ResultMenu extends Component {
     render() {
         return (
             <div className="menu-wrapper">
-                <Link to="/" className="result-title"><div>아라보자</div></Link>
+                <Link to="/" className="result-title"><div id="ara">아라</div><div id="boza">보자</div></Link>
                 <button id="" className="menu-btn"
                  onClick={() =>{
                      this.props.display('block','none');
                 }}>한 눈에 보기</button>
                 <button id="" className="menu-btn"
-                onClick={() =>{
+                 onClick={() =>{
                      this.props.display('none','block');
                 }}>사이트별</button>
                 <button id="" className="menu-btn">기능3</button>
@@ -28,4 +27,4 @@ class ResultMenu extends Component {
     }
 }
 
-export default ResultMenu;
+export default Result_menu;

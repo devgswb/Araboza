@@ -2,24 +2,25 @@ import React, {Component} from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_frozen from "@amcharts/amcharts4/themes/frozen.js";
 
+am4core.useTheme(am4themes_frozen);
 am4core.useTheme(am4themes_animated);
 
-class SiteChart extends Component {
+class RelationChart extends Component {
     constructor(props) {
         super(props);
         this.data = [];
+
         this.props.data.related_words.map((e, index)=>{
             this.data.push({
                 'word':e[0],
                 'count':e[1]
             })
-        });
+        } );
     }
 
     componentDidMount() {
-        // Data
-        // this.site_name = this.props.site_name;
 // Create chart instance
         let chart = am4core.create("site-chart", am4charts.PieChart);
         chart.legend = new am4charts.Legend();
@@ -27,27 +28,35 @@ class SiteChart extends Component {
         // chart.legend.scale = 1;
         chart.legend.labels.template.fontSize = 15;
         chart.legend.labels.template.fontFamily = "Jua";
-        // chart.legend.labels.template.fill = am4core.color('#ffffff');
-        // chart.height = 300;
+        chart.legend.useDefaultMarker = true;
+        chart.align = "right";
+        var marker = chart.legend.markers.template.children.getIndex(0);
+        marker.cornerRadius(12, 12, 12, 12);
+        marker.strokeWidth = 2;
+
 // Add data. 원 데이터
         chart.data = this.data;
         // chart.data.push(this.data);
 
         let colorSet = new am4core.ColorSet();
         colorSet.list=[
-            am4core.color('#E91263'),
-            am4core.color('#FF9800'),
-            am4core.color('#FFEB3B'),
-            am4core.color('#4CAF50'),
-            am4core.color('#2196F3'),
+            am4core.color('#ef476f'),
+            am4core.color('#ffd166'),
+            am4core.color('#06d6a0'),
+            am4core.color('#118ab2'),
+            am4core.color('#073b4c'),
+            am4core.color('#f12912'),
+            am4core.color('#f25a00'),
+            am4core.color('#fea008'),
+            am4core.color('#ffe938'),
+            am4core.color('#57c328'),
         ];
 
         let pieSeries = chart.series.push(new am4charts.PieSeries());
-        // pieSeries.dataFields.value = "size";
         pieSeries.dataFields.value = "count";
         pieSeries.dataFields.category = "word";
         // pieSeries.labels.template.fill = am4core.color("#ffffff");
-        pieSeries.colors = colorSet;
+        // pieSeries.colors = colorSet;
         pieSeries.labels.template.disabled = true;
 
 // Add label
@@ -72,12 +81,12 @@ class SiteChart extends Component {
                 if(target instanceof  am4charts.Chart) {
                     let state = target.states.create(stateId);
                     state.properties.fontSize = 10;
-                    state.properties.innerRadius = 50;
+                    state.properties.innerRadius = am4core.percent(25);
                     return state;
                 }
                 if(target instanceof am4charts.Legend){
                      let state = target.states.create(stateId);
-                     state.properties.position = "absolute";
+                     state.properties.position = "left";
                      state.properties.scale = 0.5 ;
                      // state.properties.disabled = true;
                      return state;
@@ -102,23 +111,27 @@ class SiteChart extends Component {
                      let state = target.states.create(stateId);
                      state.properties.position = "absolute";
                      state.properties.scale = 0.4 ;
-                     // state.properties.disabled = true;
                      return state;
                 }
 
             }
         });
 
-
         this.chart = chart;
     }
 
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if (this.props.data !== prevProps.data) {
-    //         this.chart.data = [this.props.data];
-    //         // this.site_name = this.props.site_name;
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.data !== prevProps.data) {
+            this.data = [];
+            this.props.data.related_words.map((e, index)=>{
+                this.data.push({
+                    'word':e[0],
+                    'count':e[1]
+                 })
+             });
+            this.chart.data = this.data;
+        }
+    }
 
     render() {
         return (
@@ -130,4 +143,4 @@ class SiteChart extends Component {
     }
 }
 
-export default SiteChart;
+export default RelationChart;

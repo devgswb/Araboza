@@ -7,7 +7,7 @@ import * as am4plugins_forceDirected from "@amcharts/amcharts4/plugins/forceDire
 am4core.useTheme(am4themes_animated);
 
 
-class SiteChart2 extends Component {
+class Result_relationCharts2 extends Component {
     constructor(props) {
         super(props);
 
@@ -72,4 +72,4 @@ class SiteChart2 extends Component {
     }
 }
 
-export default SiteChart2;
+export default Result_relationCharts2;

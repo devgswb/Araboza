@@ -10,18 +10,14 @@ class Result_pnCharts extends Component {
         super(props);
 
     };
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     if (this.props.data.positive !== nextProps.positive) return true;
-    // }
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if (this.props.data.positive !== nextProps.positive) return true;
+    }
 
-    // loadData(){
-    //     this.props.loadData();
-    // }
     componentDidMount() {
         let chart = am4core.create("pn-chart", am4charts.XYChart);
 // Add data
-//         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
-//         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
+
         this.data = {
             "search_word": this.props.data.search_word,
             'positive': this.props.data.positive_percentage,
@@ -40,8 +36,8 @@ class Result_pnCharts extends Component {
         //      chart.responsive.enabled = true;
         //차트 색상
         chart.colors.list = [
-            am4core.color("#1f7aff"),
-            am4core.color("#ff0e0b")
+            am4core.color('rgba(31,122, 255, 0.8)'),
+            am4core.color("rgba(255,14, 11, 0.8)")
         ];
 
 
@@ -150,21 +146,18 @@ class Result_pnCharts extends Component {
         createSeries("positive", "positive");
         createSeries("negative", "negative");
 
-        // this.chart = chart;
+        this.chart = chart;
     };
 
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     console.log('pp'+prevProps.data.positive);
-    //     if (this.props.data !== prevProps.data) {
-    //         const positive = Math.round((this.props.data.positive)/(this.props.data.positive+this.props.data.negative) * 100);
-    //         const negative = Math.round((this.props.data.negative)/(this.props.data.positive+this.props.data.negative) * 100);
-    //         this.chart.data = [{
-    //             'search_word':this.props.data.search_word,
-    //             'positive':positive,
-    //             'negative':negative
-    //          }];
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.data !== prevProps.data) {
+            this.chart.data = [{
+                'search_word':this.props.data.search_word,
+                'positive':this.props.data.positive_percentage,
+                'negative':this.props.data.negative_percentage
+             }];
+        }
+    }
 
     // componentWillUnmount() {
     //     if (this.chart) this.chart.dispose();

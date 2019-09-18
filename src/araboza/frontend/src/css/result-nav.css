@@ -1,27 +1,26 @@
 .nav{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 3px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 3px;
+    margin-top: 20px;
 }
 .site{
     color: #61dafb;
     /*width: 8rem;*/
     /*height:8rem;*/
-    line-height: 4rem;
+    line-height: 3rem;
     text-align: justify-all;
     vertical-align: middle;
     font-weight: bold;
     /*padding-top: 0.6rem;*/
     box-shadow: 3px 3px 3px #e0e0e0;
-
-    font-size: 1.5rem;
+    font-size: 1rem;
     background: #ffffff;
-    margin: 0 0 0 10px;
+    margin: 5px 0 0 0;
     cursor:pointer;
     font-family: Jua, serif;
 }
 .site:hover{
-    /*background-color: #61dafb;*/
     background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);;
     color:white;
 }
@@ -29,8 +28,26 @@
     background-color: #61dafb;
     color:white;
 }
+.non-active{
+    background: rgba(18,47,59, 0.5);
+    color: #4C95A7;
+    cursor:default;
+    line-height: 3rem;
+    text-align: justify-all;
+    vertical-align: middle;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px #e0e0e0;
+    font-size: 1rem;
+    margin: 5px 0 0 0;
+    font-family: Jua, serif;
+}
 @media (max-height: 900px) {
     .site {
+        line-height: 2.7rem;
+        text-align: justify-all;
+        vertical-align: middle;
+    }
+    .non-active {
         line-height: 2.7rem;
         text-align: justify-all;
         vertical-align: middle;
@@ -38,6 +55,11 @@
 }
 @media(max-width: 1000px) {
     .site{
+        width:inherit;
+        height:inherit;
+        border-radius: 0;
+    }
+    .non-active{
         width:inherit;
         height:inherit;
         border-radius: 0;
@@ -51,8 +73,27 @@
     .site{
         width:inherit;
         border-radius: 0;
-        padding-top: 0.75rem;
-        font-size: 1rem;
+        font-size: 0.8rem;
+    }
+    .non-active{
+        width:inherit;
+        border-radius: 0;
+        font-size: 0.8rem;
+    }
+    .site:hover{
+        box-shadow: 3px 3px 3px 3px #e0e0e0;
+    }
+}
+@media(max-width: 600px) {
+    .site{
+        width:inherit;
+        border-radius: 0;
+        font-size: 0.6rem;
+    }
+    .non-active{
+        width:inherit;
+        border-radius: 0;
+        font-size: 0.6rem;
     }
     .site:hover{
         box-shadow: 3px 3px 3px 3px #e0e0e0;
@@ -60,8 +101,8 @@
 }
 @media(max-width: 505px) {
     .nav{
-        display:grid;
         grid-template-columns: repeat(16, 1fr);
+        grid-gap: 0;
         bottom:0;
         width:100%;
         height: 2.7rem;
@@ -81,6 +122,17 @@
         margin: 0 0 0 0;
         padding:0 0 0 0;
         background: #122F3B;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .non-active{
+        font-size: 1rem;
+        width:5rem;
+        height: 2.7rem;
+        grid-gap: 0;
+        margin: 0 0 0 0;
+        padding:0 0 0 0;
+        background: rgba(18,47,59, 0.5);
         text-align: center;
         vertical-align: middle;
     }
