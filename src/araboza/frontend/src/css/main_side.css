@@ -1,20 +1,23 @@
 .side {
     margin : 0 auto;
-    width : 100%;
+    width : 80%;
+    color : #42D728;
 }
 
 .sideAlert {
     margin : 0 auto;
-    width : 40%;
+    width : 80%;
 }
-.mt-0 input {
 
+.side h2 {
+    font-size : 2.5rem;
 }
 
 .mt-0 input[type="text"]{
-    font-size : 3.5rem;
-    margin-left : 53%;
-    color : white;
+    margin : 10% auto 0 auto;
+    width : 80%;
+    font-size : 3.25rem;
+    color : #42D728;
 }
 
 @media(max-width: 505px) {

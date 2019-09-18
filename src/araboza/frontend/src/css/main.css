@@ -1,114 +1,81 @@
+body {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+@font-face {
+    font-family: 'YeonSung-Regular';
+    src: url(../img/YeonSung-Regular.ttf) format('truetype');
+}
+
 ._main {
-    background-image: url("../img/ArabozaCy1920.jpg");
     width : 100%;
-}
-._container {
-    display: grid;
-    width : 100%;
-    grid-template-columns: 100%;
-    grid-template-rows: 960px 1920px;
-    grid-template-areas:
-            "mainDiv1"
-            "mainDiv2";
-}
-._mainDiv1 {
-    background-color:rgba(0, 0, 0, 0.5);
-    grid-area : mainDiv1;
-    width : 100%;
-    height : 960px;
-    margin : 0 auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 50px 410px 150px 250px 100px;
-    grid-template-areas:
-            "tag"
-            "header"
-            "nav"
-            "side"
-            "section";
 }
 
-._mainDiv2 {
+._bg, ._bg2, ._bg3 {
     width : 100%;
-    grid-area : mainDiv2;
-    background-color: #040B11;
+    height: 100vh;
+    position: absolute;
+}
+
+._bg {
+    -webkit-clip-path: inset(12% 0 42% 0);
+    clip-path: inset(12% 0 42% 0);
+    z-index: -1;
+}
+
+._bg2 {
+    -webkit-clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0);
+    z-index: -2;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+}
+
+._mainContainer {
+    width: 100%;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 1220px 600px 100px;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 20% 30% 20% 1fr;
     grid-template-areas:
-            "article"
-            "abs"
-            "footer";
-}
-
-._article {
-    grid-area : article;
-}
-
-._tag {
-    grid-area : tag;
+         "header css"
+         "nav css"
+         "side css"
+         "title title"
 }
 
 ._header {
     grid-area : header;
 }
 
-._nav {
-    grid-area : nav;
-    color : white;
+._ground {
+    background-color: rgba(0,0,0,.8);
+    width : 100%;
+    height: 100%;
+}
+
+
+._tag {
+    grid-area: tag;
+}
+
+._title {
+    grid-area: title;
 }
 
 ._side {
     grid-area : side;
 }
 
-._abs {
-    grid-area : abs;
+._css {
+    grid-area : css;
 }
 
-._section {
-    grid-area : section;
+._nav {
+    grid-area : nav;
+    color : #283B42;
 }
 
-._footer {
-    grid-area : footer;
-    background-color: #041C28;
-}
-
-@media(max-width: 505px) {
-    ._container {
-        background-repeat: no-repeat;
-        grid-template-columns: 100%;
-        grid-template-rows: 930px 1fr;
-        grid-template-areas:
-                "mainDiv1"
-                "mainDiv2";
-    }
-
-    ._mainDiv1 {
-        grid-area : mainDiv1;
-        background-image: url("../img/ArabozaCy1920.jpg");
-        background-position: center;
-        background-size: cover;
-        width : 100%;
-        margin : 0 auto;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 50px 300px 300px 200px 80px;
-        grid-template-areas:
-                "tag"
-                "header"
-                "nav"
-                "side"
-                "section";
-    }
-
-    ._nav {
-        background-color:rgba(0, 0, 0, 0.5);
-        height: 300px;
-    }
-
+._nav h2 {
+    font-family:  YeonSung-Regular, serif;
 }

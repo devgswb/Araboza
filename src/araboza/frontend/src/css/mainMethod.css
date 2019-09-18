@@ -1,0 +1,22 @@
+.mainMethod {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 200px 1200px 100px;
+    grid-template-areas:
+         "methodTag"
+         "methodAbs"
+         "methodFooter"
+}
+
+.methodTag {
+    grid-area : methodTag
+}
+
+.methodAbs {
+    grid-area: methodAbs;
+}
+
+.methodFooter {
+    grid-area: methodFooter;
+}

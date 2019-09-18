@@ -1,0 +1,101 @@
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+.mainTitle {
+}
+
+.titleHeader {
+    width : 100%;
+    margin: auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.headTitle {
+    text-align: center;
+    color: #ddd;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.mainBoard {
+    width : 160px;
+    height : 2px;
+    background: #82ccdd;
+    margin: 20px auto;
+}
+
+.viewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.viewBox01 {
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.viewBox02 {
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.viewBox03 {
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.viewIcon {
+    display: inline-block;
+    width : 60px;
+    height: 60px;
+    border: 3px solid #82ccdd;
+    transform: rotate(45deg);
+    margin-bottom: 30px;
+    margin-top: 16px;
+}
+
+.titleIcon {
+    padding-left: 4%;
+    color: white;
+    line-height: 60px;
+    transform: rotate(-45deg);
+    font-size: 30px;
+}
+
+.viewBox01:hover .viewIcon {
+    background: #82ccdd;
+    color: #ddd;
+}
+
+.viewBox02:hover .viewIcon {
+    background: #82ccdd;
+    color: #ddd;
+}
+
+.viewBox03:hover .viewIcon {
+    background: #82ccdd;
+    color: #ddd;
+}
+
+.viewTitle {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.viewText {
+    font-size: 14px;
+}

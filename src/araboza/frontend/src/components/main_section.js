@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBTable,
-    MDBTableBody, MDBTableHead} from 'mdbreact';
+    MDBTableBody, MDBTableHead, MDBIcon
+} from 'mdbreact';
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import '../css/main_section.css';
@@ -36,26 +37,25 @@ class MainSection extends Component {
          this.handleClick1 = this.handleClick1.bind(this);
          this.handleClick2 = this.handleClick2.bind(this);
          this.handleClick3 = this.handleClick3.bind(this);
-
     }
 
     handleClick1() {
     this.setState(state => ({
-      day : '0',
+        day : '0',
         now : '1'
     }));
         }
 
     handleClick2() {
     this.setState(state => ({
-      day : '1',
+        day : '1',
         now : '2'
     }));
         }
 
     handleClick3() {
     this.setState(state => ({
-      day : '2',
+        day : '2',
         now : '3'
     }));
         }
@@ -95,33 +95,86 @@ class MainSection extends Component {
 
     render() {
         const Day = this.state.day;
+        let wWidth = window.matchMedia("screen and (max-width: 500px)");
+        let ifData = [];
         let tbody;
         if(Day === '0') {
-            tbody = this.state.resultData.map ((list,index) => (
-                <TableRow key={index+1}>
-                    <TableCell>{index+1}</TableCell>
-                    <TableCell align='right'>{list.word}</TableCell>
-                    <TableCell align='right'>{list.changes}</TableCell>
-                </TableRow>
-            ))
+            if(wWidth.matches === true) {
+                this.state.resultData.map ((list,index) => {
+                    if(index <5) {
+                        ifData.push(list);
+                    }
+                });
+                tbody = ifData.map ((mlist, index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{mlist.word}</TableCell>
+                        <TableCell align='right'>{mlist.changes}</TableCell>
+                    </TableRow>
+                ));
+                console.log(ifData);
+            }
+            else {
+                tbody = this.state.resultData.map ((list,index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{list.word}</TableCell>
+                        <TableCell align='right'>{list.changes}</TableCell>
+                    </TableRow>
+                ));
+            }
         }
         else if(Day === '1') {
-            tbody = this.state.resultData.map ((list,index) => (
-                <TableRow key={index+1}>
-                    <TableCell>{index+1}</TableCell>
-                    <TableCell align='right'>{list.word}</TableCell>
-                    <TableCell align='right'>{list.changes}</TableCell>
-                </TableRow>
-            ))
+            if(wWidth.matches === true) {
+                this.state.resultData.map ((list,index) => {
+                    if(index <5) {
+                        ifData.push(list);
+                    }
+                });
+                tbody = ifData.map ((mlist, index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{mlist.word}</TableCell>
+                        <TableCell align='right'>{mlist.changes}</TableCell>
+                    </TableRow>
+                ));
+                console.log(ifData);
+            }
+            else {
+                tbody = this.state.resultData.map ((list,index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{list.word}</TableCell>
+                        <TableCell align='right'>{list.changes}</TableCell>
+                    </TableRow>
+                ));
+            }
         }
         else if(Day === '2') {
-            tbody = this.state.resultData.map ((list,index) => (
-                <TableRow key={index+1}>
-                    <TableCell>{index+1}</TableCell>
-                    <TableCell align='right'>{list.word}</TableCell>
-                    <TableCell align='right'>{list.changes}</TableCell>
-                </TableRow>
-            ))
+            if(wWidth.matches === true) {
+                this.state.resultData.map ((list,index) => {
+                    if(index <5) {
+                        ifData.push(list);
+                    }
+                });
+                tbody = ifData.map ((mlist, index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{mlist.word}</TableCell>
+                        <TableCell align='right'>{mlist.changes}</TableCell>
+                    </TableRow>
+                ));
+                console.log(ifData);
+            }
+            else {
+                tbody = this.state.resultData.map ((list,index) => (
+                    <TableRow key={index+1}>
+                        <TableCell>{index+1}</TableCell>
+                        <TableCell align='right'>{list.word}</TableCell>
+                        <TableCell align='right'>{list.changes}</TableCell>
+                    </TableRow>
+                ));
+            }
         }
         else {
             tbody = <div>일자를 클릭하세요</div>
@@ -130,9 +183,9 @@ class MainSection extends Component {
             <div  className ="section">
                 <MDBContainer className="sectionbtn">
                     <form onSubmit={this.handleSubmit}>
-                    <MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'>Ranking</MDBBtn>
+                        <div className='viewIcon'><MDBIcon icon="chart-bar" onClick={this.toggle(8)} className='titleIcon'/></div>
                     </form>
-                    <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right">
+                    <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right" backdrop={false}>
                         <MDBModalHeader toggle={this.toggle(8)}>
                             <div className='section_title'>
                                 <h2>{this.state.now}일전 Ranking</h2>
@@ -152,9 +205,9 @@ class MainSection extends Component {
                                 </MDBTableBody>
                             </MDBTable>
                             <form onSubmit={this.handleSubmit}>
-                            <MDBBtn outline color="primary" onClick={this.handleClick1} type='submit'>1일 전</MDBBtn>
-                            <MDBBtn outline color="primary" onClick={this.handleClick2} type='submit'>2일 전</MDBBtn>
-                            <MDBBtn outline color="primary" onClick={this.handleClick3} type='submit'>3일 전</MDBBtn>
+                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick1} type='submit'>1일 전</MDBBtn>
+                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick2} type='submit'>2일 전</MDBBtn>
+                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick3} type='submit'>3일 전</MDBBtn>
                             </form>
                         </MDBModalBody>
                         <MDBModalFooter>
@@ -168,3 +221,5 @@ class MainSection extends Component {
 }
 
 export default MainSection;
+
+/*<MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'>Chart</MDBBtn>*/

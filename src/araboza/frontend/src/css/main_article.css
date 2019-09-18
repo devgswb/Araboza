@@ -1,65 +1,161 @@
+
 .article {
-    width : 100%;
-    background-image: url("../img/ArabozaBackIcon640.png");
-    background-position:  top right;
-    background-repeat: no-repeat;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 500px;
+    display: flex;
 }
 
-.articleBody {
-    display: grid;
-    width : 70%;
-    margin : 0 auto;
-    grid-template-rows: 10% 1fr 1fr;
-    grid-template-columns: 50% 1fr;
+.article .articleBox {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    background: #ccc;
+    transition: 0.5s;
+}
+
+.article .articleBox:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0,0,0,1);
+}
+
+.article .articleBox .articleImg {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.article .articleBox:nth-child(odd) .articleImg {
+    bottom: 0;
+    left: 0;
+}
+
+.article .articleBox .articleImg img {
+    width: 100%;
+    height: 250px;
+}
+
+.article .articleBox .articleDetail {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #262626;
+}
+
+.article .articleBox:nth-child(even) .articleDetail {
+    bottom: 0;
+    left: 0;
+}
+
+.article .articleBox:nth-child(1) .articleDetail {
+    background: #8553cb;
+}
+
+.article .articleBox:nth-child(2) .articleDetail {
+    background: #fe8f01;
+}
+
+.article .articleBox:nth-child(3) .articleDetail {
+    background: #79d400;
+}
+
+.article .articleBox:nth-child(4) .articleDetail {
+    background: #ff3b34;
+}
+
+.article .articleBox .articleDetail .articleIcon {
+    position: absolute;
+    top: calc(50%);
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
     text-align: center;
-    grid-template-areas:
-            "articleTitle articleTitle"
-            "article01 article02"
-            "article03 article04";
+    transition: 0.5s;
 }
 
-.articleTitle {
-    grid-area : articleTitle;
-    margin-top : 40px;
-    margin-bottom: 20px;
-    color : white;
+.article .articleBox:hover .articleDetail .articleIcon {
+    top: calc(50% - 16px);
 }
 
-.articleTitle h2{
-    text-decoration : underline white;
+.article .articleBox .articleDetail .articleIcon .titleIcon {
+    font-size: 80px;
+    color: #fff;
 }
 
-.article01 {
-    grid-area : article01;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+.article .articleBox .articleDetail .articleIcon h3 {
+    margin: 0;
+    padding: 10px 0;
+    color : #fff;
 }
 
-.article02 {
-    grid-area : article02;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+.article .articleBox .articleDetail .articleIcon a {
+    display: inline-block;
+    padding: 5px 20px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    border-radius: 20px;
+    transform: scale(0);
 }
 
-.article03 {
-    grid-area : article03;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+.article .articleBox:hover .articleDetail .articleIcon a {
+    transform: scale(1);
 }
 
-.article04 {
-    grid-area : article04;
-    margin : 10px auto;
-    width : 90%;
-    height : 500px;
+.article .articleBox .articleDetail .articleIcon a:hover {
+    background: #fff;
+    color: #262626;
 }
 
-.article img {
-    filter: brightness(90%);
-    width : 100%;
-    height : 300px;
-    border : 4px solid white;
+@media (max-width: 1200px) {
+    .article {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .article .articleBox {
+        height: 250px;
+    }
+
+    .article .articleBox .articleImg {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .article {
+        display: initial;
+    }
+
+    .article .articleBox {
+        width: 50%;
+        height: 250px;
+        float: left;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .article {
+        top : 30%;
+        left: 0;
+        transform: translate(0);
+    }
+
+    .article .articleBox {
+        width: 100%;
+        height: 250px;
+        float: none;
+    }
 }
