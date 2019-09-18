@@ -15,14 +15,14 @@
 }
 
 @font-face {
-    font-family: 'Potra';
-    src: url(../img/Potra.ttf) format('truetype');
+    font-family: 'YeonSung-Regular';
+    src: url(../img/YeonSung-Regular.ttf) format('truetype');
 }
 
 ._tagTitle {
     grid-area : tagTitle;
     margin-left: 30px;
-    font-family: Potra, serif;
+    font-family:YeonSung-Regular, serif;
 }
 ._tagTitle h2 {
     font-size: 3.5rem;

@@ -37,19 +37,18 @@ class MainSection extends Component {
          this.handleClick1 = this.handleClick1.bind(this);
          this.handleClick2 = this.handleClick2.bind(this);
          this.handleClick3 = this.handleClick3.bind(this);
-
     }
 
     handleClick1() {
     this.setState(state => ({
-      day : '0',
+        day : '0',
         now : '1'
     }));
         }
 
     handleClick2() {
     this.setState(state => ({
-      day : '1',
+        day : '1',
         now : '2'
     }));
         }
@@ -184,9 +183,9 @@ class MainSection extends Component {
             <div  className ="section">
                 <MDBContainer className="sectionbtn">
                     <form onSubmit={this.handleSubmit}>
-                    <MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'><MDBIcon icon="angle-double-right" /></MDBBtn>
+                        <div className='viewIcon'><MDBIcon icon="chart-bar" onClick={this.toggle(8)} className='titleIcon'/></div>
                     </form>
-                    <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right">
+                    <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right" backdrop={false}>
                         <MDBModalHeader toggle={this.toggle(8)}>
                             <div className='section_title'>
                                 <h2>{this.state.now}일전 Ranking</h2>
@@ -222,3 +221,5 @@ class MainSection extends Component {
 }
 
 export default MainSection;
+
+/*<MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'>Chart</MDBBtn>*/

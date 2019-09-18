@@ -3,11 +3,16 @@ import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import main from './components/main';
 import result_main from './components/result_main';
-
-import {bindActionCreators} from 'redux';
-import { connect } from 'react-redux';
-import { loadData } from "./saga/resultSaga";
-
+import MainFeature from "./components/mainFeature";
+import MainMethod from "./components/mainMethod";
+import MainTag from "./components/main_tag";
+import MainSection from "./components/main_section";
+import MainCss from "./components/main_css";
+import MainNav from "./components/main_nav";
+import MainTitle from "./components/main_title";
+import MainBackground from "./components/main_background";
+import MainArticle from "./components/main_article";
+import MainSubheader from "./components/main_subheader";
 
 class App extends Component {
     state = {
@@ -29,6 +34,9 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <Route exact path="/" component = {main}/>
+                    <Route path="/feature" component = {MainFeature}/>
+                    <Route path="/method" component = {MainMethod}/>
+                    <Route path="/css" component = {MainSection} />
                     <Route path="/result" component = {result_main} />
                 </Router>
             </div>

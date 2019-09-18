@@ -1,79 +1,80 @@
-.abs {
+.absUl
+{
+    position: absolute;
     width : 100%;
-    color : #ffffff;
-    height : 870px;
-    text-decoration : underline white;
-    text-align: left;
-    display: grid;
-    grid-template-columns: 60% 1fr;
-    grid-template-rows: 70px 200px 200px 200px 200px;
-    grid-template-areas:
-            "absTitle absTitle"
-            "absView absText01"
-            "absView absText02"
-            "absView absText03"
-            "absView absText04"
+    height : 60%;
+    background: #ccc;
+    margin : 0;
+    padding: 0;
 }
-
-.absView {
-    grid-area : absView;
-}
-
-.absView img {
-    width : 100%;
-    height : 800px;
-}
-
-.absTitle {
-    padding-top : 0.5%;
-    grid-area : absTitle;
+.absUl > .absLi
+{
+    list-style: none;
+    position: relative;
+    width : 25%;
+    height: 100%;
+    border-right: 1px solid #000;
+    float : left;
+    box-sizing: border-box;
+    transition: 0.5s;
     text-align: center;
+    overflow: hidden;
 }
 
-.absTitle h2 {
-    font-size : 2.5rem;
+.absUl > .absLi:nth-child(1)
+{
+    background-image: url("../img/ArabozaPlay01.png");
+    background-size: cover;
+    background-position: left;
 }
 
-.absText01 {
+.absUl > .absLi:nth-child(2)
+{
+    background-image: url("../img/ArabozaCard01.jpg");
+    background-size: cover;
+    background-position: left;
+}
+
+.absUl > .absLi:nth-child(3)
+{
+    background-image: url("../img/ArabozaCard02.jpg");
+    background-size: cover;
+    background-position: left;
+}
+
+.absUl > .absLi:nth-child(4)
+{
+    background-image: url("../img/ArabozaCard03.jpg");
+    background-size: cover;
+    background-position: left;
+}
+
+.absUl:hover .absLi
+{
+    width : 15%;
+}
+
+.absUl > .absLi:hover
+{
+    width : 55%;
+}
+
+.absUl > .absLi .absText
+{
+    position : absolute;
+    bottom : -100%;
+    left : 0;
     width : 100%;
-    height : 100%;
-    grid-area : absText01;
-    border-bottom: 1px solid #bcbcbc;
-    padding-top : 2%;
-    padding-left : 3%;
+    background: rgba(0,0,0,.8);
+    box-sizing: border-box;
+    color : #fff;
+    opacity: 0;
 }
 
-.absText02 {
-    width : 100%;
-    height : 100%;
-    grid-area : absText02;
-    border-bottom: 1px solid #bcbcbc;
-    padding-top : 2%;
-    padding-left : 3%;
+.absUl > .absLi:hover .absText
+{
+    bottom: 0;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+    opacity: 1;
 }
-
-.absText03 {
-    width : 100%;
-    height : 100%;
-    grid-area : absText03;
-    border-bottom: 1px solid #bcbcbc;
-    padding-top : 2%;
-    padding-left : 3%;
-}
-
-.absText04 {
-    width : 100%;
-    height : 100%;
-    grid-area : absText04;
-    border-bottom: 1px solid #bcbcbc;
-    padding-top : 2%;
-    padding-left : 3%;
-}
-
-@media(max-width: 505px) {
-    .abs {
-        height : 300px;
-    }
-}
-
-

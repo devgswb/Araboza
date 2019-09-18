@@ -1,6 +1,7 @@
 .side {
     margin : 0 auto;
-    width : 100%;
+    width : 80%;
+    color : #42D728;
 }
 
 .sideAlert {
@@ -13,10 +14,10 @@
 }
 
 .mt-0 input[type="text"]{
-    margin : 0 auto;
+    margin : 10% auto 0 auto;
     width : 80%;
-    font-size : 3.5rem;
-    color : black;
+    font-size : 3.25rem;
+    color : #42D728;
 }
 
 @media(max-width: 505px) {

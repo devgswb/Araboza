@@ -1,10 +1,8 @@
-.section {
-    width : 100%;
-}
-
-@media(max-width: 505px) {
-    .section {
-        height: 80px;
-        background-color:rgba(0, 0, 0, 0.5);
-    }
+.titleIcon {
+    padding-left: 4%;
+    color: white;
+    line-height: 60px;
+    transform: rotate(-45deg);
+    font-size: 30px;
+    background: no-repeat;
 }

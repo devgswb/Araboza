@@ -1,0 +1,63 @@
+.backgro {
+    width : 100%;
+    height : 100%;
+    padding: 0;
+    margin : 0;
+}
+
+slideImg {
+    display: block;
+    width : 100%;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    position: absolute;
+}
+
+slideImg > * {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #1f1f1f;
+    animation: slideImg 12s infinite;
+    overflow: hidden;
+}
+
+slideImg :nth-child(1) {
+    left: 0;
+    animation-delay: -1s;
+    background-image: url("../img/ArabozaCard01.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+slideImg :nth-child(2) {
+    animation-delay: 2s;
+    background-image: url("../img/ArabozaCard02.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+slideImg :nth-child(3) {
+    animation-delay: 5s;
+    background-image: url("../img/ArabozaCard03.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+slideImg :nth-child(4) {
+    left: 0;
+    animation-delay: 8s;
+    background-image: url("../img/ArabozaCard04.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes slideImg {
+    0% {left:100%; width: 100%;}
+    5% {left: 0;}
+    25% {left: 0;}
+    30% {left: -100%; width: 100%;}
+    30.0001% {left:-100%; width: 0;}
+    100% {left: 100%; width: 0;}
+}

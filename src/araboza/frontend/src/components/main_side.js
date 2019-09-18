@@ -6,8 +6,6 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 class MainSide extends Component {
 
@@ -127,16 +125,15 @@ class MainSide extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='side'>
-                    <h2>Topic Search</h2>
                     <MDBCol>
                         <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
                     </MDBCol>
                      <div style={{ color: "red"}}>{this.state.textError}</div>
-                    <MDBBtn outline color="primary" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/> Search
+                    <MDBBtn outline color="success" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/> Search
                     </MDBBtn>
                     {Alert}
                         <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)}>
-                            <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}을(를) 불러옵니다</MDBModalHeader>
+                            <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
                             <MDBModalBody>
                                 <div>관련된 결과를 긁어오는 중입니다. 잠시만 기달려 주세요</div>
                                 <div className="spinner-border text-primary" role="status">
@@ -152,6 +149,5 @@ class MainSide extends Component {
         );
     }
 }
-
 
 export default withRouter(MainSide)
