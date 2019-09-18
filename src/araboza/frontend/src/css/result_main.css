@@ -21,36 +21,25 @@
     height:100vh;
     border:none;
 }
+::-webkit-scrollbar {
+   display: none !important;
+}
 .wrapper{
     display: grid;
-    /* 컬럼 수 */
     grid-template-columns: 16% 1fr;
-    grid-template-rows: 10% 1fr;
-    /*grid-column-gap: 10px;*/
-    /* 높이 지정
-    minmax(최소 높이, )*/
-    /*grid-auto-rows: minmax(100px, auto);*/
-    /* 그리드 셀 사이의 여백
-    grid-colum-gap
-    grid-row-gap
-
-    프로퍼티 두개를 지정하면 처음 것은 row-gap, 두번째는 colum-gap
-    grid-gap: 5px 10px;
-    */
+    grid-template-rows: 8% 1fr;
     grid-template-areas:
            "menu-wrapper result-header"
-           "menu-wrapper  container"
+           "menu-wrapper container"
             ;
 }
 *{ box-sizing: border-box; }
 .wrapper{
     width:80%;
-    height:100%;
-    /*margin: 0 auto;*/
+    height:100vh;
     border:none;
 }
 
-/* 결과창 */
 .result-header{
     grid-area: result-header;
     background: white;
@@ -64,39 +53,39 @@
     font-size: 2rem;
     font-family: YS, serif;
 }
-#return-main{
-    font-family: Jua, serif;
-    width:10rem;
-    font-size: 1.3rem;
-    margin:7px 5px 0 0;
-    color: gray;
-    cursor:pointer;
-    float:right;
-}
+/*#return-main{*/
+/*    font-family: Jua, serif;*/
+/*    width:10rem;*/
+/*    font-size: 1.3rem;*/
+/*    margin:7px 5px 0 0;*/
+/*    color: gray;*/
+/*    cursor:pointer;*/
+/*    float:right;*/
+/*}*/
+
 
 .result-container{
     display:grid;
     grid-area: container;
     grid-template-areas:
-            "pn-chart-wrap pn-chart-wrap"
-            "site-chart-wrap nav"
+            "pn-chart-wrap "
+            "site-chart-wrap "
+            "nav"
      ;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 35% 55% 5%;
-    margin: 10px 0 20px 20px;
+    /*grid-template-columns: 60% 40%;*/
+    grid-template-rows: 35% 55% 10%;
+    margin: 20px 0 20px 20px;
 }
 
-.nav{
-    grid-area: nav;
-}
 
 #card-total-pnchart{
-    height:700px;
-    margin: 30px auto;
+    height:90%;
+    margin: 20px auto;
+    padding: 10px 20px 0 0;
     background: white;
     border-radius: 0.7rem;
     box-shadow: 4px 4px 4px #e0e0e0;
-    width:90%;
+    width:95%;
 }
 #card-total-pnchart:hover{
      box-shadow: 5px 5px 5px 4px #e0e0e0;
@@ -106,23 +95,63 @@
 }
 
 @media (max-height: 900px){
+    .back-wrapper{
+        height:125vh;
+    }
     .wrapper{
         grid-template-rows: 13% 1fr;
     }
 
     .result-container{
-        grid-template-rows: 40% 60%;
+        grid-template-rows: 40% 40% 20%;
+    }
+}
+@media (max-height: 850px){
+    #total-pnchart{
+        height:550px;
+    }
+    #card-total-pnchart{
+        height:600px;
+    }
+    .back-wrapper{
+        height:100vh;
+    }
+
+}
+@media (max-height: 750px){
+    #total-pnchart{
+        height:500px;
+    }
+    #card-total-pnchart{
+        height:525px;
+    }
+    .back-wrapper{
+        height:100vh;
+    }
+}
+@media(max-width: 1330px) {
+    .wrapper{
+        width:100%;
+    }
+    .result-container{
+        margin-right: 20px;
+    }
+}
+@media(max-width: 1100px) {
+    .wrapper{
+        width:100%;
+    }
+    .result-container{
+        margin-right: 20px;
     }
 }
 @media(max-width: 1000px) {
     .wrapper{
         width:100%;
     }
-
     .result-container{
         margin-right: 20px;
     }
-
 }
 @media(max-width: 900px) {
     .wrapper{
@@ -156,13 +185,15 @@
 
 
     .result-container{
-        width:100%;
+        width:98%;
+        margin: 20px 0 0 0;
         grid-template-columns: 100%;
-        /*grid-template-rows: 50% 56% 13%;*/
+        grid-template-rows: 40% 50% 10%;
         grid-template-areas:
             "pn-chart-wrap"
             "site-chart-wrap"
             "nav";
+
     }
 
     .mobile-title{
@@ -179,9 +210,5 @@
     #return-main:hover{
         font-size: 0.7rem;
     }
-    .result-container{
-        width:97%;
-        margin: 20px 0 0 0;
-    }
-    
+
 }

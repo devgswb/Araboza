@@ -1,5 +1,5 @@
 .pn-chart-wrap{
-    grid-area: pn-chart-wrap;
+    /*grid-area: pn-chart-wrap;*/
     /*border: 1px solid #e0e0e0;*/
     border:none;
     border-radius: 0.7rem;
@@ -9,6 +9,7 @@
     height:255px;
     padding: 0.8rem 0 0 0;
     margin-bottom: 10px;
+    z-index: 0;
 }
 .pn-chart-wrap:hover{
     box-shadow: 5px 5px 5px 4px #e0e0e0;
@@ -19,6 +20,7 @@
 }
 #pn-chart{
     height:200px;
+    z-index: 0;
 }
 @media (max-height: 900px){
     #pn-chart{
@@ -27,7 +29,14 @@
 }
 @media(max-width: 900px) {
     .res-intro{
-        margin-top: 150px;
+        margin-top: 5px;
+        font-size: 1.5rem;
+    }
+}
+@media(max-width: 700px) {
+    .res-intro{
+        margin-top: 5px;
+        font-size: 1.1rem;
     }
 }
 @media(max-width: 505px) {

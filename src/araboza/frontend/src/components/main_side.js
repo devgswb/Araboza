@@ -45,9 +45,19 @@ class MainSide extends Component {
                 console.log("검색페이지");
                 console.log(res);
                 localStorage.setItem('title', res.data['title']);
+                // 사이트의 Success 가 0인 경우 성공한 것이므로
+                // 0 일 때에만 데이터를 배열에 넣어서 result 로 넘김
+                var datas = [];
+                for(let i=0;i<res.data.length;i++){
+                    if(res.data[i].Success === 0) {
+                        datas.push(res.data[i]);
+                    }
+                }
                 this.props.history.push({
                     pathname: `/result`,
-                    data: res.data
+                    // data: res.data
+                    data: datas,
+                    siteCode : datas[0].site_code
                 })
             }).catch(function (error) {
                 console.log(error);

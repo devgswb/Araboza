@@ -1,16 +1,15 @@
 /* ARABOZA 타이틀*/
 .result-title{
-    font-family: YDJ ,YS, serif;
+    font-family: YDJ, YS, serif;
     /*font-size: 70px;*/
     font-size: 3rem;
     width:inherit;
     color:white;
     padding-bottom:50px;
     cursor:pointer;
+    margin-left: 5px;
 }
-/*.result-search-bar{*/
-/*    width:25rem;*/
-/*}*/
+
 
 .menu-wrapper{
     display : grid;
@@ -31,22 +30,56 @@
     border:none;
     background: none;
     /*text-align: left;*/
-
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 .menu-btn:hover{
     background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
     overflow:hidden;
 }
+.menu-btn:focus{
+    outline: none;
+}
+#ara{
+    display:inline-block;
+    }
+#boza{
+    display:inline-block;
+}
+@media(max-width: 1100px) {
+    .wrapper{
+        width:100%;
+    }
 
+    .result-title{
+        font-size: 2.3rem;
+    }
+}
 @media(max-width: 1000px) {
     .result-title{
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+         margin-left: 10px;
     }
 }
 @media(max-width: 900px) {
      .result-title{
-        font-size: 2.2rem;
+         font-size: 2rem;
+         margin-left: 0;
+    }
+}
+@media(max-width: 700px) {
+    #ara{
+        display:block;
+        }
+    #boza{
+        display:block;
+    }
+}
+@media(max-width: 600px) {
+     .result-title{
+         margin-left: 0;
+    }
+    .menu-btn{
+        font-size: 0.8rem;
     }
 }
 @media(max-width: 505px) {
@@ -66,9 +99,7 @@
         -webkit-background-clip:text;
         -webkit-text-fill-color: transparent;
     }
-    .menu-btn:focus{
-        outline: none;
-    }
+
     .result-title{
         display:none;
     }
