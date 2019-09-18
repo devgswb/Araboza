@@ -96,85 +96,53 @@ class MainSection extends Component {
     render() {
         const Day = this.state.day;
         let wWidth = window.matchMedia("screen and (max-width: 500px)");
-        let ifData = [];
+        let moblieData = [];
+        let pcData = this.state.resultData;
         let tbody;
-        if(Day === '0') {
+
+        function condition() {
             if(wWidth.matches === true) {
-                this.state.resultData.map ((list,index) => {
-                    if(index <5) {
-                        ifData.push(list);
+                mobile();
+            }
+            else {
+                pc();
+            }
+        }
+
+        function mobile() {
+            pcData.map ((list,index) => {
+                if(index <5) {
+                    moblieData.push(list);
                     }
                 });
-                tbody = ifData.map ((mlist, index) => (
+            tbody = moblieData.map ((mlist, index) => (
                     <TableRow key={index+1}>
                         <TableCell>{index+1}</TableCell>
                         <TableCell align='right'>{mlist.word}</TableCell>
                         <TableCell align='right'>{mlist.changes}</TableCell>
                     </TableRow>
                 ));
-                console.log(ifData);
-            }
-            else {
-                tbody = this.state.resultData.map ((list,index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{list.word}</TableCell>
-                        <TableCell align='right'>{list.changes}</TableCell>
-                    </TableRow>
-                ));
-            }
+                console.log(moblieData);
+        }
+
+        function pc() {
+            tbody = pcData.map ((list,index) => (
+                <TableRow key={index+1}>
+                    <TableCell>{index+1}</TableCell>
+                    <TableCell align='right'>{list.word}</TableCell>
+                    <TableCell align='right'>{list.changes}</TableCell>
+                </TableRow>
+            ));
+        }
+
+        if(Day === '0') {
+            condition()
         }
         else if(Day === '1') {
-            if(wWidth.matches === true) {
-                this.state.resultData.map ((list,index) => {
-                    if(index <5) {
-                        ifData.push(list);
-                    }
-                });
-                tbody = ifData.map ((mlist, index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{mlist.word}</TableCell>
-                        <TableCell align='right'>{mlist.changes}</TableCell>
-                    </TableRow>
-                ));
-                console.log(ifData);
-            }
-            else {
-                tbody = this.state.resultData.map ((list,index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{list.word}</TableCell>
-                        <TableCell align='right'>{list.changes}</TableCell>
-                    </TableRow>
-                ));
-            }
+            condition()
         }
         else if(Day === '2') {
-            if(wWidth.matches === true) {
-                this.state.resultData.map ((list,index) => {
-                    if(index <5) {
-                        ifData.push(list);
-                    }
-                });
-                tbody = ifData.map ((mlist, index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{mlist.word}</TableCell>
-                        <TableCell align='right'>{mlist.changes}</TableCell>
-                    </TableRow>
-                ));
-                console.log(ifData);
-            }
-            else {
-                tbody = this.state.resultData.map ((list,index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{list.word}</TableCell>
-                        <TableCell align='right'>{list.changes}</TableCell>
-                    </TableRow>
-                ));
-            }
+            condition()
         }
         else {
             tbody = <div>일자를 클릭하세요</div>
