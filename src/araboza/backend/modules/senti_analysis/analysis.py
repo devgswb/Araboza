@@ -78,7 +78,7 @@ class SentiAnalysis:
             return {
                 'site_code': site_code,
                 'search_word': search_word,
-                'related_words': sorted_words[1:6],
+                'related_words': [data for data in sorted_words[1:20] if data[1] > 10],
                 'total_sentence_count': total_sentence_count,
                 'positive': pos,
                 'positive_percentage': round((pos) / (pos + neg) * 100, 1),
