@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Result_pnCharts from "./result_pnCharts";
-import '../css/result-card-pnchart.css';
+import '../css/result_cardPnchart.css';
 import {findSiteCode} from "../modules/result_function";
 
 class Result_cardPnchart extends Component {
@@ -17,7 +17,7 @@ class Result_cardPnchart extends Component {
         return (
              <div className="pn-chart-wrap">
                 <div className="res-intro">
-                    {data.search_word}에 대하여 {sentence}개의 문장에서 검색한 결과
+                    <p>{data.search_word}</p>에 대하여 {sentence}개의 문장에서 검색한 결과
                 </div>
                     <Result_pnCharts data={data}/>
 

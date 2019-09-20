@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../css/result-nav.css';
+import '../css/result_nav.css';
 
 class Result_nav extends Component {
     constructor(props) {

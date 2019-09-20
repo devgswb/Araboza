@@ -80,14 +80,14 @@ class RelationChart extends Component {
             state: (target, stateId)=> {
                 if(target instanceof  am4charts.Chart) {
                     let state = target.states.create(stateId);
-                    state.properties.fontSize = 10;
+                    state.properties.fontSize = 1;
                     state.properties.innerRadius = am4core.percent(25);
                     return state;
                 }
                 if(target instanceof am4charts.Legend){
                      let state = target.states.create(stateId);
                      state.properties.position = "left";
-                     state.properties.scale = 0.5 ;
+                     state.properties.scale = 0.6 ;
                      // state.properties.disabled = true;
                      return state;
                 }

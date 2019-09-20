@@ -20,25 +20,19 @@ class ResultLineChart extends Component {
 
     componentDidMount() {
         const word = this.props.data.search_word;
-        const word2 = '화제도 추이입니다';
+        const word2 = '화제도 변화입니다';
 
         let label;
         let chart = am4core.create("aLineChart", am4charts.XYChart);
         chart.paddingRight = 30;
 
-        var title = chart.titles.push(new am4core.Label());
-        title.text = "한달간" + word +"에 대해 이만큼 이야기 했어요";
-        title.fontSize = 25;
-        title.marginBottom = 15;
-        title.fontFamily= "Jua";
-        title.margin(0, 0, 50, 50);
 
-        let data = [];
-        let value = 10;
-        for(let i=1;i<30;i++){
-            value += Math.round(1 * Math.random() * 5);
-            data.push({date : new Date(2019, 2, i), value:value})
-        }
+        // let data = this.count;
+        // let value = 10;
+        // for(let i=1;i<30;i++){
+        //     value += Math.round(1 * Math.random() * 5);
+        //     data.push({date : new Date(2019, 2, i), value:value})
+        // }
 
         // let data = [{
         //     date: '2019-01-01',
@@ -63,7 +57,7 @@ class ResultLineChart extends Component {
         //     value: 152
         // },];
 
-        chart.data = data;
+        chart.data = this.count;
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.grid.template.location = 0;
@@ -86,6 +80,7 @@ class ResultLineChart extends Component {
         series.alwaysShowTooltip = true;
         series.strokeWidth = 3;
         series.fontFamily = "Jua";
+
 
         series.events.on("ready", function () {
             label = series.createChild(am4core.Label);
@@ -123,7 +118,7 @@ class ResultLineChart extends Component {
 
     render() {
         return (
-            <div id="aLineChart" style={{width: '100%', height: '300px'}}>
+            <div id="aLineChart">
 
             </div>
         );

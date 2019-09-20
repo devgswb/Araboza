@@ -20,7 +20,7 @@ class Result_totalPnchart extends Component {
 
     componentDidMount() {
         var chart = am4core.create("total-pnchart", am4charts.XYChart);
-
+        chart.paddingRight =30;
         var title = chart.titles.push(new am4core.Label());
         title.text = "사이트 별 반응";
         title.fontSize = 25;
