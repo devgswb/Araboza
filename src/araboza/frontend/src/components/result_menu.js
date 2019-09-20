@@ -13,13 +13,15 @@ class Result_menu extends Component {
                 <Link to="/" className="result-title"><div id="ara">아라</div><div id="boza">보자</div></Link>
                 <button id="" className="menu-btn"
                  onClick={() =>{
-                     this.props.display('block','none');
-                }}>한 눈에 보기</button>
+                     this.props.display('block','none', 'none');
+                }}>사이트별 반응</button>
                 <button id="" className="menu-btn"
                  onClick={() =>{
-                     this.props.display('none','block');
-                }}>사이트별</button>
-                <button id="" className="menu-btn">기능3</button>
+                     this.props.display('none','block', 'none');
+                }}>한눈에 보기</button>
+                <button id="" className="menu-btn" onClick={() =>{
+                     this.props.display('none','none', 'block');
+                }}>검색량 추이</button>
                 <button id="" className="menu-btn">기능4</button>
                 <button id="" className="menu-btn">기능5</button>
             </div>

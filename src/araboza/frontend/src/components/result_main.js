@@ -15,6 +15,7 @@ import Result_menu from "./result_menu";
 import Result_cardPnchart from "./result_cardPnchart";
 import Result_cardRelationchart from "./result_cardRelationchart";
 import Result_totalPnchart from "./result_totalPnchart";
+import ResultCardLineChart from "./result_cardLineChart";
 
 
 class result_main extends Component {
@@ -22,8 +23,9 @@ class result_main extends Component {
         super(props);
         this.state = {
             siteCode:this.props.location.siteCode,
-            display:'none',
-            rdisplay:'block',
+            mainDisplay:'block',
+            f1Display:'none',
+            f2Display:'none'
         };
         this.handleChange = this.handleChange.bind(this);
         this.changeSiteData = this.changeSiteData.bind(this);
@@ -54,10 +56,11 @@ class result_main extends Component {
             siteCode: siteCode,
         });
     }
-    changeDisplay(display, rdisplay){
+    changeDisplay(mainDisplay, f1Display, f2Display){
         this.setState({
-            display: display,
-            rdisplay: rdisplay,
+            mainDisplay: mainDisplay,
+            f1Display: f1Display,
+            f2Display: f2Display
         })
     }
     handleChange = (e)=>{
@@ -105,11 +108,15 @@ class result_main extends Component {
 
                     <Result_menu display={this.changeDisplay}/>
 
-                    <div id="card-total-pnchart" style={{display:`${this.state.display}`}}>
+                    <div id="card-total-pnchart" style={{display:`${this.state.f1Display}`}}>
                         <Result_totalPnchart data={data} siteName={this.siteName}/>
                     </div>
 
-                    <div className="result-container" style={{display:`${this.state.rdisplay}`}}>
+                    <div id="card-lineChart" style={{display:`${this.state.f2Display}`}}>
+                        <ResultCardLineChart data={data} siteCode={this.state.siteCode} />
+                    </div>
+
+                    <div className="result-container" style={{display:`${this.state.mainDisplay}`}}>
                         <div id="pnchart-wrap">
                             <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
                         </div>

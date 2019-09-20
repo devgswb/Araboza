@@ -24,15 +24,30 @@ class Result_nav extends Component {
                 15:false,
             }
         });
-        this.enableSite = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,];
-        this.createSiteButton = this.createSiteButton.bind(this);
-        for(let i=0;i<this.props.enableSite.length;i++){
-            if(i === this.props.enableSite[i]){
-                this.enableSite[this.props.enableSite[i]] = true;
-            }
-        }
-    }
+        this.enableSite = [];
+        // this.setState({
+        //     enableSiteList: this.createEnableSite([1,3,4])
+        // });
 
+        this.createSiteButton = this.createSiteButton.bind(this);
+        // this.createEnableSite = this.createEnableSite.bind(this);
+        // for(let siteCode=0;siteCode<this.props.enableSite.length;siteCode++){
+        //     if(siteCode === this.props.enableSite[siteCode]){
+        //         this.enableSite[this.props.enableSite[siteCode]] = true;
+        //     }
+        // }
+    }
+    // createEnableSite(enableList) {
+    //         let resultList = [...Array(15).keys()].map((elements, e) => {
+    //             return elements+1;
+    //         });
+    //         return resultList.map((elements, e) => {
+    //             if (enableList.indexOf(elements) > -1) {
+    //                 return true;
+    //             }
+    //             return {elements:false};
+    //         });
+    // }
     createSiteButton(){
         // let siteBtn = Object.keys(this.state.enableSiteList).map((i,e)=>{
         //     return(
@@ -41,16 +56,23 @@ class Result_nav extends Component {
         //             <div color="inherit" id={`${i}`} key={i} className="non-active">{this.props.siteName[i]}</div>
         //     );
         // });
-        let siteBtn = this.enableSite.map((i,e)=>{
+        let siteBtn = this.enableSite.map((siteCode,e)=>{
             return(
-                this.enableSite[i] ? <div color="inherit" id={`${i}`} key={i}  className="site" onClick={() => {
-                        this.changeSiteData(i);}}>{this.props.siteName[i]}</div> :
-                    <div color="inherit" id={`${i}`} key={i} className="non-active">{this.props.siteName[i]}</div>
+                this.enableSite[siteCode] ? <div color="inherit" id={`${siteCode}`} key={siteCode}  className="site" onClick={() => {
+                        this.changeSiteData(siteCode);}}>{this.props.siteName[siteCode]}</div> :
+                    <div color="inherit" id={`${siteCode}`} key={siteCode} className="non-active">{this.props.siteName[siteCode]}</div>
             );
         });
         return siteBtn;
     }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     this.createEnableSite(this.state.enableSiteList);
+    //     console.log(this.state.enableSiteList);
+    // }
+
+
     render() {
+
         return (
              <div className="nav">
                  { this.createSiteButton() }

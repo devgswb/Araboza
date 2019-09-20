@@ -94,6 +94,16 @@
     height:700px;
 }
 
+#card-lineChart{
+    height:90%;
+    margin: 20px auto;
+    padding: 10px 20px 0 0;
+    background: white;
+    border-radius: 0.7rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+    width:95%;
+}
+
 @media (max-height: 900px){
     .back-wrapper{
         height:125vh;
@@ -113,6 +123,9 @@
     #card-total-pnchart{
         height:600px;
     }
+    #card-lineChart{
+        height:600px;
+    }
     .back-wrapper{
         height:100vh;
     }
@@ -125,10 +138,14 @@
     #card-total-pnchart{
         height:525px;
     }
+    #card-lineChart{
+        height:525px;
+    }
     .back-wrapper{
         height:100vh;
     }
 }
+
 @media(max-width: 1330px) {
     .wrapper{
         width:100%;
@@ -169,9 +186,7 @@
 
 }
 @media(max-width: 505px) {
-    .back-wrapper{
-        /*background-color: #e0e0e0;*/
-    }
+
     .wrapper{
         width:100%;
         height:100%;

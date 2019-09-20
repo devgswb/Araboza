@@ -11,7 +11,7 @@ class Result_cardRelationchart extends Component {
 
     render() {
         let data = findSiteCode(this.props.siteCode, this.props.data);
-
+        console.log(data);
         return (
             <div className="site-chart-wrap">
                 <div className="site-intro">{this.props.siteName[this.props.siteCode]}의 연관검색어</div>
