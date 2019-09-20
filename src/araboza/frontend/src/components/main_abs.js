@@ -66,7 +66,7 @@ class MainAbs extends Component {
                         </div>
                     </div>
                 </div>
-                 <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg" backdrop={false}>
+                 <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg">
                     <MDBModalHeader toggle={this.toggle(1)}>메인 화면</MDBModalHeader>
                     <MDBModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -78,7 +78,7 @@ class MainAbs extends Component {
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg" backdrop={false}>
+                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg">
                     <MDBModalHeader toggle={this.toggle(2)}>로딩 화면</MDBModalHeader>
                     <MDBModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -90,7 +90,7 @@ class MainAbs extends Component {
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg" backdrop={false}>
+                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg">
                     <MDBModalHeader toggle={this.toggle(3)}>결과 화면</MDBModalHeader>
                     <MDBModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore

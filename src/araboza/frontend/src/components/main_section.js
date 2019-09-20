@@ -102,6 +102,11 @@ class MainSection extends Component {
 
         function condition() {
             if(wWidth.matches === true) {
+                pcData.map ((list,index) => {
+                if(index <5) {
+                    moblieData.push(list);
+                }
+            });
                 mobile();
             }
             else {
@@ -110,11 +115,6 @@ class MainSection extends Component {
         }
 
         function mobile() {
-            pcData.map ((list,index) => {
-                if(index <5) {
-                    moblieData.push(list);
-                    }
-                });
             tbody = moblieData.map ((mlist, index) => (
                     <TableRow key={index+1}>
                         <TableCell>{index+1}</TableCell>
