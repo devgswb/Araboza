@@ -29,6 +29,7 @@ class SentiAnalysis:
         # end_date의 양식은 2019-01-01
         pos = 0.0  # positive
         neg = 0.0  # negative
+        word_freq_by_date = {} # 단어 빈도수
         start_date = start_date.split('-')
         start_date = datetime.datetime(int(start_date[0]), int(start_date[1]), int(start_date[2]))
         end_date = end_date.split('-')
@@ -45,7 +46,14 @@ class SentiAnalysis:
         total_sentence_count = 0
         related_words = {}
         for record in rs:
+            record_year = record['year']
+            record_month = record['month']
+            record_day = record['day']
+            date = f'{record_year}-{record_month:02d}-{record_day:02d}'
+            if not date in word_freq_by_date:
+                word_freq_by_date[date] = 0
             for sentence in record['data']:
+                word_freq_by_date[date] += 1
                 word_list = [ word[0] for word in sentence ] # 한 문장의 단어들을 묶은 것
                 if not (search_word in word_list):
                     continue
@@ -76,18 +84,12 @@ class SentiAnalysis:
                 'positive_percentage': round((pos) / (pos + neg) * 100, 1),
                 'negative': neg,
                 'negative_percentage': round((neg) / (pos + neg) * 100, 1),
-                'Success': 0
+                'Success': 0,
+                'word_freq_by_date': [[data, word_freq_by_date[data]] for data in word_freq_by_date]
             }
         except:
             return {
                 'site_code': site_code,
-                'search_word': search_word,
-                'related_words': sorted_words[1:6],
-                'total_sentence_count': total_sentence_count,
-                'positive': pos,
-                'positive_percentage': 0.0,
-                'negative': neg,
-                'negative_percentage': 0.0,
                 'Success': 1
             }
 
