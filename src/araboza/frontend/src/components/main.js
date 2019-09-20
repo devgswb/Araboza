@@ -4,9 +4,11 @@ import'../css/main.css';
 import MainHeader from "./main_header";
 import MainTitle from "./main_title";
 import MainCss from "./main_css";
-import MainTag from "./main_tag";
 import MainNav from "./main_nav";
 import MainBackground from "./main_background";
+import MainFeature from "./mainFeature";
+import MainMethod from "./mainMethod";
+import { Element} from 'react-scroll'
 
 
 class main extends Component {
@@ -63,12 +65,16 @@ class main extends Component {
                 </div>
                 <div className='_bg3'>
                 </div>
-                <div className='_mainContainer'>
-                    <div className='_title'><MainTitle/></div>
-                    <div className = '_header'><MainHeader/></div>
-                    <div className='_nav'><MainNav/></div>
-                    {cssDesign}
-                    <div className = '_side'><MainSide/></div>
+                <div className='_mainPack'>
+                    <div className='_mainContainer'>
+                        <div className='_title'><MainTitle/></div>
+                        <div className = '_header'><MainHeader/></div>
+                        <div className='_nav'><MainNav/></div>
+                        {cssDesign}
+                        <div className = '_side'><MainSide/></div>
+                    </div>
+                    <Element name="feature" className = '_mainFeature'><MainFeature/></Element>
+                    <Element name="method"  className = '_mainMethod'><MainMethod/></Element>
                 </div>
             </div>
         );

@@ -36,9 +36,6 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <Route exact path="/" component = {main}/>
-                    <Route path="/feature" component = {MainFeature}/>
-                    <Route path="/method" component = {MainMethod}/>
-                    <Route path="/css" component = {MainSliderShow} />
                     <Route path="/result" component = {result_main} />
                 </Router>
             </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MDBNavbar, MDBContainer, MDBNavLink, MDBNavItem, MDBNavbarToggler, MDBNavbarBrand, MDBNavbarNav, MDBCollapse, MDBIcon} from "mdbreact";
 import '../css/main_tag.css'
-import {Link} from 'react-router-dom';
+import { Link, scroller, animateScroll as scroll } from "react-scroll";
 
 class MainTag extends Component {
 
@@ -19,22 +19,26 @@ class MainTag extends Component {
         });
     }
 
+    scrollToTop() {
+        scroll.scrollToTop();
+    }
+
     render() {
         return (
             <div>
                     <header>
                         <MDBNavbar color="black" dark expand="md" scrolling fixed="top">
-                            <MDBNavbarBrand href="/">
-                                <h3>아 라 보 자</h3>
+                            <MDBNavbarBrand>
+                                <a onClick={this.scrollToTop}><h3>아 라 보 자</h3></a>
                             </MDBNavbarBrand>
                             <MDBNavbarToggler onClick={ this.onClick } />
                             <MDBCollapse isOpen = { this.state.collapse } navbar>
                                 <MDBNavbarNav right>
                                     <MDBNavItem>
-                                        <MDBNavLink to= "/feature">Home</MDBNavLink>
+                                        <Link activeClass="active" to="method" spy={true} smooth={true} offset={50} duration={500}>method</Link>
                                     </MDBNavItem>
                                     <MDBNavItem>
-                                        <MDBNavLink to="/method">Features</MDBNavLink>
+                                        <Link activeClass="active" to="feature" spy={true} smooth={true} offset={50} duration={500}>Feature</Link>
                                     </MDBNavItem>
                                 </MDBNavbarNav>
                             </MDBCollapse>
