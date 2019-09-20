@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import MainTag from "./main_tag";
 import MainAbs from "./main_abs";
-import MainFooter from "./main_footer";
 import '../css/mainMethod.css';
-import MainSubheader from "./main_subheader";
+import MainSliderShow from "./main_slidershow";
 
 class MainMethod extends Component {
     render() {
         return (
             <div className="mainMethod">
                 <div className='methodTag'><MainTag/></div>
-                <div className='methodAbs'><MainSubheader/></div>
-                <div className='methodFooter'><MainAbs/></div>
+                <div className='methodSliderShow'><MainSliderShow/></div>
+                <div className='methodAbs'><MainAbs/></div>
             </div>
         );
     }

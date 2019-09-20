@@ -1,11 +1,11 @@
 
 .navBox {
     position: absolute;
-    margin-top: 8%;
+    margin-top: 6%;
     margin-left: 25%;
     transform: translate(-50%,-50%);
     width: 35%;
-    height: 40%;
+    height: 37%;
     transform-style: preserve-3d;
     perspective: 2000px;
     transition: 0.5s;
@@ -101,4 +101,40 @@
     bottom: 0;
     right: 0;
     z-index: 1;
+}
+
+@media (max-width: 1150px) {
+    .navBox {
+        margin-top: 17%;
+        margin-left: 50%;
+        width: 60%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 900px) {
+    .navBox {
+        margin-top: 20%;
+        margin-left: 50%;
+        width: 70%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 700px) {
+    .navBox {
+        margin-top: 25%;
+        margin-left: 50%;
+        width: 90%;
+        height: 35%;
+    }
+}
+
+@media (max-width: 525px) {
+    .navBox {
+        margin-top: 27%;
+        margin-left: 50%;
+        width: 90%;
+        height: 35%;
+    }
 }

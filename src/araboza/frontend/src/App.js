@@ -13,6 +13,8 @@ import MainTitle from "./components/main_title";
 import MainBackground from "./components/main_background";
 import MainArticle from "./components/main_article";
 import MainSubheader from "./components/main_subheader";
+import MainAbs from "./components/main_abs";
+import MainSliderShow from "./components/main_slidershow";
 
 class App extends Component {
     state = {
@@ -36,7 +38,7 @@ class App extends Component {
                     <Route exact path="/" component = {main}/>
                     <Route path="/feature" component = {MainFeature}/>
                     <Route path="/method" component = {MainMethod}/>
-                    <Route path="/css" component = {MainSection} />
+                    <Route path="/css" component = {MainSliderShow} />
                     <Route path="/result" component = {result_main} />
                 </Router>
             </div>

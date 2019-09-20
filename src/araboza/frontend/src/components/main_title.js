@@ -14,7 +14,7 @@ class MainTitle extends Component {
                     <div className='viewContainer'>
                         <div className='viewBox01'>
                                 <MainSection />
-                            <div className='viewTitle'>Ranking Chart</div>
+                            <div className='viewTitle'>Ranking</div>
                             <div className='viewText'>1일전 부터 3일전 까지의 차트 랭킹</div>
                         </div>
 
@@ -23,7 +23,7 @@ class MainTitle extends Component {
                                 <div className='pt-down'><Link to='/feature'><MDBIcon icon="book-open" className='titleIcon'/></Link></div>
                             </div>
                             <div className='viewTitle'>Article</div>
-                            <div className='viewText'>1일전 부터 3일전 까지의 차트 랭킹</div>
+                            <div className='viewText'>아라보자의 주요 특징</div>
                         </div>
 
                         <div className='viewBox03'>
@@ -31,7 +31,7 @@ class MainTitle extends Component {
                                 <Link to='/method'><MDBIcon icon="globe" className='titleIcon'/></Link>
                             </div>
                             <div className='viewTitle'>ABS</div>
-                            <div className='viewText'>1일전 부터 3일전 까지의 차트 랭킹</div>
+                            <div className='viewText'>아라보자 실행 방법 및 기능 설명</div>
                         </div>
 
                     </div>

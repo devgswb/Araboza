@@ -6,10 +6,10 @@ class MainCss extends Component {
         return (
             <div className='css'>
                 <div className='cssView'>
-                    <img src={require('../img/ArabozaPlay01.png')} className="cssImg01" alt=""/>
-                    <img src={require('../img/ArabozaPlay01.png')} className="cssImg02" alt=""/>
-                    <img src={require('../img/ArabozaPlay01.png')} className="cssImg03" alt=""/>
-                    <img src={require('../img/ArabozaPlay01.png')} className="cssImg04" alt=""/>
+                    <img src={require('../img/ArabozaGrid02.png')} className="cssImg01" alt=""/>
+                    <img src={require('../img/ArabozaGrid02.png')} className="cssImg02" alt=""/>
+                    <img src={require('../img/ArabozaGrid02.png')} className="cssImg03" alt=""/>
+                    <img src={require('../img/ArabozaGrid02.png')} className="cssImg04" alt=""/>
                 </div>
             </div>
         );

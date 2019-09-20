@@ -47,6 +47,12 @@ class main extends Component {
 
     render() {
         let wWidth = this.state.width;
+        let cssDesign;
+        if(wWidth >= 1150) {
+            cssDesign = <div className='_css'><MainCss/></div>;
+        }
+        else {
+        }
 
         return (
             <div className='_main'>
@@ -61,7 +67,7 @@ class main extends Component {
                     <div className='_title'><MainTitle/></div>
                     <div className = '_header'><MainHeader/></div>
                     <div className='_nav'><MainNav/></div>
-                    <div className='_css'><MainCss/></div>
+                    {cssDesign}
                     <div className = '_side'><MainSide/></div>
                 </div>
             </div>

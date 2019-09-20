@@ -1,14 +1,10 @@
-body {
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-    background-size: cover;
-    background-position: center;
-}
-
 .mainFeature {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    min-height: 100vh;
     display: grid;
     grid-template-rows: 8%  30% 62%;
      grid-template-areas:

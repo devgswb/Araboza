@@ -14,15 +14,33 @@
 }
 
 .mt-0 input[type="text"]{
-    margin : 10% auto 0 auto;
+    margin : 5% auto 0 auto;
     width : 80%;
     font-size : 3.25rem;
     color : #42D728;
 }
 
+@media(max-width: 1150px) {
+
+    .side {
+        width : 90%;
+    }
+    .sideAlert {
+        margin : 0 auto;
+        width : 90%;
+    }
+}
+
+@media(max-width: 950px) {
+    .sideAlert {
+        margin : 0 auto;
+        width : 90%;
+    }
+}
+
+
 @media(max-width: 505px) {
     .side {
-        background-color:rgba(0, 0, 0, 0.5);
         margin : 0 auto;
         width : 100%;
         height: 200px;

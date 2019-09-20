@@ -1,22 +1,23 @@
 .mainMethod {
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
-    grid-template-rows: 200px 1200px 100px;
     grid-template-areas:
          "methodTag"
+         "methodSliderShow"
          "methodAbs"
-         "methodFooter"
 }
 
 .methodTag {
     grid-area : methodTag
 }
 
-.methodAbs {
-    grid-area: methodAbs;
+.methodSliderShow {
+    padding-top: 2%;
+    grid-area: methodSliderShow ;
 }
 
-.methodFooter {
-    grid-area: methodFooter;
+.methodAbs {
+    grid-area: methodAbs;
 }
