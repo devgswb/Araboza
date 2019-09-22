@@ -21,19 +21,23 @@
 .back-wrapper {
     background: #F6F6F6;
     /*width:100%;*/
+    min-height: 100vh;
     border: none;
-    overflow:scroll;
+    overflow: scroll;
 }
 
-::-webkit-scrollbar {
+.back-wrapper::-webkit-scrollbar {
     display: none !important;
 }
 
 .wrapper {
     display: grid;
-    grid-template-columns: 16% 1fr;
-    grid-template-rows: 8% 1fr;
-    grid-template-areas: "menu-wrapper result-header" "menu-wrapper container";
+    grid-template-columns: 190px 1fr;
+    grid-template-rows: 4% 1fr;
+    grid-template-areas:
+    "menu-wrapper result-header"
+    "menu-wrapper container"
+    "menu-wrapper topBtn";
 }
 
 * {
@@ -41,8 +45,7 @@
 }
 
 .wrapper {
-    width: 80%;
-    height: 100vh;
+    width: 100%;
     border: none;
 }
 
@@ -75,15 +78,24 @@
 .result-container {
     display: grid;
     grid-area: container;
+    width:1100px;
+    /*grid-template-areas:*/
+    /*        "pn-chart-wrap "*/
+    /*        "site-chart-wrap "*/
+    /*        "nav"*/
+    /*        "wordCloud"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
     grid-template-areas:
-            "pn-chart-wrap "
-            "site-chart-wrap "
-            "nav"
-            "wordCloud"
-            "totalPnCharts"
-            "lineChart";
-    /*grid-template-columns: 60% 40%;*/
-    /*grid-template-rows: 35% 55% 10%;*/
+            "pn-chart-wrap nav"
+            "site-chart-wrap wordCloud"
+            "totalPnCharts totalPnCharts"
+            "lineChart lineChart";
+    /*grid-template-areas:*/
+    /*        "siteAreaWrap"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
+    grid-template-columns: 55% 45%;
     margin: 20px 0 20px 20px;
 }
 
@@ -103,93 +115,88 @@
     grid-area: lineChart;
 }
 
-@media (max-height: 900px) {
-    .back-wrapper {
-        height: 125vh;
-    }
-
-    .wrapper {
-        grid-template-rows: 13% 1fr;
-    }
-
-    .result-container {
-        grid-template-rows: 40% 40% 20%;
-    }
+#toTopBtn{
+    grid-area:topBtn;
+    position:fixed;
+    top:94%;
+    left:95.5%;
+    width:45px;
+    border-radius: 0.5rem;
+    border:none;
+    background: #92d7ff;
+    font-family: "Jua", serif;
+    z-index: 3;
+}
+#toTopBtn:hover{
+    box-shadow: 1px 1px 1px 2px #547078;
+}
+#toTopBtn:focus{
+    outline:none;
 }
 
-@media (max-width: 1330px) {
-    .wrapper {
-        width: 100%;
-    }
 
-    .result-container {
-        margin-right: 20px;
+@media (max-width: 1200px){
+    #toTopBtn{
+        left:94%;
     }
 }
-
-@media (max-width: 1100px) {
-    .wrapper {
-        width: 100%;
+@media (max-width: 1000px){
+    #toTopBtn{
+        left:92%;
     }
-
-    .result-container {
-        margin-right: 20px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .wrapper {
-        width: 100%;
-    }
-
-    .result-container {
-        margin-right: 20px;
-    }
-}
-
-@media (max-width: 900px) {
-    .wrapper {
-        width: 100%;
-        height: 100vh;
-        grid-template-rows: 10% 1fr;
-    }
-
-    .result-container {
-        margin-right: 20px;
-    }
-
-    #return-main {
-        margin-top: 10px;
-    }
-
 }
 
 @media (max-width: 505px) {
-
+    .back-wrapper{
+        min-height: 100vh;
+    }
     .wrapper {
         width: 100%;
-        height: 100%;
+        /*min-height:100vh;*/
         grid-template-columns: 100%;
-        grid-template-rows: 10% 6% 84%;
-        grid-template-areas: "result-header" "menu-wrapper" "container";
+        /*grid-template-rows: 2% 3% 94%;*/
+        grid-template-areas:
+        "result-header"
+        "menu-wrapper"
+        "container";
+    }
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
+    .result-header{
+        height:5rem;
+        width:100%;
+        position: fixed;
+        z-index: 2;
     }
 
-
     .result-container {
-        width: 98%;
-        margin: 20px 0 0 0;
+        /*width: 350px;*/
+        width:98%;
+        margin-left: 5px;
         grid-template-columns: 100%;
-        grid-template-rows: 40% 50% 10%;
-        grid-template-areas: "pn-chart-wrap" "site-chart-wrap" "nav";
-
+        /*border:1px solid black;*/
+        grid-column-gap: 20px;
+        grid-template-areas:
+            "pn-chart-wrap "
+            "site-chart-wrap "
+            "wordCloud"
+            "totalPnCharts"
+            "lineChart"
+            "nav";
     }
 
     .mobile-title {
         display: block;
         /*margin-top:3px;*/
+        font-family: YDJ, YS, serif;
         color: black;
     }
 
+    #toTopBtn{
+        top:89%;
+        left:85%;
+    }
     #return-main {
         width: 8rem;
         font-size: 0.7rem;
@@ -202,4 +209,9 @@
         font-size: 0.7rem;
     }
 
+}
+@media (max-height: 500px){
+    #toTopBtn{
+        top:93%;
+    }
 }

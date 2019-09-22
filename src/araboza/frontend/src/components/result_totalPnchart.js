@@ -21,11 +21,11 @@ class Result_totalPnchart extends Component {
     componentDidMount() {
         var chart = am4core.create("total-pnchart", am4charts.XYChart);
         chart.paddingRight =30;
-        var title = chart.titles.push(new am4core.Label());
-        title.text = "사이트 별 반응";
-        title.fontSize = 25;
-        title.marginBottom = 15;
-        title.fontFamily= "Jua";
+        // var title = chart.titles.push(new am4core.Label());
+        // title.text = "사이트 별 반응";
+        // title.fontSize = 25;
+        // title.marginBottom = 15;
+        // title.fontFamily= "Jua";dd
 
         chart.data = this.data;
 
@@ -37,6 +37,8 @@ class Result_totalPnchart extends Component {
         categoryAxis.renderer.minGridDistance = 20;
         categoryAxis.renderer.axisFills.template.disabled = false;
         categoryAxis.renderer.axisFills.template.fillOpacity = 0.05;
+        categoryAxis.renderer.fontSize = 20;
+        categoryAxis.renderer.fontFamily = "Jua";
 
 
         var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -52,7 +54,7 @@ class Result_totalPnchart extends Component {
 
         chart.legend = new am4charts.Legend();
         chart.legend.position = "top";
-        // chart.legend.width = 100;
+
 
 // Use only absolute numbers
         // 절대값 형식
@@ -66,6 +68,7 @@ class Result_totalPnchart extends Component {
             series.name = name;
             series.stroke = color;
             series.fill = color;
+            series.columns.template.fontSize = 20;
 
             if (field === 'positive') {
                 series.legendSettings.labelText = "[bold {color}]긍정적";
@@ -95,7 +98,7 @@ class Result_totalPnchart extends Component {
             labelBullet1.label.truncate = false;
             labelBullet1.alwaysShowTooltip = true;
             labelBullet1.label.hideOversized = false;
-            labelBullet1.locationX = -0.1;
+            labelBullet1.locationX = 0.15;
             labelBullet1.label.fontSize= 15;
 
             chart.responsive.rules.push({

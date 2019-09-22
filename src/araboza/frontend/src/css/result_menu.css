@@ -7,34 +7,41 @@
     color:white;
     padding-bottom:50px;
     cursor:pointer;
-    margin-left: 5px;
+
 }
 
 
 .menu-wrapper{
     display : grid;
     /*grid-template-columns: 1fr;*/
-    grid-template-rows: repeat(5, 5rem);
+    grid-template-rows: repeat(3, 5rem);
     /*grid-row-gap: 10px;*/
     grid-area: menu-wrapper;
     padding: 20px 0 0 0;
     background: #122F3B;
     color:white;
+    position:fixed;
+    width:190px;
+    height:100%;
+    overflow:hidden;
+    z-index: 2;
 }
 
 .menu-btn{
-    font-size: 1rem;
+    line-height: 4rem;
+    font-size: 1.2rem;
     font-family: Jua, serif;
     color: white;
-    height: 3rem;
+    height: 4rem;
     border:none;
     background: none;
     /*text-align: left;*/
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 }
 .menu-btn:hover{
     background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
     overflow:hidden;
+    font-size:1.3rem;
 }
 .menu-btn:focus{
     outline: none;
@@ -45,61 +52,44 @@
 #boza{
     display:inline-block;
 }
-@media(max-width: 1100px) {
-    .wrapper{
-        width:100%;
-    }
 
-    .result-title{
-        font-size: 2.3rem;
-    }
-}
-@media(max-width: 1000px) {
-    .result-title{
-        font-size: 2.3rem;
-         margin-left: 10px;
-    }
-}
-@media(max-width: 900px) {
-     .result-title{
-         font-size: 2rem;
-         margin-left: 0;
-    }
-}
+
 @media(max-width: 700px) {
-    #ara{
-        display:block;
-        }
-    #boza{
-        display:block;
+    #ara #boza {
+        display: block;
     }
+    /*    }*/
+    /*#boza{*/
+    /*    display:block;*/
+    /*}*/
 }
-@media(max-width: 600px) {
-     .result-title{
-         margin-left: 0;
-    }
-    .menu-btn{
-        font-size: 0.8rem;
-    }
-}
+
 @media(max-width: 505px) {
      .menu-wrapper{
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         height:3rem;
+        width:100%;
         grid-gap: 0;
-        padding: 0 0 0 0;
+        top:70px;
+        z-index: 2;
+        padding: 0;
+
     }
     .menu-btn{
-        font-size: 0.7rem;
-        height:2rem;
-        padding-bottom: 1rem;
+        /*font-size: 0.7rem;*/
+        margin:0 0 0 0;
+        padding:0 0 0 0;
+        line-height: 3rem;
+        height:3rem;
+        font-size: 0.9rem;
+        z-index: 3;
     }
     .menu-btn:hover{
         background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
         -webkit-background-clip:text;
         -webkit-text-fill-color: transparent;
+        font-size: 1rem;
     }
-
     .result-title{
         display:none;
     }

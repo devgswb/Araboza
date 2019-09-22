@@ -10,11 +10,12 @@ class ResultCardLineChart extends Component {
 
     render() {
         let data = findSiteCode(this.props.siteCode, this.props.data);
+        let datas = data.word_freq_by_date;
 
         return (
             <div id="lineChart">
                 <div id="lineIntro">한달간 <p>{data.search_word}</p>에 대해 이만큼 이야기 했어요</div>
-                <ResultLineChart data={data}/>
+                <ResultLineChart data={datas} search_word={data.search_word}/>
             </div>
         );
     }
