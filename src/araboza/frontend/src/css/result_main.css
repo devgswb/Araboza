@@ -45,7 +45,7 @@
 }
 
 .wrapper {
-    width: 80%;
+    width: 100%;
     border: none;
 }
 
@@ -78,16 +78,24 @@
 .result-container {
     display: grid;
     grid-area: container;
-    width:1010px;
+    width:1100px;
+    /*grid-template-areas:*/
+    /*        "pn-chart-wrap "*/
+    /*        "site-chart-wrap "*/
+    /*        "nav"*/
+    /*        "wordCloud"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
     grid-template-areas:
-            "pn-chart-wrap "
-            "site-chart-wrap "
-            "nav"
-            "wordCloud"
-            "totalPnCharts"
-            "lineChart";
-    /*grid-template-columns: 60% 40%;*/
-    /*grid-template-rows: 15% 85%;*/
+            "pn-chart-wrap nav"
+            "site-chart-wrap wordCloud"
+            "totalPnCharts totalPnCharts"
+            "lineChart lineChart";
+    /*grid-template-areas:*/
+    /*        "siteAreaWrap"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
+    grid-template-columns: 55% 45%;
     margin: 20px 0 20px 20px;
 }
 
@@ -125,6 +133,7 @@
 #toTopBtn:focus{
     outline:none;
 }
+
 
 @media (max-width: 1200px){
     #toTopBtn{

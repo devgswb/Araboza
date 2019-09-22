@@ -112,20 +112,25 @@ class result_main extends Component {
                     <Result_menu/>
 
                     <div className="result-container">
-                        <Element name="cardPnChart" id="card-pnChart">
-                            <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
-                        </Element>
-                        <div id="card-relationChart">
-                            <Result_cardRelationchart data={data} siteCode={this.state.siteCode}
-                                                      siteName={this.siteName}/>
-                        </div>
-                        <div id="card-wordCloud">
-                            <ResultCardWordCloud data={data} siteCode={this.state.siteCode}/>
-                        </div>
-                        <div id="card-nav">
-                            <Result_nav change={this.changeSiteData} data={data} siteName={this.siteName}
-                                        enableSite={enableSite}/>
-                        </div>
+
+                            <Element name="cardPnChart" id="card-pnChart">
+                                <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
+                            </Element>
+                            <div id="card-nav">
+                                <Result_nav change={this.changeSiteData} data={data} siteName={this.siteName}
+                                            enableSite={enableSite}/>
+                            </div>
+                            <div id="card-relationChart">
+                                <Result_cardRelationchart data={data} siteCode={this.state.siteCode}
+                                                          siteName={this.siteName}/>
+                            </div>
+                            <div id="card-wordCloud">
+                                <ResultCardWordCloud data={data} siteCode={this.state.siteCode}/>
+                            </div>
+
+
+
+
                         <Element name="cardTotalPnChart" id="card-totalPnChart">
                             <Result_cardTotalPnchart data={data} siteName={this.siteName}/>
                         </Element>

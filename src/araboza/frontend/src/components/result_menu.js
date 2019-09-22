@@ -15,7 +15,7 @@ class Result_menu extends Component {
 
                 <Link2 className="menu-btn" activeClass="active" to="cardPnChart" spy={true} smooth={true} offset={50} duration={500}>사이트별 화제도</Link2>
                 <Link2 className="menu-btn" activeClass="active" to="cardTotalPnChart" spy={true} smooth={true} offset={50} duration={500}>화제도 한눈에 보기</Link2>
-                <Link2 className="menu-btn" activeClass="active" to="cardLineChart" spy={true} smooth={true} offset={50} duration={500}>화제도 변화량</Link2>
+                <Link2 className="menu-btn" activeClass="active" to="cardLineChart" spy={true} smooth={true} offset={50} duration={500}>언급량 변화도</Link2>
 
             </div>
         );

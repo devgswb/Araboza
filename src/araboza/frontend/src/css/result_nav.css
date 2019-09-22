@@ -1,15 +1,16 @@
 .nav{
     display:grid;
-    grid-template-columns: repeat(8, 1fr);
+    /*grid-template-columns: repeat(8, 1fr);*/
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 3px;
-    margin-top: 20px;
-    z-index: 1;
+    margin: 0 0 0 20px;
+    /*z-index: 1;*/
 }
 .site{
     color: #61dafb;
     /*width: 8rem;*/
     /*height:8rem;*/
-    line-height: 3rem;
+    line-height: 2.7rem;
     text-align: justify-all;
     vertical-align: middle;
     font-weight: bold;
@@ -33,7 +34,7 @@
     background: rgba(100, 100, 100 , 0.5);
     color: #4C95A7;
     cursor:default;
-    line-height: 3rem;
+    line-height: 2.7rem;
     text-align: justify-all;
     vertical-align: middle;
     font-weight: bold;
@@ -110,6 +111,9 @@
         position: fixed;
         overflow-x: scroll;
         -ms-overflow-style: none;
+        margin: 0;
+        z-index: 2;
+        left:0;
 
     }
     .nav::-webkit-scrollbar {
@@ -120,8 +124,8 @@
         width:5rem;
         height: 2.7rem;
         grid-gap: 0;
-        margin: 0 0 0 0;
-        padding:0 0 0 0;
+        margin: 0;
+        padding:0;
         background: #122F3B;
         text-align: center;
         vertical-align: middle;

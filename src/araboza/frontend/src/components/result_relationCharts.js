@@ -16,7 +16,7 @@ class RelationChart extends Component {
                 'word':e[0],
                 'count':e[1]
             })
-        } );
+        });
     }
 
     componentDidMount() {
@@ -120,9 +120,9 @@ class RelationChart extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.data !== prevProps.data) {
+        if (this.props.related_word !== prevProps.related_word) {
             this.data = [];
-            this.props.data.related_words.map((e, index)=>{
+            this.props.related_word.map((e, index)=>{
                 this.data.push({
                     'word':e[0],
                     'count':e[1]

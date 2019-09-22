@@ -8,18 +8,18 @@ am4core.useTheme(am4themes_animated);
 class ResultLineChart extends Component {
     constructor(props) {
         super(props);
-        this.date = this.props.data.word_freq_by_date;
+
 
         this.count = [];
 
-        this.date.map((e,i) =>{
+        this.props.data.map((e,i) =>{
             this.count.push({date:e[0], value:e[1]})
         });
 
     }
 
     componentDidMount() {
-        const word = this.props.data.search_word;
+        const word = this.props.search_word;
         const word2 = '화제도 변화입니다';
 
         let label;
