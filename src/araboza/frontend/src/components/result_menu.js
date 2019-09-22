@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import {Link as Link2}  from 'react-scroll';
 import '../css/result_menu.css'
 
 class Result_menu extends Component {
@@ -11,9 +12,10 @@ class Result_menu extends Component {
         return (
             <div className="menu-wrapper">
                 <Link to="/" className="result-title"><div id="ara">아라</div><div id="boza">보자</div></Link>
-                <button id="" className="menu-btn" href="#card-pnChart">사이트별 반응</button>
-                <button id="" className="menu-btn" href="#card-totalPnChart">한눈에 보기</button>
-                <button id="" className="menu-btn">검색량 추이</button>
+
+                <Link2 className="menu-btn" activeClass="active" to="cardPnChart" spy={true} smooth={true} offset={50} duration={500}>사이트별 화제도</Link2>
+                <Link2 className="menu-btn" activeClass="active" to="cardTotalPnChart" spy={true} smooth={true} offset={50} duration={500}>화제도 한눈에 보기</Link2>
+                <Link2 className="menu-btn" activeClass="active" to="cardLineChart" spy={true} smooth={true} offset={50} duration={500}>화제도 변화량</Link2>
 
             </div>
         );

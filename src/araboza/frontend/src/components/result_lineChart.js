@@ -15,7 +15,7 @@ class ResultLineChart extends Component {
         this.date.map((e,i) =>{
             this.count.push({date:e[0], value:e[1]})
         });
-        console.log(this.count);
+
     }
 
     componentDidMount() {
@@ -25,37 +25,6 @@ class ResultLineChart extends Component {
         let label;
         let chart = am4core.create("aLineChart", am4charts.XYChart);
         chart.paddingRight = 30;
-
-
-        // let data = this.count;
-        // let value = 10;
-        // for(let i=1;i<30;i++){
-        //     value += Math.round(1 * Math.random() * 5);
-        //     data.push({date : new Date(2019, 2, i), value:value})
-        // }
-
-        // let data = [{
-        //     date: '2019-01-01',
-        //     value: 50
-        // }, {
-        //     date: '2019-01-05',
-        //     value: 100
-        // }, {
-        //     date: '2019-01-10',
-        //     value: 38
-        // }, {
-        //     date: '2019-01-15',
-        //     value: 24
-        // }, {
-        //     date: '2019-01-20',
-        //     value: 80
-        // }, {
-        //     date: '2019-01-25',
-        //     value: 43
-        // }, {
-        //     date: '2019-01-30',
-        //     value: 152
-        // },];
 
         chart.data = this.count;
 
@@ -104,13 +73,13 @@ class ResultLineChart extends Component {
 
         function animateForward() {
             label.text = word;
-            let animation = label.animate({property: "locationOnPath", from: 0, to: 1}, 12000);
+            let animation = label.animate({property: "locationOnPath", from: 0, to: 1}, 20000);
             animation.events.on("animationended", animateBackwards);
         }
 
         function animateBackwards() {
             label.text = word2;
-            let animation = label.animate({property: "locationOnPath", from: 1, to: 0}, 8000);
+            let animation = label.animate({property: "locationOnPath", from: 1, to: 0}, 20000);
             animation.events.on("animationended", animateForward);
         }
 

@@ -9,7 +9,7 @@ p {
 
 #lineChart {
     height: 500px;
-    margin: 20px auto;
+    margin: 0 0 0 10px;
     padding: 10px 20px 0 0;
     background: white;
     border-radius: 0.7rem;
@@ -24,6 +24,13 @@ p {
 }
 
 @media (max-width: 505px){
+    #aLineChart{
+        height:200px;
+    }
+    #lineChart{
+        margin:0 0 50px 0;
+        height:240px;
+    }
     #lineIntro {
         font-size: 1rem;
     }

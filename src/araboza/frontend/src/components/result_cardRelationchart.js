@@ -11,11 +11,12 @@ class Result_cardRelationchart extends Component {
 
     render() {
         let data = findSiteCode(this.props.siteCode, this.props.data);
+        const related_word = data.related_words.slice(0,5);
 
         return (
             <div className="site-chart-wrap">
                 <div className="site-intro">{this.props.siteName[this.props.siteCode]}의 연관검색어</div>
-                    <RelationChart data={data} />
+                    <RelationChart search_word={data.search_word} related_word={related_word}/>
             </div>
         );
     }

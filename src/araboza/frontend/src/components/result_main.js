@@ -3,6 +3,8 @@ import '../css/result_main.css';
 
 import {Redirect, Link} from 'react-router-dom';
 
+import { Element ,animateScroll as scroll} from 'react-scroll'
+
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -110,28 +112,29 @@ class result_main extends Component {
                     <Result_menu/>
 
                     <div className="result-container">
-                        <div id="card-pnChart">
+                        <Element name="cardPnChart" id="card-pnChart">
                             <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
-                        </div>
+                        </Element>
                         <div id="card-relationChart">
                             <Result_cardRelationchart data={data} siteCode={this.state.siteCode}
                                                       siteName={this.siteName}/>
                         </div>
                         <div id="card-wordCloud">
-                            <ResultCardWordCloud/>
+                            <ResultCardWordCloud data={data} siteCode={this.state.siteCode}/>
                         </div>
                         <div id="card-nav">
                             <Result_nav change={this.changeSiteData} data={data} siteName={this.siteName}
                                         enableSite={enableSite}/>
                         </div>
-                        <div id="card-totalPnChart">
+                        <Element name="cardTotalPnChart" id="card-totalPnChart">
                             <Result_cardTotalPnchart data={data} siteName={this.siteName}/>
-                        </div>
+                        </Element>
 
-                        <div id="card-lineChart">
+                        <Element name="cardLineChart" id="card-lineChart">
                             <ResultCardLineChart data={data} siteCode={this.state.siteCode}/>
-                        </div>
+                        </Element>
                     </div>
+                    <button id="toTopBtn" onClick={()=>{scroll.scrollToTop()}}> TOP </button>
 
                 </div>
             </div>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ResultWordCloud from "./result_wordCloud";
 import '../css/result_cardWordCloud.css';
+import {findSiteCode} from "../modules/result_function";
+
 
 class ResultCardWordCloud extends Component {
     constructor(props) {
@@ -8,9 +10,11 @@ class ResultCardWordCloud extends Component {
     }
 
     render() {
+        let data = findSiteCode(this.props.siteCode, this.props.data);
+        console.log(data.related_words);
         return (
             <div id="wordCloud-wrap">
-                <ResultWordCloud/>
+                <ResultWordCloud data={data.related_words}/>
             </div>
         );
     }
