@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import mongoengine
 import urllib.parse
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,11 +31,20 @@ ALLOWED_HOSTS = []
 2
 # Databases
 
-username = urllib.parse.quote_plus('devgswb')
-password = urllib.parse.quote_plus('1q@W3e4r')
+dirname = os.path.dirname(os.path.dirname(__file__)).replace('\\', '/')
+with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
+    data = json.load(data_file)
+    username = data['username']
+    password = data['password']
+    db_host = data['host']
+    db_port = data['port']
+    db_name = data['db_name']
+
+username = urllib.parse.quote_plus(username)
+password = urllib.parse.quote_plus(password)
 mongoengine.connect(
     'araboza',
-    host=f'mongodb://{username}:{password}@61.84.24.251:57017/araboza'
+    host=f'mongodb://{username}:{password}@{db_host}:{db_port}/{db_name}'
 )
 
 

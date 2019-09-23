@@ -23,6 +23,14 @@ class SentiAnalysis:
         # KOSAC 감성어 사전용 코드
         self.polarity = self.__make_polarity_dict__()
         # KNU를 이용한 감성어 사전 만들기
+        dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
+        with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
+            data = json.load(data_file)
+            self.username = data['username']
+            self.password = data['password']
+            self.db_host = data['host']
+            self.db_port = data['port']
+            self.db_name = data['db_name']
 
     def result_from_db(self, start_date, end_date, site_code, search_word):
         # start_date의 양식은 2019-01-01
@@ -34,10 +42,10 @@ class SentiAnalysis:
         start_date = datetime.datetime(int(start_date[0]), int(start_date[1]), int(start_date[2]))
         end_date = end_date.split('-')
         end_date = datetime.datetime(int(end_date[0]), int(end_date[1]), int(end_date[2]))
-        username = urllib.parse.quote_plus('devgswb')
-        password = urllib.parse.quote_plus('1q@W3e4r')
-        conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
-        db = conn.get_database('araboza')
+        username = urllib.parse.quote_plus(self.username)
+        password = urllib.parse.quote_plus(self.password)
+        conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
+        db = conn.get_database(self.db_name)
         collection = db.wordsByDate
         rs = collection.find({
             'code': site_code,
