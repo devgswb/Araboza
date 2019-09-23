@@ -31,6 +31,7 @@ class SentiAnalysis:
             self.db_host = data['host']
             self.db_port = data['port']
             self.db_name = data['db_name']
+            self.db_live_data = data['db_live_data']
 
     def result_from_db(self, start_date, end_date, site_code, search_word):
         # start_date의 양식은 2019-01-01
@@ -46,7 +47,7 @@ class SentiAnalysis:
         password = urllib.parse.quote_plus(self.password)
         conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
         db = conn.get_database(self.db_name)
-        collection = db.wordsByDate
+        collection = db[self.db_live_data]
         rs = collection.find({
             'code': site_code,
             'time': {'$lte': end_date, '$gte': start_date}

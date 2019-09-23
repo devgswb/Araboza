@@ -3,5 +3,6 @@
   "password": "1q@W3e4r",
   "host":"61.84.24.138",
   "db_name": "araboza",
+  "db_live_data": "wordsByDate",
   "port":57017
 }
