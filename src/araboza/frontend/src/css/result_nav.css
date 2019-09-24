@@ -43,6 +43,25 @@
     margin: 5px 0 0 0;
     font-family: Jua, serif;
 }
+#nav-modal{
+    z-index: 9999;
+    width:5rem;
+    height:2rem;
+}
+/*[tooltip-text]:hover{*/
+/*    position:relative;*/
+/*}*/
+/*[tooltip-text]:hover:after{*/
+/*    content: attr(tooltip-text);*/
+/*    position:absolute;*/
+/*    width:15rem;*/
+/*    bottom:100%;*/
+/*    left:-20%;*/
+/*    background: rgba(0,0,0,0.8);*/
+/*    color:#ffffff;*/
+/*    font-size: 1rem;*/
+/*    z-index: 2;*/
+/*}*/
 @media (max-height: 900px) {
     .site {
         line-height: 2.7rem;
@@ -144,6 +163,8 @@
     .site:hover{
         font-size: 1rem;
     }
+
+
 }
 
 

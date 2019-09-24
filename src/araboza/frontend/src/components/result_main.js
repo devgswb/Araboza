@@ -9,18 +9,16 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 
-import axios from 'axios';
 
-import Result_relationCharts2 from "./result_relationCharts2";
+
 import Result_nav from "./result_nav";
 import Result_menu from "./result_menu";
 import Result_cardPnchart from "./result_cardPnchart";
 import Result_cardRelationchart from "./result_cardRelationchart";
-import Result_totalPnchart from "./result_totalPnchart";
 import ResultCardLineChart from "./result_cardLineChart";
 import ResultCardWordCloud from "./result_cardWordCloud";
 import Result_cardTotalPnchart from "./result_cardTotalPnchart";
-
+import ResultSearch from "./result_search";
 
 class result_main extends Component {
     constructor(props) {
@@ -30,10 +28,10 @@ class result_main extends Component {
             rDisplay: 'block',
             wDisplay: 'none',
         };
-        this.handleChange = this.handleChange.bind(this);
+
         this.changeDisplay = this.changeDisplay.bind(this);
         this.changeSiteData = this.changeSiteData.bind(this);
-
+        // this.data = this.props.location.data;
         this.siteName = {
             1: '보배드림',
             2: '클리앙',
@@ -66,10 +64,6 @@ class result_main extends Component {
         })
     }
 
-    handleChange = (e) => {
-        let searchStr = e.target.value;
-        this.setState({title: searchStr});
-    };
     // 데이터를 받아오는 요청, 가져오기
     // componentDidMount() {
     //      if(this.s){
@@ -84,17 +78,27 @@ class result_main extends Component {
     //              console.log("Data: " + this.state.data);
     //          })
     // }
+    componentWillReceiveProps(nextProps, nextContext) {
+        if(nextProps.location.siteCode !== this.props.siteCode){
+            this.setState({
+                siteCode:nextProps.location.siteCode
+            })
+        }
+    }
 
     //사이트 버튼 클릭 시 해당 사이트 데이터를 로드하여 차트 최신화
     render() {
-        const {data} = this.props.location;
+        let {data} = this.props.location;
+        console.log(this.state.siteCode);
+        // let {data} = this.state.data;
+        // console.log(data);
         //데이터가 없을 시 메인으로 리디렉트
         if (data == null || data === 'None') {
             return (
                 <Redirect to="/"/>
             );
         }
-
+        console.log(data);
         let enableSite = [];
         data.map((e, i) => {
             enableSite.push(e.site_code)
@@ -106,6 +110,7 @@ class result_main extends Component {
 
                     <header className="result-header">
                         <Link to="/" className="mobile-title"><div>아라보자</div></Link>
+                        <ResultSearch data={data}/>
                         {/*<div id="return-main"><Link to="/">검색 페이지로 <h4 id="return-icon">↺</h4></Link></div>*/}
                     </header>
 
@@ -113,23 +118,20 @@ class result_main extends Component {
 
                     <div className="result-container">
 
-                            <Element name="cardPnChart" id="card-pnChart">
-                                <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
-                            </Element>
-                            <div id="card-nav">
-                                <Result_nav change={this.changeSiteData} data={data} siteName={this.siteName}
-                                            enableSite={enableSite}/>
-                            </div>
-                            <div id="card-relationChart">
-                                <Result_cardRelationchart data={data} siteCode={this.state.siteCode}
-                                                          siteName={this.siteName}/>
-                            </div>
-                            <div id="card-wordCloud">
-                                <ResultCardWordCloud data={data} siteCode={this.state.siteCode}/>
-                            </div>
-
-
-
+                        <Element name="cardPnChart" id="card-pnChart">
+                            <Result_cardPnchart data={data} siteCode={this.state.siteCode} siteName={this.siteName}/>
+                        </Element>
+                        <div id="card-nav">
+                            <Result_nav change={this.changeSiteData} siteName={this.siteName}
+                                        enableSite={enableSite}/>
+                        </div>
+                        <div id="card-relationChart">
+                            <Result_cardRelationchart data={data} siteCode={this.state.siteCode}
+                                                      siteName={this.siteName}/>
+                        </div>
+                        <div id="card-wordCloud">
+                            <ResultCardWordCloud data={data} siteCode={this.state.siteCode}/>
+                        </div>
 
                         <Element name="cardTotalPnChart" id="card-totalPnChart">
                             <Result_cardTotalPnchart data={data} siteName={this.siteName}/>

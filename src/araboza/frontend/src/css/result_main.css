@@ -38,22 +38,21 @@
     "menu-wrapper result-header"
     "menu-wrapper container"
     "menu-wrapper topBtn";
+
+    width: 1300px;
+    border: none;
 }
 
 * {
     box-sizing: border-box;
 }
 
-.wrapper {
-    width: 100%;
-    border: none;
-}
 
 .result-header {
     grid-area: result-header;
     background: white;
     box-shadow: 1px 1px #E4E3E3;
-    padding-top: 10px;
+    /*padding-top: 10px;*/
 }
 
 .mobile-title {
@@ -167,6 +166,8 @@
         height:5rem;
         width:100%;
         position: fixed;
+        display:grid;
+        grid-template-columns:40% 60%;
         z-index: 2;
     }
 
@@ -188,7 +189,7 @@
 
     .mobile-title {
         display: block;
-        /*margin-top:3px;*/
+        margin-top:10px;
         font-family: YDJ, YS, serif;
         color: black;
     }

@@ -10,7 +10,7 @@
 /*사이트 통계 파이 차트*/
 .site-chart-wrap{
     /*grid-area: site-chart-wrap;*/
-    /*height:250px;*/
+    height:375px;
     /*border: 1px solid #e0e0e0;*/
     border:none;
     border-radius: 0.5rem;
@@ -19,6 +19,15 @@
     padding: 0.8rem 0 0 0;
     background: #ffffff;
     z-index: 2;
+}
+#none-data{
+    /*height:320px;*/
+    color:#4ed1ea;
+    font-size: 3rem;
+    line-height: 300px;
+    cursor:default;
+    font-family: malgun gothic, serif;
+    font-weight: bold;
 }
 #site-chart{
     margin: 20px auto;

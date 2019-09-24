@@ -11,22 +11,20 @@ class ResultCardWordCloud extends Component {
 
     render() {
         let data = findSiteCode(this.props.siteCode, this.props.data);
+        let related_words = [];
 
-        // console.log(data.related_words);
-        // let emptyCheck = () =>{
-        //     return(
-        //       data.related_words != null ?
-        //         <ResultWordCloud data={data.related_words}/>
-        //         :
-        //         <div>연관단어를 불러오지 못했습니다.</div>
-        //
-        //     );
-        // };
+        if(data.related_words.length === 0){
+            related_words.push(
+                ["데이터가 너무 적어요!", 100]
+            )
+        }else{
+            related_words = data.related_words;
+        }
 
 
         return (
             <div id="wordCloud-wrap">
-                <ResultWordCloud data={data.related_words}/>
+                <ResultWordCloud data={related_words}/>
                 {/*{emptyCheck}*/}
             </div>
         );

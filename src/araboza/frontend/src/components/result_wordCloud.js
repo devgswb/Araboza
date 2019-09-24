@@ -39,7 +39,10 @@ class ResultWordCloud extends Component {
         series.colors.passOptions = {}; // makes it loop
 
 //series.labelsContainer.rotation = 45;
+
         series.angles = [0, 90];
+
+
         series.fontWeight = "700";
 
         series.labels.template.tooltipText = "{count}[/]";
@@ -56,6 +59,16 @@ class ResultWordCloud extends Component {
                 })
             });
             this.series.data = this.data;
+            if(this.series.data.length === 1) {
+                this.series.angles = [0];
+                this.series.maxFontSize = am4core.percent(70);
+                this.series.minFontSize = am4core.percent(5);
+            }else{
+                this.series.angles = [0, -90];
+                this.series.maxFontSize = am4core.percent(100);
+                this.series.minFontSize = am4core.percent(10);
+            }
+
         }
     }
     render() {
