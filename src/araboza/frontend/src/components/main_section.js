@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import {
     MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBTable,
     MDBTableBody, MDBTableHead, MDBIcon
@@ -23,7 +23,7 @@ class MainSection extends Component {
              }
 
         };
-         axios.get(`http://127.0.0.1:8000/api/hotword/?day=0`)
+         axios.get(`/api/hotword/?day=0`)
             .then((res) => {
                 console.log("검색페이지");
                 localStorage.setItem('result', res.data['result']);
@@ -35,7 +35,7 @@ class MainSection extends Component {
                 console.log(error);
             });
 
-         axios.get(`http://127.0.0.1:8000/api/hotword/?day=1`)
+         axios.get(`/api/hotword/?day=1`)
             .then((res) => {
                 console.log("검색페이지");
                 localStorage.setItem('result', res.data['result']);
@@ -60,7 +60,7 @@ class MainSection extends Component {
     handleSubmit = (e) => {
         console.log('this.title ->', this.state.day);
         e.preventDefault();
-        axios.get(`http://127.0.0.1:8000/api/hotword/?day=${this.state.day}`)
+        axios.get(`/api/hotword/?day=${this.state.day}`)
             .then((res) => {
                 console.log("검색페이지");
                 localStorage.setItem('result', res.data['result']);
