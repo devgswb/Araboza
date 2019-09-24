@@ -66,29 +66,39 @@ class ResultLineChart extends Component {
                     label.path = series.segments.getIndex(0).strokeSprite.path;
                 }
             });
-            animateForward();
+//            animateForward();
 
         }, 1000);
 
 
-        function animateForward() {
-            label.text = word;
-            let animation = label.animate({property: "locationOnPath", from: 0, to: 1}, 20000);
-            animation.events.on("animationended", animateBackwards);
-        }
+//        function animateForward() {
+//            label.text = word;
+//            let animation = label.animate({property: "locationOnPath", from: 0, to: 1}, 20000);
+//            animation.events.on("animationended", animateBackwards);
+//        }
+//
+//        function animateBackwards() {
+//            label.text = word2;
+//            let animation = label.animate({property: "locationOnPath", from: 1, to: 0}, 20000);
+//            animation.events.on("animationended", animateForward);
+//        }
 
-        function animateBackwards() {
-            label.text = word2;
-            let animation = label.animate({property: "locationOnPath", from: 1, to: 0}, 20000);
-            animation.events.on("animationended", animateForward);
+        this.chart = chart;
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.data !== prevProps.data) {
+            this.count = [];
+
+        this.props.data.map((e,i) =>{
+            this.count.push({date:e[0], value:e[1]})
+        });
+            this.chart.data = this.count;
         }
 
     }
-
     render() {
         return (
             <div id="aLineChart">
-
             </div>
         );
     }

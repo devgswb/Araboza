@@ -88,8 +88,9 @@
     grid-template-areas:
             "pn-chart-wrap nav"
             "site-chart-wrap wordCloud"
+            "lineChart lineChart"
             "totalPnCharts totalPnCharts"
-            "lineChart lineChart";
+            ;
     /*grid-template-areas:*/
     /*        "siteAreaWrap"*/
     /*        "totalPnCharts"*/

@@ -117,6 +117,7 @@ class RelationChart extends Component {
         });
 
         this.chart = chart;
+        this.label = label;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -129,6 +130,7 @@ class RelationChart extends Component {
                  })
              });
             this.chart.data = this.data;
+            this.label.text = this.props.search_word;
         }
     }
 

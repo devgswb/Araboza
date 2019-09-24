@@ -1,54 +1,54 @@
 {
 	"result": [
 		{
-			"word": "일본",
-			"count": 83,
-			"changes": -2
+			"word": "조국",
+			"count": 307,
+			"changes": -61
 		},
 		{
-			"word": "강",
-			"count": 62,
-			"changes": 0
+			"word": "익",
+			"count": 265,
+			"changes": -284
 		},
 		{
-			"word": "다니엘",
-			"count": 61,
-			"changes": 0
-		},
-		{
-			"word": "지",
-			"count": 49,
-			"changes": 0
-		},
-		{
-			"word": "한국",
-			"count": 48,
-			"changes": 11
-		},
-		{
-			"word": "효",
-			"count": 48,
-			"changes": 0
+			"word": "검찰",
+			"count": 208,
+			"changes": 18
 		},
 		{
 			"word": "오늘",
-			"count": 44,
-			"changes": 13
+			"count": 175,
+			"changes": -34
+		},
+		{
+			"word": "영",
+			"count": 149,
+			"changes": 0
+		},
+		{
+			"word": "마요네즈",
+			"count": 146,
+			"changes": 0
+		},
+		{
+			"word": "임무",
+			"count": 141,
+			"changes": 0
+		},
+		{
+			"word": "고추장",
+			"count": 141,
+			"changes": 0
+		},
+		{
+			"word": "일본",
+			"count": 116,
+			"changes": 0
 		},
 		{
 			"word": "이유",
-			"count": 42,
-			"changes": 7
-		},
-		{
-			"word": "아이돌",
-			"count": 31,
-			"changes": 3
-		},
-		{
-			"word": "때",
-			"count": 29,
-			"changes": 2
+			"count": 108,
+			"changes": 0
 		}
 	]
 }

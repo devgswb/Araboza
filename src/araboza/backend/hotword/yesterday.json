@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "일본",
-			"count": 39,
-			"changes": -44
+			"word": "검찰",
+			"count": 511,
+			"changes": 303
 		},
 		{
-			"word": "열애",
-			"count": 27,
+			"word": "집회",
+			"count": 446,
 			"changes": 0
 		},
 		{
-			"word": "김희철",
-			"count": 21,
+			"word": "촛불",
+			"count": 413,
 			"changes": 0
 		},
 		{
-			"word": "모모",
-			"count": 21,
+			"word": "개혁",
+			"count": 402,
 			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 204,
+			"changes": -103
 		},
 		{
 			"word": "오늘",
-			"count": 20,
-			"changes": -24
+			"count": 178,
+			"changes": 3
 		},
 		{
-			"word": "단독",
-			"count": 18,
+			"word": "아이폰",
+			"count": 106,
 			"changes": 0
+		},
+		{
+			"word": "일본",
+			"count": 105,
+			"changes": -11
 		},
 		{
 			"word": "이유",
-			"count": 17,
-			"changes": -25
+			"count": 99,
+			"changes": -9
 		},
 		{
-			"word": "중구청",
-			"count": 16,
-			"changes": 0
-		},
-		{
-			"word": "장",
-			"count": 16,
-			"changes": 0
-		},
-		{
-			"word": "서울",
-			"count": 15,
+			"word": "나경원",
+			"count": 98,
 			"changes": 0
 		}
 	]

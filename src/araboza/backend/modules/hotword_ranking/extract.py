@@ -16,17 +16,17 @@ def get_hotword_ranking(date):
     dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
     with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
         data = json.load(data_file)
-        self.username = data['username']
-        self.password = data['password']
-        self.db_host = data['host']
-        self.db_port = data['port']
-        self.db_name = data['db_name']
-        self.db_live_data = data['db_live_data']
-    username = urllib.parse.quote_plus(self.username)
-    password = urllib.parse.quote_plus(self.password)
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
-    db = conn.get_database(self.db_name)
-    collection = db[self.db_live_data]
+        username = data['username']
+        password = data['password']
+        db_host = data['host']
+        db_port = data['port']
+        db_name = data['db_name']
+        db_live_data = data['db_live_data']
+    username = urllib.parse.quote_plus(username)
+    password = urllib.parse.quote_plus(password)
+    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{db_host}:{db_port}/{db_name}')
+    db = conn.get_database(db_name)
+    collection = db[db_live_data]
 
     for index, i_date in enumerate(date):
         rs = collection.find({
@@ -35,17 +35,17 @@ def get_hotword_ranking(date):
         noun = ['NNP', 'NNG']
         related_words = {}
         for record in rs:
-            for sentence in record['data']:
-                for sub_word in sentence:
-                    noun_word = sub_word[0]  # 명사 단어
-                    part_of_word = sub_word[1]  # 품사
-                    if part_of_word in noun:
-                        if not (noun_word in related_words):
-                            related_words[noun_word] = 0
-                        else:
-                            related_words[noun_word] += 1
-                sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
-                conn.close()
+            sentence = record['data']
+            for word in sentence['words']:
+                noun_word = word['morpheme']  # 명사 단어
+                part_of_word = word['type']  # 품사
+                if part_of_word in noun:
+                    if not (noun_word in related_words):
+                        related_words[noun_word] = 0
+                    else:
+                        related_words[noun_word] += 1
+            sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
+            conn.close()
         result = OrderedDict()
         list = []
         for word_data in sorted_words[0:10]:
@@ -79,7 +79,8 @@ def get_hotword_ranking(date):
 
 # 변동사항 계산 def (수정)
 def ranking_Changes():
-    dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
+    # dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
+    dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')+"/hotword"
 
     for i in range(0, 3):
         if i == 0:
@@ -125,7 +126,7 @@ def ranking_Changes():
 
 #   yesterday > 2 days ago > 3 days ago >> 4 days ago
 # 반드시 get_hotword_ranking("2019-08-06") >> ranking_Changes() 순으로 실행해주세요
-# get_hotword_ranking("2019-08-06")
+# get_hotword_ranking("2019-09-21")
 ranking_Changes()
 
-# print(get_hotword_ranking("2019-08-06"))
+#print(get_hotword_ranking("2019-09-21"))

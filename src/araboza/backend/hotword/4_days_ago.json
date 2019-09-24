@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "일본",
-			"count": 108,
+			"word": "라",
+			"count": 851,
+			"changes": 0
+		},
+		{
+			"word": "치모",
+			"count": 786,
+			"changes": 0
+		},
+		{
+			"word": "리",
+			"count": 551,
+			"changes": 0
+		},
+		{
+			"word": "후조",
+			"count": 538,
+			"changes": 0
+		},
+		{
+			"word": "익",
+			"count": 338,
+			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 273,
+			"changes": 0
+		},
+		{
+			"word": "사모펀드",
+			"count": 181,
+			"changes": 0
+		},
+		{
+			"word": "산후조리원",
+			"count": 175,
+			"changes": 0
+		},
+		{
+			"word": "주인",
+			"count": 175,
 			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 47,
-			"changes": 0
-		},
-		{
-			"word": "한국",
-			"count": 42,
-			"changes": 0
-		},
-		{
-			"word": "이유",
-			"count": 28,
-			"changes": 0
-		},
-		{
-			"word": "근황",
-			"count": 28,
-			"changes": 0
-		},
-		{
-			"word": "영상",
-			"count": 26,
-			"changes": 0
-		},
-		{
-			"word": "사람",
-			"count": 24,
-			"changes": 0
-		},
-		{
-			"word": "안",
-			"count": 23,
-			"changes": 0
-		},
-		{
-			"word": "때",
-			"count": 21,
-			"changes": 0
-		},
-		{
-			"word": "무대",
-			"count": 20,
+			"count": 172,
 			"changes": 0
 		}
 	]

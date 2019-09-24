@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "일본",
-			"count": 85,
-			"changes": -23
+			"word": "익",
+			"count": 549,
+			"changes": 211
 		},
 		{
-			"word": "한국",
-			"count": 37,
-			"changes": -5
+			"word": "공감",
+			"count": 501,
+			"changes": 0
 		},
 		{
-			"word": "이유",
-			"count": 35,
-			"changes": 7
+			"word": "게",
+			"count": 475,
+			"changes": 0
+		},
+		{
+			"word": "복구",
+			"count": 456,
+			"changes": 0
+		},
+		{
+			"word": "원상",
+			"count": 444,
+			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 368,
+			"changes": 95
+		},
+		{
+			"word": "글",
+			"count": 216,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 31,
-			"changes": -16
+			"count": 209,
+			"changes": 37
 		},
 		{
-			"word": "사람",
-			"count": 29,
-			"changes": 5
-		},
-		{
-			"word": "아이돌",
-			"count": 28,
+			"word": "펀드",
+			"count": 193,
 			"changes": 0
 		},
 		{
-			"word": "근황",
-			"count": 28,
-			"changes": 0
-		},
-		{
-			"word": "때",
-			"count": 27,
-			"changes": 6
-		},
-		{
-			"word": "매",
-			"count": 20,
-			"changes": 0
-		},
-		{
-			"word": "주의",
-			"count": 19,
+			"word": "검찰",
+			"count": 190,
 			"changes": 0
 		}
 	]
