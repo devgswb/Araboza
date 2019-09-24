@@ -33,20 +33,25 @@ class SearchAPIView(views.APIView):
     sa = analysis.SentiAnalysis()
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request):
+        dirname = os.path.dirname(os.path.dirname(__file__)).replace('\\', '/')
+        with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
+            data = json.load(data_file)
+            start_date = data['search_start_date']
+            end_date = data['search_end_date']
         search_word = request.query_params['word']
         try:
             site_code = int(request.query_params['sitecode'])
         except:
             site_code = False
         if site_code:
-            data = self.sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
+            data = self.sa.result_from_db(start_date, end_date, site_code, search_word=search_word)
             return Response(data)
         else:
             data_list = []
             for site_code in range(1, 16):
                 # site_code 7번 정지
                 if site_code != 7:
-                    data = self.sa.result_from_db('2019-08-01', '2019-09-22', site_code, search_word=search_word)
+                    data = self.sa.result_from_db(start_date, end_date, site_code, search_word=search_word)
                     data_list.append(data)
             return Response(data_list)
 
