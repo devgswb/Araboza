@@ -26,21 +26,21 @@ slideImg > * {
 slideImg :nth-child(1) {
     left: 0;
     animation-delay: -1s;
-    background-image: url("../img/ArabozaCard01.jpg");
+    background-image: url("../img/arabozaMainOne.jpg");
     background-size: cover;
     background-position: center;
 }
 
 slideImg :nth-child(2) {
     animation-delay: 2s;
-    background-image: url("../img/ArabozaCard02.jpg");
+    background-image: url("../img/arabozaMainTwo.png");
     background-size: cover;
     background-position: center;
 }
 
 slideImg :nth-child(3) {
     animation-delay: 5s;
-    background-image: url("../img/ArabozaCard03.jpg");
+    background-image: url("../img/arabozaMainThree.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -48,7 +48,7 @@ slideImg :nth-child(3) {
 slideImg :nth-child(4) {
     left: 0;
     animation-delay: 8s;
-    background-image: url("../img/ArabozaCard04.jpg");
+    background-image: url("../img/arabozaMainFour.jpg");
     background-size: cover;
     background-position: center;
 }

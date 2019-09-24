@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
 import '../css/main_side.css'
-import {MDBBtn, MDBCol, MDBInput, MDBIcon, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBAlert} from "mdbreact";
+import {
+    MDBBtn,
+    MDBCol,
+    MDBInput,
+    MDBIcon,
+    MDBModal,
+    MDBModalHeader,
+    MDBModalBody,
+    MDBModalFooter,
+    MDBAlert,
+    MDBCloseIcon
+} from "mdbreact";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
@@ -18,7 +29,8 @@ class MainSide extends Component {
                  modal2: false,
                  alert : false,
                  st : false,
-                 color : false
+                 color : false,
+                 siteTitle : ""
              }
         };
          this.handleChange = this.handleChange.bind(this);
@@ -40,45 +52,46 @@ class MainSide extends Component {
             console.log("fuck", this.state);
         }
         else {
-            axios.get(`/api/search/?word=${this.state.title}`,{cancelToken: this.axiosCancelSource.token})
-            .then((res) => {
-                console.log("검색페이지");
-                console.log(res);
-                localStorage.setItem('title', res.data['title']);
-                // 사이트의 Success 가 0인 경우 성공한 것이므로
-                // 0 일 때에만 데이터를 배열에 넣어서 result 로 넘김
-                var datas = [];
-                for(let i=0;i<res.data.length;i++){
-                    if(res.data[i].Success === 0) {
-                        datas.push(res.data[i]);
+            var datas = [];
+            var siteName = ["보배드림","클리앙","82쿡","개드립","eToLAND","가생이","웃긴대학","해연갤","인스티즈","MLBPARK","네이트판","루리웹","더쿠넷","오늘의 유머","와이고수"];
+            for (let count = 1; count < 16; count++) {
+                axios.get(`/api/search/?word=${this.state.title}&sitecode=${count}`, {cancelToken: this.axiosCancelSource.token})
+                    .then((res) => {
+                        this.setState({ siteTitle : siteName[count-1] });
+                        console.log("검색페이지");
+                        console.log(res);
+                        localStorage.setItem('title', res.data['title']);
+                        if (res.data.Success === 0) {
+                            datas.push(res.data);
+                        }
+                        if (count >= 15) {
+                            this.props.history.push({
+                                pathname: `/result`,
+                                // data: res.data
+                                data: datas,
+                                siteCode: datas[0].site_code
+                            });
+                            console.log(datas);
+                        }
+                    }).catch(function (error) {
+                    console.log(error);
+                    console.log(this.state.st);
+                    let modalNumber = 'modal' + 2;
+                    if (this.state.st === true) {
+                        this.setState({
+                            st: false,
+                            alert: true,
+                            color: true
+                        });
+                    } else {
+                        this.setState({
+                            alert: true,
+                            [modalNumber]: !this.state[modalNumber],
+                            color: false
+                        });
                     }
-                }
-                console.log(datas);
-                this.props.history.push({
-                    pathname: `/result`,
-                    // data: res.data
-                    data: datas,
-                    siteCode : datas[0].site_code
-                })
-            }).catch(function (error) {
-                console.log(error);
-                console.log(this.state.st);
-                let modalNumber = 'modal' + 2;
-                if (this.state.st === true ) {
-                    this.setState({
-                        st : false,
-                        alert : true,
-                        color : true
-                    });
-                }
-                else {
-                    this.setState({
-                        alert : true,
-                        [modalNumber]: !this.state[modalNumber],
-                        color : false
-                    });
-                }
-            }.bind(this))
+                }.bind(this))
+            }
         }
     };
 
@@ -140,19 +153,19 @@ class MainSide extends Component {
                         <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title} onChange={this.handleChange} />
                     </MDBCol>
                      <div style={{ color: "red"}}>{this.state.textError}</div>
-                    <MDBBtn outline color="success" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/> Search
+                    <MDBBtn outline color="#91AA9D" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/> Search
                     </MDBBtn>
                     {Alert}
                         <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
                             <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
                             <MDBModalBody>
-                                <div>관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
+                                <div>{this.state.siteTitle} 관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
                                 <div className="spinner-border text-primary" role="status">
                                     <span className="sr-only">Loading...</span>
                                 </div>
                             </MDBModalBody>
                             <MDBModalFooter>
-                                <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기</MDBBtn>
+                                <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기<MDBCloseIcon className='sideCancel'/></MDBBtn>
                             </MDBModalFooter>
                         </MDBModal>
                 </div>

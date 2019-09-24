@@ -1,3 +1,23 @@
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url(../img/TmonMonsori.ttf.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SCDream3';
+    src: url(../img/SCDream3.otf) format('truetype');
+}
+
+.section {
+    color : #3E4551;
+    font-family: TmonMonsori,serif;
+}
+
+.section Table {
+     color : #3E4551;
+    font-family: SCDream3,serif;
+}
+
 .sectionIcon {
     width : 80px;
     height: 80px;
@@ -8,7 +28,7 @@
 }
 
 .sectionTitle {
-    color: white;
+    color: black;
     line-height: 80px;
     font-size: 40px;
     text-align: center;

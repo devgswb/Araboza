@@ -19,6 +19,7 @@
 .featureRanking {
     margin : 0 auto;
     background-color:#fff;
+    box-shadow: 5px 5px 5px 5px gray;
     grid-area: fRanking;
     width: 90%;
     display: grid;

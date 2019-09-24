@@ -10,7 +10,7 @@
 
 
 .header h1 {
-    color : #016CA0;
+    color : #193441;
     font-size: 4.2rem;
     text-align : left;
     font-family: BlackHanSans-Regular, serif;
@@ -25,6 +25,7 @@
 
 @media(max-width: 505px) {
     .header {
+        padding-top: 10px;
         height: 300px;
         margin : 0 auto;
     }

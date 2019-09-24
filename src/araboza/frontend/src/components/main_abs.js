@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../css/main_abs.css'
 import {MDBBtn, MDBIcon, MDBModal, MDBModalBody, MDBModalFooter, MDBModalHeader} from "mdbreact";
 import MainAbsMain from "./main_absmain";
+import MainAbsResult from "./main_absresult";
 
 class MainAbs extends Component {
 
@@ -65,7 +66,7 @@ class MainAbs extends Component {
                     </div>
                 </div>
                  <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg" className='mdbHeader'>
-                    <MDBModalHeader toggle={this.toggle(1)}>메인 화면</MDBModalHeader>
+                    <MDBModalHeader toggle={this.toggle(1)}><h2>메인 화면</h2></MDBModalHeader>
                     <MDBModalBody>
                         <MainAbsMain/>
                     </MDBModalBody>
@@ -75,11 +76,13 @@ class MainAbs extends Component {
                 </MDBModal>
 
                 <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg" className='mdbHeader'>
-                    <MDBModalHeader toggle={this.toggle(2)}>로딩 화면</MDBModalHeader>
+                    <MDBModalHeader toggle={this.toggle(2)}><h2>로딩 화면</h2></MDBModalHeader>
                     <MDBModalBody>
                         <img src={require('../img/arabozaRoading.png')} className="cssImg01" alt=""/>
+                        <div className='absLoading'>
                         <h3>중지버튼을 누를 시 검색한 단어요청을 중지합니다.</h3>
                         <h3><MDBIcon icon="times" />버튼을 누를 시 모델창은 사라지지만 로딩은 유지 됩니다.</h3>
+                        </div>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(2)}>Close</MDBBtn>
@@ -87,11 +90,9 @@ class MainAbs extends Component {
                 </MDBModal>
 
                 <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg" className='mdbHeader'>
-                    <MDBModalHeader toggle={this.toggle(3)} >결과 화면</MDBModalHeader>
+                    <MDBModalHeader toggle={this.toggle(3)} ><h2>결과 화면</h2></MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        <MainAbsResult/>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(3)}>Close</MDBBtn>

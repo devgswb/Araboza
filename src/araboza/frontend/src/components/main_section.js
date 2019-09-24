@@ -139,6 +139,7 @@ class MainSection extends Component {
                 <TableRow key={index+1}>
                     <TableCell>{index+1}</TableCell>
                     <TableCell align='right'>{list.word}</TableCell>
+                    <TableCell align='right'>{list.count}</TableCell>
                     <TableCell align='right'>{upDown[index]} ({total[index]})</TableCell>
                 </TableRow>
                 ));
@@ -150,7 +151,7 @@ class MainSection extends Component {
             <div  className ="section">
                 <MDBContainer className="sectionbtn">
                     <form onSubmit={this.handleSubmit}>
-                        <div className='sectionIcon'><MDBIcon icon="angle-double-right" onClick={this.toggle(8)} className='sectionTitle '/></div>
+                        <div className='sectionIcon'><MDBIcon icon="angle-double-right" onClick={this.toggle(8)} className='sectionTitle'/></div>
                     </form>
                     <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right" backdrop={false}>
                         <MDBModalHeader toggle={this.toggle(8)}>
@@ -163,7 +164,8 @@ class MainSection extends Component {
                                 <MDBTableHead>
                                     <TableRow>
                                         <TableCell className='articleCell'>순위</TableCell>
-                                        <TableCell className='articleCell' align='right'>이달의 단어</TableCell>
+                                        <TableCell className='articleCell' align='right'>언급 단어</TableCell>
+                                         <TableCell className='articleCell' align='right'>언급 횟수</TableCell>
                                         <TableCell className='articleCell' align='right'>변동사항</TableCell>
                                     </TableRow>
                                 </MDBTableHead>

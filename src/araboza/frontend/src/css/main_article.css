@@ -7,6 +7,7 @@
     font-family: SCDream4, serif;
 }
 .article {
+    box-shadow: 5px 5px 5px 5px gray;
     position: absolute;
     margin-top: 30vh;
     left: 50%;
@@ -61,19 +62,19 @@
 }
 
 .article .articleBox:nth-child(1) .articleDetail {
-    background: #8553cb;
+    background: #9DC8C8;
 }
 
 .article .articleBox:nth-child(2) .articleDetail {
-    background: #fe8f01;
+    background: #58C9B9;
 }
 
 .article .articleBox:nth-child(3) .articleDetail {
-    background: #79d400;
+    background: #519D9E;
 }
 
 .article .articleBox:nth-child(4) .articleDetail {
-    background: #ff3b34;
+    background: #D1B6E1;
 }
 
 .article .articleBox .articleDetail .articleIcon {

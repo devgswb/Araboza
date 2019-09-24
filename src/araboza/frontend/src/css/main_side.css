@@ -3,12 +3,17 @@
     src: url(../img/SCDream4.otf) format('truetype');
 }
 
+.sideCancel {
+    display: none;
+}
+
 .side {
     font-family: SCDream4,serif;
     margin : 0 auto;
     width : 80%;
     color : #3E4551;
-    background-color: #273D59;
+    background-color: #FCFFF5;
+    box-shadow: 5px 5px 5px 5px gray;
     border-radius: 15px;
 }
 
@@ -26,7 +31,7 @@
     width : 80%;
     font-size : 3.25rem;
     font-family: SCDream4, serif;
-    color : #42D728;
+    color : #193441;
 }
 
 @media(max-width: 1150px) {

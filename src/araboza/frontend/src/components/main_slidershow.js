@@ -7,9 +7,9 @@ class MainSliderShow extends Component {
 
         let slideView =
             [
-                <img src={require('../img/ArabozaProjectPlay01.png')} className="cssImg01" alt=""/>,
-                <img src={require('../img/ArabozaProjectPlay02.png')} className="cssImg01" alt=""/>,
-                <img src={require('../img/ArabozaProjectPlay03.png')} className="cssImg01" alt=""/>,
+                <img src={require('../img/arabozaMainPage.png')} className="cssImg01" alt=""/>,
+                <img src={require('../img/arabozaLoadingPage.png')} className="cssImg01" alt=""/>,
+                <img src={require('../img/arabozaResultPage.png')} className="cssImg01" alt=""/>,
             ];
         return (
 
