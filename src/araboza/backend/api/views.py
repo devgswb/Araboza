@@ -1,4 +1,4 @@
-from django.shortcuts import render
+﻿from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from rest_framework_mongoengine import viewsets as meviewsets
@@ -59,8 +59,7 @@ class HotWordAPIView(views.APIView):
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request):
         day = int(request.query_params['day'])
-        dirname = os.path.dirname(__file__).split('\\api')[0] + '/hotword'
-        dirname = dirname.replace("\\", "/")
+        dirname = os.path.dirname(os.path.dirname(__file__)).replace('\\', '/') + '/hotword'
         name = ''
         if day == 0:
             name = 'yesterday'
