@@ -57,11 +57,17 @@ class SentiAnalysis:
         related_words = {}
         for record in rs:
             sentence = record['data']
+            record_year = record['year']
+            record_month = record['month']
+            record_day = record['day']
+            date = f'{record_year}-{record_month:02d}-{record_day:02d}'
+            if not date in word_freq_by_date:
+                word_freq_by_date[date] = 1
+            else:
+                word_freq_by_date[date] += 1
             word_list = []  # 한 문장의 단어들을 묶은 것
             for word in sentence['words']:
                 word_list.append(word['morpheme'])
-            if not (search_word in word_list):
-                continue
             analysis_result = self.__analysis__(word_list)
             pos += analysis_result['positive']
             neg += analysis_result['negative']
