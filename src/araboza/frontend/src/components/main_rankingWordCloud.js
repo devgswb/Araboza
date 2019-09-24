@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+﻿import React, {Component} from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -18,7 +18,7 @@ class MainRankingWordCloud extends Component {
                  oneDayData : [],
              }
         };
-        axios.get(`http://127.0.0.1:8000/api/hotword/?day=0`)
+        axios.get(`/api/hotword/?day=0`)
             .then((res) => {
                 console.log("start");
                 localStorage.setItem('result', res.data['result']);
@@ -35,7 +35,7 @@ class MainRankingWordCloud extends Component {
         let chart = am4core.create("rankWordCloud", am4plugins_wordCloud.WordCloud);
         let series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
 
-        axios.get(`http://127.0.0.1:8000/api/hotword/?day=0`)
+        axios.get(`/api/hotword/?day=0`)
             .then((res) => {
                 console.log("두번째");
                 localStorage.setItem('result', res.data['result']);
