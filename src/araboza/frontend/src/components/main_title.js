@@ -51,7 +51,7 @@ class MainTitle extends Component {
                                 <Link activeClass="active" to="ranking" spy={true} smooth={true} offset={50} duration={500}><MDBIcon icon="chart-bar" className='titleIcon'/></Link>
                             </div>
                             <div className='viewTitle'>Ranking</div>
-                            <div className='viewText'>1일전 부터 3일전 까지의 차트 랭킹</div>
+                            <div className='viewText'>어제의 검색 단어 순위</div>
                         </div>
 
                         <div className='viewBox02'>

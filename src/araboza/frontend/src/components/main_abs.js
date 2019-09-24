@@ -31,7 +31,6 @@ class MainAbs extends Component {
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
-                                <p>설명란</p>
                                 <a onClick={this.toggle(1)}>Read More</a>
                             </div>
                         </div>
@@ -46,7 +45,6 @@ class MainAbs extends Component {
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
-                                <p>설명란</p>
                                 <a onClick={this.toggle(2)}>Read More</a>
                             </div>
                         </div>
@@ -61,13 +59,12 @@ class MainAbs extends Component {
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
-                                <p>설명란</p>
                                 <a onClick={this.toggle(3)}>Read More</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                 <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg">
+                 <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg" className='mdbHeader'>
                     <MDBModalHeader toggle={this.toggle(1)}>메인 화면</MDBModalHeader>
                     <MDBModalBody>
                         <MainAbsMain/>
@@ -77,20 +74,20 @@ class MainAbs extends Component {
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg">
+                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg" className='mdbHeader'>
                     <MDBModalHeader toggle={this.toggle(2)}>로딩 화면</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        <img src={require('../img/arabozaRoading.png')} className="cssImg01" alt=""/>
+                        <h3>중지버튼을 누를 시 검색한 단어요청을 중지합니다.</h3>
+                        <h3><MDBIcon icon="times" />버튼을 누를 시 모델창은 사라지지만 로딩은 유지 됩니다.</h3>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(2)}>Close</MDBBtn>
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg">
-                    <MDBModalHeader toggle={this.toggle(3)}>결과 화면</MDBModalHeader>
+                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg" className='mdbHeader'>
+                    <MDBModalHeader toggle={this.toggle(3)} >결과 화면</MDBModalHeader>
                     <MDBModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

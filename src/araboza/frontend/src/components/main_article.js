@@ -28,8 +28,8 @@ class MainArticle extends Component {
                     <div className='articleDetail'>
                         <div className='articleIcon'>
                             <MDBIcon icon="brain" className='featureIcon'/>
-                            <h3>주요 특징1</h3>
-                            <a href="#" onClick={this.toggle(10)}>Read</a>
+                            <h3>딥러닝 활용</h3>
+                            <a onClick={this.toggle(1)}>Read</a>
                         </div>
                     </div>
                 </div>
@@ -40,9 +40,9 @@ class MainArticle extends Component {
                     </div>
                     <div className='articleDetail'>
                         <div className='articleIcon'>
-                            <MDBIcon icon="user-minus" className='featureIcon'/>
-                            <h3>주요 특징2</h3>
-                            <a href="#" onClick={this.toggle(2)}>Read</a>
+                            <MDBIcon icon="database" className='featureIcon'/>
+                            <h3>빅데이터 분석</h3>
+                            <a onClick={this.toggle(2)}>Read</a>
                         </div>
                     </div>
                 </div>
@@ -52,9 +52,9 @@ class MainArticle extends Component {
                     </div>
                     <div className='articleDetail'>
                         <div className='articleIcon'>
-                            <MDBIcon icon="mobile-alt"  className='featureIcon'/>
-                            <h3>주요 특징3</h3>
-                            <a href="#" onClick={this.toggle(3)}>Read</a>
+                            <MDBIcon icon="user-minus" className='featureIcon'/>
+                            <h3>긍부정 검사</h3>
+                            <a onClick={this.toggle(3)}>Read</a>
                         </div>
                     </div>
                 </div>
@@ -65,55 +65,48 @@ class MainArticle extends Component {
                     </div>
                     <div className='articleDetail'>
                         <div className='articleIcon'>
-                            <MDBIcon icon="database" className='featureIcon'/>
-                            <h3>주요 특징4</h3>
-                            <a href="#" onClick={this.toggle(4)}>Read</a>
+                            <MDBIcon icon="mobile-alt"  className='featureIcon'/>
+                            <h3>반응형 지원</h3>
+                            <a onClick={this.toggle(4)}>Read</a>
                         </div>
                     </div>
                 </div>
             </div>
-                <MDBModal isOpen={this.state.modal10} toggle={this.toggle(10)} frame position="bottom" backdrop={false}>
-                    <MDBModalHeader toggle={this.toggle(10)}>11111111111111</MDBModalHeader>
+                <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg" backdrop={false} className='articleT'>
+                    <MDBModalHeader toggle={this.toggle(10)}>딥러닝 활용</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        딥러닝을 활용하여 단어의 긍정과 부정을 분석하고 단어와 연관된 단어 또한 불러온다
                     </MDBModalBody>
                     <MDBModalFooter>
-                        <MDBBtn color="secondary" onClick={this.toggle(10)}>Close</MDBBtn>
+                        <MDBBtn color="secondary" onClick={this.toggle(1)}>Close</MDBBtn>
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg" backdrop={false}>
-                    <MDBModalHeader toggle={this.toggle(2)}>2222222222222</MDBModalHeader>
+                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} size="lg" backdrop={false} className='articleT'>
+                    <MDBModalHeader toggle={this.toggle(2)}>빅데이터 분석</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        각 커뮤니티 사이트의 제목들을 긁어 단어를 분석한다.
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(2)}>Close</MDBBtn>
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg" backdrop={false}>
-                    <MDBModalHeader toggle={this.toggle(3)}>33333333333</MDBModalHeader>
+                <MDBModal isOpen={this.state.modal3} toggle={this.toggle(3)} size="lg" backdrop={false} className='articleT'>
+                    <MDBModalHeader toggle={this.toggle(3)}>긍부정 검사</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        키워드에 대한 긍정도와 부정 분석도를 확인한다.
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(3)}>Close</MDBBtn>
                     </MDBModalFooter>
                 </MDBModal>
 
-                <MDBModal isOpen={this.state.modal4} toggle={this.toggle(4)} size="lg" backdrop={false}>
-                    <MDBModalHeader toggle={this.toggle(4)}>4444444444444</MDBModalHeader>
+                <MDBModal isOpen={this.state.modal4} toggle={this.toggle(4)} size="lg" backdrop={false} className='articleT'>
+                    <MDBModalHeader toggle={this.toggle(4)}>반응형 지원</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        Web 기반으로 설계되어 플랫폼에 상관 없이 동일한 환경에서 이용할 수 있으며 Pc, Moblie, 태블릿에 따라 각기 다른
+                        화면 지원
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(4)}>Close</MDBBtn>

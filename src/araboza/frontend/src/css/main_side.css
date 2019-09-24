@@ -4,9 +4,10 @@
 }
 
 .side {
+    font-family: SCDream4,serif;
     margin : 0 auto;
     width : 80%;
-    color : #42D728;
+    color : #3E4551;
     background-color: #273D59;
     border-radius: 15px;
 }

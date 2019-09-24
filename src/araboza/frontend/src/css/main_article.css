@@ -2,7 +2,10 @@
     font-family: 'SCDream4';
     src: url(../img/SCDream4.otf) format('truetype');
 }
-
+.articleT {
+    color: #1f1f1f;
+    font-family: SCDream4, serif;
+}
 .article {
     position: absolute;
     margin-top: 30vh;

@@ -1,10 +1,13 @@
-MDBModal {
 
-}
 
 @font-face {
     font-family: 'TmonMonsori';
     src: url(../img/TmonMonsori.ttf.ttf) format('truetype');
+}
+
+.mdbHeader{
+    font-family: TmonMonsori, serif;
+    color: #4B515D;
 }
 
 .absBody {

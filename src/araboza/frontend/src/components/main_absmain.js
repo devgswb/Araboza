@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from "mdbreact";
+import '../css/main_absmain.css'
+
 class MainAbsMain extends Component {
     render() {
         return (
             <MDBContainer>
       <MDBCarousel
       activeItem={1}
-      length={3}
+      length={5}
       showControls={true}
       showIndicators={true}
       className="z-depth-1"
@@ -22,8 +24,6 @@ class MainAbsMain extends Component {
           <MDBMask overlay="black-light" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Light mask</h3>
-            <p>First text</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="2">
@@ -33,11 +33,9 @@ class MainAbsMain extends Component {
               src={require('../img/arabozaMainSearchForm.png')}
               alt="Second slide"
             />
-          <MDBMask overlay="black-strong" />
+          <MDBMask overlay="black-light" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Strong mask</h3>
-            <p>Second text</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
         <MDBCarouselItem itemId="3">
@@ -47,11 +45,9 @@ class MainAbsMain extends Component {
               src={require('../img/arabozaMainSearchCancel.png')}
               alt="Third slide"
             />
-          <MDBMask overlay="black-slight" />
+            <MDBMask overlay="black-light"/>
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Slight Mast</h3>
-            <p>Third text</p>
           </MDBCarouselCaption>
         </MDBCarouselItem>
 
@@ -62,11 +58,21 @@ class MainAbsMain extends Component {
               src={require('../img/arabozaMainSearchError.png')}
               alt="Third slide"
             />
-          <MDBMask overlay="black-slight" />
+          <MDBMask overlay="black-light" />
           </MDBView>
           <MDBCarouselCaption>
-            <h3 className="h3-responsive">Slight Mast</h3>
-            <p>Third text</p>
+          </MDBCarouselCaption>
+        </MDBCarouselItem>
+        <MDBCarouselItem itemId="5">
+          <MDBView>
+            <img
+              className="d-block w-100"
+              src={require('../img/arabozaMainRanking.png')}
+              alt="Third slide"
+            />
+          <MDBMask overlay="black-light" />
+          </MDBView>
+          <MDBCarouselCaption>
           </MDBCarouselCaption>
         </MDBCarouselItem>
       </MDBCarouselInner>
