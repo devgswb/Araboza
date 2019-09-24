@@ -30,18 +30,25 @@ class IndexViewSet(meviewsets.ModelViewSet):
 
 
 class SearchAPIView(views.APIView):
+    sa = analysis.SentiAnalysis()
     @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request):
         search_word = request.query_params['word']
-        sa = analysis.SentiAnalysis()
-        data_list = []
-        for site_code in range(1, 16):
-            # site_code 7번 정지
-            if site_code != 7:
-                data = sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
-                data_list.append(data)
-
-        return Response(data_list)
+        try:
+            site_code = int(request.query_params['sitecode'])
+        except:
+            site_code = False
+        if site_code:
+            data = self.sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
+            return Response(data)
+        else:
+            data_list = []
+            for site_code in range(1, 16):
+                # site_code 7번 정지
+                if site_code != 7:
+                    data = self.sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
+                    data_list.append(data)
+            return Response(data_list)
 
 class HotWordAPIView(views.APIView):
     @method_decorator(cache_page(60 * 60 * 2))
