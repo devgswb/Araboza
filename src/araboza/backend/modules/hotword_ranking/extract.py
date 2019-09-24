@@ -1,4 +1,4 @@
-import json
+﻿import json
 import pymongo
 import urllib
 import datetime
@@ -13,11 +13,20 @@ def get_hotword_ranking(date):
     date = date.split('-')
     date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
     date = [date, date + timedelta(days=-1), date + timedelta(days=-2), date + timedelta(days=-3)]
-    username = urllib.parse.quote_plus('devgswb')
-    password = urllib.parse.quote_plus('1q@W3e4r')
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
-    db = conn.get_database('araboza')
-    collection = db.wordsByDate
+    dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
+    with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
+        data = json.load(data_file)
+        self.username = data['username']
+        self.password = data['password']
+        self.db_host = data['host']
+        self.db_port = data['port']
+        self.db_name = data['db_name']
+        self.db_live_data = data['db_live_data']
+    username = urllib.parse.quote_plus(self.username)
+    password = urllib.parse.quote_plus(self.password)
+    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
+    db = conn.get_database(self.db_name)
+    collection = db[self.db_live_data]
 
     for index, i_date in enumerate(date):
         rs = collection.find({
