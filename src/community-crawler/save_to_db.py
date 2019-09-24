@@ -30,9 +30,9 @@ def save_crawl_csv_data(site_code):
     parser = Komoran()
     username = urllib.parse.quote_plus('devgswb')
     password = urllib.parse.quote_plus('1q@W3e4r')
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.251:57017/araboza')
+    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.138:57017/araboza')
     db = conn.get_database('araboza')
-    collection = db.wordsByDate
+    collection = db.test #wordsByDate
     # DB 연결
     dirpath = os.path.dirname(__file__) + f'/data/{site_code}/'
     print(dirpath)
@@ -44,36 +44,50 @@ def save_crawl_csv_data(site_code):
         year = int(rawdata[0])
         month = int(rawdata[1])
         day = int(rawdata[2])
-        csv_data = pd.read_csv(fpath, names=['day', 'title'], encoding='utf-8')
-        words = []
+        try:
+            csv_data = pd.read_csv(fpath, names=['day', 'title'], encoding='utf-8')
+        except:
+            print(year, month, day, SITE_CODE[site_code], "Error")
+        data = {}
         for title in csv_data.title.tolist():
             RE_EMOJI = re.compile('[\U00010000-\U0010ffff]', flags=re.UNICODE)
             emoji_removed_title = RE_EMOJI.sub(r'', title)
             try:
-                words.append(parser.pos(emoji_removed_title))
+                analyzed_morpheme_list = parser.pos(emoji_removed_title)
+                data = {
+                    "title": title,
+                    "words": [
+                        {
+                            "morpheme": record[0],
+                            "type": record[1]
+                        } for record in analyzed_morpheme_list
+                    ]
+                }
             except:
                 print(emoji_removed_title)
                 raise
         # csv 파일 로드
-        try:
-            collection.update(
-                {
-                    'code': site_code,
-                    'year': year,
-                    'month': month,
-                    'day': day,
-                }, # 해당하는 데이터 찾기
-                {
-                    'code': site_code,
-                    'year': year,
-                    'month': month,
-                    'day': day,
-                    'time': datetime.datetime(year, month, day),
-                    'data': words
-                }, # 해당하는 데이터를 update
-                upsert=True
-            )
-            print(year, month, day, SITE_CODE[site_code], "데이터 추가 완료")
-        except:
-            raise
+            try:
+                collection.update(
+                    {
+                        'code': site_code,
+                        'year': year,
+                        'month': month,
+                        'day': day,
+                        'data.title': title
+                    }, # 해당하는 데이터 찾기
+                    {
+                        'code': site_code,
+                        'year': year,
+                        'month': month,
+                        'day': day,
+                        'time': datetime.datetime(year, month, day),
+                        'data': data
+                    }, # 해당하는 데이터를 update
+                    upsert=True
+                )
+            except:
+                raise
+        print(year, month, day, SITE_CODE[site_code], "데이터 추가 완료")
         # DB에 저장
+# save_crawl_csv_data(8)

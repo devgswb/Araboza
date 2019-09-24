@@ -46,7 +46,7 @@ class SearchAPIView(views.APIView):
             for site_code in range(1, 16):
                 # site_code 7번 정지
                 if site_code != 7:
-                    data = self.sa.result_from_db('2019-08-01', '2019-09-01', site_code, search_word=search_word)
+                    data = self.sa.result_from_db('2019-08-01', '2019-09-22', site_code, search_word=search_word)
                     data_list.append(data)
             return Response(data_list)
 

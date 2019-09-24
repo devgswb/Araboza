@@ -50,36 +50,32 @@ class SentiAnalysis:
         collection = db[self.db_live_data]
         rs = collection.find({
             'code': site_code,
-            'time': {'$lte': end_date, '$gte': start_date}
+            'time': {'$lte': end_date, '$gte': start_date},
+            'data.words': {'$elemMatch': {'morpheme': search_word}}
         })
         total_sentence_count = 0
         related_words = {}
         for record in rs:
-            record_year = record['year']
-            record_month = record['month']
-            record_day = record['day']
-            date = f'{record_year}-{record_month:02d}-{record_day:02d}'
-            if not date in word_freq_by_date:
-                word_freq_by_date[date] = 0
-            for sentence in record['data']:
-                word_freq_by_date[date] += 1
-                word_list = [ word[0] for word in sentence ] # 한 문장의 단어들을 묶은 것
-                if not (search_word in word_list):
-                    continue
-                analysis_result = self.__analysis__(word_list)
-                pos += analysis_result['positive']
-                neg += analysis_result['negative']
-                # 긍부정 판단
-                total_sentence_count += 1
-                noun = ['NNP', 'NNG']
-                for sub_word in sentence:
-                    noun_word = sub_word[0] # 명사 단어
-                    part_of_word = sub_word[1] # 품사
-                    if part_of_word in noun:
-                        if not (noun_word in related_words):
-                            related_words[noun_word] = 0
-                        else:
-                            related_words[noun_word] += 1
+            sentence = record['data']
+            word_list = []  # 한 문장의 단어들을 묶은 것
+            for word in sentence['words']:
+                word_list.append(word['morpheme'])
+            if not (search_word in word_list):
+                continue
+            analysis_result = self.__analysis__(word_list)
+            pos += analysis_result['positive']
+            neg += analysis_result['negative']
+            # 긍부정 판단
+            total_sentence_count += 1
+            noun = ['NNP', 'NNG']
+            for word in sentence['words']:
+                noun_word = word['morpheme']  # 명사 단어
+                part_of_word = word['type']  # 품사
+                if part_of_word in noun:
+                    if not (noun_word in related_words):
+                        related_words[noun_word] = 0
+                    else:
+                        related_words[noun_word] += 1
         sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
         # 정렬된 결과 가장 많이 나온 단어는 무조건 검색된 단어니까 첫번째 인덱스는 제외한 [1:6]
         conn.close()
