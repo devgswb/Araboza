@@ -1,8 +1,17 @@
+@font-face {
+    font-family: 'BlackHanSans-Regular';
+    src: url(../img/BlackHanSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SCDream3';
+    src: url(../img/SCDream3.otf) format('truetype');
+}
 
 .navBox {
     position: absolute;
     margin-top: 6%;
-    margin-left: 25%;
+    margin-left: 22%;
     transform: translate(-50%,-50%);
     width: 35%;
     height: 37%;
@@ -23,8 +32,8 @@
     width : 100%;
     height : 100%;
     background: transparent;
-    border-top : 20px solid #fff;
-    border-left : 20px solid #fff;
+    border-top : 20px solid #4EB8ED ;
+    border-left : 20px solid #4EB8ED ;
     box-sizing: border-box;
 }
 
@@ -36,8 +45,8 @@
     width : 100%;
     height : 100%;
     background: transparent;
-    border-bottom : 20px solid #fff;
-    border-right : 20px solid #fff;
+    border-bottom : 20px solid #4EB8ED;
+    border-right : 20px solid #4EB8ED;
     box-sizing: border-box;
 }
 
@@ -45,7 +54,7 @@
     position: absolute;
     top: 30px;
     left: -30px;
-    background: #262626;
+    background: #013E5C;
     width : calc(100% + 60px);
     height : calc(100% - 60px);
     transition: 0.5s;
@@ -70,21 +79,24 @@
 .navText > div > h2 {
     margin : 0 0 20px;
     padding: 0;
-    color : #fff;
+    color : #4EB8ED ;
+    font-family: BlackHanSans-Regular, serif;
+    font-size: 2.5em;
 }
 
 .navText > div >  p {
     margin : 0 0 20px;
     padding: 0;
-    color : #fff;
+    color : #4EB8ED ;
     font-size : 18px;
+    font-family: SCDream3, serif;
 }
 
 .navIcon {
     width : 80px;
     height: 80px;
-    background: #fff;
-    color: #262626;
+    background: #4EB8ED ;
+    color: #016CA0;
     text-align: center;
     line-height : 80px !important;
     font-size : 40px !important;
@@ -124,15 +136,6 @@
 @media (max-width: 700px) {
     .navBox {
         margin-top: 25%;
-        margin-left: 50%;
-        width: 90%;
-        height: 35%;
-    }
-}
-
-@media (max-width: 525px) {
-    .navBox {
-        margin-top: 27%;
         margin-left: 50%;
         width: 90%;
         height: 35%;

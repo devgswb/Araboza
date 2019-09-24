@@ -1,6 +1,11 @@
+@font-face {
+    font-family: 'SCDream4';
+    src: url(../img/SCDream4.otf) format('truetype');
+}
+
 .article {
     position: absolute;
-    margin-top: 15%;
+    margin-top: 30vh;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 1200px;
@@ -83,7 +88,7 @@
     top: calc(50% - 16px);
 }
 
-.article .articleBox .articleDetail .articleIcon .titleIcon {
+.article .articleBox .articleDetail .articleIcon .featureIcon {
     font-size: 80px;
     color: #fff;
 }
@@ -92,6 +97,7 @@
     margin: 0;
     padding: 10px 0;
     color : #fff;
+    font-family: SCDream4, serif;
 }
 
 .article .articleBox .articleDetail .articleIcon a {
@@ -103,6 +109,7 @@
     transition: 0.5s;
     border-radius: 20px;
     transform: scale(0);
+    font-family: SCDream4, serif;
 }
 
 .article .articleBox:hover .articleDetail .articleIcon a {
@@ -113,6 +120,7 @@
     background: #fff;
     color: #262626;
 }
+
 
 @media (max-width: 1200px) {
     .article {
@@ -135,7 +143,6 @@
 
     .article {
         display: initial;
-        margin-top: 29%;
     }
 
     .article .articleBox {
@@ -145,17 +152,31 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
 
     .article {
-        top : 30%;
-        left: 0;
-        transform: translate(0);
+        margin-top: 35vh;
+        height: 400px;
     }
 
     .article .articleBox {
-        width: 100%;
-        height: 250px;
-        float: none;
+        height: 200px;
     }
+
+    .article .articleBox .articleImg {
+        height: 200px;
+    }
+
+    .article .articleBox .articleImg img {
+        height: 200px;
+    }
+
+    .article .articleBox .articleDetail {
+        height: 200px;
+    }
+
+    .article .articleBox .articleDetail .articleIcon .featureIcon {
+    font-size: 40px;
+    color: #fff;
+}
 }

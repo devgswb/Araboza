@@ -16,8 +16,10 @@ class MainSection extends Component {
          this.state = {
              data : {
                  day : '',
-                 resultData : [],
-                 now : ''
+                 oneDayData : [],
+                 oneCount: [],
+                 twoDayData : [],
+                 total: []
              }
 
         };
@@ -26,40 +28,34 @@ class MainSection extends Component {
                 console.log("검색페이지");
                 localStorage.setItem('result', res.data['result']);
                 this.setState({
-                    resultData : res.data.result
+                    oneDayData : res.data.result
                 });
-                console.log(this.state.resultData)
+                console.log(this.state. oneDayData);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+         axios.get(`http://127.0.0.1:8000/api/hotword/?day=1`)
+            .then((res) => {
+                console.log("검색페이지");
+                localStorage.setItem('result', res.data['result']);
+                this.setState({
+                    twoDayData : res.data.result
+                });
+                console.log(this.state. twoDayData)
             }).catch(function (error) {
                 console.log(error);
             });
 
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleClick1 = this.handleClick1.bind(this);
-         this.handleClick2 = this.handleClick2.bind(this);
-         this.handleClick3 = this.handleClick3.bind(this);
     }
 
     handleClick1() {
     this.setState(state => ({
         day : '0',
-        now : '1'
     }));
         }
-
-    handleClick2() {
-    this.setState(state => ({
-        day : '1',
-        now : '2'
-    }));
-        }
-
-    handleClick3() {
-    this.setState(state => ({
-        day : '2',
-        now : '3'
-    }));
-        }
-
 
     handleSubmit = (e) => {
         console.log('this.title ->', this.state.day);
@@ -69,17 +65,16 @@ class MainSection extends Component {
                 console.log("검색페이지");
                 localStorage.setItem('result', res.data['result']);
                 this.setState({
-                    resultData : res.data.result
+                   oneDayData : res.data.result,
+                    day : '1',
                 });
-                console.log(this.state.resultData)
+                console.log(this.state.oneDayData)
             }).catch(function (error) {
                 console.log(error);
             })
     };
 
         state = {
-        day : '0',
-        posts : [],
         modal6: false,
         modal7: false
     };
@@ -88,75 +83,79 @@ class MainSection extends Component {
         let modalNumber = 'modal' + nr;
         this.setState({
             [modalNumber]: !this.state[modalNumber],
-            day : '0',
-             now : '1'
+            day: '0'
         });
     };
 
     render() {
-        const Day = this.state.day;
-        let wWidth = window.matchMedia("screen and (max-width: 500px)");
-        let moblieData = [];
-        let pcData = this.state.resultData;
+        let oneData = this.state.oneDayData;
+        let twoData = this.state.twoDayData;
+        let oneChange = [];
+        let twoChange = [];
+        let total = [];
+        let upDown = [];
         let tbody;
-
-        function condition() {
-            if(wWidth.matches === true) {
-                pcData.map ((list,index) => {
-                if(index <5) {
-                    moblieData.push(list);
+        let now = this.state.day;
+        function count() {
+            if(now === '0'){
+                for(let count=0; count < oneData.length; count++) {
+                    oneChange.push(oneData[count].changes);
                 }
-            });
-                mobile();
-            }
-            else {
-                pc();
+                for(let count=0; count < twoData.length; count++) {
+                    twoChange.push(twoData[count].changes);
+                }
+                for(let count=0; count < twoData.length; count++) {
+                    if(oneChange[count] - twoChange[count] < 0) {
+                        total.push(Math.abs(oneChange[count] - twoChange[count]));
+                    }
+                    else {
+                        total.push(oneChange[count] - twoChange[count]);
+                    }
+                }
+                condition();
+                console.log(oneChange);
+                console.log(twoChange);
+                console.log(total);
             }
         }
 
-        function mobile() {
-            tbody = moblieData.map ((mlist, index) => (
-                    <TableRow key={index+1}>
-                        <TableCell>{index+1}</TableCell>
-                        <TableCell align='right'>{mlist.word}</TableCell>
-                        <TableCell align='right'>{mlist.changes}</TableCell>
-                    </TableRow>
-                ));
-                console.log(moblieData);
+        function condition() {
+            for(let count=0; count < oneData.length; count++) {
+                if(oneChange[count] > twoChange[count]) {
+                    upDown.push(<MDBIcon icon="angle-double-up" />)
+                }
+                else if (oneChange[count] < twoChange[count]) {
+                    upDown.push(<MDBIcon icon="angle-double-down" />)
+                }
+                else {
+                    upDown.push(<MDBIcon icon="arrows-alt-h" />)
+                }
+            }
         }
 
         function pc() {
-            tbody = pcData.map ((list,index) => (
+            if(now === '0'){
+                tbody = oneData.map ((list,index) => (
                 <TableRow key={index+1}>
                     <TableCell>{index+1}</TableCell>
                     <TableCell align='right'>{list.word}</TableCell>
-                    <TableCell align='right'>{list.changes}</TableCell>
+                    <TableCell align='right'>{upDown[index]} ({total[index]})</TableCell>
                 </TableRow>
-            ));
+                ));
+            }
         }
-
-        if(Day === '0') {
-            condition()
-        }
-        else if(Day === '1') {
-            condition()
-        }
-        else if(Day === '2') {
-            condition()
-        }
-        else {
-            tbody = <div>일자를 클릭하세요</div>
-        }
+        count();
+        pc();
         return (
             <div  className ="section">
                 <MDBContainer className="sectionbtn">
                     <form onSubmit={this.handleSubmit}>
-                        <div className='viewIcon'><MDBIcon icon="chart-bar" onClick={this.toggle(8)} className='titleIcon'/></div>
+                        <div className='sectionIcon'><MDBIcon icon="angle-double-right" onClick={this.toggle(8)} className='sectionTitle '/></div>
                     </form>
                     <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right" backdrop={false}>
                         <MDBModalHeader toggle={this.toggle(8)}>
                             <div className='section_title'>
-                                <h2>{this.state.now}일전 Ranking</h2>
+                                <h2>Ranking Chart</h2>
                             </div>
                         </MDBModalHeader>
                         <MDBModalBody className='sectionModel'>
@@ -172,11 +171,6 @@ class MainSection extends Component {
                                      {tbody}
                                 </MDBTableBody>
                             </MDBTable>
-                            <form onSubmit={this.handleSubmit}>
-                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick1} type='submit'>1일 전</MDBBtn>
-                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick2} type='submit'>2일 전</MDBBtn>
-                            <MDBBtn className='sectionBtn' outline color="primary" onClick={this.handleClick3} type='submit'>3일 전</MDBBtn>
-                            </form>
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn outline color="secondary" onClick={this.toggle(8)}>Close</MDBBtn>
@@ -189,5 +183,3 @@ class MainSection extends Component {
 }
 
 export default MainSection;
-
-/*<MDBBtn outline color="info" onClick={this.toggle(8)} type='submit'>Chart</MDBBtn>*/

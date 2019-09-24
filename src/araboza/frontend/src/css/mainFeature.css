@@ -2,25 +2,43 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-    min-height: 100vh;
+    height: 110vh;
+    min-height: 110vh;
     display: grid;
-    grid-template-rows: 8%  30% 62%;
+    grid-template-rows: 50vh 60vh;
      grid-template-areas:
-         "fTag"
-         "fSHeader"
+         "fRanking"
          "fArticle"
-}
-
-.featureTag {
-    grid-area: fTag;
-}
-
-.featureSubHeader {
-    grid-area: fSHeader;
 }
 
 .featureArticle {
     grid-area: fArticle;
+    height: 60vh;
+}
+
+.featureRanking {
+    margin : 0 auto;
+    background-color:#4EB8ED;
+    grid-area: fRanking;
+    width: 90%;
+    display: grid;
+    border-radius: 15px;
+    grid-template-columns: 80% 10%;
+     grid-template-areas:
+         "fRainkingWordCloud fSection"
+}
+
+.featureRainkingWordCloud {
+    grid-area: fRainkingWordCloud;
+}
+
+.featureSection {
+    grid-area: fSection;
+}
+
+@media (max-width: 768px) {
+    .featureRanking {
+        width: 95%;
+        grid-template-rows: 85% 15%;
+    }
 }

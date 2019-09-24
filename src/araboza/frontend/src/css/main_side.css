@@ -1,7 +1,14 @@
+@font-face {
+    font-family: 'SCDream4';
+    src: url(../img/SCDream4.otf) format('truetype');
+}
+
 .side {
     margin : 0 auto;
     width : 80%;
     color : #42D728;
+    background-color: #273D59;
+    border-radius: 15px;
 }
 
 .sideAlert {
@@ -10,19 +17,21 @@
 }
 
 .side h2 {
-    font-size : 2.5rem;
+    font-size : 2rem;
 }
 
 .mt-0 input[type="text"]{
     margin : 5% auto 0 auto;
     width : 80%;
     font-size : 3.25rem;
+    font-family: SCDream4, serif;
     color : #42D728;
 }
 
 @media(max-width: 1150px) {
 
     .side {
+        margin-top : 14vh;
         width : 90%;
     }
     .sideAlert {
@@ -41,13 +50,13 @@
 
 @media(max-width: 505px) {
     .side {
-        margin : 0 auto;
-        width : 100%;
-        height: 200px;
+        margin : 40px auto;
+        width : 97%;
+        height: 170px;
     }
 
     .mt-0 input[type="text"]{
-        font-size : 2.5rem;
+        font-size : 2.1rem;
         width : 100%;
         margin-left: 0;
         color : white;

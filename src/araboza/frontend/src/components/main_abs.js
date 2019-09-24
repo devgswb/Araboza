@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../css/main_abs.css'
 import {MDBBtn, MDBIcon, MDBModal, MDBModalBody, MDBModalFooter, MDBModalHeader} from "mdbreact";
+import MainAbsMain from "./main_absmain";
 
 class MainAbs extends Component {
 
@@ -24,14 +25,14 @@ class MainAbs extends Component {
                     <div className='absCard'>
                         <div className='view absFace1'>
                             <div className='absText'>
-                                <MDBIcon icon="globe" className='titleIcon'/>
+                                <MDBIcon icon="home" className='absIcon'/>
                                 <h3>메인화면</h3>
                             </div>
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
                                 <p>설명란</p>
-                                <a href='#' onClick={this.toggle(1)}>Read More</a>
+                                <a onClick={this.toggle(1)}>Read More</a>
                             </div>
                         </div>
                     </div>
@@ -39,14 +40,14 @@ class MainAbs extends Component {
                     <div className='absCard'>
                         <div className='view absFace1'>
                             <div className='absText'>
-                                <MDBIcon icon="globe" className='titleIcon'/>
+                                <MDBIcon icon="redo" className='absIcon'/>
                                 <h3>로딩화면</h3>
                             </div>
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
                                 <p>설명란</p>
-                                <a href='#' onClick={this.toggle(2)}>Read More</a>
+                                <a onClick={this.toggle(2)}>Read More</a>
                             </div>
                         </div>
                     </div>
@@ -54,14 +55,14 @@ class MainAbs extends Component {
                     <div className='absCard'>
                         <div className='view absFace1'>
                             <div className='absText'>
-                                <MDBIcon icon="globe" className='titleIcon'/>
+                                <MDBIcon icon="th" className='absIcon'/>
                                 <h3>결과화면</h3>
                             </div>
                         </div>
                         <div className='view absFace2'>
                             <div className='absText'>
                                 <p>설명란</p>
-                                <a href='#' onClick={this.toggle(3)}>Read More</a>
+                                <a onClick={this.toggle(3)}>Read More</a>
                             </div>
                         </div>
                     </div>
@@ -69,9 +70,7 @@ class MainAbs extends Component {
                  <MDBModal isOpen={this.state.modal1} toggle={this.toggle(1)} size="lg">
                     <MDBModalHeader toggle={this.toggle(1)}>메인 화면</MDBModalHeader>
                     <MDBModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
+                        <MainAbsMain/>
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(1)}>Close</MDBBtn>

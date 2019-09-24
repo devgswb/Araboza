@@ -8,7 +8,6 @@ class MainMethod extends Component {
     render() {
         return (
             <div className="mainMethod">
-                <div className='methodTag'><MainTag/></div>
                 <div className='methodSliderShow'><MainSliderShow/></div>
                 <div className='methodAbs'><MainAbs/></div>
             </div>

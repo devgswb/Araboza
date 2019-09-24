@@ -4,18 +4,23 @@ body {
     grid-template-rows: auto;
 }
 @font-face {
-    font-family: 'YeonSung-Regular';
-    src: url(../img/YeonSung-Regular.ttf) format('truetype');
+    font-family: 'TmonMonsori';
+    src: url(../img/TmonMonsori.ttf.ttf) format('truetype');
 }
 
 ._main {
     width : 100%;
     height: auto;
 }
-
-._bg, ._bg2, ._bg3 {
+._bg {
     width : 100%;
     min-height: 100vh;
+    position: absolute;
+}
+
+._bg2{
+    width : 100%;
+    min-height: 310vh;
     position: absolute;
 }
 
@@ -29,13 +34,14 @@ body {
     -webkit-clip-path: inset(0 0 0 0);
     clip-path: inset(0 0 0 0);
     z-index: -2;
-    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
-    min-height: 100vh;
+    /*background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%); */
+    background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
+    min-height: 310vh;
 }
 
 ._mainPack {
     display: grid;
-    grid-template-rows: 100vh 100vh 100vh;
+    grid-template-rows: 100vh 110vh 100vh;
     grid-template-areas:
               "mainContainer"
               "mainFeature"
@@ -114,9 +120,57 @@ _mainMethod {
          "title"
     }
 }
+/*
 @media (max-width: 600px) {
     ._bg {
         -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
         clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    }
+}
+*/
+
+
+@media (max-width: 900px) {
+    ._mainPack {
+    grid-template-rows: 100vh 110vh 105vh;
+    }
+
+    ._bg2{
+        width : 100%;
+        min-height: 315vh;
+        position: absolute;
+    }
+}
+
+@media (max-width: 520px) {
+    ._mainPack {
+    grid-template-rows: 100vh 110vh 145vh;
+    }
+
+    ._mainContainer {
+        width: 100%;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 15% 15% 27% 1fr;
+        grid-template-areas:
+         "header"
+         "nav"
+         "side"
+         "title"
+    }
+
+    ._bg2{
+        width : 100%;
+        min-height: 355vh;
+        position: absolute;
+    }
+
+    .navModel {
+        margin-top: 5%;
+    }
+
+    .navModel h3{
+        font-family: TmonMonsori, serif;
     }
 }

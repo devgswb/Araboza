@@ -9,6 +9,7 @@ import MainBackground from "./main_background";
 import MainFeature from "./mainFeature";
 import MainMethod from "./mainMethod";
 import { Element} from 'react-scroll'
+import {MDBBtn, MDBContainer, MDBModal, MDBModalBody, MDBModalFooter, MDBModalHeader} from "mdbreact";
 
 
 class main extends Component {
@@ -50,10 +51,33 @@ class main extends Component {
     render() {
         let wWidth = this.state.width;
         let cssDesign;
+        let navDesign;
         if(wWidth >= 1150) {
             cssDesign = <div className='_css'><MainCss/></div>;
         }
         else {
+        }
+
+        if(wWidth < 520) {
+            navDesign =
+                    <MDBContainer className='navModel'>
+                        <h3> 딥러닝 화제도 분석</h3>
+                        <MDBBtn outline color="primary" onClick={this.toggle(2)}>more</MDBBtn>
+                        <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)}>
+                            <MDBModalHeader toggle={this.toggle(2)}>MDBModal title</MDBModalHeader>
+                            <MDBModalBody>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat.
+                            </MDBModalBody>
+                            <MDBModalFooter>
+                                <MDBBtn outline color="secondary" onClick={this.toggle(2)}>Close</MDBBtn>
+                            </MDBModalFooter>
+                        </MDBModal>
+                    </MDBContainer>
+        }
+        else {
+            navDesign = <MainNav/>;
         }
 
         return (
@@ -69,11 +93,11 @@ class main extends Component {
                     <div className='_mainContainer'>
                         <div className='_title'><MainTitle/></div>
                         <div className = '_header'><MainHeader/></div>
-                        <div className='_nav'><MainNav/></div>
+                        <div className='_nav'>{navDesign}</div>
                         {cssDesign}
                         <div className = '_side'><MainSide/></div>
                     </div>
-                    <Element name="feature" className = '_mainFeature'><MainFeature/></Element>
+                    <div className = '_mainFeature'><MainFeature/></div>
                     <Element name="method"  className = '_mainMethod'><MainMethod/></Element>
                 </div>
             </div>

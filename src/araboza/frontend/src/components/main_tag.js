@@ -38,6 +38,8 @@ class MainTag extends Component {
                                         <Link activeClass="active" to="method" spy={true} smooth={true} offset={50} duration={500}>method</Link>
                                     </MDBNavItem>
                                     <MDBNavItem>
+                                    </MDBNavItem>
+                                    <MDBNavItem>
                                         <Link activeClass="active" to="feature" spy={true} smooth={true} offset={50} duration={500}>Feature</Link>
                                     </MDBNavItem>
                                 </MDBNavbarNav>

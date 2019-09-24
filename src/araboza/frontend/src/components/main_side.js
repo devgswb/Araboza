@@ -40,7 +40,7 @@ class MainSide extends Component {
             console.log("fuck", this.state);
         }
         else {
-            axios.get(`/api/search/?word=${this.state.title}`,{cancelToken: this.axiosCancelSource.token})
+            axios.get(`/api/search/?word=${this.state.title}&sitecode=`,{cancelToken: this.axiosCancelSource.token})
             .then((res) => {
                 console.log("검색페이지");
                 console.log(res);

@@ -3,18 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import main from './components/main';
 import result_main from './components/result_main';
-import MainFeature from "./components/mainFeature";
-import MainMethod from "./components/mainMethod";
-import MainTag from "./components/main_tag";
-import MainSection from "./components/main_section";
-import MainCss from "./components/main_css";
-import MainNav from "./components/main_nav";
-import MainTitle from "./components/main_title";
-import MainBackground from "./components/main_background";
-import MainArticle from "./components/main_article";
-import MainSubheader from "./components/main_subheader";
-import MainAbs from "./components/main_abs";
-import MainSliderShow from "./components/main_slidershow";
+import result_wordCloud from './components/result_wordCloud';
+import main_rankingWordCloud from './components/main_section';
+
 
 class App extends Component {
     state = {
@@ -37,6 +28,7 @@ class App extends Component {
                 <Router>
                     <Route exact path="/" component = {main}/>
                     <Route path="/result" component = {result_main} />
+                    <Route path="/css" component = {main_rankingWordCloud} />
                 </Router>
             </div>
         )

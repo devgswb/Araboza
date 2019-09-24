@@ -1,23 +1,33 @@
 .mainMethod {
-    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     width: 100%;
     min-height: 100vh;
     display: grid;
+    grid-template-rows: 55vh 45vh;
     grid-template-areas:
-         "methodTag"
          "methodSliderShow"
          "methodAbs"
 }
 
-.methodTag {
-    grid-area : methodTag
-}
-
 .methodSliderShow {
-    padding-top: 2%;
+    height: 55vh;
     grid-area: methodSliderShow ;
 }
 
 .methodAbs {
     grid-area: methodAbs;
+}
+
+
+@media (max-width: 900px) {
+    .mainMethod {
+         height: 105vh;
+        grid-template-rows: 45vh 60vh;
+    }
+}
+
+@media (max-width: 500px) {
+    .mainMethod {
+         height: 125vh;
+        grid-template-rows: 45vh 80vh;
+    }
 }

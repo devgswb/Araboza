@@ -1,19 +1,19 @@
 .header {
     margin-left : 3%;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 @font-face {
-    font-family: 'YeonSung-Regular';
-    src: url(../img/YeonSung-Regular.ttf) format('truetype');
+    font-family: 'BlackHanSans-Regular';
+    src: url(../img/BlackHanSans-Regular.ttf) format('truetype');
 }
 
 
 .header h1 {
-    color : #fff;
-    font-size: 4rem;
+    color : #016CA0;
+    font-size: 4.2rem;
     text-align : left;
-    font-family: YeonSung-Regular, serif;
+    font-family: BlackHanSans-Regular, serif;
 }
 @media(max-width: 600px) {
     .header {
@@ -42,7 +42,7 @@
     }
 
     .header h1 {
-        font-size: 3.7rem;
+        font-size: 4.1rem;
         text-align : center;
     }
 }
