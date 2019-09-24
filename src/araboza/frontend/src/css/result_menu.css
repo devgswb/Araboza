@@ -1,13 +1,17 @@
-/* ARABOZA 타이틀*/
+@font-face {
+    font-family: 'BlackHanSans-Regular';
+    src: url(../img/BlackHanSans-Regular.ttf) format('truetype');
+}
+
+
 .result-title{
-    font-family: YDJ, YS, serif;
+    font-family: BlackHanSans-Regular, serif;
     /*font-size: 70px;*/
     font-size: 3rem;
     width:inherit;
     color:white;
     padding-bottom:50px;
     cursor:pointer;
-
 }
 
 

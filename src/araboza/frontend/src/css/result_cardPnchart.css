@@ -1,3 +1,5 @@
+
+
 p{
     display:inline;
     color:blue;
@@ -21,12 +23,16 @@ p{
 .res-intro{
     font-size: 1.7rem;
     color:black;
-    font-family: Jua, serif;
+    font-family: SCDream4, serif;
 }
 #pn-chart{
     height:200px;
 }
-
+@media(max-width: 900px){
+    .pn-chart-wrap{
+        width:100%;
+    }
+}
 @media(max-width: 505px) {
     .pn-chart-wrap{
         margin: 30px auto;

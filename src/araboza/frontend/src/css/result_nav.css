@@ -20,7 +20,7 @@
     background:#122F3B;
     margin: 5px 0 0 0;
     cursor:pointer;
-    font-family: Jua, serif;
+    font-family: SCDream4, serif;
 }
 .site:hover{
     background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);;
@@ -41,27 +41,19 @@
     box-shadow: 3px 3px 3px #e0e0e0;
     font-size: 1rem;
     margin: 5px 0 0 0;
-    font-family: Jua, serif;
+    font-family: SCDream4, serif;
 }
-#nav-modal{
-    z-index: 9999;
-    width:5rem;
-    height:2rem;
+.nav-alert{
+    font-weight: bold;
+    position:absolute;
+    z-index: 99;
+    right:18%;
+    top:25%;
 }
-/*[tooltip-text]:hover{*/
-/*    position:relative;*/
-/*}*/
-/*[tooltip-text]:hover:after{*/
-/*    content: attr(tooltip-text);*/
-/*    position:absolute;*/
-/*    width:15rem;*/
-/*    bottom:100%;*/
-/*    left:-20%;*/
-/*    background: rgba(0,0,0,0.8);*/
-/*    color:#ffffff;*/
-/*    font-size: 1rem;*/
-/*    z-index: 2;*/
-/*}*/
+.navArrow{
+    display:none;
+}
+
 @media (max-height: 900px) {
     .site {
         line-height: 2.7rem;
@@ -91,12 +83,12 @@
     }
 }
 @media(max-width: 900px) {
-    .site{
-        width:inherit;
-        border-radius: 0;
-        font-size: 0.8rem;
-    }
-    .non-active{
+    /*.site{*/
+    /*    width:inherit;*/
+    /*    border-radius: 0;*/
+    /*    font-size: 0.8rem;*/
+    /*}*/
+    .non-active, .site{
         width:inherit;
         border-radius: 0;
         font-size: 0.8rem;
@@ -163,7 +155,58 @@
     .site:hover{
         font-size: 1rem;
     }
+    .nav-alert{
+        top:82%;
+        left:25%;
+    }
+    .navArrow{
+        display:block;
+        width:100%;
+        z-index: 5;
+        position:fixed;
+    }
+    #arrowLeft, #arrowRight{
+        color:white;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    #arrowLeft{
+        position:absolute;
+        left:1%;
 
+
+    }
+    #arrowRight{
+        position:absolute;
+        right:1%;
+
+    }
+    .nav:hover #arrowLeft{
+        -webkit-animation: leftArrowMove 1s infinite forwards;
+        -moz-animation: leftArrowMove 1s infinite forwards;
+        animation: leftArrowMove 1s infinite forwards;
+    }
+    .nav:hover #arrowRight{
+        -webkit-animation: rightArrowMove 1s infinite forwards;
+        -moz-animation: rightArrowMove 1s infinite forwards;
+        animation: rightArrowMove 1s infinite forwards;
+    }
+    @keyframes rightArrowMove{
+        from{
+            right: 2%;
+        }
+        to{
+            right: 1%;
+        }
+    }
+    @keyframes leftArrowMove{
+        from{
+            left: 2%;
+        }
+        to{
+            left: 1%;
+        }
+    }
 
 }
 

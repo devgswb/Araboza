@@ -17,7 +17,8 @@ class ResultSearch extends Component {
                  alert : false,
                  st : false,
                  color : false
-             }
+             },
+             menuOpen:false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -115,7 +116,6 @@ class ResultSearch extends Component {
         }
     };
 
-
     render() {
          const message = this.state.alert;
          const stop = this.state.color;
@@ -142,6 +142,8 @@ class ResultSearch extends Component {
                     <div style={{ color: "red"}}>{this.state.textError}</div>
                     <MDBBtn outline color="primary" className="btn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/>
                     </MDBBtn>
+                    <button className="mobileBtn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/></button>
+
                     {Alert}
                         <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
                             <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>

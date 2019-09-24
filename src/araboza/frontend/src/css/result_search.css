@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'SCDream4';
+    src: url(../img/SCDream4.otf) format('truetype');
+}
+
 #searchBar{
     color:black;
     width:750px;
@@ -6,15 +11,16 @@
     "input btn";
     grid-template-columns: 85% 15%;
     margin:0 0 0 22rem;
-
+    font-family: SCDream4, serif;
 }
 .input{
     grid-area: input;
     /*width:520px;*/
-    font-size: 1.5rem;
-    margin: 0 0 2rem 0;
+    font-size: 1.8rem;
+    margin: 0 0 3rem 0;
+    padding: 0 0 3rem 0;
+    font-family: Jua, serif;
 }
-
 .btn{
     grid-area: btn;
     display:inline;
@@ -23,17 +29,42 @@
     line-height: 1rem;
     margin: 1.2rem 0 0 0;
 }
+.mobileBtn{
+    display:none;
+    grid-area: mobileBtn;
+}
+.slideBtn{
+    display:none;
+}
 @media (max-width: 505px){
     #searchBar{
         width:10rem;
-        margin:0;
-        grid-template-columns: 80% 20%;
+        margin:0 0 2rem 2rem;
+        grid-template-areas:
+            "input mobileBtn";
+        grid-template-columns: 90% 10%;
     }
     .input{
         font-size: 1rem;
     }
-    .btn{
-        width:1rem;
+    .mobileBtn{
+        display:inline;
+        background: none;
+        border:none;
+        height:3rem;
+        line-height: 3rem;
+        margin: 1.2rem 0 0 0;
+        padding:0;
+        width:3rem;
         font-size: 1rem;
+        color:#4285F4;
+    }
+    .btn{
+        display:none;
+    }
+}
+@media (max-width: 360px){
+    #searchBar{
+        margin: 0 0 0 10px;
     }
 }

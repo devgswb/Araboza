@@ -15,11 +15,11 @@ class ResultLineChart extends Component {
         this.props.data.map((e,i) =>{
             this.count.push({date:e[0], value:e[1]})
         });
-
+        this.word = this.props.search_word;
     }
 
     componentDidMount() {
-        const word = this.props.search_word;
+
         const word2 = '화제도 변화입니다';
 
         let label;
@@ -30,14 +30,16 @@ class ResultLineChart extends Component {
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.grid.template.location = 0;
-        dateAxis.renderer.minGridDistance = 50;
-        dateAxis.fontFamily = "Jua";
+        dateAxis.renderer.minGridDistance = 70;
+        dateAxis.dateFormats.setKey("day", "yy-MM-dd");
+        dateAxis.fontFamily = "SCDream4";
+
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         // valueAxis.tooltip.disabled = true;
         valueAxis.renderer.minWidth = 50;
         valueAxis.renderer.minGridDistance = 50;
-        valueAxis.fontFamily = "Jua";
+        valueAxis.fontFamily = "SCDream4";
 
         let series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.dateX = "date";
@@ -48,7 +50,7 @@ class ResultLineChart extends Component {
         series.tensionX = 0.7;
         series.alwaysShowTooltip = true;
         series.strokeWidth = 3;
-        series.fontFamily = "Jua";
+        series.fontFamily = "SCDream4";
 
 
         series.events.on("ready", function () {
@@ -72,7 +74,7 @@ class ResultLineChart extends Component {
 
 
 //        function animateForward() {
-//            label.text = word;
+//            label.text = this.word;
 //            let animation = label.animate({property: "locationOnPath", from: 0, to: 1}, 20000);
 //            animation.events.on("animationended", animateBackwards);
 //        }
@@ -89,12 +91,12 @@ class ResultLineChart extends Component {
         if (this.props.data !== prevProps.data) {
             this.count = [];
 
-        this.props.data.map((e,i) =>{
-            this.count.push({date:e[0], value:e[1]})
-        });
+            this.props.data.map((e,i) =>{
+                this.count.push({date:e[0], value:e[1]})
+            });
             this.chart.data = this.count;
+            this.word = this.props.search_word;
         }
-
     }
     render() {
         return (
