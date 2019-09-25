@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "검찰",
-			"count": 511,
-			"changes": 303
+			"word": "조국",
+			"count": 379,
+			"changes": 324
 		},
 		{
-			"word": "집회",
-			"count": 446,
+			"word": "검찰",
+			"count": 247,
 			"changes": 0
 		},
 		{
-			"word": "촛불",
-			"count": 413,
+			"word": "이다",
+			"count": 191,
 			"changes": 0
 		},
 		{
 			"word": "개혁",
-			"count": 402,
+			"count": 95,
 			"changes": 0
 		},
 		{
-			"word": "조국",
-			"count": 204,
-			"changes": -103
+			"word": "장관",
+			"count": 80,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 178,
-			"changes": 3
+			"count": 73,
+			"changes": 19
 		},
 		{
-			"word": "아이폰",
-			"count": 106,
+			"word": "짜장면",
+			"count": 61,
 			"changes": 0
 		},
 		{
-			"word": "일본",
-			"count": 105,
-			"changes": -11
+			"word": "압수수색",
+			"count": 60,
+			"changes": 0
 		},
 		{
-			"word": "이유",
-			"count": 99,
-			"changes": -9
+			"word": "시간",
+			"count": 58,
+			"changes": 0
 		},
 		{
-			"word": "나경원",
-			"count": 98,
+			"word": "집회",
+			"count": 56,
 			"changes": 0
 		}
 	]

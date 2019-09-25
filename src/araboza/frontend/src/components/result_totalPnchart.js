@@ -10,11 +10,13 @@ class Result_totalPnchart extends Component {
         super(props);
         this.data = [];
         this.props.data.map((e, index)=>{
-            this.data.push({
-               "site_name": this.props.siteName[e.site_code],
-               "negative": -e.negative_percentage,
-               "positive": e.positive_percentage
-           });
+            if(e.site_code !== 9) {
+                this.data.push({
+                    "site_name": this.props.siteName[e.site_code],
+                    "negative": -e.negative_percentage,
+                    "positive": e.positive_percentage
+                });
+            }
         });
     }
 
@@ -152,11 +154,13 @@ class Result_totalPnchart extends Component {
         if (this.props.data !== prevProps.data) {
             this.data = [];
             this.props.data.map((e, index)=>{
-                this.data.push({
-                   "site_name": this.props.siteName[e.site_code],
-                   "negative": -e.negative_percentage,
-                   "positive": e.positive_percentage
-               });
+                if(e.site_code !== 9) {
+                    this.data.push({
+                        "site_name": this.props.siteName[e.site_code],
+                        "negative": -e.negative_percentage,
+                        "positive": e.positive_percentage
+                    });
+                }
             });
             this.chart.data = this.data;
         }

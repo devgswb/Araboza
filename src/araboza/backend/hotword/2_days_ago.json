@@ -1,54 +1,54 @@
 {
 	"result": [
 		{
+			"word": "아스",
+			"count": 132,
+			"changes": 0
+		},
+		{
+			"word": "핑클",
+			"count": 73,
+			"changes": 0
+		},
+		{
+			"word": "이강인",
+			"count": 62,
+			"changes": 0
+		},
+		{
 			"word": "조국",
-			"count": 307,
-			"changes": -61
+			"count": 55,
+			"changes": -83
 		},
 		{
-			"word": "익",
-			"count": 265,
-			"changes": -284
-		},
-		{
-			"word": "검찰",
-			"count": 208,
-			"changes": 18
+			"word": "클럽",
+			"count": 54,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 175,
+			"count": 54,
 			"changes": -34
 		},
 		{
-			"word": "영",
-			"count": 149,
+			"word": "캠핑",
+			"count": 52,
 			"changes": 0
 		},
 		{
-			"word": "마요네즈",
-			"count": 146,
+			"word": "시즌",
+			"count": 43,
 			"changes": 0
 		},
 		{
-			"word": "임무",
-			"count": 141,
+			"word": "타인",
+			"count": 41,
 			"changes": 0
 		},
 		{
-			"word": "고추장",
-			"count": 141,
-			"changes": 0
-		},
-		{
-			"word": "일본",
-			"count": 116,
-			"changes": 0
-		},
-		{
-			"word": "이유",
-			"count": 108,
-			"changes": 0
+			"word": "사람",
+			"count": 37,
+			"changes": -52
 		}
 	]
 }

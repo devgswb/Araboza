@@ -36,7 +36,7 @@ class Result_nav extends Component {
 
         return this.enableSite.map((tabEnable,index)=>{
             tabEnable = index + 1;
-            if (tabEnable === 9) {
+            if (tabEnable === 9 || tabEnable ===7) {
                 return ('');
             }
             return(

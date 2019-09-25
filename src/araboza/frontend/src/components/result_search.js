@@ -30,40 +30,29 @@ class ResultSearch extends Component {
         let searchStr = e.target.value;
         this.setState({ title : searchStr });
     };
-    handleSubmit = (e) => {
+handleSubmit = (e) => {
         this.axiosCancelSource = axios.CancelToken.source();
         console.log('this.title ->', this.state.title);
         e.preventDefault();
         const check = this.handleCheck();
         if (!check) {
             console.log("fuck", this.state);
-        }
-        else {
-            var datas = [];
-            var siteName = ["보배드림","클리앙","82쿡","개드립","eToLAND","가생이","웃긴대학","해연갤","인스티즈","MLBPARK","네이트판","루리웹","더쿠넷","오늘의 유머","와이고수"];
+        } else {
+            let datas = [];
+            const siteName = ["보배드림", "클리앙", "82쿡", "개드립", "eToLAND", "가생이", "웃긴대학", "해연갤", "인스티즈", "MLBPARK", "네이트판", "루리웹", "더쿠넷", "오늘의 유머", "와이고수"];
+            const MAX_COMPLETE_COUNTER = siteName.length;
+            let complete_counter = 0;
             for (let count = 1; count < 16; count++) {
                 axios.get(`/api/search/?word=${this.state.title}&sitecode=${count}`, {cancelToken: this.axiosCancelSource.token})
                     .then((res) => {
-                        this.setState({ siteTitle : siteName[count-1] });
+                        this.setState({siteTitle: siteName[count - 1]});
                         console.log("검색페이지");
                         console.log(res);
                         localStorage.setItem('title', res.data['title']);
                         if (res.data.Success === 0) {
                             datas.push(res.data);
                         }
-                        if (count >= 15) {
-                            this.props.history.push({
-                                pathname: `/result`,
-                                // data: res.data
-                                data: datas,
-                                siteCode: datas[0].site_code
-                            });
-                            console.log(datas);
-                            this.setState({
-                                modal2:false,
-                                title:''
-                            })
-                        }
+
                     }).catch(function (error) {
                     console.log(error);
                     console.log(this.state.st);
@@ -82,6 +71,22 @@ class ResultSearch extends Component {
                         });
                     }
                 }.bind(this))
+                    .then(() => { // always (항상) 작동
+                        complete_counter += 1;
+                        console.log(`${complete_counter}, ${MAX_COMPLETE_COUNTER}`);
+                        if (complete_counter === MAX_COMPLETE_COUNTER) {
+                            this.setState({
+                                modal2:false
+                            });
+                            this.props.history.push({
+                                pathname: `/result`,
+                                // data: res.data
+                                data: datas,
+                                siteCode: datas[0].site_code
+                            });
+                            console.log(datas);
+                        }
+                    })
             }
         }
     };
@@ -156,9 +161,9 @@ class ResultSearch extends Component {
                                     <span className="sr-only">Loading...</span>
                                 </div>
                             </MDBModalBody>
-                            <MDBModalFooter>
-                                <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기</MDBBtn>
-                            </MDBModalFooter>
+                            {/*<MDBModalFooter>*/}
+                            {/*    <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기</MDBBtn>*/}
+                            {/*</MDBModalFooter>*/}
                         </MDBModal>
                 </div>
             </form>

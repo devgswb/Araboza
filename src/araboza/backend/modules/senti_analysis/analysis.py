@@ -44,6 +44,8 @@ class SentiAnalysis:
         pos = 0.0  # positive
         neg = 0.0  # negative
         word_freq_by_date = {} # 단어 빈도수
+        total_sentence_count = 0
+        related_words = {}
         date_list = get_dates(start_date, end_date)
         for insert_date in date_list:
             word_freq_by_date[insert_date] = 0
@@ -56,57 +58,45 @@ class SentiAnalysis:
         conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
         db = conn.get_database(self.db_name)
         collection = db[self.db_live_data]
-        rs = collection.find({
-            'code': site_code,
-            'time': {'$lte': end_date, '$gte': start_date}
-        })
-        total_sentence_count = 0
-        related_words = {}
-        for record in rs:
-            record_year = record['year']
-            record_month = record['month']
-            record_day = record['day']
-            date = f'{record_year}-{record_month:02d}-{record_day:02d}'
-            if not date in word_freq_by_date:
-                word_freq_by_date[date] = 0
-            for sentence in record['data']:
-                word_freq_by_date[date] += 1
-                word_list = [word[0] for word in sentence]  # 한 문장의 단어들을 묶은 것
-                if not (search_word in word_list):
-                    continue
-                analysis_result = self.__analysis__(word_list)
-                pos += analysis_result['positive']
-                neg += analysis_result['negative']
-                # 긍부정 판단
-                total_sentence_count += 1
-                noun = ['NNP', 'NNG']
-                for sub_word in sentence:
-                    noun_word = sub_word[0]  # 명사 단어
-                    part_of_word = sub_word[1]  # 품사
-                    if part_of_word in noun:
-                        if not (noun_word in related_words):
-                            related_words[noun_word] = 0
-                        else:
-                            related_words[noun_word] += 1
-        for record in rs:
-
-            word_list = []  # 한 문장의 단어들을 묶은 것
-            for word in sentence['words']:
-                word_list.append(word['morpheme'])
-            analysis_result = self.__analysis__(word_list)
-            pos += analysis_result['positive']
-            neg += analysis_result['negative']
-            # 긍부정 판단
-            total_sentence_count += 1
-            noun = ['NNP', 'NNG']
-            for word in sentence['words']:
-                noun_word = word['morpheme']  # 명사 단어
-                part_of_word = word['type']  # 품사
-                if part_of_word in noun:
-                    if not (noun_word in related_words):
-                        related_words[noun_word] = 0
-                    else:
-                        related_words[noun_word] += 1
+        for date in date_list:
+            DATE = date.split('-')
+            YEAR = int(DATE[0])
+            MONTH = int(DATE[1])
+            DAY = int(DATE[2])
+            rs = collection.find({
+                'code': site_code,
+                'year': YEAR,
+                'month': MONTH,
+                'day': DAY,
+            })
+            for record in rs:
+                record_year = record['year']
+                record_month = record['month']
+                record_day = record['day']
+                date = f'{record_year}-{record_month:02d}-{record_day:02d}'
+                if not date in word_freq_by_date:
+                    word_freq_by_date[date] = 0
+                for sentence in record['data']:
+                    word_list = [word[0] for word in sentence]  # 한 문장의 단어들을 묶은 것
+                    if not (search_word in word_list):
+                        continue
+                    word_freq_by_date[date] += 1
+                    analysis_result = self.__analysis__(word_list)
+                    pos += analysis_result['positive']
+                    neg += analysis_result['negative']
+                    # 긍부정 판단
+                    total_sentence_count += 1
+                    noun = ['NNP', 'NNG']
+                    for sub_word in sentence:
+                        noun_word = sub_word[0]  # 명사 단어
+                        if len(noun_word) == 1:
+                            continue
+                        part_of_word = sub_word[1]  # 품사
+                        if part_of_word in noun:
+                            if not (noun_word in related_words):
+                                related_words[noun_word] = 0
+                            else:
+                                related_words[noun_word] += 1
         sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
         # 정렬된 결과 가장 많이 나온 단어는 무조건 검색된 단어니까 첫번째 인덱스는 제외한 [1:6]
         conn.close()
@@ -233,4 +223,4 @@ def get_dates(start_date, end_date):
 # pp = pprint.PrettyPrinter(indent=4)
 # pp.pprint(get_dates('2019-08-01', '2019-09-22'))
 # sa = SentiAnalysis()
-# print(sa.result_from_db('2019-08-01', '2019-09-25', 13, "일본"))
+# print(sa.result_from_db('2019-08-01', '2019-09-25', 8, "결혼"))

@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "익",
-			"count": 549,
-			"changes": 211
-		},
-		{
-			"word": "공감",
-			"count": 501,
-			"changes": 0
-		},
-		{
-			"word": "게",
-			"count": 475,
-			"changes": 0
-		},
-		{
-			"word": "복구",
-			"count": 456,
-			"changes": 0
-		},
-		{
-			"word": "원상",
-			"count": 444,
-			"changes": 0
-		},
-		{
 			"word": "조국",
-			"count": 368,
-			"changes": 95
-		},
-		{
-			"word": "글",
-			"count": 216,
-			"changes": 0
-		},
-		{
-			"word": "오늘",
-			"count": 209,
-			"changes": 37
-		},
-		{
-			"word": "펀드",
-			"count": 193,
-			"changes": 0
+			"count": 138,
+			"changes": -107
 		},
 		{
 			"word": "검찰",
-			"count": 190,
+			"count": 123,
+			"changes": -674
+		},
+		{
+			"word": "태풍",
+			"count": 121,
+			"changes": 0
+		},
+		{
+			"word": "나경원",
+			"count": 118,
+			"changes": 2
+		},
+		{
+			"word": "이유",
+			"count": 94,
+			"changes": 0
+		},
+		{
+			"word": "사람",
+			"count": 89,
+			"changes": -37
+		},
+		{
+			"word": "오늘",
+			"count": 88,
+			"changes": -117
+		},
+		{
+			"word": "생각",
+			"count": 77,
+			"changes": 0
+		},
+		{
+			"word": "일본",
+			"count": 77,
+			"changes": 0
+		},
+		{
+			"word": "한국",
+			"count": 76,
 			"changes": 0
 		}
 	]

@@ -179,11 +179,13 @@ def save_crawl_csv_data(site_code):
 # if __name__ == "__main__":
 #   site_code = int(sys.argv[1])
 #  main(site_code)
-
-data = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
-for i in data:
-    try:
-        old_save_crawl_csv_data(i)
-    except:
-        raise
-        print("크롤러 에러")
+#
+# data = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+# for i in data:
+#     try:
+#         old_save_crawl_csv_data(i)
+#     except:
+#         raise
+# #         print("크롤러 에러")
+# #
+# old_save_crawl_csv_data(8)
