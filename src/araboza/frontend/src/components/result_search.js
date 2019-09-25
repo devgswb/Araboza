@@ -16,7 +16,8 @@ class ResultSearch extends Component {
                  modal2: false,
                  alert : false,
                  st : false,
-                 color : false
+                 color : false,
+                 siteTitle:''
              },
              menuOpen:false
         };
@@ -38,51 +39,53 @@ class ResultSearch extends Component {
             console.log("fuck", this.state);
         }
         else {
-            axios.get(`/api/search/?word=${this.state.title}`,{cancelToken: this.axiosCancelSource.token})
-            .then((res) => {
-                console.log("검색페이지");
-                console.log(res);
-                localStorage.setItem('title', res.data['title']);
-                // 사이트의 Success 가 0인 경우 성공한 것이므로
-                // 0 일 때에만 데이터를 배열에 넣어서 result 로 넘김
-                var datas = [];
-                for(let i=0;i<res.data.length;i++){
-                    if(res.data[i].Success === 0) {
-                        datas.push(res.data[i]);
+            var datas = [];
+            var siteName = ["보배드림","클리앙","82쿡","개드립","eToLAND","가생이","웃긴대학","해연갤","인스티즈","MLBPARK","네이트판","루리웹","더쿠넷","오늘의 유머","와이고수"];
+            for (let count = 1; count < 16; count++) {
+                axios.get(`/api/search/?word=${this.state.title}&sitecode=${count}`, {cancelToken: this.axiosCancelSource.token})
+                    .then((res) => {
+                        this.setState({ siteTitle : siteName[count-1] });
+                        console.log("검색페이지");
+                        console.log(res);
+                        localStorage.setItem('title', res.data['title']);
+                        if (res.data.Success === 0) {
+                            datas.push(res.data);
+                        }
+                        if (count >= 15) {
+                            this.props.history.push({
+                                pathname: `/result`,
+                                // data: res.data
+                                data: datas,
+                                siteCode: datas[0].site_code
+                            });
+                            console.log(datas);
+                            this.setState({
+                                modal2:false,
+                                title:''
+                            })
+                        }
+                    }).catch(function (error) {
+                    console.log(error);
+                    console.log(this.state.st);
+                    let modalNumber = 'modal' + 2;
+                    if (this.state.st === true) {
+                        this.setState({
+                            st: false,
+                            alert: true,
+                            color: true
+                        });
+                    } else {
+                        this.setState({
+                            alert: true,
+                            [modalNumber]: !this.state[modalNumber],
+                            color: false
+                        });
                     }
-                }
-                this.props.history.push({
-                    pathname: `/result`,
-                    // data: res.data
-                    data: datas,
-                    siteCode : datas[0].site_code
-                });
-                this.setState({
-                    modal2: false,
-                    title:''
-                });
-            }).catch(function (error) {
-                console.log(error);
-                console.log(this.state.st);
-                let modalNumber = 'modal' + 2;
-                if (this.state.st === true ) {
-                    this.setState({
-                        st : false,
-                        alert : true,
-                        color : true
-                    });
-                }
-                else {
-                    this.setState({
-                        alert : true,
-                        [modalNumber]: !this.state[modalNumber],
-                        color : false
-                    });
-                }
-            }.bind(this))
+                }.bind(this))
+            }
         }
-
     };
+
     handleCheck = (e)=>{
         const typeCheck = /^[가-힣]+$/;
         let searchStr = this.state.title;
@@ -123,13 +126,13 @@ class ResultSearch extends Component {
          console.log(stop);
          if(message === true) {
              if (stop === true) {
-                 Alert = <MDBAlert color="dark" className='sideAlert'>
-                     입력이 중지되었습니다. (값을 입력해 주세요)
+                 Alert = <MDBAlert color="danger" className='resultSideAlert'>
+                     요청 자료가 부족합니다. 다른 단어를 검색해 주세요!
                  </MDBAlert>
              }
              else {
-                 Alert = <MDBAlert color="danger" className='sideAlert' dismiss>
-                     요청 자료가 부족합니다. (다른 값을 입력해 주세요)
+                 Alert = <MDBAlert color="dark" className='resultSideAlert' dismiss>
+                     입력이 중지되었습니다. 다시 검색해 주세요!
                  </MDBAlert>
              }
          }
@@ -137,18 +140,18 @@ class ResultSearch extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div id="searchBar">
                     <MDBCol>
-                        <MDBInput hint="Search" type="text" className="input" value={this.state.title} onChange={this.handleChange}/>
+                        <MDBInput hint="Search" type="text" className="resultSearchInput" value={this.state.title} onChange={this.handleChange}/>
                     </MDBCol>
                     <div style={{ color: "red"}}>{this.state.textError}</div>
-                    <MDBBtn outline color="primary" className="btn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/>
+                    <MDBBtn outline color="primary" className="resultSearchBtn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/>
                     </MDBBtn>
                     <button className="mobileBtn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/></button>
 
                     {Alert}
-                        <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
+                        <MDBModal className="resultModal" isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
                             <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
                             <MDBModalBody>
-                                <div>관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
+                                <div>{this.state.siteTitle} 관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
                                 <div className="spinner-border text-primary" role="status">
                                     <span className="sr-only">Loading...</span>
                                 </div>

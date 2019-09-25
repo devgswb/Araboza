@@ -1,5 +1,7 @@
 import pandas as pd
+from datetime import date, timedelta
 import json
+import pprint
 import pymongo
 import urllib
 import datetime
@@ -39,6 +41,9 @@ class SentiAnalysis:
         pos = 0.0  # positive
         neg = 0.0  # negative
         word_freq_by_date = {} # 단어 빈도수
+        date_list = get_dates(start_date, end_date)
+        for insert_date in date_list:
+            word_freq_by_date[insert_date] = 0
         start_date = start_date.split('-')
         start_date = datetime.datetime(int(start_date[0]), int(start_date[1]), int(start_date[2]))
         end_date = end_date.split('-')
@@ -51,8 +56,10 @@ class SentiAnalysis:
         rs = collection.find({
             'code': site_code,
             'time': {'$lte': end_date, '$gte': start_date},
-            'data.words': {'$elemMatch': {'morpheme': search_word}}
+            # 'data.words': {'$elemMatch': {'morpheme': search_word}} 형태소 기반 검색
+            'data.title': {'$regex': search_word} # 제목 기반 검색
         })
+
         total_sentence_count = 0
         related_words = {}
         for record in rs:
@@ -116,5 +123,20 @@ class SentiAnalysis:
                     neg += abs(score)
         return {'positive': pos, 'negative': neg}
 
+def get_dates(start_date, end_date):
+    YEAR = 0
+    MONTH = 1
+    DAY = 2
+    start_date_data = [ int(data) for data in start_date.split('-') ]
+    # 배열의 인덱스 0: year, 1: month, 2: day
+    end_date_data = [int(data) for data in end_date.split('-')]
+    s_date = date(start_date_data[YEAR], start_date_data[MONTH], start_date_data[DAY])
+    e_date = date(end_date_data[YEAR], end_date_data[MONTH], end_date_data[DAY])
+    dates = [s_date + timedelta(days=x) for x in range((e_date - s_date).days + 1)]
+    result_dates_list = [ str(data).split(' ')[0] for data in dates ]
+    return result_dates_list
+#
+# pp = pprint.PrettyPrinter(indent=4)
+# pp.pprint(get_dates('2019-08-01', '2019-09-22'))
 # sa = SentiAnalysis()
 # print(sa.result_from_db('2019-07-06', '2019-08-06', 13, "트와이스"))
