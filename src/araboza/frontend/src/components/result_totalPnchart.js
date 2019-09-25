@@ -98,7 +98,7 @@ class Result_totalPnchart extends Component {
             labelBullet1.label.truncate = false;
             labelBullet1.alwaysShowTooltip = true;
             labelBullet1.label.hideOversized = false;
-            labelBullet1.locationX = 0.15;
+            labelBullet1.locationX = 0;
             labelBullet1.label.fontSize= 15;
 
             chart.responsive.rules.push({

@@ -123,12 +123,12 @@ class ResultSearch extends Component {
          console.log(stop);
          if(message === true) {
              if (stop === true) {
-                 Alert = <MDBAlert color="dark" className='sideAlert'>
+                 Alert = <MDBAlert color="dark" className='resultSideAlert'>
                      입력이 중지되었습니다. (값을 입력해 주세요)
                  </MDBAlert>
              }
              else {
-                 Alert = <MDBAlert color="danger" className='sideAlert' dismiss>
+                 Alert = <MDBAlert color="danger" className='resultSideAlert' dismiss>
                      요청 자료가 부족합니다. (다른 값을 입력해 주세요)
                  </MDBAlert>
              }
@@ -145,7 +145,7 @@ class ResultSearch extends Component {
                     <button className="mobileBtn" onClick={this.toggle(2)} type="submit"><MDBIcon icon="search"/></button>
 
                     {Alert}
-                        <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
+                        <MDBModal className="resultModal" isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
                             <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
                             <MDBModalBody>
                                 <div>관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>

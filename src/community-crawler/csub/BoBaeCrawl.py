@@ -91,6 +91,7 @@ class Crawler:
 
         while stop == True:
             url = f'http://www.bobaedream.co.kr/list?code=politic&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page={regen}'
+            time.sleep(0.02)
             res = req.get(url, verify=False)
             res.encoding = None
             html = res.text
@@ -140,6 +141,7 @@ class Crawler:
             while stop == False:
                 # print(f'----------{regen}----------')
                 url = f'http://www.bobaedream.co.kr/list?code=politic&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page={regen}'
+                time.sleep(0.02)
                 res = req.get(url, verify=False)
                 res.encoding = None
                 html = res.text

@@ -62,6 +62,12 @@
     .btn{
         display:none;
     }
+    .resultModal{
+        /*position: absolute;*/
+        top:20%;
+        /*z-index:999;*/
+    }
+
 }
 @media (max-width: 360px){
     #searchBar{

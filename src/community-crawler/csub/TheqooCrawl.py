@@ -38,7 +38,7 @@ class Crawler:
         day = []
 
         for i, w in enumerate(soup.select('td.title span[style=""]')):
-            if i > 3:
+            if i > 4:
                 w = w.get_text()
                 w = w.split('\n')[0]
                 # w = w.replace('\n', '')
@@ -46,7 +46,7 @@ class Crawler:
                 write.append(w)
 
         for i, d in enumerate(soup.select('td.time')):
-            if i > 3:
+            if i > 4:
                 d = d.get_text()
                 d = d.replace('\n', '')
                 d = d.replace('.', '-')
@@ -103,7 +103,7 @@ class Crawler:
             soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
             for i, d in enumerate(soup.select('td.time')):
-                if i > 3:
+                if i > 4:
                     d = d.get_text()
                     d = d.replace('\n', '')
                     d = d.replace('.', '-')
@@ -122,7 +122,7 @@ class Crawler:
                         d = d.replace('-', '-')
                     d = d.replace(' ', '')
                     d = d.split(' ')[0]
-                    # print(d, regen)
+                    print(d, regen)
                     day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
                     if day == Fixed_date:
                         stop = False
@@ -157,7 +157,7 @@ class Crawler:
                 soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
 
                 for i, d in enumerate(soup.select('td.time')):
-                    if i > 3:
+                    if i > 4:
                         d = d.get_text()
                         d = d.replace('\n', '')
                         d = d.replace('.', '-')
@@ -176,7 +176,7 @@ class Crawler:
                             d = d.replace('-', '-')
                         d = d.replace(' ', '')
                         d = d.split(' ')[0]
-                        # print(d, regen)
+                        print(d, regen)
                         day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
                         if day == Fixed_date:
                             stop = True
