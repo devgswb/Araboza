@@ -13,7 +13,7 @@
     margin:0 0 0 22rem;
     font-family: SCDream4, serif;
 }
-.input{
+.resultSearchInput{
     grid-area: input;
     /*width:520px;*/
     font-size: 1.8rem;
@@ -21,7 +21,7 @@
     padding: 0 0 3rem 0;
     font-family: Jua, serif;
 }
-.btn{
+.resultSearchBtn{
     grid-area: btn;
     display:inline;
     height:3rem;
@@ -36,6 +36,14 @@
 .slideBtn{
     display:none;
 }
+.resultSideAlert{
+        position:absolute;
+        width:20%;
+        height:3.2rem;
+        left:30%;
+        top:10%;
+        z-index: 99;
+    }
 @media (max-width: 505px){
     #searchBar{
         width:10rem;
@@ -44,7 +52,7 @@
             "input mobileBtn";
         grid-template-columns: 90% 10%;
     }
-    .input{
+    .resultSearchInput{
         font-size: 1rem;
     }
     .mobileBtn{
@@ -59,15 +67,19 @@
         font-size: 1rem;
         color:#4285F4;
     }
-    .btn{
+    .resultSearchBtn{
         display:none;
     }
     .resultModal{
-        /*position: absolute;*/
         top:20%;
-        /*z-index:999;*/
     }
-
+    .resultSideAlert{
+        position:absolute;
+        width:90%;
+        height:4rem;
+        left:5%;
+        top:150%;
+    }
 }
 @media (max-width: 360px){
     #searchBar{

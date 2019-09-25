@@ -33,7 +33,7 @@ class ResultLineChart extends Component {
         dateAxis.renderer.minGridDistance = 70;
         dateAxis.dateFormats.setKey("day", "yy-MM-dd");
         dateAxis.fontFamily = "SCDream4";
-
+        dateAxis.renderer.labels.template.rotation = 45;
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         // valueAxis.tooltip.disabled = true;
