@@ -54,6 +54,7 @@ class MainRankingWordCloud extends Component {
         series.minWordLength = 2;
         series.labels.template.margin(4, 4, 4, 4);
         series.maxFontSize = am4core.percent(30);
+        series.minFontSize = am4core.percent(10);
         series.dataFields.word = "word";
         series.dataFields.value = "count";
         series.colors = new am4core.ColorSet();

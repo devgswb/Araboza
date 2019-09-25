@@ -61,14 +61,13 @@ class main extends Component {
         if(wWidth < 520) {
             navDesign =
                     <MDBContainer className='navModel'>
-                        <h3> 딥러닝 화제도 분석</h3>
+                        <h3> 커뮤니티 화제도 분석</h3>
                         <MDBBtn outline color="primary" onClick={this.toggle(2)}>more</MDBBtn>
                         <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)}>
-                            <MDBModalHeader toggle={this.toggle(2)}>MDBModal title</MDBModalHeader>
+                            <MDBModalHeader toggle={this.toggle(2)}>커뮤니티 화제도 분석</MDBModalHeader>
                             <MDBModalBody>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.
+                                “아라보자”는 온라인 상에서 특정 기간 동안 가장 화제가 된 키워드를 분석하여
+                                분석한 키워드의 화제성을 알아 볼 수 있는 Web Application
                             </MDBModalBody>
                             <MDBModalFooter>
                                 <MDBBtn outline color="secondary" onClick={this.toggle(2)}>Close</MDBBtn>
@@ -82,9 +81,6 @@ class main extends Component {
 
         return (
             <div className='_main'>
-                <div className='_bg'>
-                    <div className='_ground'><MainBackground/></div>
-                </div>
                 <div className='_bg2'>
                 </div>
                 <div className='_bg3'>

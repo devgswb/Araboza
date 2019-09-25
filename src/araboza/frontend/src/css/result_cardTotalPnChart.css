@@ -10,8 +10,8 @@
 }
 #totalPnChart{
     height:750px;
-    margin: 20px auto;
-    padding: 10px 20px 0 0;
+    margin: 20px 0 0 0;
+    /*padding: 10px 20px 0 0;*/
     background: white;
     border-radius: 0.7rem;
     box-shadow: 4px 4px 4px #e0e0e0;

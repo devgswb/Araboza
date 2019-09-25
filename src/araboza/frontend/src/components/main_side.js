@@ -136,14 +136,16 @@ class MainSide extends Component {
          console.log(stop);
          if(message === true) {
              if (stop === true) {
-                 Alert = <MDBAlert color="dark" className='sideAlert'>
-                     입력이 중지되었습니다. (값을 입력해 주세요)
+                 Alert =
+                 <MDBAlert color="danger" className='sideAlert'>
+                     요청 자료가 부족합니다. 다른 단어를 검색해 주세요!
                  </MDBAlert>
              }
-             else {
-                 Alert = <MDBAlert color="danger" className='sideAlert'>
-                     요청 자료가 부족합니다. (다른 값을 입력해 주세요)
-                 </MDBAlert>
+             else if(stop === false){
+                 Alert =
+                     <MDBAlert color="dark" className='sideAlert'>
+                         입력이 중지되었습니다. 다시 검색해 주세요!
+                     </MDBAlert>
              }
          }
         return (
