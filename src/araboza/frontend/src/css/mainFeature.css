@@ -13,7 +13,7 @@
 
 .featureArticle {
     grid-area: fArticle;
-    height: 60vh;
+    height: 370px;
 }
 
 .featureRanking {
@@ -41,5 +41,12 @@
     .featureRanking {
         width: 95%;
         grid-template-rows: 85% 15%;
+    }
+}
+
+@media (max-width: 520px) {
+    .mainFeature {
+        height : 810px;
+        grid-template-rows: 370px 440px;
     }
 }

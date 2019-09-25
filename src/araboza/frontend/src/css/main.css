@@ -144,15 +144,16 @@ _mainMethod {
 
 @media (max-width: 520px) {
     ._mainPack {
-    grid-template-rows: 100vh 110vh 145vh;
+        min-height: 2330px;
+    grid-template-rows: 640px 810px 880px;
     }
 
     ._mainContainer {
         width: 100%;
-        height: 100vh;
+        height: 640px;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 15% 15% 27% 1fr;
+        grid-template-rows: 100px 100px 170px 1fr;
         grid-template-areas:
          "header"
          "nav"
@@ -162,7 +163,7 @@ _mainMethod {
 
     ._bg2{
         width : 100%;
-        min-height: 355vh;
+        min-height: 2330px;
         position: absolute;
     }
 
