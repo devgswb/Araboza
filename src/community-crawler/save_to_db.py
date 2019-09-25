@@ -5,6 +5,7 @@ import pandas as pd
 import datetime
 import os
 import re
+import sys
 
 
 SITE_CODE = {
@@ -25,6 +26,10 @@ SITE_CODE = {
     15: "와이고수",
 }
 
+def main(site_code):
+    print(f'{SITE_CODE[site_code]}에 데이터 추가를 시작합니다.')
+    save_crawl_csv_data(site_code)
+
 
 def save_crawl_csv_data(site_code):
     parser = Komoran()
@@ -32,11 +37,12 @@ def save_crawl_csv_data(site_code):
     password = urllib.parse.quote_plus('1q@W3e4r')
     conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.138:57017/araboza')
     db = conn.get_database('araboza')
-    collection = db.test #wordsByDate
+    collection = db.wordsByTitle
     # DB 연결
     dirpath = os.path.dirname(__file__) + f'/data/{site_code}/'
     print(dirpath)
     for filename in os.listdir(dirpath):
+        count = 1
         fpath = dirpath + filename
         rawdata = filename[0:12].replace('[', '')
         rawdata = rawdata.replace(']', '')
@@ -51,7 +57,7 @@ def save_crawl_csv_data(site_code):
         data = {}
         for title in csv_data.title.tolist():
             RE_EMOJI = re.compile('[\U00010000-\U0010ffff]', flags=re.UNICODE)
-            emoji_removed_title = RE_EMOJI.sub(r'', title)
+            emoji_removed_title = RE_EMOJI.sub(r'', str(title))
             try:
                 analyzed_morpheme_list = parser.pos(emoji_removed_title)
                 data = {
@@ -86,8 +92,13 @@ def save_crawl_csv_data(site_code):
                     }, # 해당하는 데이터를 update
                     upsert=True
                 )
+                print(f'{count}번째 데이터: ', year, month, day, title)
+                count += 1
             except:
                 raise
         print(year, month, day, SITE_CODE[site_code], "데이터 추가 완료")
         # DB에 저장
-# save_crawl_csv_data(8)
+
+if __name__ == "__main__":
+    site_code = int(sys.argv[1])
+    main(site_code)
