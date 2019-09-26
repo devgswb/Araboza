@@ -95,12 +95,13 @@ class MainSide extends Component {
                                 })
                             }else{
                                 datas.map((e)=>{
-                                if(e.site_code === 10){
-                                    firstSite = e.site_code
-                                }else{
+                                    if(e.site_code === 10){
+                                        firstSite = e.site_code
+                                    }
+                                });
+                                if(firstSite === ''){
                                     firstSite = datas[0].site_code
                                 }
-                                });
                             }
 
 
