@@ -67,6 +67,10 @@ class ResultWordCloud extends Component {
                 this.series.angles = [0, -90];
                 this.series.maxFontSize = am4core.percent(70);
                 this.series.minFontSize = am4core.percent(15);
+                this.series.step = 15;
+                this.series.accuracy = 4;
+                this.series.rotationThreshold = 0.7;
+                this.series.minWordLength = 3;
             }
 
         }

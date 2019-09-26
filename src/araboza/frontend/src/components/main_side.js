@@ -87,13 +87,22 @@ class MainSide extends Component {
                     .then(() => { // always (항상) 작동
                         complete_counter += 1;
                         console.log(`${complete_counter}, ${MAX_COMPLETE_COUNTER}`);
+                        let firstSite = '';
                         if (complete_counter === MAX_COMPLETE_COUNTER) {
+                            datas.map((e)=>{
+                                if(e.site_code === 10){
+                                    firstSite = e.site_code
+                                }
+                            });
+                            if(firstSite === ''){
+                                firstSite = datas[0].site_code
+                            }
                             if (datas.length !== 0) {
                                 this.props.history.push({
                                     pathname: `/result`,
                                     // data: res.data
                                     data: datas,
-                                    siteCode: datas[0].site_code
+                                    siteCode: firstSite
                                 })
                             } else {
 
