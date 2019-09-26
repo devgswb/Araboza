@@ -25,9 +25,9 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 520px) {
     .mainMethod {
-         height: 125vh;
-        grid-template-rows: 45vh 80vh;
+         min-height: 880px;
+        grid-template-rows: 220px 660px;
     }
 }
