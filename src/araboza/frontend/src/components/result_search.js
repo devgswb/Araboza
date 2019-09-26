@@ -163,12 +163,12 @@ class ResultSearch extends Component {
         if (message === true) {
             if (stop === true) {
                 Alert =
-                    <MDBAlert color="dark" className='resultSideAlert'>
+                    <MDBAlert color="dark" className='resultSideAlert' dismiss>
                         입력이 중지되었습니다. 다시 검색해 주세요!
                     </MDBAlert>
             } else if (stop === false) {
                 Alert =
-                    <MDBAlert color="danger" className='resultSideAlert'>
+                    <MDBAlert color="danger" className='resultSideAlert' dismiss>
                         요청 자료가 부족합니다. 다른 단어를 검색해 주세요!
                     </MDBAlert>
             }
