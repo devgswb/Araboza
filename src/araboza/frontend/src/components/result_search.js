@@ -91,6 +91,9 @@ class ResultSearch extends Component {
                                     // data: res.data
                                     data: datas,
                                     siteCode: datas[0].site_code
+                                });
+                                this.setState({
+                                    modal2:false
                                 })
                             } else {
 

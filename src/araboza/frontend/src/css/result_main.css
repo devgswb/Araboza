@@ -69,15 +69,15 @@
     display: none;
 }
 
-/*#return-main{*/
-/*    font-family: Jua, serif;*/
-/*    width:10rem;*/
-/*    font-size: 1.3rem;*/
-/*    margin:7px 5px 0 0;*/
-/*    color: gray;*/
-/*    cursor:pointer;*/
-/*    float:right;*/
-/*}*/
+#return-main{
+    font-family: Jua, serif;
+    width:10rem;
+    font-size: 1.3rem;
+    margin:7px 5px 0 0;
+    color: gray;
+    cursor:pointer;
+    float:right;
+}
 
 
 .result-container {
@@ -215,14 +215,17 @@
     }
     #return-main {
         width: 8rem;
-        font-size: 0.7rem;
-        padding: 0.3rem 0 0 3.5rem;
-        margin: 0.1rem 0.5rem 0 0;
+        font-size: 1rem;
+        position: absolute;
+        top:6%;
+        right:2%;
+        /*padding: 0.3rem 0 0 3.5rem;*/
+        /*margin: 10px 0.5rem 0 70px;*/
         float: right;
     }
 
     #return-main:hover {
-        font-size: 0.7rem;
+        /*font-size: 0.7rem;*/
     }
 
 }

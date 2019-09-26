@@ -110,8 +110,8 @@ class result_main extends Component {
 
                     <header className="result-header">
                         <Link to="/" className="mobile-title"><div>아라보자</div></Link>
-                        <ResultSearch data={data}/>
-                        {/*<div id="return-main"><Link to="/">검색 페이지로 <h4 id="return-icon">↺</h4></Link></div>*/}
+                        {/*<ResultSearch data={data}/>*/}
+                        <div id="return-main"><Link to="/">검색 페이지로 <h4 id="return-icon">↺</h4></Link></div>
                     </header>
 
                     <Result_menu/>
