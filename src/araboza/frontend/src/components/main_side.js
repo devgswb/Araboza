@@ -88,100 +88,125 @@ class MainSide extends Component {
                         complete_counter += 1;
                         console.log(`${complete_counter}, ${MAX_COMPLETE_COUNTER}`);
                         if (complete_counter === MAX_COMPLETE_COUNTER) {
-                            this.props.history.push({
-                                pathname: `/result`,
-                                // data: res.data
-                                data: datas,
-                                siteCode: datas[0].site_code
-                            });
-                            console.log(datas);
+                            if (datas.length !== 0) {
+                                this.props.history.push({
+                                    pathname: `/result`,
+                                    // data: res.data
+                                    data: datas,
+                                    siteCode: datas[0].site_code
+                                })
+                            } else {
+
+
+                                console.log(this.state.st);
+                                let modalNumber = 'modal' + 2;
+                                if (this.state.st === true) {
+                                    this.setState({
+                                        st: false,
+                                        alert: true,
+                                        color: true
+                                    });
+                                } else {
+                                    this.setState({
+                                        alert: true,
+                                        [modalNumber]: !this.state[modalNumber],
+                                        color: false
+                                    });
+                                }
+
+
+                            }
+                            ;
                         }
-                    })
+
+                        console.log(datas);
+                    });
             }
         }
     };
 
-    handleCheck = (e) => {
-        const typeCheck = /^[가-힣]+$/;
-        let searchStr = this.state.title;
-        if (!typeCheck.test(searchStr)) {
-            this.setState({textError: '형식 오류입니다.'});
-            return false
-        } else {
-            console.log('success');
-            return true
-        }
-    };
 
-    handleCancel = nr => () => {
-        console.log('요청 취소');
-        this.axiosCancelSource.cancel('Axios unmounted.');
-        let modalNumber = 'modal' + nr;
-        this.setState({
-            st: true,
-            [modalNumber]: !this.state[modalNumber]
-        });
-    };
-
-    toggle = nr => () => {
-        const check = this.handleCheck();
-        {
-            if (check) {
-                let modalNumber = 'modal' + nr;
-                this.setState({
-                    [modalNumber]: !this.state[modalNumber]
-                });
-            }
-        }
-    };
-
-    render() {
-        const message = this.state.alert;
-        const stop = this.state.color;
-        let Alert;
-        console.log(stop);
-        if (message === true) {
-            if (stop === true) {
-                Alert =
-                    <MDBAlert color="danger" className='sideAlert'>
-                        요청 자료가 부족합니다. 다른 단어를 검색해 주세요!
-                    </MDBAlert>
-            } else if (stop === false) {
-                Alert =
-                    <MDBAlert color="dark" className='sideAlert'>
-                        입력이 중지되었습니다. 다시 검색해 주세요!
-                    </MDBAlert>
-            }
-        }
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div className='side'>
-                    <MDBCol>
-                        <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title}
-                                  onChange={this.handleChange}/>
-                    </MDBCol>
-                    <div style={{color: "red"}}>{this.state.textError}</div>
-                    <MDBBtn outline color="#91AA9D" onClick={this.toggle(2)} type="submit"><MDBIcon
-                        icon="search"/> Search
-                    </MDBBtn>
-                    {Alert}
-                    <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
-                        <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
-                        <MDBModalBody>
-                            <div>{this.state.siteTitle} 관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
-                            <div className="spinner-border text-primary" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                        </MDBModalBody>
-                        <MDBModalFooter>
-                            <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기<MDBCloseIcon
-                                className='sideCancel'/></MDBBtn>
-                        </MDBModalFooter>
-                    </MDBModal>
-                </div>
-            </form>
-        );
+handleCheck = (e) => {
+    const typeCheck = /^[가-힣]+$/;
+    let searchStr = this.state.title;
+    if (!typeCheck.test(searchStr)) {
+        this.setState({textError: '형식 오류입니다.'});
+        return false
+    } else {
+        console.log('success');
+        return true
     }
+};
+
+handleCancel = nr => () => {
+    console.log('요청 취소');
+    this.axiosCancelSource.cancel('Axios unmounted.');
+    let modalNumber = 'modal' + nr;
+    this.setState({
+        st: true,
+        [modalNumber]: !this.state[modalNumber]
+    });
+};
+
+toggle = nr => () => {
+    const check = this.handleCheck();
+    {
+        if (check) {
+            let modalNumber = 'modal' + nr;
+            this.setState({
+                [modalNumber]: !this.state[modalNumber]
+            });
+        }
+    }
+};
+
+render(){
+    const message = this.state.alert;
+    const stop = this.state.color;
+    let Alert;
+    console.log(stop);
+    if (message === true) {
+        if (stop === true) {
+            Alert =
+                 <MDBAlert color="dark" className='sideAlert'>
+                    입력이 중지되었습니다. 다시 검색해 주세요!
+                </MDBAlert>
+        } else if (stop === false) {
+            Alert =
+                <MDBAlert color="danger" className='sideAlert'>
+                    요청 자료가 부족합니다. 다른 단어를 검색해 주세요!
+                </MDBAlert>
+        }
+    }
+    return (
+        <form onSubmit={this.handleSubmit}>
+            <div className='side'>
+                <MDBCol>
+                    <MDBInput hint="Search" type="text" containerClass="mt-0" value={this.state.title}
+                              onChange={this.handleChange}/>
+                </MDBCol>
+                <div style={{color: "red"}}>{this.state.textError}</div>
+                <MDBBtn outline color="#91AA9D" onClick={this.toggle(2)} type="submit"><MDBIcon
+                    icon="search"/> Search
+                </MDBBtn>
+                {Alert}
+                <MDBModal isOpen={this.state.modal2} toggle={this.toggle(2)} backdrop={false}>
+                    <MDBModalHeader toggle={this.toggle(2)}>{this.state.title}에 대해 아라보자</MDBModalHeader>
+                    <MDBModalBody>
+                        <div>{this.state.siteTitle} 관련된 결과를 긁어오는 중입니다. 잠시만 기다려 주세요</div>
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                        <MDBBtn color="secondary" onClick={this.handleCancel(2)}>중지하기<MDBCloseIcon
+                            className='sideCancel'/></MDBBtn>
+                    </MDBModalFooter>
+                </MDBModal>
+            </div>
+        </form>
+    );
+}
 }
 
 export default withRouter(MainSide)
