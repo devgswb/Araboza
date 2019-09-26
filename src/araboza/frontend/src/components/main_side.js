@@ -89,14 +89,21 @@ class MainSide extends Component {
                         console.log(`${complete_counter}, ${MAX_COMPLETE_COUNTER}`);
                         let firstSite = '';
                         if (complete_counter === MAX_COMPLETE_COUNTER) {
-                            datas.map((e)=>{
+                            if(datas.length === 0){
+                                this.setState({
+                                    color:true
+                                })
+                            }else{
+                                datas.map((e)=>{
                                 if(e.site_code === 10){
                                     firstSite = e.site_code
+                                }else{
+                                    firstSite = datas[0].site_code
                                 }
-                            });
-                            if(firstSite === ''){
-                                firstSite = datas[0].site_code
+                                });
                             }
+
+
                             if (datas.length !== 0) {
                                 this.props.history.push({
                                     pathname: `/result`,
