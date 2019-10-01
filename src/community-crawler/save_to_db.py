@@ -28,7 +28,10 @@ SITE_CODE = {
 
 def main(site_code):
     print(f'{SITE_CODE[site_code]}에 데이터 추가를 시작합니다.')
-    save_crawl_csv_data(site_code)
+    save_crawl_to_db(site_code)
+
+def save_crawl_to_db(site_code):
+    old_save_crawl_csv_data(site_code)
 
 
 def old_save_crawl_csv_data(site_code):
@@ -37,7 +40,7 @@ def old_save_crawl_csv_data(site_code):
     password = urllib.parse.quote_plus('1q@W3e4r')
     conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.138:57017/araboza')
     db = conn.get_database('araboza')
-    collection = db.wordsByDate
+    collection = db.wordsByTest
     # DB 연결
     dirpath = os.path.dirname(__file__) + f'/data2/{site_code}/'
     print(dirpath)
@@ -68,11 +71,14 @@ def old_save_crawl_csv_data(site_code):
             data = []
             title_list = csv_data.title.tolist()
             for title in title_list:
+                title_analyze_data = {"title": "", "words": []}
                 RE_EMOJI = re.compile('[\U00010000-\U0010ffff]', flags=re.UNICODE)
                 emoji_removed_title = RE_EMOJI.sub(r'', str(title))
                 try:
+                    title_analyze_data["title"] = title
                     analyzed_morpheme_list = parser.pos(emoji_removed_title)
-                    data.append([[record[0], record[1]] for record in analyzed_morpheme_list])
+                    title_analyze_data["words"] = [{"morpheme": record[0], "type": record[1]} for record in analyzed_morpheme_list]
+                    data.append(title_analyze_data)
                     print(f'{SITE_CODE[site_code]}: {count}번째 데이터: ', year, month, day, title)
                     count += 1
                 except:
@@ -177,15 +183,15 @@ def save_crawl_csv_data(site_code):
 
 
 # if __name__ == "__main__":
-#   site_code = int(sys.argv[1])
-#  main(site_code)
+#     site_code = int(sys.argv[1])
+#     main(site_code)
 #
-# data = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
-# for i in data:
-#     try:
-#         old_save_crawl_csv_data(i)
-#     except:
-#         raise
-# #         print("크롤러 에러")
+data = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+for i in data:
+    try:
+        main(i)
+    except:
+        raise
+#         print("크롤러 에러")
 # #
 # old_save_crawl_csv_data(8)
