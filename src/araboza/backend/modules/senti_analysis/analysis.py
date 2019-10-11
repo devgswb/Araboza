@@ -46,6 +46,7 @@ class SentiAnalysis:
         word_freq_by_date = {} # 단어 빈도수
         total_sentence_count = 0
         related_words = {}
+        RELATED_WORDS_COUNT = 5
         date_list = get_dates(start_date, end_date)
         for insert_date in date_list:
             word_freq_by_date[insert_date] = 0
@@ -104,7 +105,7 @@ class SentiAnalysis:
             return {
                 'site_code': site_code,
                 'search_word': search_word,
-                'related_words': [data for data in sorted_words[1:20] if data[1] > 10],
+                'related_words': [data for data in sorted_words[1:20] if data[1] > RELATED_WORDS_COUNT],
                 'total_sentence_count': total_sentence_count,
                 'positive': pos,
                 'positive_percentage': round((pos) / (pos + neg) * 100, 1),

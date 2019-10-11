@@ -36,9 +36,9 @@ class Result_nav extends Component {
 
         return this.enableSite.map((tabEnable,index)=>{
             tabEnable = index + 1;
-            if (tabEnable === 9 || tabEnable ===7) {
-                return ('');
-            }
+            // if (tabEnable === 9 || tabEnable ===7) {
+            //     return ('');
+            // }
             return(
                 this.enableSite[index] ? <div color="inherit" key={index} className="site" onClick={() => {
                         this.changeSiteData(index+1);}}>{this.props.siteName[index+1]}</div>:

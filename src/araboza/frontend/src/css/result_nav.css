@@ -47,7 +47,8 @@
     font-weight: bold;
     position:absolute;
     z-index: 99;
-    right:22%;
+    /*right:22%;*/
+    /*left:50%;*/
     top:23%;
 }
 .navArrow{
@@ -55,28 +56,20 @@
 }
 
 @media (max-height: 900px) {
-    .site {
+    .site,.non-active {
         line-height: 2.7rem;
         text-align: justify-all;
         vertical-align: middle;
     }
-    .non-active {
-        line-height: 2.7rem;
-        text-align: justify-all;
-        vertical-align: middle;
-    }
+
 }
 @media(max-width: 1000px) {
-    .site{
+    .site, .non-active{
         width:inherit;
         height:inherit;
         border-radius: 0;
     }
-    .non-active{
-        width:inherit;
-        height:inherit;
-        border-radius: 0;
-    }
+
     .site:hover{
         /*font-size: 1rem;*/
         box-shadow: 3px 3px 3px 3px #e0e0e0;
@@ -98,16 +91,12 @@
     }
 }
 @media(max-width: 600px) {
-    .site{
+    .site, .non-active{
         width:inherit;
         border-radius: 0;
         font-size: 0.6rem;
     }
-    .non-active{
-        width:inherit;
-        border-radius: 0;
-        font-size: 0.6rem;
-    }
+
     .site:hover{
         box-shadow: 3px 3px 3px 3px #e0e0e0;
     }

@@ -39,7 +39,7 @@ class result_main extends Component {
             4: '개드립',
             5: 'eToLAND',
             6: '가생이',
-            7: '웃긴대학',
+            7: '뽐뿌',
             8: '해연갤',
             9: '인스티즈',
             10: 'MLBPARK',

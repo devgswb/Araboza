@@ -52,7 +52,7 @@ class MainSide extends Component {
             console.log("fuck", this.state);
         } else {
             let datas = [];
-            const siteName = ["보배드림", "클리앙", "82쿡", "개드립", "eToLAND", "가생이", "웃긴대학", "해연갤", "인스티즈", "MLBPARK", "네이트판", "루리웹", "더쿠넷", "오늘의 유머", "와이고수"];
+            const siteName = ["보배드림", "클리앙", "82쿡", "개드립", "eToLAND", "가생이", "뽐뿌", "해연갤", "인스티즈", "MLBPARK", "네이트판", "루리웹", "더쿠넷", "오늘의 유머", "와이고수"];
             const MAX_COMPLETE_COUNTER = siteName.length;
             let complete_counter = 0;
             for (let count = 1; count < 16; count++) {
