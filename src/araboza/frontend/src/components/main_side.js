@@ -30,7 +30,9 @@ class MainSide extends Component {
                 alert: false,
                 st: false,
                 color: false,
-                siteTitle: ""
+                siteTitle: "",
+                endChange: false,
+                errStop: false
             }
         };
         this.handleChange = this.handleChange.bind(this);
@@ -71,17 +73,26 @@ class MainSide extends Component {
                     console.log(this.state.st);
                     let modalNumber = 'modal' + 2;
                     if (this.state.st === true) {
-                        this.setState({
-                            st: false,
-                            alert: true,
-                            color: true
-                        });
+                            this.setState({
+                                alert: true,
+                                color: true,
+                                endChange:false
+                            });
                     } else {
-                        this.setState({
-                            alert: true,
-                            [modalNumber]: !this.state[modalNumber],
-                            color: false
-                        });
+                        if(this.state.errStop === false) {
+                            this.setState({
+                                alert: true,
+                                [modalNumber]: !this.state[modalNumber],
+                                color: false,
+                                errStop: true
+                            });
+                        }
+                        else if(this.state.errStop === true) {
+                            this.setState({
+                                alert: true,
+                                color: false
+                            })
+                        }
                     }
                 }.bind(this))
                     .then(() => { // always (항상) 작동
@@ -103,8 +114,6 @@ class MainSide extends Component {
                                     firstSite = datas[0].site_code
                                 }
                             }
-
-
                             if (datas.length !== 0) {
                                 this.props.history.push({
                                     pathname: `/result`,
@@ -113,32 +122,39 @@ class MainSide extends Component {
                                     siteCode: firstSite
                                 })
                             } else {
-
-
                                 console.log(this.state.st);
                                 let modalNumber = 'modal' + 2;
                                 if (this.state.st === true) {
-                                    this.setState({
-                                        st: false,
-                                        alert: true,
-                                        color: true
-                                    });
+                            this.setState({
+                                alert: true,
+                                color: true,
+                                endChange:false
+                            });
                                 } else {
-                                    this.setState({
-                                        alert: true,
-                                        [modalNumber]: !this.state[modalNumber],
-                                        color: false
-                                    });
+                                    if(this.state.errStop === false) {
+                                        this.setState({
+                                            alert: true,
+                                            [modalNumber]: !this.state[modalNumber],
+                                            color: false,
+                                            errStop: true
+                                        });
+                                    }
+                                    else if(this.state.errStop === true) {
+                                        this.setState({
+                                            alert: true,
+                                            color: false
+                                        })
+                                    }
                                 }
-
-
                             }
-                            ;
                         }
-
                         console.log(datas);
                     });
             }
+            this.setState({
+                errStop: false,
+                st:false
+            })
         }
     };
 
@@ -161,7 +177,8 @@ handleCancel = nr => () => {
     let modalNumber = 'modal' + nr;
     this.setState({
         st: true,
-        [modalNumber]: !this.state[modalNumber]
+        [modalNumber]: !this.state[modalNumber],
+        endChange: true
     });
 };
 
