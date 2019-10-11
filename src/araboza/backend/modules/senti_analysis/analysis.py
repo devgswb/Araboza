@@ -263,7 +263,7 @@ class SentiAnalysis:
             pos += data_by_date['positive']
             neg += data_by_date['negative']
             related_words.update(data_by_date['related_words'])
-        if total_sentence_count == 0:
+        if total_sentence_count == 0 or pos + neg == 0:
             return {
                 'site_code': site_code,
                 'Success': 1
@@ -275,9 +275,9 @@ class SentiAnalysis:
                 'related_words': [data for data in sorted_words[1:20] if data[1] > RELATED_WORDS_COUNT],
                 'total_sentence_count': total_sentence_count,
                 'positive': pos,
-                'positive_percentage': round((pos) / (pos + neg) * 100, 1),
+                'positive_percentage': round((pos) / (pos + neg) * 100, 1) if not pos + neg == 0 else 0,
                 'negative': neg,
-                'negative_percentage': round((neg) / (pos + neg) * 100, 1),
+                'negative_percentage': round((neg) / (pos + neg) * 100, 1) if not pos + neg == 0 else 0,
                 'Success': 0,
                 'word_freq_by_date': [[data, word_freq_by_date[data]] for data in word_freq_by_date]
         }
