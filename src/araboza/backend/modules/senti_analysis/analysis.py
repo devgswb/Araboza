@@ -263,6 +263,11 @@ class SentiAnalysis:
             pos += data_by_date['positive']
             neg += data_by_date['negative']
             related_words.update(data_by_date['related_words'])
+        if total_sentence_count == 0:
+            return {
+                'site_code': site_code,
+                'Success': 1
+            }
         sorted_words = sorted(related_words.items(), key=lambda x: x[1], reverse=True)
         result = {
             'site_code': site_code,
@@ -276,11 +281,6 @@ class SentiAnalysis:
                 'Success': 0,
                 'word_freq_by_date': [[data, word_freq_by_date[data]] for data in word_freq_by_date]
         }
-        if result['total_sentence_count'] == 0:
-            return {
-                'site_code': site_code,
-                'Success': 1
-            }
         # 정렬된 결과 가장 많이 나온 단어는 무조건 검색된 단어니까 첫번째 인덱스는 제외한 [1:6]
         try:
             return result
