@@ -1,0 +1,15 @@
+img {
+    width : 100%;
+    height: 400px;
+}
+
+.absTextHeader h3{
+    color : #F6F6F6;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .absTextHeader h3{
+        font-size: 1.2rem;
+    }
+}

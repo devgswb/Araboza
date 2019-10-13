@@ -1,0 +1,236 @@
+@font-face {
+    font-family: 'Potra';
+    src: url(../img/Potra.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Jua';
+    src: url(../img/Jua-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'YS';
+    src: url(../img/YeonSung-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'YDJ';
+    src: url(../img/독립서체_윤동주_별헤는밤_GS.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url(../img/TmonMonsori.ttf.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BlackHanSans-Regular';
+    src: url(../img/BlackHanSans-Regular.ttf) format('truetype');
+}
+
+.back-wrapper {
+    background: #F6F6F6;
+    /*width:100%;*/
+    min-height: 100vh;
+    border: none;
+    overflow: scroll;
+}
+
+.back-wrapper::-webkit-scrollbar {
+    display: none !important;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    grid-template-rows: 4% 1fr;
+    grid-template-areas:
+    "menu-wrapper result-header"
+    "menu-wrapper container"
+    "menu-wrapper topBtn";
+
+    width: 1300px;
+    border: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.result-header {
+    grid-area: result-header;
+    background: white;
+    box-shadow: 1px 1px #E4E3E3;
+    /*padding-top: 10px;*/
+}
+
+.mobile-title {
+    display: none;
+}
+
+#return-main{
+    font-family: Jua, serif;
+    width:10rem;
+    font-size: 1.3rem;
+    margin:7px 5px 0 0;
+    color: gray;
+    cursor:pointer;
+    float:right;
+}
+
+
+.result-container {
+    display: grid;
+    grid-area: container;
+    width:1100px;
+    /*grid-template-areas:*/
+    /*        "pn-chart-wrap "*/
+    /*        "site-chart-wrap "*/
+    /*        "nav"*/
+    /*        "wordCloud"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
+    grid-template-areas:
+            "pn-chart-wrap nav"
+            "site-chart-wrap wordCloud"
+            "lineChart lineChart"
+            "totalPnCharts totalPnCharts"
+            ;
+    /*grid-template-areas:*/
+    /*        "siteAreaWrap"*/
+    /*        "totalPnCharts"*/
+    /*        "lineChart";*/
+    grid-template-columns: 55% 45%;
+    margin: 20px 0 20px 20px;
+}
+
+#card-wordCloud {
+    grid-area: wordCloud;
+}
+
+#card-nav {
+    grid-area: nav;
+}
+
+#card-totalPnChart {
+    grid-area: totalPnCharts;
+}
+
+#card-lineChart {
+    grid-area: lineChart;
+}
+
+#toTopBtn{
+    grid-area:topBtn;
+    position:fixed;
+    top:94%;
+    left:95.5%;
+    width:45px;
+    border-radius: 0.5rem;
+    border:none;
+    background: #92d7ff;
+    font-family: "Jua", serif;
+    z-index: 3;
+}
+#toTopBtn:hover{
+    box-shadow: 1px 1px 1px 2px #547078;
+}
+#toTopBtn:focus{
+    outline:none;
+}
+
+@media (max-width: 1200px){
+    #toTopBtn{
+        left:94%;
+    }
+}
+@media (max-width: 1000px){
+    #toTopBtn{
+        left:92%;
+    }
+}
+@media(max-width: 900px){
+    .back-wrapper{
+        width:100%;
+    }
+    .wrapper{
+        width:100%;
+    }
+}
+@media (max-width: 505px) {
+    .back-wrapper{
+        min-height: 100vh;
+    }
+    .wrapper {
+        width: 100%;
+        /*min-height:100vh;*/
+        grid-template-columns: 100%;
+        /*grid-template-rows: 2% 3% 94%;*/
+        grid-template-areas:
+        "result-header"
+        "menu-wrapper"
+        "container";
+    }
+    ::-webkit-scrollbar {
+        display: none !important;
+    }
+    .result-header{
+        height:5rem;
+        width:100%;
+        position: fixed;
+        display:grid;
+        grid-template-columns:40% 60%;
+        z-index: 2;
+    }
+
+    .result-container {
+        /*width: 350px;*/
+        width:98%;
+        margin-left: 5px;
+        grid-template-columns: 100%;
+        /*border:1px solid black;*/
+        grid-column-gap: 20px;
+        grid-template-areas:
+            "pn-chart-wrap "
+            "site-chart-wrap "
+            "wordCloud"
+            "lineChart"
+            "totalPnCharts"
+            "nav";
+    }
+
+    .mobile-title {
+        display: block;
+        float: left;
+        font-size: 2rem;
+        margin:10px 0 0 0 ;
+        font-family: TmonMonsori, YS, serif;
+        color: black;
+    }
+
+    #toTopBtn{
+        top:89%;
+        left:85%;
+    }
+    #return-main {
+        width: 8rem;
+        font-size: 1rem;
+        position: absolute;
+        top:6%;
+        right:2%;
+        /*padding: 0.3rem 0 0 3.5rem;*/
+        /*margin: 10px 0.5rem 0 70px;*/
+        float: right;
+    }
+
+    #return-main:hover {
+        /*font-size: 0.7rem;*/
+    }
+
+}
+@media (max-height: 500px){
+    #toTopBtn{
+        top:93%;
+    }
+}

@@ -1,0 +1,33 @@
+.mainMethod {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 55vh 45vh;
+    grid-template-areas:
+         "methodSliderShow"
+         "methodAbs"
+}
+
+.methodSliderShow {
+    height: 55vh;
+    grid-area: methodSliderShow ;
+}
+
+.methodAbs {
+    grid-area: methodAbs;
+}
+
+
+@media (max-width: 900px) {
+    .mainMethod {
+         height: 105vh;
+        grid-template-rows: 45vh 60vh;
+    }
+}
+
+@media (max-width: 520px) {
+    .mainMethod {
+         min-height: 880px;
+        grid-template-rows: 220px 660px;
+    }
+}

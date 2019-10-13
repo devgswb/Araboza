@@ -1,0 +1,56 @@
+.css {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cssView {
+    margin-top: 13%;
+    position: relative;
+    width : 35%;
+    height: 60%;
+    transform: rotate(25deg) skew(-25deg) scale(.9);
+    transition: 0.5s;
+}
+
+.cssView img{
+    margin-left : 45%;
+    position: absolute;
+    width: 100%;
+    max-height: 640px;
+    height: auto;
+    transition: 0.5s;
+    border : #000 solid 3px;
+}
+
+.cssView:hover img:nth-child(4) {
+    transform: translate(-160px,-160px);
+    opacity: 1;
+}
+
+.cssView:hover img:nth-child(3) {
+    transform: translate(-120px,-120px);
+    opacity: .8;
+}
+
+.cssView:hover img:nth-child(2) {
+    transform: translate(-80px,-80px);
+    opacity: .6;
+}
+
+.cssView:hover img:nth-child(1) {
+    transform: translate(-40px,-40px);
+    opacity: .4;
+}
+
+@media (max-width: 1400px) {
+    .cssView {
+        margin-top: 29%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .cssView {
+        margin-top: 50%;
+    }
+}

@@ -1,0 +1,74 @@
+
+.site-intro{
+    font-size: 1.7rem;
+    font-family: SCDream4, serif;
+    color:black;
+}
+/* 긍 부정 차트 , 결과 내용*/
+
+
+/*사이트 통계 파이 차트*/
+.site-chart-wrap{
+    /*grid-area: site-chart-wrap;*/
+    height:375px;
+    /*border: 1px solid #e0e0e0;*/
+    border:none;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+    margin: 0 auto;
+    padding: 0.8rem 0 0 0;
+    background: #ffffff;
+    z-index: 2;
+}
+#none-data{
+    /*height:320px;*/
+    color:#4ed1ea;
+    font-size: 2.3rem;
+    line-height: 300px;
+    cursor:default;
+    font-family: malgun gothic, serif;
+    font-weight: bold;
+}
+#site-chart{
+    margin: 20px auto;
+    padding: 0 0 0 0;
+    height: 300px;
+    width:90%;
+}
+.site-chart-wrap:hover{
+    box-shadow: 4px 4px 4px 4px #e0e0e0;
+}
+@media(max-width: 1000px) {
+    .site-chart-wrap{
+        margin:0 0 5px 0;
+        font-size:0.8rem;
+    }
+
+}
+@media(max-width: 900px) {
+
+    .site-chart-wrap{
+        margin:10px auto;
+        font-size:0.8rem;
+    }
+    .site-intro{
+        font-size: 1.5rem;
+    }
+}
+@media(max-width: 505px) {
+    .site-chart-wrap{
+        margin:0 ;
+        height:350px;
+    }
+    #site-chart{
+        margin:0 0 70px 10px;
+        padding:0 0 0 0;
+        /*height:180px;*/
+        height:300px;
+    }
+
+    .site-intro{
+        font-size: 1rem;
+    }
+
+}

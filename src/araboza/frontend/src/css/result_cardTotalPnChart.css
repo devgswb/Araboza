@@ -1,0 +1,34 @@
+
+#total-pnchart{
+    height: 700px;
+}
+#total-intro{
+    font-size: 1.7rem;
+    font-family: SCDream4, serif;
+    color:black;
+    margin: 0 auto;
+}
+#totalPnChart{
+    height:750px;
+    margin: 20px 0 0 0;
+    /*padding: 10px 20px 0 0;*/
+    background: white;
+    border-radius: 0.7rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+
+}
+#totalPnChart:hover {
+    box-shadow: 5px 5px 5px 4px #e0e0e0;
+}
+
+@media(max-width: 505px) {
+
+    #total-intro{
+        font-size: 1.6rem;
+    }
+
+    #totalPnChart{
+        /*margin-left:10px;*/
+        height:760px;
+    }
+}

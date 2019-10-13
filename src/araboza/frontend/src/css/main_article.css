@@ -1,0 +1,190 @@
+@font-face {
+    font-family: 'SCDream4';
+    src: url(../img/SCDream4.otf) format('truetype');
+}
+.articleT {
+    color: #1f1f1f;
+    font-family: SCDream4, serif;
+}
+.article {
+    position: absolute;
+    margin-top: 30vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 500px;
+    display: flex;
+}
+
+.article .articleBox {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    background: #ccc;
+    transition: 0.5s;
+}
+
+.article .articleBox:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0,0,0,1);
+}
+
+.article .articleBox .articleImg {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.article .articleBox:nth-child(odd) .articleImg {
+    bottom: 0;
+    left: 0;
+}
+
+.article .articleBox .articleImg img {
+    width: 100%;
+    height: 250px;
+}
+
+.article .articleBox .articleDetail {
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #262626;
+}
+
+.article .articleBox:nth-child(even) .articleDetail {
+    bottom: 0;
+    left: 0;
+}
+
+.article .articleBox:nth-child(1) .articleDetail {
+    background: #9DC8C8;
+}
+
+.article .articleBox:nth-child(2) .articleDetail {
+    background: #58C9B9;
+}
+
+.article .articleBox:nth-child(3) .articleDetail {
+    background: #519D9E;
+}
+
+.article .articleBox:nth-child(4) .articleDetail {
+    background: #D1B6E1;
+}
+
+.article .articleBox .articleDetail .articleIcon {
+    position: absolute;
+    top: calc(50%);
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.article .articleBox:hover .articleDetail .articleIcon {
+    top: calc(50% - 16px);
+}
+
+.article .articleBox .articleDetail .articleIcon .featureIcon {
+    font-size: 80px;
+    color: #fff;
+}
+
+.article .articleBox .articleDetail .articleIcon h3 {
+    margin: 0;
+    padding: 10px 0;
+    color : #fff;
+    font-family: SCDream4, serif;
+}
+
+.article .articleBox .articleDetail .articleIcon a {
+    display: inline-block;
+    padding: 5px 20px;
+    color: #fff;
+    border: 2px solid #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    border-radius: 20px;
+    transform: scale(0);
+    font-family: SCDream4, serif;
+}
+
+.article .articleBox:hover .articleDetail .articleIcon a {
+    transform: scale(1);
+}
+
+.article .articleBox .articleDetail .articleIcon a:hover {
+    background: #fff;
+    color: #262626;
+}
+
+@media (max-width: 1600px) {
+    .article {
+        margin-top: 32vh;
+    }
+}
+
+@media (max-width: 1200px) {
+    .article {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .article .articleBox {
+        height: 250px;
+    }
+
+    .article .articleBox .articleImg {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .article {
+        display: initial;
+    }
+
+    .article .articleBox {
+        width: 50%;
+        height: 250px;
+        float: left;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .article {
+        margin-top: 35vh;
+        height: 400px;
+    }
+
+    .article .articleBox {
+        height: 200px;
+    }
+
+    .article .articleBox .articleImg {
+        height: 200px;
+    }
+
+    .article .articleBox .articleImg img {
+        height: 200px;
+    }
+
+    .article .articleBox .articleDetail {
+        height: 200px;
+    }
+
+    .article .articleBox .articleDetail .articleIcon .featureIcon {
+    font-size: 40px;
+    color: #fff;
+}
+}

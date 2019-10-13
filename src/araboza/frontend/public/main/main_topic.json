@@ -1,0 +1,55 @@
+{
+  "list" : [
+    {
+      "mainNum" : 1,
+      "mainTitle" : "롤",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 2,
+      "mainTitle" : "일본",
+      "mainUpDown" : "4up",
+      "mainDate" : "20190702"
+    },{
+      "mainNum" : 3,
+      "mainTitle" : "정치",
+      "mainUpDown" : "2down",
+      "mainDate" : "20190708"
+    },{
+      "mainNum" : 4,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 5,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 6,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 7,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 8,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 9,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    },{
+      "mainNum" : 10,
+      "mainTitle" : "비리",
+      "mainUpDown" : "-",
+      "mainDate" : "20190704"
+    }
+  ]
+}

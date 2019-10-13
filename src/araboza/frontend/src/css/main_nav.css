@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'BlackHanSans-Regular';
+    src: url(../img/BlackHanSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SCDream3';
+    src: url(../img/SCDream3.otf) format('truetype');
+}
+
+.navBox {
+    position: absolute;
+    margin-top: 6%;
+    margin-left: 22%;
+    transform: translate(-50%,-50%);
+    width: 35%;
+    height: 37%;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    transition: 0.5s;
+}
+
+.navBox:hover {
+    transform: translate(-50%,-50%) rotateY(-30deg) skewY(5deg);
+}
+
+.navBox:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height : 100%;
+    background: transparent;
+    border-top : 20px solid #193441 ;
+    border-left : 20px solid #193441 ;
+    box-sizing: border-box;
+}
+
+.navBox:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height : 100%;
+    background: transparent;
+    border-bottom : 20px solid #193441;
+    border-right : 20px solid #193441;
+    box-sizing: border-box;
+}
+
+.navBox > .navText {
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    background: #ffffff;
+    width : calc(100% + 60px);
+    height : calc(100% - 60px);
+    transition: 0.5s;
+}
+
+.navBox:hover > .navText {
+    transform: rotateY(30deg) skewY(-5deg);
+}
+
+.navText > div
+{
+    position: absolute;
+    top: 50%;
+    left:0;
+    width : 100%;
+    transform: translateY(-50%);
+    padding: 40px 80px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.navText > div > h2 {
+    margin : 0 0 20px;
+    padding: 0;
+    color : #193441 ;
+    font-family: BlackHanSans-Regular, serif;
+    font-size: 2.8em;
+}
+
+.navText > div >  p {
+    margin : 0 0 20px;
+    padding: 0;
+    color : #193441 ;
+    font-size : 18px;
+    font-family: SCDream3, serif;
+}
+
+.navIcon {
+    width : 80px;
+    height: 80px;
+    background: #193441;
+    color: #ffffff;
+    text-align: center;
+    line-height : 80px !important;
+    font-size : 40px !important;
+}
+
+.navIcon.i1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.navIcon.i2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+@media (max-width: 1600px) {
+    .navText > div > h2 {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .navBox {
+        margin-top: 17%;
+        margin-left: 50%;
+        width: 60%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 900px) {
+    .navBox {
+        margin-top: 20%;
+        margin-left: 50%;
+        width: 70%;
+        height: 40%;
+    }
+}
+
+@media (max-width: 700px) {
+    .navBox {
+        margin-top: 25%;
+        margin-left: 50%;
+        width: 90%;
+        height: 35%;
+    }
+}

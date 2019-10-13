@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url(../img/TmonMonsori.ttf.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'SCDream3';
+    src: url(../img/SCDream3.otf) format('truetype');
+}
+
+.section {
+    color : #3E4551;
+    font-family: TmonMonsori,serif;
+}
+
+.section Table {
+     color : #3E4551;
+    font-family: SCDream3,serif;
+}
+
+.sectionIcon {
+    width : 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top : 20vh;
+    margin-left : 35%;
+    border: 2px solid #82ccdd;
+}
+
+.sectionTitle {
+    color: black;
+    line-height: 80px;
+    font-size: 40px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .sectionIcon {
+        width : 50px;
+        height: 50px;
+        margin-top : 20vh;
+    }
+    .sectionTitle {
+        color: black;
+        line-height: 50px;
+        font-size: 25px;
+        text-align: center;
+}
+}

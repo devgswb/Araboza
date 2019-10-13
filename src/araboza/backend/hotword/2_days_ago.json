@@ -1,0 +1,54 @@
+{
+	"result": [
+		{
+			"word": "윤석열",
+			"count": 481,
+			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 367,
+			"changes": 1
+		},
+		{
+			"word": "검찰",
+			"count": 305,
+			"changes": 9
+		},
+		{
+			"word": "한겨레",
+			"count": 216,
+			"changes": 0
+		},
+		{
+			"word": "접대",
+			"count": 214,
+			"changes": 0
+		},
+		{
+			"word": "기사",
+			"count": 190,
+			"changes": 0
+		},
+		{
+			"word": "오늘",
+			"count": 158,
+			"changes": -162
+		},
+		{
+			"word": "사람",
+			"count": 151,
+			"changes": 0
+		},
+		{
+			"word": "기자",
+			"count": 132,
+			"changes": -33
+		},
+		{
+			"word": "총장",
+			"count": 128,
+			"changes": 0
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+	"result": [
+		{
+			"word": "오늘",
+			"count": 300,
+			"changes": 142
+		},
+		{
+			"word": "집회",
+			"count": 282,
+			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 254,
+			"changes": -113
+		},
+		{
+			"word": "일본",
+			"count": 246,
+			"changes": 0
+		},
+		{
+			"word": "서초동",
+			"count": 243,
+			"changes": 0
+		},
+		{
+			"word": "서초",
+			"count": 204,
+			"changes": 0
+		},
+		{
+			"word": "사람",
+			"count": 158,
+			"changes": 7
+		},
+		{
+			"word": "태풍",
+			"count": 148,
+			"changes": 0
+		},
+		{
+			"word": "검찰",
+			"count": 143,
+			"changes": -162
+		},
+		{
+			"word": "개혁",
+			"count": 106,
+			"changes": 0
+		}
+	]
+}

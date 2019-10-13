@@ -1,0 +1,39 @@
+p {
+    display: inline;
+    color: blue;
+}
+
+#aLineChart{
+    height:450px;
+}
+
+#lineChart {
+    height: 500px;
+    margin: 20px 0 0 0;
+    padding: 10px 20px 0 0;
+    background: white;
+    border-radius: 0.7rem;
+    box-shadow: 4px 4px 4px #e0e0e0;
+}
+
+#lineIntro {
+    font-size: 1.7rem;
+    color: black;
+    font-family: SCDream4, serif;
+    margin: 0 0 0 20px;
+}
+
+@media (max-width: 505px){
+    #aLineChart{
+        height:200px;
+    }
+    #lineChart{
+        margin:20px 0 0 0;
+        height:240px;
+    }
+    #lineIntro {
+        font-size: 1rem;
+    }
+}
+
+

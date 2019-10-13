@@ -1,0 +1,184 @@
+.sub {
+    font-family: sans-serif;
+}
+
+.subHeader {
+    width : 100%;
+    padding-top: 12%;
+    text-align: center;
+    margin-left : 50%;
+    transform: translate(-50%, -50%);
+}
+
+.subHeader span {
+    text-transform: uppercase;
+    display: block;
+}
+
+.textTitle {
+    color: white;
+    font-size: 8.5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: text 3s 1;
+}
+
+.textSub {
+    font-size: 30px;
+    color: #6ab04c;
+}
+
+@keyframes text {
+    0%{
+        background :#330867;
+        color: #330867;
+        margin-bottom: -75px;
+    }
+
+    30% {
+        letter-spacing: 15px;
+        margin-bottom: -75px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: -75px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .subHeader {
+        margin-top : 2%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .subHeader {
+        margin-top : 10%;
+    }
+}
+
+@media (max-width: 900px) {
+    .subHeader {
+        margin-top : 10%;
+    }
+
+    @keyframes text {
+    0%{
+        background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+        color: #330867;
+        margin-bottom: -75px;
+    }
+
+    30% {
+        letter-spacing: 15px;
+        margin-bottom: -75px;
+    }
+
+    85% {
+        letter-spacing: 8px;
+        margin-bottom: -75px;
+    }
+}
+}
+
+@media (max-width: 810px) {
+    .subHeader {
+        margin-top : 13%;
+    }
+
+    .textTitle {
+        font-size: 6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .subHeader {
+        margin-top : 13%;
+    }
+
+    .textTitle {
+        font-size: 4.8em;
+    }
+
+    @keyframes text {
+    0%{
+        background: pink;
+        color: pink;
+        margin-bottom: -75px;
+    }
+
+    30% {
+        letter-spacing: 10px;
+        margin-bottom: -75px;
+    }
+
+    85% {
+        letter-spacing: 2px;
+        margin-bottom: -75px;
+    }
+}
+}
+
+@media (max-width: 520px) {
+
+    .subHeader {
+        margin-top : 17%;
+    }
+
+    .textTitle {
+        font-size: 4.6rem;
+        letter-spacing: 2px;
+    }
+
+    @keyframes text {
+    0%{
+        background: pink;
+        color: pink;
+        margin-bottom: -75px;
+    }
+
+    30% {
+        letter-spacing: 15px;
+        margin-bottom: -75px;
+    }
+
+    85% {
+        letter-spacing: 2px;
+        margin-bottom: -75px;
+    }
+}
+}
+
+@media (max-width: 450px) {
+
+    .subHeader {
+        margin-top : 17%;
+    }
+
+    .textTitle {
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+    }
+
+    @keyframes text {
+    0%{
+        background: pink;
+        color: pink;
+        margin-bottom: -75px;
+    }
+
+    30% {
+        letter-spacing: 7px;
+        margin-bottom: -75px;
+    }
+
+    85% {
+        letter-spacing: 2px;
+        margin-bottom: -75px;
+    }
+}
+
+}
