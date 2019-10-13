@@ -7,9 +7,9 @@ from rest_framework.viewsets import views
 from rest_framework.response import Response
 from . import serializers
 from . import models
-import sys
 import json
 import os
+import sys
 sys.path.append("..")
 from modules.senti_analysis import analysis
 

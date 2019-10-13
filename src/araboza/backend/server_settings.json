@@ -4,7 +4,7 @@
   "host":"61.84.24.138",
   "db_name": "araboza",
   "db_live_data": "wordsByTest",
-  "search_start_date": "2019-08-25",
-  "search_end_date": "2019-09-25",
+  "search_start_date": "2019-09-01",
+  "search_end_date": "2019-10-12",
   "port":57017
 }

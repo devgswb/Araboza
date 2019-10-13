@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
+			"word": "커쇼",
+			"count": 383,
+			"changes": 0
+		},
+		{
 			"word": "조국",
-			"count": 138,
-			"changes": -107
-		},
-		{
-			"word": "검찰",
-			"count": 123,
-			"changes": -674
-		},
-		{
-			"word": "태풍",
-			"count": 121,
-			"changes": 0
-		},
-		{
-			"word": "나경원",
-			"count": 118,
-			"changes": 2
-		},
-		{
-			"word": "이유",
-			"count": 94,
-			"changes": 0
-		},
-		{
-			"word": "사람",
-			"count": 89,
-			"changes": -37
+			"count": 366,
+			"changes": 41
 		},
 		{
 			"word": "오늘",
-			"count": 88,
-			"changes": -117
+			"count": 320,
+			"changes": 55
 		},
 		{
-			"word": "생각",
-			"count": 77,
+			"word": "유착",
+			"count": 316,
 			"changes": 0
 		},
 		{
-			"word": "일본",
-			"count": 77,
+			"word": "검찰",
+			"count": 296,
+			"changes": -580
+		},
+		{
+			"word": "다저스",
+			"count": 253,
 			"changes": 0
 		},
 		{
-			"word": "한국",
-			"count": 76,
+			"word": "유시민",
+			"count": 246,
+			"changes": -110
+		},
+		{
+			"word": "녹취록",
+			"count": 210,
+			"changes": 0
+		},
+		{
+			"word": "기자",
+			"count": 165,
+			"changes": 0
+		},
+		{
+			"word": "스리랑카",
+			"count": 160,
 			"changes": 0
 		}
 	]

@@ -6,7 +6,9 @@ import os
 
 from collections import OrderedDict
 from datetime import timedelta
-
+import sys
+sys.path.append("..")
+from dao.dao import Dao
 
 def get_hotword_ranking(date):
     # 파라미터 date의 양식은 '2019-01-01'이다.
@@ -15,14 +17,13 @@ def get_hotword_ranking(date):
     date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
     date = [date, date + timedelta(days=-1), date + timedelta(days=-2), date + timedelta(days=-3)]
     dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
-    with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
-        data = json.load(data_file)
-        username = data['username']
-        password = data['password']
-        db_host = data['host']
-        db_port = data['port']
-        db_name = data['db_name']
-        db_live_data = data['db_live_data']
+    data = Dao.data
+    username = data['username']
+    password = data['password']
+    db_host = data['host']
+    db_port = data['port']
+    db_name = data['db_name']
+    db_live_data = data['db_live_data']
     username = urllib.parse.quote_plus(username)
     password = urllib.parse.quote_plus(password)
     conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{db_host}:{db_port}/{db_name}')
@@ -32,19 +33,21 @@ def get_hotword_ranking(date):
     for index, i_date in enumerate(date):
         rs = collection.find({
             '$or': [
-                {'code': 2, 'time': i_date}, {'code': 10, 'time': i_date}
+                {'code': 2, 'year': i_date.year, 'month': i_date.month, 'day': i_date.day},
+                {'code': 10, 'year': i_date.year, 'month': i_date.month, 'day': i_date.day}
             ]
         })
-        noun = ['NNP', 'NNG']
+        noun = ['NNP', 'NNG', 'NNB']
         related_words = {}
         sorted_words = []
         for record in rs:
-            for sentence in record['data']:
-                for sub_word in sentence:
-                    noun_word = sub_word[0]  # 명사 단어
+            sentences = record['data']
+            for sentence in sentences:
+                for sub_word in sentence['words']:
+                    noun_word = sub_word['morpheme']  # 명사 단어
                     if len(noun_word) == 1:
                         continue
-                    part_of_word = sub_word[1]  # 품사
+                    part_of_word = sub_word['type']  # 품사
                     if part_of_word in noun:
                         if not (noun_word in related_words):
                             related_words[noun_word] = 0
@@ -133,7 +136,7 @@ def ranking_Changes():
 
 #   yesterday > 2 days ago > 3 days ago >> 4 days ago
 # 반드시 get_hotword_ranking("2019-08-06") >> ranking_Changes() 순으로 실행해주세요
-get_hotword_ranking("2019-09-24")
+get_hotword_ranking(Dao.data['search_end_date'])
 ranking_Changes()
 
 # print(get_hotword_ranking("2019-09-21"))

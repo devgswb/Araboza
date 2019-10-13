@@ -14,6 +14,10 @@ import os
 import mongoengine
 import urllib.parse
 import json
+import sys
+sys.path.append("..")
+from modules.dao.dao import Dao
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,17 +32,15 @@ SECRET_KEY = ')cgzo0u-$!i=^uh&2ivh-kz2db$%yw_9#xetv@fxnag7qf3-+y'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-2
+
 # Databases
 
-dirname = os.path.dirname(os.path.dirname(__file__)).replace('\\', '/')
-with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
-    data = json.load(data_file)
-    username = data['username']
-    password = data['password']
-    db_host = data['host']
-    db_port = data['port']
-    db_name = data['db_name']
+Dao.make()
+username = Dao.username
+password = Dao.password
+db_host = Dao.db_host
+db_port = Dao.db_port
+db_name = Dao.db_name
 
 username = urllib.parse.quote_plus(username)
 password = urllib.parse.quote_plus(password)

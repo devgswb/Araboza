@@ -7,6 +7,10 @@ import pymongo
 import urllib
 import datetime
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
+print(sys.path)
+from dao.dao import Dao
 
 class SentiAnalysis:
     def test(self, site_code, search_word):
@@ -28,15 +32,11 @@ class SentiAnalysis:
         # KOSAC 감성어 사전용 코드
         self.polarity = self.__make_polarity_dict__()
         # KNU를 이용한 감성어 사전 만들기
-        dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
-        with open(f'{dirname}/server_settings.json', encoding='utf-8') as data_file:
-            data = json.load(data_file)
-            self.username = data['username']
-            self.password = data['password']
-            self.db_host = data['host']
-            self.db_port = data['port']
-            self.db_name = data['db_name']
-            self.db_live_data = data['db_live_data']
+        self.username = Dao.username
+        self.password = Dao.password
+        self.db_host = Dao.db_host
+        self.db_port = Dao.db_port
+        self.db_name = Dao.db_name
 
     def result_from_db(self, start_date, end_date, site_code, search_word):
         return self.result_from_db_By_Title(start_date, end_date, site_code, search_word)
@@ -61,7 +61,7 @@ class SentiAnalysis:
         password = urllib.parse.quote_plus(self.password)
         conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
         db = conn.get_database(self.db_name)
-        collection = db[self.db_live_data]
+        collection = db[Dao.data['db_live_data']]
         for date in date_list:
             DATE = date.split('-')
             YEAR = int(DATE[0])
@@ -226,7 +226,7 @@ class SentiAnalysis:
         password = urllib.parse.quote_plus(self.password)
         conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{self.db_host}:{self.db_port}/{self.db_name}')
         db = conn.get_database(self.db_name)
-        collection = db[self.db_live_data]
+        collection = db[Dao.data['db_live_data']]
         result_list = []
         for date in date_list:
             YEAR = 0

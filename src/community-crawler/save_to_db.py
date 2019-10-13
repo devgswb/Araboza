@@ -6,6 +6,8 @@ import datetime
 import os
 import re
 import sys
+sys.path.append("..")
+from araboza.backend.modules.dao.dao import Dao
 
 SITE_CODE = {
     1: "보배드림",
@@ -14,7 +16,7 @@ SITE_CODE = {
     4: "개드립",
     5: "이토랜드",
     6: "가생이",
-    7: "웃긴대학",
+    7: "뽐뿌",
     8: "해연갤",
     9: "인스티즈",
     10: "MLB파크",
@@ -36,13 +38,16 @@ def save_crawl_to_db(site_code):
 
 def old_save_crawl_csv_data(site_code):
     parser = Komoran()
-    username = urllib.parse.quote_plus('devgswb')
-    password = urllib.parse.quote_plus('1q@W3e4r')
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.138:57017/araboza')
-    db = conn.get_database('araboza')
-    collection = db.wordsByTest
+    username = urllib.parse.quote_plus(Dao.username)
+    password = urllib.parse.quote_plus(Dao.password)
+    db_host = Dao.db_host
+    db_port = Dao.db_port
+    db_name = Dao.db_name
+    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{db_host}:{db_port}/{db_name}')
+    db = conn.get_database(db_name)
+    collection = db[Dao.data['db_live_data']]
     # DB 연결
-    dirpath = os.path.dirname(__file__) + f'/data2/{site_code}/'
+    dirpath = os.path.dirname(__file__) + f'/data/{site_code}/'
     print(dirpath)
     for filename in os.listdir(dirpath):
         count = 1
@@ -114,11 +119,14 @@ def old_save_crawl_csv_data(site_code):
 
 def save_crawl_csv_data(site_code):
     parser = Komoran()
-    username = urllib.parse.quote_plus('devgswb')
-    password = urllib.parse.quote_plus('1q@W3e4r')
-    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@61.84.24.138:57017/araboza')
-    db = conn.get_database('araboza')
-    collection = db.wordsByTitle
+    username = urllib.parse.quote_plus(Dao.username)
+    password = urllib.parse.quote_plus(Dao.password)
+    db_host = Dao.db_host
+    db_port = Dao.db_port
+    db_name = Dao.db_name
+    conn = pymongo.MongoClient(f'mongodb://{username}:{password}@{db_host}:{db_port}/{db_name}')
+    db = conn.get_database(db_name)
+    collection = db[Dao.data['db_live_data']]
     # DB 연결
     dirpath = os.path.dirname(__file__) + f'/data/{site_code}/'
     print(dirpath)
@@ -186,7 +194,7 @@ def save_crawl_csv_data(site_code):
 #     site_code = int(sys.argv[1])
 #     main(site_code)
 #
-data = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 for i in data:
     try:
         main(i)

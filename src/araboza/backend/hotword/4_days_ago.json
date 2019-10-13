@@ -2,52 +2,52 @@
 	"result": [
 		{
 			"word": "검찰",
-			"count": 797,
+			"count": 876,
 			"changes": 0
 		},
 		{
-			"word": "집회",
-			"count": 727,
+			"word": "방송",
+			"count": 517,
 			"changes": 0
 		},
 		{
-			"word": "촛불",
-			"count": 704,
+			"word": "유시민",
+			"count": 356,
 			"changes": 0
 		},
 		{
-			"word": "개혁",
-			"count": 695,
+			"word": "KBS",
+			"count": 335,
 			"changes": 0
 		},
 		{
 			"word": "조국",
-			"count": 245,
+			"count": 325,
 			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 205,
-			"changes": 0
-		},
-		{
-			"word": "아이즈",
-			"count": 139,
+			"count": 265,
 			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 126,
+			"count": 187,
 			"changes": 0
 		},
 		{
-			"word": "나경원",
-			"count": 116,
+			"word": "집회",
+			"count": 181,
 			"changes": 0
 		},
 		{
-			"word": "영화",
-			"count": 111,
+			"word": "광화문",
+			"count": 173,
+			"changes": 0
+		},
+		{
+			"word": "레오",
+			"count": 143,
 			"changes": 0
 		}
 	]

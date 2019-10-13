@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "조국",
-			"count": 379,
-			"changes": 324
-		},
-		{
-			"word": "검찰",
-			"count": 247,
-			"changes": 0
-		},
-		{
-			"word": "이다",
-			"count": 191,
-			"changes": 0
-		},
-		{
-			"word": "개혁",
-			"count": 95,
-			"changes": 0
-		},
-		{
-			"word": "장관",
-			"count": 80,
-			"changes": 0
-		},
-		{
 			"word": "오늘",
-			"count": 73,
-			"changes": 19
-		},
-		{
-			"word": "짜장면",
-			"count": 61,
-			"changes": 0
-		},
-		{
-			"word": "압수수색",
-			"count": 60,
-			"changes": 0
-		},
-		{
-			"word": "시간",
-			"count": 58,
-			"changes": 0
+			"count": 300,
+			"changes": 142
 		},
 		{
 			"word": "집회",
-			"count": 56,
+			"count": 282,
+			"changes": 0
+		},
+		{
+			"word": "조국",
+			"count": 254,
+			"changes": -113
+		},
+		{
+			"word": "일본",
+			"count": 246,
+			"changes": 0
+		},
+		{
+			"word": "서초동",
+			"count": 243,
+			"changes": 0
+		},
+		{
+			"word": "서초",
+			"count": 204,
+			"changes": 0
+		},
+		{
+			"word": "사람",
+			"count": 158,
+			"changes": 7
+		},
+		{
+			"word": "태풍",
+			"count": 148,
+			"changes": 0
+		},
+		{
+			"word": "검찰",
+			"count": 143,
+			"changes": -162
+		},
+		{
+			"word": "개혁",
+			"count": 106,
 			"changes": 0
 		}
 	]
