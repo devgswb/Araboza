@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "검찰",
-			"count": 876,
-			"changes": 0
-		},
-		{
-			"word": "방송",
-			"count": 517,
-			"changes": 0
-		},
-		{
-			"word": "유시민",
-			"count": 356,
-			"changes": 0
-		},
-		{
-			"word": "KBS",
-			"count": 335,
+			"word": "윤석열",
+			"count": 481,
 			"changes": 0
 		},
 		{
 			"word": "조국",
-			"count": 325,
+			"count": 367,
+			"changes": 0
+		},
+		{
+			"word": "검찰",
+			"count": 305,
+			"changes": 0
+		},
+		{
+			"word": "한겨레",
+			"count": 216,
+			"changes": 0
+		},
+		{
+			"word": "접대",
+			"count": 214,
+			"changes": 0
+		},
+		{
+			"word": "기사",
+			"count": 190,
 			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 265,
+			"count": 158,
 			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 187,
+			"count": 151,
 			"changes": 0
 		},
 		{
-			"word": "집회",
-			"count": 181,
+			"word": "기자",
+			"count": 132,
 			"changes": 0
 		},
 		{
-			"word": "광화문",
-			"count": 173,
-			"changes": 0
-		},
-		{
-			"word": "레오",
-			"count": 143,
+			"word": "총장",
+			"count": 128,
 			"changes": 0
 		}
 	]

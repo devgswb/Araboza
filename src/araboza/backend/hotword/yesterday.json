@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "오늘",
-			"count": 300,
-			"changes": 142
-		},
-		{
-			"word": "집회",
-			"count": 282,
-			"changes": 0
-		},
-		{
 			"word": "조국",
-			"count": 254,
-			"changes": -113
+			"count": 2853,
+			"changes": 2632
 		},
 		{
-			"word": "일본",
-			"count": 246,
+			"word": "이다",
+			"count": 894,
 			"changes": 0
 		},
 		{
-			"word": "서초동",
-			"count": 243,
+			"word": "장관",
+			"count": 882,
 			"changes": 0
 		},
 		{
-			"word": "서초",
-			"count": 204,
-			"changes": 0
-		},
-		{
-			"word": "사람",
-			"count": 158,
-			"changes": 7
-		},
-		{
-			"word": "태풍",
-			"count": 148,
+			"word": "사퇴",
+			"count": 744,
 			"changes": 0
 		},
 		{
 			"word": "검찰",
-			"count": 143,
-			"changes": -162
+			"count": 575,
+			"changes": 411
+		},
+		{
+			"word": "설리",
+			"count": 442,
+			"changes": 0
 		},
 		{
 			"word": "개혁",
-			"count": 106,
+			"count": 395,
+			"changes": 307
+		},
+		{
+			"word": "오늘",
+			"count": 301,
+			"changes": 135
+		},
+		{
+			"word": "사람",
+			"count": 265,
+			"changes": 127
+		},
+		{
+			"word": "법무부",
+			"count": 244,
 			"changes": 0
 		}
 	]

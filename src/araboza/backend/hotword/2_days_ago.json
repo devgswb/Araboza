@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "윤석열",
-			"count": 481,
-			"changes": 0
-		},
-		{
 			"word": "조국",
-			"count": 367,
-			"changes": 1
-		},
-		{
-			"word": "검찰",
-			"count": 305,
-			"changes": 9
-		},
-		{
-			"word": "한겨레",
-			"count": 216,
-			"changes": 0
-		},
-		{
-			"word": "접대",
-			"count": 214,
-			"changes": 0
-		},
-		{
-			"word": "기사",
-			"count": 190,
-			"changes": 0
-		},
-		{
-			"word": "오늘",
-			"count": 158,
-			"changes": -162
-		},
-		{
-			"word": "사람",
-			"count": 151,
-			"changes": 0
-		},
-		{
-			"word": "기자",
-			"count": 132,
+			"count": 221,
 			"changes": -33
 		},
 		{
-			"word": "총장",
-			"count": 128,
+			"word": "일본",
+			"count": 193,
+			"changes": -53
+		},
+		{
+			"word": "오늘",
+			"count": 166,
+			"changes": -134
+		},
+		{
+			"word": "검찰",
+			"count": 164,
+			"changes": 21
+		},
+		{
+			"word": "사람",
+			"count": 138,
+			"changes": -20
+		},
+		{
+			"word": "생각",
+			"count": 102,
+			"changes": 0
+		},
+		{
+			"word": "프로",
+			"count": 94,
+			"changes": 0
+		},
+		{
+			"word": "이유",
+			"count": 93,
+			"changes": 0
+		},
+		{
+			"word": "개혁",
+			"count": 88,
+			"changes": -18
+		},
+		{
+			"word": "여자",
+			"count": 85,
 			"changes": 0
 		}
 	]
