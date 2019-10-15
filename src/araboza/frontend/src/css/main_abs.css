@@ -21,7 +21,7 @@
 .absBody {
     margin: 0;
     padding: 0;
-    min-height: 40vh;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,6 +148,7 @@
         justify-content: space-between;
         flex-direction: column;
         align-items: center;
+        margin-top : 130px;
     }
 
     .absContainer .absCard .view {
@@ -177,8 +178,20 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .absLoading h3{
         font-size: 1.2rem;
+    }
+
+    .absContainer {
+        margin-top: 150px;
+    }
+}
+
+@media (max-width: 700px) and (max-height : 400px) {
+    .absContainer .absCard .view {
+        width : 95vh;
+        height: 100px;
+        transition: 0.5s;
     }
 }

@@ -116,8 +116,20 @@
     font-family: SCDream4, serif;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 700px) {
+    .viewContainer {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 520px) {
+    .viewContainer {
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 700px) and (max-height: 360px){
     .mainTitle {
-        margin-top: 12%;
+        margin-top: 0;
     }
 }

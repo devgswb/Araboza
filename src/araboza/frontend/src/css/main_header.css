@@ -47,3 +47,9 @@
         text-align : center;
     }
 }
+
+@media (max-width: 700px) and (max-height : 400px) {
+    .header {
+        height: 300px;
+    }
+}

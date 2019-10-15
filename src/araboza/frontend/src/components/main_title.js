@@ -33,7 +33,7 @@ class MainTitle extends Component {
         let wWidth = this.state.width;
         let titleBoard;
 
-        if(wWidth > 1200) {
+        if(wWidth > 700) {
             titleBoard =
                 <div className='titleHead'>
                         <h1 className='headTitle'>Title</h1>

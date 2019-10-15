@@ -1,3 +1,15 @@
 #rankWordCloud {
-    height: 50vh;
+    height: 450px;
+}
+
+@media (max-width: 520px) {
+    #rankWordCloud {
+        height: 320px;
+    }
+}
+
+@media (max-width: 700px) and (max-height : 400px) {
+    #rankWordCloud {
+        height: 280px;
+    }
 }

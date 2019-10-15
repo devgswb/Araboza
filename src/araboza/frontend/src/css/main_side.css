@@ -9,7 +9,7 @@
 
 .side {
     font-family: SCDream4,serif;
-    margin : 0 auto;
+    margin : 70px auto 0 auto;
     width : 80%;
     color : #3E4551;
     background-color: #FCFFF5;
@@ -37,7 +37,7 @@
 @media(max-width: 1150px) {
 
     .side {
-        margin-top : 14vh;
+        margin-top : 20px;
         width : 90%;
     }
     .sideAlert {
@@ -54,9 +54,9 @@
 }
 
 
-@media(max-width: 505px) {
+@media(max-width: 520px) {
     .side {
-        margin : 40px auto;
+        margin : 20px auto 0 auto;
         width : 97%;
         height: 170px;
     }
@@ -66,5 +66,13 @@
         width : 100%;
         margin-left: 0;
         color : #3E4551;
+    }
+}
+
+@media (max-width: 700px) and (max-height: 400px){
+    .side {
+        margin : 30px auto;
+        width : 97%;
+        height: 170px;
     }
 }
