@@ -60,6 +60,8 @@ class Crawler:
             self.noticeNum = self.noticeNum + 1
         for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#3e005d"]')):
             self.noticeNum = self.noticeNum + 1
+        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#ff0000"]')):
+            self.noticeNum = self.noticeNum + 1
         for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;"]')):
             self.noticeNum = self.noticeNum + 1
         for i, w in enumerate(soup.select('td.title span[style="color:#666666"]')):

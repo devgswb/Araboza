@@ -127,8 +127,8 @@ class Crawler:
         elif site_code == 13:
             data_directory_create('data/13')
             crawler = TheqooCrawl.Crawler()
-            #crawler.run('ktalk', year, month, day)          # 케이돌토그
-            #crawler.run('movie', year, month, day)          # 영화
+            crawler.run('ktalk', year, month, day)          # 케이돌토그
+            crawler.run('movie', year, month, day)          # 영화
             crawler.run('politics', year, month, day)       # 정치토크
             crawler.run('kbaseball', year, month, day)      # 국내야구
             crawler.run('ksoccer', year, month, day)        # 국내축구
