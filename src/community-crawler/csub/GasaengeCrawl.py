@@ -31,14 +31,14 @@ class Crawler:
         url = f'https://www.gasengi.com/main/board.php?bo_table=commu&page={page}'
         time.sleep(0.02)
         res = req.get(url)
-        res.encoding = None
+        # res.encoding = None
         html = res.text
         soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
         write = []
         day = []
 
         for i, w in enumerate(soup.select('table[class=board_list] > tr > td[class=subject] > a:nth-child(1)')):
-            if i > 4:
+            if i > 5:
                 w = w.get_text()
                 w = w.split('\n')[0]
                 # w = w.replace('\n', '')
@@ -46,7 +46,7 @@ class Crawler:
                 write.append(w)
 
         for i, d in enumerate(soup.select('table.board_list > tr > td.datetime')):
-            if i > 4:
+            if i > 5:
                 d = d.get_text()
                 d = d.replace('\n', '')
                 d = d.replace('-', '-') # 날짜 중간 형식
@@ -103,7 +103,7 @@ class Crawler:
             soup = BeautifulSoup(html, 'html.parser')
 
             for i, d in enumerate(soup.select('table.board_list > tr > td.datetime')):
-                if i > 4:
+                if i > 5:
                     d = d.get_text()
                     d = d.replace('\n', '')
                     d = d.replace('-', '-') # 중간 날짜 형식
@@ -158,7 +158,7 @@ class Crawler:
                 soup = BeautifulSoup(html, 'html.parser')
 
                 for i, d in enumerate(soup.select('table.board_list > tr > td.datetime')):
-                    if i > 4:
+                    if i > 5:
                         d = d.get_text()
                         d = d.replace('\n', '')
                         d = d.replace('/', '-')

@@ -8,42 +8,50 @@ from bs4 import BeautifulSoup  # BeautifulSoup import
 from multiprocessing import Pool
 from datetime import timedelta
 import time
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class Crawler:
 
     def __init__(self):
         self.day = ''
+        self.title = ''
         self.endTime = datetime.datetime(2000, 1, 1)
+        self.name = 'BoBaeDream'
+        self.url = ''
 
-    def run(self, years, months, days):
+    def run(self, title, years, months, days):
+        time.sleep(2)
+        self.title = title
+        self.url = f'https://www.bobaedream.co.kr/list?code={title}&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page='
         self.endTime = datetime.datetime(years, months, days)
         #while True:
          #   if self.day != '' and (datetime.datetime.strptime(self.day, "%Y.%m.%d") < self.endTime):
          #       break
             # self.crawlPage()
         pool = Pool(processes=4)
-        pool.map(self.crawlPage, self.pageCalculation(f'{years}-{months}-{days}'))
+        try:
+            pool.map(self.crawlPage, self.pageCalculation(f'{years}-{months}-{days}'))
+        except:
+            print(f"{title} 오류발생 재시작 합니다.")
+            return self.run(title, years, months, days)
         pool.close()
-        sys.stdout.write(f"BoBaeDream 크롤링 완료\r")
-        sys.stdout.flush()
+        # sys.stdout.write(f"{self.name}-{title} 크롤링 완료\r")
+        print(f"{self.name}-{title} 크롤링 완료")
 
-    def crawlPage(self, page):
-        url = f'http://www.bobaedream.co.kr/list?code=politic&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page={page}'
-        time.sleep(0.02)
-        res = req.get(url, verify=False)
-        res.encoding = None
-        html = res.text
-        soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+    def subjectCrawl(self, page, soup):
         write = []
-        day = []
-
         for i, w in enumerate(soup.select('tr:not(.best) > td[class=pl14] > a[class=bsubject]')):
             w = w.get_text()
             w = w.split('\n')[0]
-            # w = w.replace('\n', '')
+            w = w.replace('\n', '')
             w = w.replace(',', ' ')
             write.append(w)
+        return write
 
+    def dateCrawl(self, page, soup, type):
+        # type은 'save' 와 'search'
+        day = []
         for i, d in enumerate(soup.select('tr:not(.best) > td[class=date]')):
             d = d.get_text()
             d = d.replace('\n', '')
@@ -59,25 +67,43 @@ class Crawler:
                 d = d.replace('-', '-') # 년도가 달라졌을때 구분하는 로직이 더 필요함
             d = d.replace(' ', '')
             d = d.split(' ')[0]
-            day.append(d)
+            if type == "save":
+                day.append(d)
+            elif type == "search":
+                day.append(datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2])))
+        return day
 
-        for t in range(len(write)):
-            self.day = day[t]
-            if datetime.datetime.strptime(self.day, "%Y-%m-%d") < self.endTime:
-                return
-            name = 'BoBaeDream'
-            fpath = f'data/1/[{day[t].replace(".", "-")}]{name}.csv'
-            with open(fpath, mode='a', encoding='utf-8') as f:
-                try:
-                    f.write(f'{day[t]},{write[t]}\n')
-                except:
-                    print("\nindex: " + str(t) + "\n")
-                    print(day)
-                    print(write)
-                    print(day[t])
-                    print(write[t])
-                    raise
-                f.close()
+    def crawlPage(self, page):
+        try:
+            url = self.url + str(page)
+            time.sleep(0.5)
+            res = req.get(url, verify=False)
+            res.encoding = None
+            html = res.text
+            html = html.encode('utf-8', 'ignore')
+            soup = BeautifulSoup(html, 'html.parser')
+            write = self.subjectCrawl(page, soup)
+            day = self.dateCrawl(page, soup, 'save')
+
+            for t in range(len(write)):
+                self.day = day[t]
+                if datetime.datetime.strptime(self.day, "%Y-%m-%d") < self.endTime:
+                    return
+                fpath = f'data/1/[{day[t].replace(".", "-")}]{self.name}.csv'
+                with open(fpath, mode='a', encoding='utf-8') as f:
+                    try:
+                        f.write(f'{day[t]},{write[t]}\n')
+                    except:
+                        print("\nindex: " + str(t) + "\n")
+                        print(day)
+                        print(write)
+                        print(day[t])
+                        print(write[t])
+                        raise
+                    f.close()
+        except:
+            print(f'{self.title} {page}page 재 크롤링')
+            return self.crawlPage(page)
 
     def pageCalculation(self, date_Specified):  # 입력한 날짜의 글이 있는 페이지 까지 검색
         # 들어와야하는 date_Specified의 형태는 '2019-08-22'
@@ -87,38 +113,19 @@ class Crawler:
         result = []
         Fixed_date = datetime.datetime(int(date_Specified.split('-')[0]), int(date_Specified.split('-')[1]),
                                        int(date_Specified.split('-')[2])) + timedelta(days=-1)
-        # print(date_Specified, Fixed_date)
-
         while stop == True:
-            url = f'http://www.bobaedream.co.kr/list?code=politic&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page={regen}'
-            time.sleep(0.02)
+            url = self.url + str(regen)
+            time.sleep(0.5)
             res = req.get(url, verify=False)
             res.encoding = None
             html = res.text
-            soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+            html = html.encode('utf-8', 'ignore')
+            soup = BeautifulSoup(html, 'html.parser')
 
-            for i, d in enumerate(soup.select('tr:not(.best) > td[class=date]')):
-                d = d.get_text()
-                d = d.replace('\n', '')
-                d = d.replace('/', '-') # 중간 날짜 형식
-                d_count = len(d.split('-'))
-                if ':' in d:
-                    d = date.today()
-                    d = str(d)
-                    d = d.replace('-', '-')
-                elif d_count == 2:
-                    d = d.replace('\t', '')
-                    d = f"2019-{d}"
-                    d = d.replace('-', '-')
-                d = d.replace(' ', '')
-                d = d.split(' ')[0]
-                day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                # print(d)
+            for day in self.dateCrawl(regen, soup, 'search'):
                 if day == Fixed_date:
                     stop = False
                     page_Target = 'low'
-                    # print(stop)
-                    # print(page_Target)
                     break
                 elif day < Fixed_date:
                     page_Target = True
@@ -128,42 +135,24 @@ class Crawler:
             if stop == True:
                 if page_Target == False:
                     regen = regen + int(regen / 3)
-                    if regen >= 6575:
-                        regen = 6575
+                    if regen >= 6369:
+                        regen = 6369
                 elif page_Target == True:
                     regen = regen - int(regen / 5)
                     if regen < 1:
                         regen = 1
-                # print(f'**********{regen}***********')
         if stop == False:
             Fixed_date = Fixed_date + timedelta(days=+1)
-            # print(Fixed_date)
             while stop == False:
-                # print(f'----------{regen}----------')
-                url = f'http://www.bobaedream.co.kr/list?code=politic&s_cate=&maker_no=&model_no=&or_gu=10&or_se=desc&s_selday=&pagescale=30&info3=&noticeShow=&s_select=&s_key=&level_no=&vdate=&type=list&page={regen}'
-                time.sleep(0.02)
+                url = self.url + str(regen)
+                time.sleep(0.5)
                 res = req.get(url, verify=False)
                 res.encoding = None
                 html = res.text
-                soup = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
+                html = html.encode('utf-8', 'ignore')
+                soup = BeautifulSoup(html, 'html.parser')
 
-                for i, d in enumerate(soup.select('tr:not(.best) > td[class=date]')):
-                    d = d.get_text()
-                    d = d.replace('\n', '')
-                    d = d.replace('/', '-')
-                    d_count = len(d.split('-'))
-                    if ':' in d:
-                        d = date.today()
-                        d = str(d)
-                        d = d.replace('-', '-')
-                    elif d_count == 2:
-                        d = d.replace('\t', '')
-                        d = f"2019-{d}"
-                        d = d.replace('-', '-')
-                    d = d.replace(' ', '')
-                    d = d.split(' ')[0]
-                    day = datetime.datetime(int(d.split('-')[0]), int(d.split('-')[1]), int(d.split('-')[2]))
-                    # print(d)
+                for day in self.dateCrawl(regen, soup, 'search'):
                     if day == Fixed_date:
                         stop = True
                         break

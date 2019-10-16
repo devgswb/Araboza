@@ -12,12 +12,15 @@ import sys
 import os
 from csub import BoBaeCrawl, ClienCrawl, Cook82Crawl
 from csub import DogDripCrawl, EtolandCrawl, GasaengeCrawl
-from csub import HumorunivCrawl, HygallCrawl, InstizCrawl
+from csub import PpomppuCrawl, HygallCrawl, InstizCrawl
 from csub import MlbParkCrawl, NatePannCrawl, RuLiWebCrawl
 from csub import TheqooCrawl, TodayHumorCrawl, YGosuCrawl
 PARAM = sys.argv[1:]
 # SITE_CODE는 각 사이트별 코드를 정의해놓은 상수입니다.
 # Python에서 상수는 대문자와 언더바(_)로 표시합니다.
+
+# 크롤러 실행 시 특정 크롤러에서 반복되는 오류가 일어난다면, 해당 홈페이지의 공지사항 갯수를 변경하거나,
+# 다수의 게시판을 크롤링하는 사이트크롤러의 경우 데이터정보가 적은 게시판을 일시적으로 제외하시기 바랍니다.
 SITE_CODE = {
     1: "보배드림",
     2: "클리앙",
@@ -25,7 +28,7 @@ SITE_CODE = {
     4: "개드립",
     5: "이토랜드",
     6: "가생이",
-    7: "웃긴대학",
+    7: "뽐뿌",
     8: "해연갤",
     9: "인스티즈",
     10: "MLB파크",
@@ -59,7 +62,13 @@ class Crawler:
         if site_code == 1:
             data_directory_create('data/1')
             crawler = BoBaeCrawl.Crawler()
-            crawler.run(year, month, day)
+            crawler.run('politic', year, month, day)    # 정치/시사
+            crawler.run('freeb', year, month, day)      # 자유게시판
+            crawler.run('import', year, month, day)     # 수입차게시판
+            crawler.run('national', year, month, day)   # 국산차게시판
+            crawler.run('strange', year, month, day)    # 유머게시판
+            crawler.run('accident', year, month, day)   # 교통사고/사건/블박
+            crawler.run('best', year, month, day)       # 베스트글
         elif site_code == 2:
             data_directory_create('data/2')
             crawler = ClienCrawl.Crawler()
@@ -71,7 +80,15 @@ class Crawler:
         elif site_code == 4:
             data_directory_create('data/4')
             crawler = DogDripCrawl.Crawler()
-            crawler.run(year, month, day)
+            crawler.run('politics', year, month, day)       # 정치/사회
+            crawler.run('computer', year, month, day)       # 컴퓨터 IT
+            crawler.run('movie', year, month, day)          # 영상
+            crawler.run('vehicle', year, month, day)        # 탈것
+            #crawler.run('cook', year, month, day)           # 요리
+            crawler.run('duck', year, month, day)           # 덕후
+            crawler.run('creation', year, month, day)       # 창작
+            # crawler.run('sports', year, month, day)         # 스포츠 - 너무적은 글 리젠량으로 인해 제회
+            # crawler.run('genderissue', year, month, day)    # 젠더이슈 - 너무적은 글 리젠량으로 인해 제회
         elif site_code == 5:
             data_directory_create('data/5')
             crawler = EtolandCrawl.Crawler()
@@ -82,7 +99,7 @@ class Crawler:
             crawler.run(year, month, day)
         elif site_code == 7:
             data_directory_create('data/7')
-            crawler = HumorunivCrawl.Crawler()
+            crawler = PpomppuCrawl.Crawler()
             crawler.run(year, month, day)
         elif site_code == 8:
             data_directory_create('data/8')
@@ -105,11 +122,19 @@ class Crawler:
         elif site_code == 12:
             data_directory_create('data/12')
             crawler = RuLiWebCrawl.Crawler()
-            crawler.run(year, month, day)
+            crawler.run('300148', year, month, day)         # 정치 유게(북유게)
+            crawler.run('300143', year, month, day)         # 유게
         elif site_code == 13:
             data_directory_create('data/13')
             crawler = TheqooCrawl.Crawler()
-            crawler.run(year, month, day)
+            #crawler.run('ktalk', year, month, day)          # 케이돌토그
+            #crawler.run('movie', year, month, day)          # 영화
+            crawler.run('politics', year, month, day)       # 정치토크
+            crawler.run('kbaseball', year, month, day)      # 국내야구
+            crawler.run('ksoccer', year, month, day)        # 국내축구
+            crawler.run('wsoccer', year, month, day)        # 해외축구
+            crawler.run('kstar', year, month, day)          # 국내유명인
+            crawler.run('it', year, month, day)             # IT/전자기기/음향
         elif site_code == 14:
             data_directory_create('data/14')
             crawler = TodayHumorCrawl.Crawler()
@@ -117,7 +142,7 @@ class Crawler:
         elif site_code == 15:
             data_directory_create('data/15')
             crawler = YGosuCrawl.Crawler()
-            crawler.run(year, month, day)
+            crawler.run('추천-전체게시글', year, month, day)
 
 
 # 리눅스 상에서 실행시 동작이 어떻게 될지 나타냅니다.

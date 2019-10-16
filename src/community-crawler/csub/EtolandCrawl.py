@@ -31,7 +31,7 @@ class Crawler:
         url = f'http://www.etoland.co.kr/bbs/new1.php?gr_id=bbs&view=&mb_id=&subject=&ext_search=&page={page}'
         time.sleep(0.02)
         res = req.get(url)
-        res.encoding = None
+        # res.encoding = None
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
         write = []
