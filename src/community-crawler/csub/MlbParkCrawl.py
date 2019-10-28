@@ -38,7 +38,7 @@ class Crawler:
         day = []
 
         for i, w in enumerate(soup.select('td.t_left > a > span.bullpen')):
-            if i > 4:
+            if i > 5:
                 w = w.get_text()
                 w = w.split('\n')[0]
                 # w = w.replace('\n', '')
@@ -46,7 +46,7 @@ class Crawler:
                 write.append(w)
 
         for i, d in enumerate(soup.select('td span.date')):
-            if i > 4:
+            if i > 5:
                 d = d.get_text()
                 d = d.replace('\n', '')
                 d = d.replace('-', '-') # 날짜 중간 형식
@@ -95,7 +95,7 @@ class Crawler:
             soup = BeautifulSoup(html, 'html.parser')
 
             for i, d in enumerate(soup.select('td span.date')):
-                if i > 4:
+                if i > 5:
                     d = d.get_text()
                     d = d.replace('\n', '')
                     d = d.replace('-', '-') # 중간 날짜 형식
@@ -141,7 +141,7 @@ class Crawler:
                 soup = BeautifulSoup(html, 'html.parser')
 
                 for i, d in enumerate(soup.select('td span.date')):
-                    if i > 4:
+                    if i > 5:
                         d = d.get_text()
                         d = d.replace('\n', '')
                         d = d.replace('-', '-')
