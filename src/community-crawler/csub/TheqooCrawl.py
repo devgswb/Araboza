@@ -24,6 +24,7 @@ class Crawler:
     def run(self, title, years, months, days):
         time.sleep(2)
         self.title = title
+        print(f'{title} 크롤링 시작')
         self.noticeNum = 0
         self.url = f'https://theqoo.net/index.php?mid={title}&page='
         self.endTime = datetime.datetime(years, months, days)
@@ -36,6 +37,7 @@ class Crawler:
         try:
             pool.map(self.crawlPage, self.pageCalculation(f'{years}-{months}-{days}'))
         except:
+            raise
             print(f"{title} 오류발생 재시작 합니다.")
             return self.run(title, years, months, days)
         pool.close()
@@ -51,23 +53,27 @@ class Crawler:
         html = res.text
         html = html.encode('utf-8', 'ignore')
         soup = BeautifulSoup(html, 'html.parser')
-
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#95a5a6"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#7f8c8d"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#4c4c4c"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#3e005d"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#ff0000"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="color:#666666"]')):
-            self.noticeNum = self.noticeNum + 1
-        for i, w in enumerate(soup.select('td.title span[style="color:#ffaad4"]')):
-            self.noticeNum = self.noticeNum + 1
+        notices = ['전체공지', '공지']
+        for raw_title in soup.select('strong'):
+            title = raw_title.text.strip()
+            if title in notices:
+                self.noticeNum += 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#95a5a6"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#7f8c8d"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#4c4c4c"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#3e005d"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;;color:#ff0000"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="font-weight:bold;"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="color:#666666"]')):
+        #     self.noticeNum = self.noticeNum + 1
+        # for i, w in enumerate(soup.select('td.title span[style="color:#ffaad4"]')):
+        #     self.noticeNum = self.noticeNum + 1
 
     def subjectCrawl(self, page, soup):
         write = []
@@ -106,6 +112,7 @@ class Crawler:
 
     def crawlPage(self, page):
         try:
+            print(self.title, page, '크롤링 중')
             url = self.url + str(page)
             time.sleep(0.5)
             res = req.get(url, verify=False)
@@ -115,7 +122,6 @@ class Crawler:
             soup = BeautifulSoup(html, 'html.parser')
             write = self.subjectCrawl(page, soup)
             day = self.dateCrawl(page, soup, 'save')
-
             for t in range(len(write)):
                 self.day = day[t]
                 if datetime.datetime.strptime(self.day, "%Y-%m-%d") < self.endTime:
@@ -136,9 +142,20 @@ class Crawler:
             print(f'{self.title} {page}page 재 크롤링')
             return self.crawlPage(page)
 
+
+    REGEN = {
+        'ktalk': 698,
+        'movie': 5,
+        'politics': 4,
+        'kbaseball': 91,
+        'ksoccer': 10,
+        'wsoccer': 50,
+        'kstar': 15,
+        'it': 5
+    }
     def pageCalculation(self, date_Specified):  # 입력한 날짜의 글이 있는 페이지 까지 검색
         # 들어와야하는 date_Specified의 형태는 '2019-08-22'
-        regen = 5  # 하루에 글이 평균적으로 작성되는 양(페이지 기준). 사이트마다 적당한 고정값을 줘야 검색이 빨라짐
+        regen = self.REGEN[self.title]  # 하루에 글이 평균적으로 작성되는 양(페이지 기준). 사이트마다 적당한 고정값을 줘야 검색이 빨라짐
         stop = True
         page_Max = 0
         page_Target = True
@@ -147,6 +164,7 @@ class Crawler:
                                        int(date_Specified.split('-')[2])) + timedelta(days=-1)
         while stop == True:
             url = self.url + str(regen)
+            print(url, "계산중")
             time.sleep(0.5)
             res = req.get(url, verify=False)
             res.encoding = None
