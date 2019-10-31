@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "윤석열",
-			"count": 481,
-			"changes": 0
-		},
-		{
-			"word": "조국",
-			"count": 367,
-			"changes": 0
-		},
-		{
-			"word": "검찰",
-			"count": 305,
-			"changes": 0
-		},
-		{
-			"word": "한겨레",
-			"count": 216,
-			"changes": 0
-		},
-		{
-			"word": "접대",
-			"count": 214,
-			"changes": 0
-		},
-		{
-			"word": "기사",
-			"count": 190,
-			"changes": 0
-		},
-		{
 			"word": "오늘",
-			"count": 158,
+			"count": 252,
 			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 151,
+			"count": 159,
 			"changes": 0
 		},
 		{
-			"word": "기자",
-			"count": 132,
+			"word": "프로",
+			"count": 127,
 			"changes": 0
 		},
 		{
-			"word": "총장",
-			"count": 128,
+			"word": "경기",
+			"count": 123,
+			"changes": 0
+		},
+		{
+			"word": "한국",
+			"count": 118,
+			"changes": 0
+		},
+		{
+			"word": "아이폰",
+			"count": 109,
+			"changes": 0
+		},
+		{
+			"word": "생각",
+			"count": 108,
+			"changes": 0
+		},
+		{
+			"word": "요즘",
+			"count": 102,
+			"changes": 0
+		},
+		{
+			"word": "페이",
+			"count": 96,
+			"changes": 0
+		},
+		{
+			"word": "김지영",
+			"count": 95,
 			"changes": 0
 		}
 	]

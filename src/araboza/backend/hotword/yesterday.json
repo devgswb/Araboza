@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "조국",
-			"count": 2853,
-			"changes": 2632
+			"word": "여사",
+			"count": 247,
+			"changes": -1175
 		},
 		{
-			"word": "이다",
-			"count": 894,
-			"changes": 0
+			"word": "한옥",
+			"count": 242,
+			"changes": -1178
 		},
 		{
-			"word": "장관",
-			"count": 882,
-			"changes": 0
+			"word": "명복",
+			"count": 231,
+			"changes": -1176
 		},
 		{
-			"word": "사퇴",
-			"count": 744,
-			"changes": 0
+			"word": "아이즈",
+			"count": 192,
+			"changes": -76
 		},
 		{
-			"word": "검찰",
-			"count": 575,
-			"changes": 411
-		},
-		{
-			"word": "설리",
-			"count": 442,
-			"changes": 0
-		},
-		{
-			"word": "개혁",
-			"count": 395,
-			"changes": 307
+			"word": "프로",
+			"count": 187,
+			"changes": -93
 		},
 		{
 			"word": "오늘",
-			"count": 301,
-			"changes": 135
+			"count": 161,
+			"changes": -25
+		},
+		{
+			"word": "터미네이터",
+			"count": 123,
+			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 265,
-			"changes": 127
+			"count": 105,
+			"changes": -38
 		},
 		{
-			"word": "법무부",
-			"count": 244,
+			"word": "에어팟",
+			"count": 91,
+			"changes": -125
+		},
+		{
+			"word": "생각",
+			"count": 91,
 			"changes": 0
 		}
 	]

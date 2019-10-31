@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
+			"word": "PD수첩",
+			"count": 649,
+			"changes": 0
+		},
+		{
+			"word": "보고싶다",
+			"count": 641,
+			"changes": 0
+		},
+		{
 			"word": "오늘",
-			"count": 300,
-			"changes": 142
+			"count": 241,
+			"changes": -11
 		},
 		{
-			"word": "집회",
-			"count": 282,
+			"word": "아이즈",
+			"count": 153,
 			"changes": 0
 		},
 		{
-			"word": "조국",
-			"count": 254,
-			"changes": -113
+			"word": "프로",
+			"count": 144,
+			"changes": 17
 		},
 		{
-			"word": "일본",
-			"count": 246,
+			"word": "생각",
+			"count": 124,
+			"changes": 16
+		},
+		{
+			"word": "토트넘",
+			"count": 118,
 			"changes": 0
 		},
 		{
-			"word": "서초동",
-			"count": 243,
+			"word": "에어팟",
+			"count": 115,
 			"changes": 0
 		},
 		{
-			"word": "서초",
-			"count": 204,
+			"word": "옥션",
+			"count": 115,
 			"changes": 0
 		},
 		{
-			"word": "사람",
-			"count": 158,
-			"changes": 7
-		},
-		{
-			"word": "태풍",
-			"count": 148,
-			"changes": 0
-		},
-		{
-			"word": "검찰",
-			"count": 143,
-			"changes": -162
-		},
-		{
-			"word": "개혁",
-			"count": 106,
+			"word": "너구리",
+			"count": 111,
 			"changes": 0
 		}
 	]

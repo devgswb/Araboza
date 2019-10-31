@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "조국",
-			"count": 221,
-			"changes": -33
+			"word": "여사",
+			"count": 1422,
+			"changes": 0
 		},
 		{
-			"word": "일본",
-			"count": 193,
-			"changes": -53
+			"word": "한옥",
+			"count": 1420,
+			"changes": 0
 		},
 		{
-			"word": "오늘",
-			"count": 166,
-			"changes": -134
-		},
-		{
-			"word": "검찰",
-			"count": 164,
-			"changes": 21
-		},
-		{
-			"word": "사람",
-			"count": 138,
-			"changes": -20
-		},
-		{
-			"word": "생각",
-			"count": 102,
+			"word": "명복",
+			"count": 1407,
 			"changes": 0
 		},
 		{
 			"word": "프로",
-			"count": 94,
+			"count": 280,
+			"changes": 136
+		},
+		{
+			"word": "아이즈",
+			"count": 268,
+			"changes": 115
+		},
+		{
+			"word": "에어팟",
+			"count": 216,
+			"changes": 101
+		},
+		{
+			"word": "오늘",
+			"count": 186,
+			"changes": -55
+		},
+		{
+			"word": "유시민",
+			"count": 149,
 			"changes": 0
 		},
 		{
-			"word": "이유",
-			"count": 93,
+			"word": "사람",
+			"count": 143,
 			"changes": 0
 		},
 		{
-			"word": "개혁",
-			"count": 88,
-			"changes": -18
-		},
-		{
-			"word": "여자",
-			"count": 85,
+			"word": "검찰",
+			"count": 111,
 			"changes": 0
 		}
 	]
