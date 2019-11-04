@@ -16,7 +16,8 @@ def get_hotword_ranking(date):
     date = date.split('-')
     date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
     date = [date, date + timedelta(days=-1), date + timedelta(days=-2), date + timedelta(days=-3)]
-    dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/')
+    dirname = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))).replace('\\', '/')
+    print(dirname)
     data = Dao.data
     username = data['username']
     password = data['password']
@@ -79,7 +80,7 @@ def get_hotword_ranking(date):
             name = '4_days_ago'
 
         print(json.dumps(result, ensure_ascii=False, indent="\t"))
-        dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
+        dirname = os.path.dirname(os.path.abspath(__file__)).split('/modules')[0] + '/hotword'
         # print(dirname) # 저장경로
         # print(i_date) # 저장될 데이터의 날짜
         with open(f'{dirname}/{name}.json', 'w', encoding="utf-8") as make_file:
@@ -89,7 +90,7 @@ def get_hotword_ranking(date):
 # 변동사항 계산 def (수정)
 def ranking_Changes():
     # dirname = os.path.dirname(__file__).split('/modules')[0] + '/hotword'
-    dirname = os.path.dirname(os.path.dirname(os.path.dirname(__file__))).replace('\\', '/') + "/hotword"
+    dirname = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))).replace('\\', '/') + "/hotword"
 
     for i in range(0, 3):
         if i == 0:

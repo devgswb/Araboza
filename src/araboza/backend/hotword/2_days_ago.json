@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "여사",
-			"count": 1422,
-			"changes": 0
-		},
-		{
-			"word": "한옥",
-			"count": 1420,
-			"changes": 0
-		},
-		{
-			"word": "명복",
-			"count": 1407,
-			"changes": 0
-		},
-		{
-			"word": "프로",
-			"count": 280,
-			"changes": 136
+			"word": "오늘",
+			"count": 253,
+			"changes": 107
 		},
 		{
 			"word": "아이즈",
-			"count": 268,
-			"changes": 115
+			"count": 213,
+			"changes": 55
 		},
 		{
-			"word": "에어팟",
-			"count": 216,
-			"changes": 101
+			"word": "프로",
+			"count": 160,
+			"changes": -1
 		},
 		{
-			"word": "오늘",
-			"count": 186,
-			"changes": -55
-		},
-		{
-			"word": "유시민",
-			"count": 149,
+			"word": "디아",
+			"count": 154,
 			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 143,
+			"count": 122,
+			"changes": -7
+		},
+		{
+			"word": "게임",
+			"count": 121,
 			"changes": 0
 		},
 		{
-			"word": "검찰",
+			"word": "경기",
+			"count": 118,
+			"changes": 0
+		},
+		{
+			"word": "여의도",
+			"count": 114,
+			"changes": 0
+		},
+		{
+			"word": "도인",
 			"count": 111,
+			"changes": 0
+		},
+		{
+			"word": "디아블로",
+			"count": 99,
 			"changes": 0
 		}
 	]

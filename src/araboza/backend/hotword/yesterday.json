@@ -1,53 +1,53 @@
 {
 	"result": [
 		{
-			"word": "여사",
-			"count": 247,
-			"changes": -1175
-		},
-		{
-			"word": "한옥",
-			"count": 242,
-			"changes": -1178
-		},
-		{
-			"word": "명복",
-			"count": 231,
-			"changes": -1176
-		},
-		{
-			"word": "아이즈",
-			"count": 192,
-			"changes": -76
-		},
-		{
-			"word": "프로",
-			"count": 187,
-			"changes": -93
+			"word": "페이",
+			"count": 295,
+			"changes": 0
 		},
 		{
 			"word": "오늘",
-			"count": 161,
-			"changes": -25
+			"count": 208,
+			"changes": -45
 		},
 		{
-			"word": "터미네이터",
-			"count": 123,
+			"word": "G2",
+			"count": 177,
+			"changes": 0
+		},
+		{
+			"word": "경기",
+			"count": 151,
+			"changes": 33
+		},
+		{
+			"word": "프로",
+			"count": 141,
+			"changes": -19
+		},
+		{
+			"word": "이즈",
+			"count": 110,
 			"changes": 0
 		},
 		{
 			"word": "사람",
-			"count": 105,
-			"changes": -38
+			"count": 99,
+			"changes": -23
 		},
 		{
-			"word": "에어팟",
-			"count": 91,
-			"changes": -125
+			"word": "자야",
+			"count": 95,
+			"changes": 0
 		},
 		{
-			"word": "생각",
-			"count": 91,
+			"word": "이번",
+			"count": 92,
+			"changes": 0
+		},
+		{
+			"word": "이유",
+			"count": 87,
 			"changes": 0
 		}
 	]
